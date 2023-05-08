@@ -1,0 +1,12 @@
+*
+**/
+
+!.gitignore
+!*.c
+!*.h
+!*.rt
+!Makefile
+
+.idea/
+objs/
+
