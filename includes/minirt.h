@@ -92,15 +92,6 @@ obj_color
 	t_img	bump;
 }
 
-
-
-typedef struct s_color
-{
-    double r;
-    double g;
-    doubel b;
-}   t_color;
-
 // intersect info ??
 
 
@@ -129,6 +120,21 @@ typedef struct s_vec {
     double  y;
     double  z;
 } t_vec;
+
+typedef struct s_color
+{
+    double r;
+    double g;
+    doubel b;
+}   t_color;
+
+//単位ベクトル以外の情報に下記のように記載するのかどうか
+//1 unit_vec
+//2 size
+//3 vec
+
+//eyevecはどこにおくべきか
+
 
 
 #endif
