@@ -7,7 +7,6 @@ struct light { //t_list's content
     color   light_color;
 }
 
-
 struct obj { // t_list's content
 	// type
 	enum type //shere or ...
@@ -112,14 +111,18 @@ struct s_scenes_info {
 }
 
 struct s_camera_info {
+	t_ray	camera;		//しばらく固定
+	double 	fov = -1;	//tmp
+	float	distance_camera_to_screen;
+
 	// vec or matrix
 };
 
 // eye2screen
-struct s_eye {
+struct s_ray {
 	vec pos;
 	vec unit_dir;
-} t_eye;
+} t_ray;
 
 
 //////////////////////// util

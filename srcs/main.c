@@ -16,14 +16,21 @@ t_eye get_screen_vector(t_info info)
 	//todo:  後回し
 }
 
-t_color raytrace(t_info, t_eye eye2screen)
+t_color raytrace(t_info info, t_eye eye2screen)
 {
+	bool	is_intersect;
+	t_color	color;
 
+	// 交点判定
+	is_intersect = check_intersection(info, eye2screen);
+
+	// 色の計算（background or obj color）
+	color = calc_color()
 }
 
 void	draw(t_info info)
 {
-	t_eye eye2screen_xy;
+	t_ray	eye2screen_xy;
 	t_color color;
 
 	for (y)
