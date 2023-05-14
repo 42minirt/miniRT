@@ -1,18 +1,6 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-
-struct scenes {
-	// ambient
-
-	// lights
-	t_list *lights; content: light
-
-	// objs
-	t_list *objs;   content : obj
-
-}
-
 struct light { //t_list's content
     vec point;
     double  brightness;
@@ -101,18 +89,40 @@ obj_color
 # define WINDOW_HEIGHT		540
 # define WINDOW_WIDTH		960
 
+
 struct info {
-	// mlx parameter
-    void		*mlx;
+	t_mlx_info		*mlx_info;
+	t_scene_info	*scene_info;
+	t_camera_info	*camera_info;
+}
+
+struct s_mlx_info{
+	void		*mlx;
 	void		*mlx_win;
 	char		*addr;
+};
 
-	// scenes
-
-
-	// camera
-    //  vec or matrix later
+struct s_scenes_info {
+	// ambient
+	color	ambient;
+	// lights
+	t_list *lights; content: light
+	// objs
+	t_list *objs;   content : obj
 }
+
+struct s_camera_info {
+	// vec or matrix
+};
+
+// eye2screen
+struct s_eye {
+	vec pos;
+	vec unit_dir;
+} t_eye;
+
+
+//////////////////////// util
 
 // create unit
 typedef struct s_vec {
