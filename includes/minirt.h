@@ -1,35 +1,81 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+#include <stdbool.h>
+#include <stdio.h>
+#include <math.h>
 
-struct scenes {
-	// ambient
+typedef	struct	s_list t_list;
+typedef struct s_all_info t_all_info;
+typedef struct s_color t_color;
+typedef struct s_img t_img;
+typedef	struct s_light t_light;
+typedef struct	s_obj t_obj;
+typedef enum e_type t_type;
 
-	// lights
-	t_list *lights; content: light
+struct s_list
+{
+	void	*content;
+	t_list	*next;
+};
 
-	// objs
-	t_list *objs;   content : obj
+struct s_light 
+{ //t_list's content
+    t_vec		point;
+    double		brightness;
+    t_color		light;
+};
 
-}
+enum e_type
+{
+	BALL,
+	PLANE,
+	CORN,
+	CYLINDER
+};
 
-struct light { //t_list's content
-    vec point;
-    double  brightness;
-    color   light_color;
-}
-
-
-struct obj { // t_list's content
+struct s_obj 
+{ // t_list's content
 	// type
-	enum type //shere or ...
+	t_type		type; //shere or ...
 
 	// shape
-	union shape_data
+	union		shape_data;
 
 	// material
-	obj_color
-}
+	t_obj_color	obj_color;
+};
+
+typedef struct	s_plane_shape
+{
+    t_vec	center;
+    t_vec	normal;
+}t_plane;
+
+typedef struct	sphere_shape
+{
+    t_vec	center;
+    double	radis;
+}t_sphere;
+
+
+typedef struct	cylinder_shape
+{
+    t_vec	bottom_center;
+    t_vec	axis;
+
+    double  radius;
+    double  height;
+}t_cylinder;
+
+typedef struct	corn_shape
+{
+    t_vec	bottom_center;
+    t_vec	axis;
+
+    double  radius;
+    double  height;
+}t_corn;
 
 typedef union	u_shape_data // sphere or plane
 {
@@ -40,38 +86,7 @@ typedef union	u_shape_data // sphere or plane
 
 } t_shape_data;
 
-plane_shape
-{
-    vec center;
-    vec normal;
-}
-
-sphere_shape
-{
-    vec     center;
-    double  radis;
-}
-
-
-cylinder_shape
-{
-    vec bottom_center;
-    vec axis;
-
-    double  radius;
-    double  height;
-}
-
-corn_shape
-{
-    vec bottom_center;
-    vec axis;
-
-    double  radius;
-    double  height;
-}
-
-obj_color
+typedef struct s_obj_color
 {
     t_color ka;
     t_color kd;
@@ -81,25 +96,16 @@ obj_color
     Ia, Id, Is;
 
 // bonus
-    bool    is_perfect_ref
-    color   reflect_ref = (1,1,1); // kf 完全鏡面反射光/屈折光係数RGB
+    bool		is_perfect_ref;
+    t_color		reflect_ref; // kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
     
     bool is_checker;
-	color   checker_color;
+	t_color   checker_color;
     
     bool    is_img;
 	t_img   texture;
 	t_img	bump;
-}
-
-
-
-typedef struct s_color
-{
-    double r;
-    double g;
-    doubel b;
-}   t_color;
+}t_obj_color;
 
 // intersect info ??
 
@@ -110,18 +116,55 @@ typedef struct s_color
 # define WINDOW_HEIGHT		540
 # define WINDOW_WIDTH		960
 
-struct info {
-	// mlx parameter
-    void		*mlx;
+typedef struct s_mlx_info t_mlx_info;
+typedef struct s_scene_info t_scene_info;
+typedef struct s_camera_info t_camera_info;
+
+struct s_all_info {
+	t_mlx_info		*mlx_info;
+	t_scene_info	*scene_info;
+	t_camera_info	*camera_info;
+};
+
+struct s_mlx_info{
+	void		*mlx;
 	void		*mlx_win;
 	char		*addr;
+};
 
-	// scenes
+struct s_scene_info {
+	// ambient
+	t_color	ambient;
+	// lights
+	t_list *lights; //content: light;
+	// objs
+	t_list *objs;   //content : obj;
+};
+
+// eye2screen
+typedef struct s_ray {
+	t_vec pos;
+	t_vec unit_dir;
+} t_ray;
+
+struct s_camera_info {
+	t_ray	camera;		//しばらく固定
+	double 	fov;	//tmp -1 で初期化
+	float	distance_camera_to_screen;
+
+	// vec or matrix
+};
+
+typedef struct	s_intersection_point
+{
+	double	distance;	// 交点から目までの距離　tの値　元となるベクトルが単位ベクトルがtはサイズと重なる
+	t_vec	position;	// 交点の位置ベクトル
+	t_vec	normal;		// 交点における物体表面の法線ベクトル
+	t_list	*obj;
+} t_intersection_point;
 
 
-	// camera
-    //  vec or matrix later
-}
+//////////////////////// util
 
 // create unit
 typedef struct s_vec {
@@ -130,5 +173,32 @@ typedef struct s_vec {
     double  z;
 } t_vec;
 
+struct s_color
+{
+    double r;
+    double g;
+    double b;
+};
+
+struct    s_img
+{
+    int    height;
+    int		width;
+    int    *data;    // data=[R11,G11,B11, R12,G12,B12, ..., R21,G21,B21,..., Rhw,Ghw,Bhw]
+};
+
+//単位ベクトル以外の情報に下記のように記載するのかどうか
+//1 unit_vec
+//2 size
+//3 vec
+
+//eyevecはどこにおくべきか
+
+/////////////////
+t_color		backgroundcolor_init();
+t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
+t_all_info	construct_info();
+bool		check_intersection(t_all_info info, t_ray eye2screen, t_intersection_point *its_p);
+t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
 
 #endif

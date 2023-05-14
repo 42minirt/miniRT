@@ -6,9 +6,11 @@
 !*.h
 !*.rt
 !Makefile
+!*.md
 
 !includes/
 !srcs/
+!srcs/*/
 
 .idea/
 objs/
