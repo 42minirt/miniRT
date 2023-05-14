@@ -24,6 +24,9 @@ lightlist内の各lightには
 後ほど対応を完了させるため、一旦無視  
   
 ### 三　　　　　描画のための色情報の獲得
+  
+#### intersectionの情報を格納
+この情報を使ってかくobjのcolorの計算を一元化したい<br>
 
 #### calc_ambient_reflection
 
@@ -75,4 +78,8 @@ lightlist内の各lightには
 put関数を用いて描画  
   
   
-ピクセルの個数文だけ二〜四を繰り返す
+ピクセルの個数文だけ二〜四を繰り返す<br><br>
+何やるか決めるんば<br><br>
+constructor → mocha takira<br>
+ratio_ball ratio_corn → takira<br>
+ratio_plane ratio_cylinder → mocha<br>

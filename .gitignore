@@ -10,6 +10,7 @@
 
 !includes/
 !srcs/
+!srcs/*/
 
 .idea/
 objs/
