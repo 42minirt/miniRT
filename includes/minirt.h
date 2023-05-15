@@ -200,5 +200,10 @@ t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
 t_all_info	construct_info();
 bool		check_intersection(t_all_info info, t_ray eye2screen, t_intersection_point *its_p);
 t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
+double		obtain_vecsize(t_vec *vec);
+void		calc_outerproduct(t_vec *tgt_vec, t_vec *v1, t_vec *v2);
+void		neg_vec(t_vec *sub, t_vec *v1, t_vec *v2);
+double		dot_vec(t_vec *v1, t_vec *v2);
+void	    t_mix_vec_all(t_vec *tgt_vec, double t1, t_vec *v1, double t2, t_vec *v2);
 
 #endif

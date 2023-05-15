@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 23:16:19 by user              #+#    #+#             */
-/*   Updated: 2023/05/14 23:26:27 by user             ###   ########.fr       */
+/*   Updated: 2023/05/15 22:57:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,15 @@ void	inverse_vec(t_vec *inv_vec, t_vec *inved_vec)
 		inved_vec->y * (-1),
 		inved_vec->z * (-1)
 	);
+}
+
+double	obtain_vecsize(t_vec *vec)
+{
+	double	vec_size;
+	
+	vec_size = sqrt(
+		pow(vec->x, 2) \
+		+ pow(vec->y, 2) \
+		+ pow(vec->z, 2));
+	return (vec_size);
 }
