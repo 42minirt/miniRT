@@ -1,17 +1,45 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-#include <stdbool.h>
-#include <stdio.h>
-#include <math.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <math.h>
 
-typedef	struct	s_list t_list;
-typedef struct s_all_info t_all_info;
-typedef struct s_color t_color;
-typedef struct s_img t_img;
-typedef	struct s_light t_light;
-typedef struct	s_obj t_obj;
-typedef enum e_type t_type;
+# define SUCCESS	0
+# define FAILURE	1
+
+typedef	struct	s_list			t_list;
+typedef struct	s_all_info		t_all_info;
+typedef struct	t_color			t_color;
+typedef struct	s_img			t_img;
+typedef	struct	s_light			t_light;
+typedef struct	s_obj			t_obj;
+typedef struct	s_vec			t_vec;
+typedef struct	s_obj_color		t_obj_color;
+
+typedef struct	s_plane_shape		t_plane;
+typedef struct	s_sphere_shape		t_sphere;
+typedef struct	s_cylinder_shape	t_cylinder;
+typedef struct	s_corn_shape		t_corn;
+
+typedef union	u_shape_data		t_shape_data;
+
+typedef enum	e_type				t_type;
+
+
+// create unit
+struct s_vec {
+	double  x;
+	double  y;
+	double  z;
+};
+
+struct s_color
+{
+	double r;
+	double g;
+	double b;
+};
 
 struct s_list
 {
@@ -20,10 +48,10 @@ struct s_list
 };
 
 struct s_light 
-{ //t_list's content
+{
     t_vec		point;
     double		brightness;
-    t_color		light;
+    t_color		*light;
 };
 
 enum e_type
@@ -37,77 +65,77 @@ enum e_type
 struct s_obj 
 { // t_list's content
 	// type
-	t_type		type; //shere or ...
+	t_type			type; //shere or ...
 
 	// shape
-	union		shape_data;
+	t_shape_data	*shape_data;
 
 	// material
-	t_obj_color	obj_color;
+	t_obj_color		*obj_color;
 };
 
-typedef struct	s_plane_shape
+
+struct	s_plane_shape
 {
     t_vec	center;
     t_vec	normal;
-}t_plane;
+};
 
-typedef struct	sphere_shape
+struct	sphere_shape
 {
     t_vec	center;
     double	radis;
-}t_sphere;
+};
 
 
-typedef struct	cylinder_shape
+struct	cylinder_shape
 {
     t_vec	bottom_center;
     t_vec	axis;
 
     double  radius;
     double  height;
-}t_cylinder;
+};
 
-typedef struct	corn_shape
+struct	corn_shape
 {
     t_vec	bottom_center;
     t_vec	axis;
 
     double  radius;
     double  height;
-}t_corn;
+};
 
-typedef union	u_shape_data // sphere or plane
+union	u_shape_data // sphere or plane
 {
-	t_plane			plane;
-	t_sphere		sphere;
-	t_cylinder		cylinder;
-	t_corn			corn;
+	t_plane		*plane;
+	t_sphere	*sphere;
+	t_cylinder	*Icylinder;
+	t_corn		*corn;
 
-} t_shape_data;
+};
 
-typedef struct s_obj_color
+struct s_obj_color
 {
-    t_color ka;
-    t_color kd;
-    t_color ks;
+    t_color *ka;
+    t_color *kd;
+    t_color *ks;
    
-
-    Ia, Id, Is;
+	double	ia;
+	double	id;
+	double	is;
 
 // bonus
-    bool		is_perfect_ref;
-    t_color		reflect_ref; // kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
+    bool	is_perfect_ref;
+    t_color	*reflect_ref; // kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
     
-    bool is_checker;
-	t_color   checker_color;
+    bool 	is_checker;
+	t_color	*checker_color;
     
-    bool    is_img;
-	t_img   texture;
-	t_img	bump;
-}t_obj_color;
-
-// intersect info ??
+    bool	is_img;
+	t_img	*texture;
+	t_img	*bump;
+};
 
 
 
@@ -134,7 +162,7 @@ struct s_mlx_info{
 
 struct s_scene_info {
 	// ambient
-	t_color	ambient;
+	t_color	*ambient;
 	// lights
 	t_list *lights; //content: light;
 	// objs
@@ -166,19 +194,6 @@ typedef struct	s_intersection_point
 
 //////////////////////// util
 
-// create unit
-typedef struct s_vec {
-    double  x;
-    double  y;
-    double  z;
-} t_vec;
-
-struct s_color
-{
-    double r;
-    double g;
-    double b;
-};
 
 struct    s_img
 {
@@ -197,8 +212,11 @@ struct    s_img
 /////////////////
 t_color		backgroundcolor_init();
 t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
-t_all_info	construct_info();
 bool		check_intersection(t_all_info info, t_ray eye2screen, t_intersection_point *its_p);
 t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
+
+int		construct_info(t_all_info *all_info);
+void 	destruct_info(t_all_info info);
+
 
 #endif
