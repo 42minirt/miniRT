@@ -243,6 +243,8 @@ struct	s_discriminant_param
 	double	b;
 	double	c;
 	double	d;
+	double	t1;
+	double	t2;
 };
 
 #endif //TYPEDEF_H

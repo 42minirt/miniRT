@@ -8,19 +8,29 @@ static t_d_param	calc_discriminant_of_sphere(t_sphere *sphere, t_ray ray)
 	neg_vec(&pe_pc, &ray.pos, &sphere->center);
 	d_param.a = dot_vec(&ray.unit_dir, &ray.unit_dir);
 	d_param.b = 2.0 * dot_vec(&ray.unit_dir, &pe_pc);
-	d_param.c = dot_vec(&pe_pc, &pe_pc) - sphere->radius * sphere->radius;
-	d_param.d = d_param.b * d_param.b - 4.0 * d_param.a * d_param.c;
+	d_param.c = dot_vec(&pe_pc, &pe_pc) - pow(sphere->radius, 2);
+	d_param.d = pow(d_param.b, 2) - 4.0 * d_param.a * d_param.c;
 	return (d_param);
 }
 
-static double	get_t_of_sphere(double a, double b, double d)
+// t1 < t2
+// if D == 0; t1 == t2
+void	calc_t(t_d_param *d_param)
 {
-	double	t1;
-	double	t2;
+	const double	a = d_param->a;
+	const double	b = d_param->b;
+	const double	d = d_param->d;
+	double			t1;
+	double			t2;
 
 	t1 = (-b - sqrt(d)) / (2.0 * a);
 	t2 = (-b + sqrt(d)) / (2.0 * a);
+	d_param->t1 = t1;
+	d_param->t2 = t2;
+}
 
+double	get_valid_distance(double t1, double t2)
+{
 	if (t1 > 0.0)
 		return (t1);
 	if (t1 <= 0.0 && 0.0 < t2)
@@ -41,19 +51,18 @@ static t_intersection_point	calc_intp_info(t_sphere *sphere, t_ray ray, double t
 	return (intp);
 }
 
-bool	is_intersect_with_sphere(t_shape_data *shape, t_ray ray, t_intersection_point *intp)
+double	calc_intersect_with_sphere(t_sphere *sphere, t_ray ray, t_intersection_point *intp)
 {
-	t_sphere	*sphere;
 	t_d_param	d_param;
 	double		t;
 
-	sphere = &shape->sphere;
 	d_param = calc_discriminant_of_sphere(sphere, ray);
 	if (d_param.a == 0.0 || d_param.d < 0.0)
-		return (false);
-	t = get_t_of_sphere(d_param.a, d_param.b, d_param.d);
+		return (-1.0);
+	calc_t(&d_param);
+	t = get_valid_distance(d_param.t1, d_param.t2);
 	if (t <= 0.0 || !intp)
-		return (false);
+		return (-1.0);
 	*intp = calc_intp_info(sphere, ray, t);
-	return (true);
+	return (intp->distance);
 }
