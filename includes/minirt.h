@@ -205,5 +205,6 @@ void		calc_outerproduct(t_vec *tgt_vec, t_vec *v1, t_vec *v2);
 void		neg_vec(t_vec *sub, t_vec *v1, t_vec *v2);
 double		dot_vec(t_vec *v1, t_vec *v2);
 void	    t_mix_vec_all(t_vec *tgt_vec, double t1, t_vec *v1, double t2, t_vec *v2);
+void		times_vec(t_vec *tgt_vec, double t, t_vec *sub);
 
 #endif

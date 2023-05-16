@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 23:16:19 by user              #+#    #+#             */
-/*   Updated: 2023/05/15 22:57:46 by user             ###   ########.fr       */
+/*   Updated: 2023/05/16 19:44:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ double	obtain_vecsize(t_vec *vec)
 		+ pow(vec->y, 2) \
 		+ pow(vec->z, 2));
 	return (vec_size);
+}
+
+void	times_vec(t_vec *tgt_vec, double t, t_vec *sub)
+{
+	setvec(
+		tgt_vec,
+		t * sub->x,
+		t * sub->y,
+		t * sub->z
+	);
 }
