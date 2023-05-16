@@ -17,6 +17,12 @@
 # define WINDOW_WIDTH	960
 # define WINDOW_TITLE	"miniRT"
 
+#define OP_CHECKER_TEXTURE	"checker"
+#define OP_PERFECT_REF		"perfect_ref"
+#define OP_IMAGE_TEXTURE	"image"
+
+#define MAX_RECURSION	8
+
 /* typedef */
 typedef struct	s_all_info		t_all_info;
 typedef struct	s_mlx_info		t_mlx_info;
@@ -56,14 +62,16 @@ enum	e_type
 
 enum	e_parse_result
 {
-	COMPLETE,
-	FATAL_ERROR,
-	INVALID_ID,
-	LACK_INFO,
-	TOO_MANY_INFO,
-	INVALID_ARG,
-	OUT_OF_RANGE,
-	MULTIPLE_ID,
+	PASS,
+
+	ERROR_FATAL,
+	ERROR_INVALID_TYPE,
+	ERROR_LACK_INFO,
+
+	ERROR_TOO_MANY_INFO,
+	ERROR_INVALID_ARG,
+	ERROR_OUT_OF_RANGE,
+	ERROR_MULTIPLE_ID,
 };
 
 enum	e_identifier
@@ -151,7 +159,8 @@ struct	s_plane_shape
 struct	s_sphere_shape
 {
     t_vec	center;
-    double	radis;
+    double	radius;
+	double	diameter;
 };
 
 struct	s_cylinder_shape
@@ -160,6 +169,7 @@ struct	s_cylinder_shape
     t_vec	axis;
 
     double  radius;
+	double	diameter;
     double  height;
 };
 
@@ -169,6 +179,7 @@ struct	s_corn_shape
     t_vec	axis;
 
     double  radius;
+	double	diameter;
     double  height;
 };
 
@@ -176,7 +187,7 @@ struct s_obj_color
 {
     t_color ka; // ambient ref
     t_color kd; // diffuse ref
-    t_color ks; // specular ref
+    t_color ks; // specular ref //fix
 
 	double	shininess;	// alpha
 
@@ -189,7 +200,7 @@ struct s_obj_color
     t_color	perfect_ref_color; // kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
     
     bool 	is_checker;
-	t_color	*checker_color;
+	t_color	checker_color;
     
 	t_img	*texture_data;
 	t_img	*bump_data;
@@ -277,8 +288,8 @@ t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
 int		construct_info(t_all_info *all_info, const char *rt_path);
 int		parsing_config(t_all_info *all_info, const char *rt_path);
 
-int		validate_scene(t_scene_info *scene_info);
-int		validate_camera(t_camera_info *camera_info);
+t_parse_res validate_scene(t_scene_info *scene_info);
+t_parse_res validate_camera(t_camera_info *camera_info);
 
 t_parse_res	get_ambient_setting(const char *line, t_scene_info *scene);
 t_parse_res	get_lights_setting(const char *line, t_scene_info *scene, int id_no);
@@ -299,12 +310,9 @@ int		parsing_double_num(const char *line, double *double_num, size_t *idx);
 int		parsing_vec(const char *line, t_vec *vec, size_t *idx);
 int		parsing_color(const char *line, t_color *color, size_t *idx);
 
-int		is_vec_in_normal_range(t_vec vec);
-int		is_color_in_range(t_color color);
 
 
 void	update_scene(t_scene_info *scene);
-
 void 	destruct_info(t_all_info info);
 
 
@@ -318,6 +326,10 @@ t_color	init_color(double r, double g, double b);
 
 // get_obj_detail
 t_parse_res	get_obj_detail(const char *line, int id_no, t_obj *obj);
+t_parse_res	get_bonus_detail(const char *line, t_obj *obj, size_t *idx);
+t_parse_res	get_image_texture(const char *line, t_img *obj_color, size_t *idx);
+
+int			get_img(t_img *img, int fd);
 
 
 // mlx_helpers
