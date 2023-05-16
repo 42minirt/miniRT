@@ -21,9 +21,9 @@ sl   -40,50,00       0.6        60.0            10, 0, 255
  #Light     point(xyz)           light brightness ratio[0,1]                                RGB[0,255]
  #Spotlight Light point(xyz)     light brightness ratio[0,1]       angle[0-90]              RGB[0,255]
  #Sphere    center point(xyz)    diameter    RGB[0,255]
- #Plane     point(xyz)           normalized vec[-1,1]                                       RGB[0,255]
- #Cylinder  center(xyz)          normalized vec[-1,1]              diameter    height       RGB[0,255]
- #Corn      center(xyz)          normalized vec[-1,1]              diameter    height       RGB[0,255]
+ #Plane     point(xyz)           normalized vec[-1,1]                                       RGB[0,255]  <bonus_options>
+ #Cylinder  center(xyz)          normalized vec[-1,1]              diameter    height       RGB[0,255]  <bonus_options>
+ #Corn      center(xyz)          normalized vec[-1,1]              diameter    height       RGB[0,255]  <bonus_options>
 
  bonus options
     perfect_ref
