@@ -46,7 +46,7 @@ void	print_sphere(t_obj *obj)
 
 	pos = obj->shape_data.sphere.center;
 	c = obj->obj_color.kd;
-	printf("  ● Sphere    : (%5.1f, % 3.1f, % 3.1f),                                  %5.1f,        (%5.1f, %5.1f, %5.1f)", \
+	printf("  ● Sphere    : (%5.1f, % 3.1f, % 3.1f),                                    %5.1f,        (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
 	obj->shape_data.sphere.diameter, \
 	c.r, c.g, c.b);
@@ -82,7 +82,7 @@ void	print_cylinder(t_obj *obj)
 	nor = obj->shape_data.cylinder.axis;
 	c = obj->obj_color.kd;
 
-	printf("  ○ Cylinder  : (%5.1f, %5.1f, %5.1f),    (%5.1f, %5.1f, %5.1f),   %5.1f,   %5.1f,   (%5.1f, %5.1f, %5.1f)", \
+	printf("  ○ Cylinder  : (%5.1f, %5.1f, %5.1f),    (%5.1f, %5.1f, %5.1f),       %5.1f,   %5.1f,   (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
 	nor.x, nor.y, nor.z, \
 	obj->shape_data.cylinder.diameter, \
@@ -102,7 +102,7 @@ void	print_corn(t_obj *obj)
 	nor = obj->shape_data.corn.axis;
 	c = obj->obj_color.kd;
 
-	printf("  △ Corn      : (%5.1f, %5.1f, %5.1f),    (%5.1f, %5.1f, %5.1f),   %5.1f,   %5.1f,   (%5.1f, %5.1f, %5.1f)", \
+	printf("  △ Corn      : (%5.1f, %5.1f, %5.1f),    (%5.1f, %5.1f, %5.1f),       %5.1f,   %5.1f,   (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
 	nor.x, nor.y, nor.z, \
 	obj->shape_data.corn.diameter, \
