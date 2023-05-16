@@ -23,6 +23,7 @@ static int	get_ppm_size(char **split, t_img *img)
 	img->height = ft_atoi(split[1], &is_atoi_success);
 	if (!is_atoi_success)
 		return (FAILURE);
+//	printf("## width:%d, height:%d\n", img->width, img->height);
 	img->data = (int *)ft_calloc(sizeof(int), img->width * 3 * img->height);
 	if (!img->data)
 		return (FAILURE);
@@ -51,15 +52,15 @@ static int	process_line_by_col(const char *line, size_t file_col, t_img *img, si
 	char	**split;
 	int		res;
 
-	if (file_col == 0 || file_col == 2)
+	if (file_col == 0 || file_col == 1 || file_col == 3)
 		return (SUCCESS);
 	split = ft_split(line, ' ');
 	if (!split)
 		return (FAILURE);
 	res = FAILURE;
-	if (file_col == 1) // todo:1?
+	if (file_col == 2) // todo:1?
 		res = get_ppm_size(split, img);
-	else if (file_col >= 4)
+	else
 		res = get_ppm_data(split, img, data_idx);
 	free_split_array(split);
 	return (res);
@@ -67,9 +68,10 @@ static int	process_line_by_col(const char *line, size_t file_col, t_img *img, si
 
 // ppm file format
 //   col 0: <file_format>
-//   col 1: <width> <height>
-//   col 2: <color_range>
-//   col 3: <r11> <g11> <b11> <r12> <g12> <b12> ...
+//   col 1: <comment>
+//   col 2: <width> <height>
+//   col 3: <color_range>
+//   col 4: <r11> <g11> <b11> <r12> <g12> <b12> ...
 
 t_parse_res	get_img(t_img *img, int fd)
 {
@@ -85,6 +87,7 @@ t_parse_res	get_img(t_img *img, int fd)
 		line = get_next_line(fd, false); // not include `\n` at end of line
 		if (!line)
 			break ;
+
 		if (process_line_by_col(line, file_col, img, &data_idx) == FAILURE)
 		{
 			free(line);

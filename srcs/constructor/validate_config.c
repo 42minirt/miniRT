@@ -109,22 +109,22 @@ t_parse_res	validate_corn(t_corn *corn)
 t_parse_res	validate_obj_shape(t_obj *obj)
 {
 	if (obj->type == BALL)
-		return (validate_sphere(obj->shape_data->sphere));
+		return (validate_sphere(&obj->shape_data.sphere));
 	if (obj->type == PLANE)
-		return (validate_plane(obj->shape_data->plane));
+		return (validate_plane(&obj->shape_data.plane));
 	if (obj->type == CYLINDER)
-		return (validate_cylinder(obj->shape_data->cylinder));
+		return (validate_cylinder(&obj->shape_data.cylinder));
 	if (obj->type == CORN)
-		return (validate_corn(obj->shape_data->corn));
+		return (validate_corn(&obj->shape_data.corn));
 	return (ERROR_INVALID_TYPE);
 }
 
 t_parse_res	validate_obj_color(t_obj *obj)
 {
-	if (!is_color_in_range(obj->obj_color->kd))
+	if (!is_color_in_range(obj->obj_color.kd))
 		return (ERROR_OUT_OF_RANGE);
-	if (obj->obj_color->is_checker \
-	&& !is_color_in_range(obj->obj_color->checker_color))
+	if (obj->obj_color.is_checker \
+	&& !is_color_in_range(obj->obj_color.checker_color))
 		return (ERROR_OUT_OF_RANGE);
 	return (PASS);
 }
@@ -166,6 +166,7 @@ t_parse_res	validate_scene(t_scene_info *scene)
 
 t_parse_res	validate_camera(t_camera_info *camera)
 {
-
+	(void )camera;
+	return (PASS);
 }
 

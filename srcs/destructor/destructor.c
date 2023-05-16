@@ -1,23 +1,22 @@
 #include "minirt.h"
 
-//static void	free_objs(void *content)
-//{
-//	t_obj		*obj;
-//
-//	obj = content;
-//	if (obj)
-//	{
-//		free(obj->obj_color->texture_data);
-//		free(obj->obj_color->bump_data);
-//	}
-//	free(obj);
-//}
+static void	free_objs(void *content)
+{
+	t_obj		*obj;
+
+	obj = content;
+	if (obj)
+	{
+		free(obj->obj_color.texture_data.data);
+		free(obj->obj_color.bump_data.data);
+	}
+	free(obj);
+}
 
 static void	free_scene(t_scene_info *scene)
 {
 	ft_lstclear(&scene->lights, free);
-//	ft_lstclear(&scene->lights, free_objs);
-	ft_lstclear(&scene->objs, free);
+	ft_lstclear(&scene->objs, free_objs);
 	free(scene);
 }
 

@@ -9,24 +9,24 @@ static t_parse_res	get_config_controller(t_identifier id_no, const char *line, t
 	if (id_no == id_camera)
 	{
 		result = get_camera_setting(line, all->camera_info);
-		printf("  [DEBUG] get_params -> camera_ret=%d\n", result);
+//		printf("  [DEBUG] get_params -> camera_ret=%s\n", parse_result_char(result));
 	}
 	else if (id_no == id_ambient)
 	{
 		result = get_ambient_setting(line, all->scene_info);
-		printf("  [DEBUG] get_params -> ambient_ret=%d\n", result);
+//		printf("  [DEBUG] get_params -> ambient_ret=%s\n", parse_result_char(result));
 	}
 	else if (id_no == id_point_light || id_no == id_spot_light)
 	{
 		result = get_lights_setting(line, all->scene_info, id_no);
-		printf("  [DEBUG] get_params -> light_ret=%d\n", result);
+//		printf("  [DEBUG] get_params -> light_ret=%s\n", parse_result_char(result));
 	}
 	else if (id_no == id_plane || id_no == id_sphere || id_no == id_cylinder || id_no == id_corn)
 	{
 		result = get_objects_setting(line, all->scene_info, id_no);
-		printf("  [DEBUG] get_params -> objects_ret=%d\n", result);
+//		printf("  [DEBUG] get_params -> objects_ret=%s\n", parse_result_char(result));
 	}
-	printf("  [DEBUG] get_params :: ret=%d\n", result);
+//	printf("  [DEBUG] get_params :: ret=%s\n", parse_result_char(result));
 	return (result);
 }
 
@@ -123,4 +123,3 @@ int	parsing_config(t_all_info *all, const char *rt_path)
 	}
 	return (result);
 }
-

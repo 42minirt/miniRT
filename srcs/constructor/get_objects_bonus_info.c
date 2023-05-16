@@ -25,15 +25,15 @@ static t_parse_res	get_image_texture_info(const char *line, t_obj_color *obj_col
 	bool		filename_empty;
 
 	filename_empty = false;
-	res = get_image_texture(line, obj_color->texture_data, idx, &filename_empty);
+	res = get_image_texture(line, &obj_color->texture_data, idx, &filename_empty);
 	if (res != PASS)
 		return (ERROR_FATAL);
+
 	skip_delimiter(line, idx);
 
-	res = get_image_texture(line, obj_color->bump_data, idx, &filename_empty);
+	res = get_image_texture(line, &obj_color->bump_data, idx, &filename_empty);
 	if (res != PASS)
 		return (ERROR_FATAL);
-
 	skip_spece(line, idx);
 	return (PASS);
 }
@@ -49,11 +49,11 @@ t_parse_res	get_bonus_detail(const char *line, t_obj *obj, size_t *idx)
 		return (ERROR_FATAL);
 	res = ERROR_FATAL;
 	if (is_same_str(option_id, OP_CHECKER_TEXTURE))
-		res = get_checker_info(line, obj->obj_color, idx);
+		res = get_checker_info(line, &obj->obj_color, idx);
 	else if (is_same_str(option_id, OP_PERFECT_REF))
-		res = get_perfect_ref_info(line, obj->obj_color, idx);
+		res = get_perfect_ref_info(line, &obj->obj_color, idx);
 	else if (is_same_str(option_id, OP_IMAGE_TEXTURE))
-		res = get_image_texture_info(line, obj->obj_color, idx);
+		res = get_image_texture_info(line, &obj->obj_color, idx);
 	else
 	{
 		printf("[DEBUG]invalid bonus option:[%s]\n", option_id);
@@ -61,6 +61,6 @@ t_parse_res	get_bonus_detail(const char *line, t_obj *obj, size_t *idx)
 	free(option_id);
 	if (line[*idx])
 		return (ERROR_TOO_MANY_INFO);
-	printf("[DEBUG] get_bonus_op SUCCESS\n");
+//	printf("[DEBUG] get_bonus_op SUCCESS\n");
 	return (res);
 }

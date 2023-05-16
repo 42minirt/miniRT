@@ -10,7 +10,7 @@ typedef union	u_shape_data			t_shape_data;
 typedef enum	e_shape_type			t_shape_type;
 typedef enum	e_parse_result			t_parse_res;
 typedef enum	e_identifier			t_identifier;
-typedef enum	e_light_type			 t_light_type;
+typedef enum	e_light_type			t_light_type;
 
 /********** typedef struct **********/
 typedef struct	s_all_info				t_all_info;
@@ -31,16 +31,6 @@ typedef struct	s_cylinder_shape		t_cylinder;
 typedef struct	s_corn_shape			t_corn;
 
 //////////////////////////////////////////////////////////////////////////////////////////
-
-/********** union **********/
-union	u_shape_data // sphere or plane
-{
-	t_plane		*plane;
-	t_sphere	*sphere;
-	t_cylinder	*cylinder;
-	t_corn		*corn;
-
-};
 
 /********** enum **********/
 
@@ -115,18 +105,6 @@ struct s_light
 
 //---------------------------------------------
 
-struct s_obj
-{ // t_list's content
-	// type
-	t_shape_type			type; //shere or ...
-
-	// shape
-	t_shape_data	*shape_data;
-
-	// material
-	t_obj_color		*obj_color;
-};
-
 struct	s_plane_shape
 {
 	t_vec	center;
@@ -160,6 +138,24 @@ struct	s_corn_shape
 	double  height;
 };
 
+
+
+/********** union **********/
+union	u_shape_data // sphere or plane
+{
+	t_plane		plane;
+	t_sphere	sphere;
+	t_cylinder	cylinder;
+	t_corn		corn;
+};
+
+struct    s_img
+{
+	int	height;
+	int	width;
+	int	*data;    // data=[R11,G11,B11, R12,G12,B12, ..., R21,G21,B21,..., Rhw,Ghw,Bhw]
+};
+
 struct s_obj_color
 {
 	t_color ka; // ambient ref
@@ -179,16 +175,20 @@ struct s_obj_color
 	bool 	is_checker;
 	t_color	checker_color;
 
-	t_img	*texture_data;
-	t_img	*bump_data;
+	t_img	texture_data;
+	t_img	bump_data;
 };
 
+struct s_obj
+{ // t_list's content
+	// type
+	t_shape_type	type; //shere or ...
 
-struct    s_img
-{
-	int	height;
-	int	width;
-	int	*data;    // data=[R11,G11,B11, R12,G12,B12, ..., R21,G21,B21,..., Rhw,Ghw,Bhw]
+	// shape
+	t_shape_data	shape_data;
+
+	// material
+	t_obj_color		obj_color;
 };
 
 //---------------------------------------------
@@ -241,5 +241,4 @@ struct	s_intersection_point
 	t_vec	normal;		// 交点における物体表面の法線ベクトル
 	t_list	*obj;
 };
-
 #endif //TYPEDEF_H

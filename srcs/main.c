@@ -70,7 +70,7 @@ int main(int argc, char **argv)
 		ft_dprintf(STDERR_FILENO, "Error : init error\n");
 		return (EXIT_FAILURE);
 	}
-	printf("test\n");
+	printf("main\n");
 //	draw(info);
 	destruct_info(&info);
     return (0);
