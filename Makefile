@@ -11,9 +11,11 @@ ifdef WITH_SANITIZE
 	CFLAGS 		+= -g -fsanitize=address
 endif
 
+
 #####################################################
 # PROGRAM NAME
 NAME			= miniRT
+
 
 
 #####################################################
@@ -100,6 +102,7 @@ OBJS			= $(addprefix $(OBJ_DIR)/, $(OBJ))
 DEPS			= $(SRCS:%.c=%:d)
 
 
+
 #####################################################
 # INCLUDE and LIBRARY FILE
 INCLUDE_DIR		= includes
@@ -115,6 +118,7 @@ X11_LIB			= /usr/X11/lib
 LIBS_DIR 		= $(LIBFT_DIR) $(MLX_DIR) $(X11_DIR) $(X11_LIB)
 LFLAGS			= $(addprefix -L, $(LIBS_DIR))
 LIBS 			= -lft -lmlx -lX11 -lXext
+
 
 
 #####################################################
@@ -135,11 +139,11 @@ all				: $(NAME)
 $(NAME)			: $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@ $(LFLAGS) $(LIBS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $(LFLAGS) $(LIBS) $^
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $$(dirname $@)
-	$(CC) $(INCLUDES) -c $< -o $@
+	$(CC) $(INCLUDES) -o $@ -c $<
 
 clean			:
 	rm -rf $(OBJ_DIR)
@@ -153,7 +157,7 @@ fclean			: clean
 
 re				: fclean all
 
-bonus			:
+bonus			: all
 
 leaks			:
 	make all WITH_LEAKS=1
