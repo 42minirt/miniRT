@@ -77,6 +77,11 @@ VECTOR_SRC		= arithmetic.c \
 
 SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
 
+#-------------------------------------------------------------------------
+DEBUG_DIR		= debug
+DEBUG_SRC		= print_config.c
+
+SRC				+= $(addprefix $(DEBUG_DIR)/, $(DEBUG_SRC))
 
 
 

@@ -30,7 +30,6 @@ int			parsing_vec(const char *line, t_vec *vec, size_t *idx);
 int			parsing_color(const char *line, t_color *color, size_t *idx);
 
 void		update_scene(t_scene_info *scene);
-void 		destruct_info(t_all_info info);
 
 // get_obj_detail
 t_parse_res	get_obj_detail(const char *line, int id_no, t_obj *obj);

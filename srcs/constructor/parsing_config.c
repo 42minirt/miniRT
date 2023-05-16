@@ -1,7 +1,7 @@
 #include "minirt.h"
 #include <fcntl.h>
 
-static t_parse_res	get_and_validate_params_controller(int id_no, const char *line, t_all_info *all)
+static t_parse_res	get_config_controller(t_identifier id_no, const char *line, t_all_info *all)
 {
 	t_parse_res	result;
 
@@ -53,7 +53,7 @@ static t_parse_res	parse_line(t_all_info *all, const char *line)
 	skip_spece(line, &idx);
 	if (!line[idx])
 		return (ERROR_LACK_INFO);
-	result = get_and_validate_params_controller(id_no, &line[idx], all);
+	result = get_config_controller(id_no, &line[idx], all);
 	return (result);
 }
 
@@ -61,21 +61,21 @@ static t_parse_res	parse_line(t_all_info *all, const char *line)
 void	print_parse_err(t_parse_res result)
 {
 	if (result == PASS)
-		ft_dprintf(STDERR_FILENO, "rf file : parse complete :)\n");
+		ft_dprintf(STDERR_FILENO, "rf_file : parse complete :)\n");
 	else if (result == ERROR_FATAL)
-		ft_dprintf(STDERR_FILENO, "rf file : fatal error occurred :(\n");
+		ft_dprintf(STDERR_FILENO, "rf_file : fatal error occurred X(\n");
 	else if (result == ERROR_INVALID_TYPE)
-		ft_dprintf(STDERR_FILENO, "rf file : id invalid :(\n");
+		ft_dprintf(STDERR_FILENO, "rf_file : id invalid :(\n");
 	else if (result == ERROR_LACK_INFO)
-		ft_dprintf(STDERR_FILENO, "rf file : line too shortage :(\n");
+		ft_dprintf(STDERR_FILENO, "rf_file : line too shortage :o\n");
 	else if (result == ERROR_TOO_MANY_INFO)
-		ft_dprintf(STDERR_FILENO, "rf file : line too long :(\n");
+		ft_dprintf(STDERR_FILENO, "rf_file : line too long :o\n");
 	else if (result == ERROR_INVALID_ARG)
-		ft_dprintf(STDERR_FILENO, "rf file : arg invalid :(\n");
+		ft_dprintf(STDERR_FILENO, "rf_file : arg invalid ;<\n");
 	else if (result == ERROR_OUT_OF_RANGE)
-		ft_dprintf(STDERR_FILENO, "rf file : arg out of range :(\n");
+		ft_dprintf(STDERR_FILENO, "rf_file : arg out of range :(\n");
 	else if (result == ERROR_MULTIPLE_ID)
-		ft_dprintf(STDERR_FILENO, "rf file : id duplicated:(\n");
+		ft_dprintf(STDERR_FILENO, "rf_file : id duplicated :(\n");
 
 }
 

@@ -14,6 +14,7 @@
 # include "vector.h"
 # include "color.h"
 # include "constructor.h"
+# include "debug.h"
 
 /********** return value **********/
 # define OPEN_ERROR		(-1)
@@ -48,10 +49,10 @@ bool		check_intersection(t_all_info info, t_ray eye2screen, t_intersection_point
 t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
 
 
-
-
 // mlx_helpers
 void	put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);
 
+
+void	destruct_info(t_all_info *info);
 
 #endif

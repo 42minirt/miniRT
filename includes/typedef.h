@@ -7,7 +7,7 @@
 typedef union	u_shape_data			t_shape_data;
 
 /********** typedef enum **********/
-typedef enum	e_type					t_type;
+typedef enum	e_shape_type			t_shape_type;
 typedef enum	e_parse_result			t_parse_res;
 typedef enum	e_identifier			t_identifier;
 typedef enum	e_light_type			 t_light_type;
@@ -43,27 +43,6 @@ union	u_shape_data // sphere or plane
 };
 
 /********** enum **********/
-enum	e_type
-{
-	BALL,
-	PLANE,
-	CORN,
-	CYLINDER
-};
-
-enum	e_parse_result
-{
-	PASS,
-
-	ERROR_FATAL,
-	ERROR_INVALID_TYPE,
-	ERROR_LACK_INFO,
-
-	ERROR_TOO_MANY_INFO,
-	ERROR_INVALID_ARG,
-	ERROR_OUT_OF_RANGE,
-	ERROR_MULTIPLE_ID,
-};
 
 enum	e_identifier
 {
@@ -77,10 +56,32 @@ enum	e_identifier
 	id_corn = 7,
 };
 
+enum	e_parse_result
+{
+	PASS = 10,
+
+	ERROR_FATAL = 11,
+	ERROR_INVALID_TYPE = 12,
+	ERROR_LACK_INFO = 13,
+
+	ERROR_TOO_MANY_INFO = 14,
+	ERROR_INVALID_ARG = 15,
+	ERROR_OUT_OF_RANGE = 16,
+	ERROR_MULTIPLE_ID = 17,
+};
+
+enum	e_shape_type
+{
+	BALL = 20,
+	PLANE = 21,
+	CORN = 22,
+	CYLINDER = 23,
+};
+
 enum	e_light_type
 {
-	LT_POINT,
-	LT_SPOT,
+	LT_POINT = 30,
+	LT_SPOT = 31,
 };
 
 /********** struct **********/
@@ -117,7 +118,7 @@ struct s_light
 struct s_obj
 { // t_list's content
 	// type
-	t_type			type; //shere or ...
+	t_shape_type			type; //shere or ...
 
 	// shape
 	t_shape_data	*shape_data;
