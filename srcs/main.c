@@ -66,12 +66,13 @@ int main(int argc, char **argv)
 	if (construct_info(&info, argv[1]) == FAILURE)
 	{
 		// todo: error msg
+		destruct_info(info);
 		ft_dprintf(STDERR_FILENO, "Error : init error\n");
 		return (EXIT_FAILURE);
 	}
 	printf("test\n");
 //	draw(info);
-//	destruct_info(info);
+	destruct_info(info);
     return (0);
 }
 

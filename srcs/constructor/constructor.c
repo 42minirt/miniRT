@@ -1,18 +1,17 @@
 #include "minirt.h"
 
-static void	initialize_by_zero(t_all_info *all_info)
+static int	initialize_by_zero(t_all_info *all_info)
 {
-	all_info->mlx_info->mlx = NULL;
-	all_info->mlx_info->win = NULL;
-	all_info->mlx_info->img = NULL;
-	all_info->mlx_info->addr = NULL;
+	all_info->mlx_info = (t_mlx_info *)ft_calloc(sizeof(t_mlx_info), 1);
+	all_info->scene_info = (t_scene_info *)ft_calloc(sizeof(t_scene_info), 1);
+	all_info->camera_info = (t_camera_info *)ft_calloc(sizeof(t_camera_info) , 1);
+	if (!all_info->mlx_info || !all_info->scene_info || !all_info->camera_info)
+		return (FAILURE);
 
 	all_info->scene_info->lights = NULL;
 	all_info->scene_info->objs = NULL;
-
 	all_info->scene_info->brightness = -1.0;
-
-	all_info->camera_info = NULL;	//todo
+	return (SUCCESS);
 }
 
 static int	init_mlx(t_mlx_info *mlx_info)
@@ -44,13 +43,19 @@ static int	init_scene_and_camera(t_all_info *all_info, const char *rt_path)
 
 int	construct_info(t_all_info *all_info, const char *rt_path)
 {
-	initialize_by_zero(all_info);
+	printf("1\n");
+	if (initialize_by_zero(all_info) == FAILURE)
+		return (FAILURE);
+	printf("2\n");
 	if (init_mlx(all_info->mlx_info) == FAILURE)
 		return (FAILURE);
+	printf("3\n");
 
 	if (init_scene_and_camera(all_info, rt_path) == FAILURE)
 		return (FAILURE);
+	printf("4\n");
 
 	update_scene(all_info->scene_info); // color = brightness * color,...
+	printf("5\n");
 	return (SUCCESS);
 }

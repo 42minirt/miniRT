@@ -12,6 +12,8 @@
 !srcs/
 !srcs/*/
 
+!rt_file
+
 .idea/
 objs/
 
