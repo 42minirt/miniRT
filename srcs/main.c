@@ -13,10 +13,10 @@
 #include <stdio.h>
 #include "minirt.h"
 
-t_ray get_screen_vector(t_all_info info)
-{
-	//todo:  後回し
-}
+//t_ray get_screen_vector(t_all_info info)
+//{
+//	//todo:  後回し
+//}
 
 /* **********************
 
@@ -41,12 +41,12 @@ void	draw(t_all_info info)
 		while (x < WINDOW_WIDTH)
 		{
 			// スクリーン(y,x)に相当する視線ベクトルを計算
-			eye2screen_xy = get_screen_vector(info);
+//			eye2screen_xy = get_screen_vector(info);
 			// 色の計算
-			color = raytrace(info, eye2screen_xy);
+//			color = raytrace(info, eye2screen_xy);
 
 			// mlx 描画
-			put_pixel(info.mlx_info, x, y, color);
+//			put_pixel(info.mlx_info, x, y, color);
             x++;
         }
         y++;
@@ -69,8 +69,9 @@ int main(int argc, char **argv)
 		ft_dprintf(STDERR_FILENO, "Error\n");
 		return (EXIT_FAILURE);
 	}
-	draw(info);
-	destruct_info(info);
+	printf("test\n");
+//	draw(info);
+//	destruct_info(info);
     return (0);
 }
 

@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-int	parsing_in_num(const char *line, int *int_num, size_t *idx)
+int	parsing_int_num(const char *line, int *int_num, size_t *idx)
 {
 	size_t	len;
 	char	*num_str;

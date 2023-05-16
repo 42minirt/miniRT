@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
+#include "minirt.h"
 
 void	setvec(t_vec *tgt_vec, double x, double y, double z)
 {
