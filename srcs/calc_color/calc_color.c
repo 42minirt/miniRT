@@ -1,7 +1,9 @@
 #include "minirt.h"
 
 // c + k1c1 * k2c2
-t_color	color_mul_k1c1k2c2(const t_color *c, double k1, const t_color *c1, double k2, const t_color *c2)
+t_color	color_mul_k1c1k2c2(const t_color *c, \
+						double k1, const t_color *c1, \
+						double k2, const t_color *c2)
 {
 	t_color	color;
 
@@ -11,7 +13,8 @@ t_color	color_mul_k1c1k2c2(const t_color *c, double k1, const t_color *c1, doubl
 	return (color);
 }
 
-t_color	color_k1c1k2c2(double k1, const t_color *c1, double k2, const t_color *c2)
+t_color	color_k1c1k2c2(double k1, const t_color *c1, \
+						double k2, const t_color *c2)
 {
 	t_color	color;
 

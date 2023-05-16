@@ -17,12 +17,12 @@ t_parse_res	get_light_detail(const char *line, int id_no, t_light *light)
 	idx = 0;
 	if (parsing_vec(line, &light->point, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
-	if (parsing_double_num(line, &light->brightness, &idx) == FAILURE)
+	if (parse_double(line, &light->brightness, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
 	if (parsing_color(line, &light->light_color, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
 	if (light->type == LT_SPOT)
-		if (parsing_double_num(line, &light->sl_angle, &idx) == FAILURE)
+		if (parse_double(line, &light->sl_angle, &idx) == FAILURE)
 			return (ERROR_INVALID_ARG);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);

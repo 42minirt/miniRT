@@ -2,7 +2,7 @@
 
 static void	free_split_array(char **split)
 {
-	size_t idx;
+	size_t	idx;
 
 	idx = 0;
 	while (split && split[idx])
@@ -47,7 +47,8 @@ static int	get_ppm_data(char **split, t_img *img, size_t *data_idx)
 	return (SUCCESS);
 }
 
-static int	process_line_by_col(const char *line, size_t file_col, t_img *img, size_t *data_idx)
+static int	process_line_by_col(const char *line, \
+								size_t file_col, t_img *img, size_t *data_idx)
 {
 	char	**split;
 	int		res;
@@ -58,7 +59,7 @@ static int	process_line_by_col(const char *line, size_t file_col, t_img *img, si
 	if (!split)
 		return (FAILURE);
 	res = FAILURE;
-	if (file_col == 2) // todo:1?
+	if (file_col == 2)
 		res = get_ppm_size(split, img);
 	else
 		res = get_ppm_data(split, img, data_idx);
@@ -87,7 +88,6 @@ t_parse_res	get_img(t_img *img, int fd)
 		line = get_next_line(fd, false); // not include `\n` at end of line
 		if (!line)
 			break ;
-
 		if (process_line_by_col(line, file_col, img, &data_idx) == FAILURE)
 		{
 			free(line);

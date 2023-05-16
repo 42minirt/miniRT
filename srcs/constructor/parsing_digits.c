@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-int	parsing_int_num(const char *line, int *int_num, size_t *idx)
+int	parse_int(const char *line, int *int_num, size_t *idx)
 {
 	size_t	len;
 	char	*num_str;
@@ -26,7 +26,7 @@ int	parsing_int_num(const char *line, int *int_num, size_t *idx)
 	return (SUCCESS);
 }
 
-int	parsing_double_num(const char *line, double *double_num, size_t *idx)
+int	parse_double(const char *line, double *double_num, size_t *idx)
 {
 	size_t	len;
 	char	*num_str;
@@ -54,13 +54,13 @@ int	parsing_double_num(const char *line, double *double_num, size_t *idx)
 int parsing_vec(const char *line, t_vec *vec, size_t *idx)
 {
 	skip_spece(line, idx);
-	if (parsing_double_num(line, &vec->x, idx) == FAILURE)
+	if (parse_double(line, &vec->x, idx) == FAILURE)
 		return (FAILURE);
 	skip_delimiter(line, idx);
-	if (parsing_double_num(line, &vec->y, idx) == FAILURE)
+	if (parse_double(line, &vec->y, idx) == FAILURE)
 		return (FAILURE);
 	skip_delimiter(line, idx);
-	if (parsing_double_num(line, &vec->z, idx) == FAILURE)
+	if (parse_double(line, &vec->z, idx) == FAILURE)
 		return (FAILURE);
 	skip_spece(line, idx);
 	return (SUCCESS);
@@ -74,13 +74,13 @@ int parsing_color(const char *line, t_color *color, size_t *idx)
 	int	int_b;
 
 	skip_spece(line, idx);
-	if (parsing_int_num(line, &int_r, idx) == FAILURE)
+	if (parse_int(line, &int_r, idx) == FAILURE)
 		return (FAILURE);
 	skip_delimiter(line, idx);
-	if (parsing_int_num(line, &int_g, idx) == FAILURE)
+	if (parse_int(line, &int_g, idx) == FAILURE)
 		return (FAILURE);
 	skip_delimiter(line, idx);
-	if (parsing_int_num(line, &int_b, idx) == FAILURE)
+	if (parse_int(line, &int_b, idx) == FAILURE)
 		return (FAILURE);
 	skip_spece(line, idx);
 	*color = init_color((double)int_r, (double)int_g, (double)int_b);

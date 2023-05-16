@@ -40,7 +40,12 @@ CONSTRUCTOR_SRC	= constructor.c \
 				  parsing_digits.c \
 				  parsing_helper.c \
 				  update_scene.c \
-				  validate_config.c
+				  validate_config.c \
+				  validate_config_color.c \
+				  validate_config_shape.c \
+				  validate_config_light.c \
+				  is_range.c
+
 
 SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
@@ -79,7 +84,8 @@ SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
 
 #-------------------------------------------------------------------------
 DEBUG_DIR		= debug
-DEBUG_SRC		= print_config.c
+DEBUG_SRC		= print_config.c \
+				  print_config_helper.c
 
 SRC				+= $(addprefix $(DEBUG_DIR)/, $(DEBUG_SRC))
 

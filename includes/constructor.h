@@ -27,8 +27,8 @@ int			get_identifier_no(const char *id_str);
 double		ft_strtod(const char *str, bool *is_success, char **err);
 
 // parsing digits
-int			parsing_int_num(const char *line, int *int_num, size_t *idx);
-int			parsing_double_num(const char *line, double *double_num, size_t *idx);
+int			parse_int(const char *line, int *int_num, size_t *idx);
+int			parse_double(const char *line, double *double_num, size_t *idx);
 int			parsing_vec(const char *line, t_vec *vec, size_t *idx);
 int			parsing_color(const char *line, t_color *color, size_t *idx);
 
@@ -41,4 +41,15 @@ t_parse_res	get_image_texture(const char *line, \
 								t_img *obj_color, size_t *idx, bool *empty);
 
 t_parse_res	get_img(t_img *img, int fd);
+
+
+bool	is_vec_in_normal_range(t_vec vec);
+bool	is_color_in_range(t_color color);
+bool	is_ratio_in_range(double ratio);
+bool	is_angle_in_range(double ratio);
+t_parse_res	validate_obj_shape(t_obj *obj);
+t_parse_res	validate_obj_color(t_obj *obj);
+t_parse_res	validate_lights_info(t_scene_info *scene);
+t_parse_res	validate_ambient_info(t_scene_info *scene);
+
 #endif //CONSTRUCTOR_H

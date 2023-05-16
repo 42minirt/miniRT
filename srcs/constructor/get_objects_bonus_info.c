@@ -1,6 +1,7 @@
 #include "minirt.h"
 
-static t_parse_res	get_checker_info(const char *line, t_obj_color *obj_color, size_t *idx)
+static t_parse_res	get_checker_info(const char *line, \
+									t_obj_color *obj_color, size_t *idx)
 {
 	obj_color->is_checker = true;
 	if (!ft_isdigit(line[*idx]))
@@ -11,7 +12,8 @@ static t_parse_res	get_checker_info(const char *line, t_obj_color *obj_color, si
 	return (PASS);
 }
 
-static t_parse_res	get_perfect_ref_info(const char *line, t_obj_color *obj_color, size_t *idx)
+static t_parse_res	get_perfect_ref_info(const char *line, \
+										t_obj_color *obj_color, size_t *idx)
 {
 	obj_color->is_perfect_ref = true;
 	obj_color->perfect_ref_color = init_color(1.0, 1.0, 1.0);
@@ -19,7 +21,8 @@ static t_parse_res	get_perfect_ref_info(const char *line, t_obj_color *obj_color
 	return (PASS);
 }
 
-static t_parse_res	get_image_texture_info(const char *line, t_obj_color *obj_color, size_t *idx)
+static t_parse_res	get_image_texture_info(const char *line, \
+										t_obj_color *obj_color, size_t *idx)
 {
 	t_parse_res	res;
 	bool		filename_empty;
@@ -28,9 +31,7 @@ static t_parse_res	get_image_texture_info(const char *line, t_obj_color *obj_col
 	res = get_image_texture(line, &obj_color->texture_data, idx, &filename_empty);
 	if (res != PASS)
 		return (ERROR_FATAL);
-
 	skip_delimiter(line, idx);
-
 	res = get_image_texture(line, &obj_color->bump_data, idx, &filename_empty);
 	if (res != PASS)
 		return (ERROR_FATAL);
@@ -55,9 +56,7 @@ t_parse_res	get_bonus_detail(const char *line, t_obj *obj, size_t *idx)
 	else if (is_same_str(option_id, OP_IMAGE_TEXTURE))
 		res = get_image_texture_info(line, &obj->obj_color, idx);
 	else
-	{
 		printf("[DEBUG]invalid bonus option:[%s]\n", option_id);
-	}
 	free(option_id);
 	if (line[*idx])
 		return (ERROR_TOO_MANY_INFO);
