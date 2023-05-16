@@ -35,7 +35,7 @@ void 		destruct_info(t_all_info info);
 // get_obj_detail
 t_parse_res	get_obj_detail(const char *line, int id_no, t_obj *obj);
 t_parse_res	get_bonus_detail(const char *line, t_obj *obj, size_t *idx);
-t_parse_res	get_image_texture(const char *line, t_img *obj_color, size_t *idx);
+t_parse_res	get_image_texture(const char *line, t_img *obj_color, size_t *idx, bool *empty);
 
-int			get_img(t_img *img, int fd);
+t_parse_res	get_img(t_img *img, int fd);
 #endif //CONSTRUCTOR_H

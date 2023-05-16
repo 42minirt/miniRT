@@ -71,7 +71,7 @@ static int	process_line_by_col(const char *line, size_t file_col, t_img *img, si
 //   col 2: <color_range>
 //   col 3: <r11> <g11> <b11> <r12> <g12> <b12> ...
 
-int	get_img(t_img *img, int fd)
+t_parse_res	get_img(t_img *img, int fd)
 {
 	char	*line;
 	size_t	file_col;
@@ -90,10 +90,10 @@ int	get_img(t_img *img, int fd)
 			free(line);
 			free(img->data);
 			img->data = NULL;
-			return (FAILURE);
+			return (ERROR_FATAL);
 		}
 		free(line);
 		file_col++;
 	}
-	return (SUCCESS);
+	return (PASS);
 }

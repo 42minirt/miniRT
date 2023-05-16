@@ -22,7 +22,20 @@ static char	*get_path(const char *line, size_t *idx)
 	return (path);
 }
 
-t_parse_res	get_image_texture(const char *line, t_img *img, size_t *idx)
+static bool	is_filename_empty(const char *path)
+{
+	return (ft_strlen_ns(path) == 0);
+}
+
+static t_parse_res	validate_continuous_empty_path(bool *empty)
+{
+	if (*empty)
+		return (ERROR_INVALID_ARG);
+	*empty = true;
+	return (PASS);
+}
+
+t_parse_res	get_image_texture(const char *line, t_img *img, size_t *idx, bool *empty)
 {
 	t_parse_res	res;
 	char		*path;
@@ -32,13 +45,17 @@ t_parse_res	get_image_texture(const char *line, t_img *img, size_t *idx)
 	path = get_path(line, idx);
 	if (!path)
 		return (res);
-	fd = open(path, O_RDONLY);
-	if (fd != OPEN_ERROR)
+	if (is_filename_empty(path))
+		res = validate_continuous_empty_path(empty);
+	else
 	{
-		if (get_img(img, fd) == SUCCESS)
-			res = PASS;
-		if (close(fd) == CLOSE_ERROR)
-			res = ERROR_FATAL;
+		fd = open(path, O_RDONLY);
+		if (fd != OPEN_ERROR)
+		{
+			res = get_img(img, fd);
+			if (close(fd) == CLOSE_ERROR)
+				res = ERROR_FATAL;
+		}
 	}
 	free(path);
 	return (res);
