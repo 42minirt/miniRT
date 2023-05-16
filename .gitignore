@@ -7,12 +7,16 @@
 !*.rt
 !Makefile
 !*.md
+!*.ppm
 
 !includes/
 !srcs/
 !srcs/*/
 
 !rt_file
+!img/
+!libs
+!libs/**
 
 .idea/
 objs/
