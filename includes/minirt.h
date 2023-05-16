@@ -40,15 +40,24 @@
 
 //eyevecはどこにおくべきか
 
+/*  */
 t_color		backgroundcolor_init();
 t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
 bool		check_intersection(t_all_info info, t_ray eye2screen, \
 								t_intersection_point *its_p);
 t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
 
-// mlx_helpers
+
+/* intersection */
+bool	is_intersect_with_sphere(t_shape_data *shape, t_ray ray, \
+								t_intersection_point *intp);
+
+
+/* destructor */
+void	destruct_info(t_all_info *info);
+
+/* mlx helper */
 void	put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);
 
-void	destruct_info(t_all_info *info);
 
 #endif

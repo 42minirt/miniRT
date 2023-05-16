@@ -12,5 +12,7 @@ void	t_mix_vec_all(t_vec *tgt_vec, double t1, \
 void	setvec(t_vec *tgt_vec, double x, double y, double z);
 void	normalize(t_vec *normal_vec, t_vec *normarized_vec);
 void	inverse_vec(t_vec *inv_vec, t_vec *inved_vec);
+double	dot_vec(t_vec *v1, t_vec *v2);
+void	vector_scalar_product(t_vec *tgt_vec, double k, t_vec *v);
 
 #endif //VECTOR_H

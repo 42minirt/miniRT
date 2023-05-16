@@ -29,6 +29,7 @@ typedef struct	s_plane_shape			t_plane;
 typedef struct	s_sphere_shape			t_sphere;
 typedef struct	s_cylinder_shape		t_cylinder;
 typedef struct	s_corn_shape			t_corn;
+typedef struct	s_discriminant_param	t_d_param;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -235,4 +236,13 @@ struct	s_intersection_point
 	t_vec	normal;		// 交点における物体表面の法線ベクトル
 	t_list	*obj;
 };
+
+struct	s_discriminant_param
+{
+	double	a;
+	double	b;
+	double	c;
+	double	d;
+};
+
 #endif //TYPEDEF_H

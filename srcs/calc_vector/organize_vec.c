@@ -49,3 +49,8 @@ void	inverse_vec(t_vec *inv_vec, t_vec *inved_vec)
 		inved_vec->z * (-1)
 	);
 }
+
+void	vector_scalar_product(t_vec *tgt_vec, double k, t_vec *v)
+{
+	setvec(tgt_vec, k * v->x, k * v->y, k * v->z);
+}
