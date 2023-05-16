@@ -2,19 +2,19 @@
 # define MINIRT_H
 
 # include <unistd.h>
-# include <sys/errno.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <sys/errno.h>
 # include <math.h>
 
 # include "./../minilibx-linux/mlx.h"
 # include "./../libs/include/libft.h"
 
-# include "typedef.h"
-# include "vector.h"
 # include "color.h"
 # include "constructor.h"
 # include "debug.h"
+# include "typedef.h"
+# include "vector.h"
 
 /********** return value **********/
 # define OPEN_ERROR		(-1)
@@ -38,8 +38,6 @@
 //2 size
 //3 vec
 
-//eyevecはどこにおくべきか
-
 /*  */
 t_color		backgroundcolor_init();
 t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
@@ -51,7 +49,8 @@ t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
 /* intersection */
 bool	is_intersect_with_sphere(t_shape_data *shape, t_ray ray, \
 								t_intersection_point *intp);
-
+bool	is_intersect_with_corn(t_shape_data *shape, t_ray ray, \
+								t_intersection_point *intp);
 
 /* destructor */
 void	destruct_info(t_all_info *info);

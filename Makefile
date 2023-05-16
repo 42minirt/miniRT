@@ -11,9 +11,11 @@ ifdef WITH_SANITIZE
 	CFLAGS 		+= -g -fsanitize=address
 endif
 
+
 #####################################################
 # PROGRAM NAME
 NAME			= miniRT
+
 
 
 #####################################################
@@ -153,7 +155,7 @@ fclean			: clean
 
 re				: fclean all
 
-bonus			:
+bonus			: all
 
 leaks			:
 	make all WITH_LEAKS=1
