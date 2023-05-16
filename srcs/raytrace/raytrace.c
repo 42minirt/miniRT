@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/14 23:28:18 by user             ###   ########.fr       */
+/*   Updated: 2023/05/16 23:29:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ static double	calc_intersection(t_list *obj, t_all_info info, t_ray eye2screen, 
 	return (calc_ratio_cylinder(shape, info, eye2screen, tmp_itsp));
 }
 
-bool	check_intersection(t_all_info info, t_ray eye2screen, t_intersection_point *its_p)
+static bool	check_intersection(t_all_info info, t_ray eye2screen, t_intersection_point *its_p)
 {
-	double	t;
-	double	tmp_t;
-	t_list	*obj;
+	double					t;
+	double					tmp_t;
+	t_list					*obj;
 	t_intersection_point	*tmp_itsp;
 
 	t = INFINITY;

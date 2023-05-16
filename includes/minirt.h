@@ -13,6 +13,13 @@ typedef	struct s_light t_light;
 typedef struct	s_obj t_obj;
 typedef enum e_type t_type;
 
+struct s_color
+{
+	double	R;
+	double	G;
+	double	B;
+};
+
 struct s_list
 {
 	void	*content;
@@ -194,17 +201,37 @@ struct    s_img
 
 //eyevecはどこにおくべきか
 
-/////////////////
+//mainで呼び出す関数を呼び出す
+
+//ここまで
+
+//eyevecの計算を行う関数　平面からワールドへ
+t_ray get_screen_vector(t_all_info info);
+//ここまで平面からワールド
+
+//raytranceで行う関数を各箇所
+t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
+//ここまでraytranceを行う
+
+// calcvector ~~ベクトル計算をまとめる~~
+void	    add_vec(t_vec *sub, t_vec *v1, t_vec *v2);
+void		neg_vec(t_vec *sub, t_vec *v1, t_vec *v2);
+double		dot_vec(t_vec *v1, t_vec *v2);
+void		calc_outerproduct(t_vec *tgt_vec, t_vec *v1, t_vec *v2);
+void    	t_mix_vec_all(t_vec *tgt_vec, double t1, t_vec *v1, double t2, t_vec *v2);
+//ここまでベクトル計算//
+
+// calcvector ~~ベクトルを正規化したりセットしたりする~~
+void		setvec(t_vec *tgt_vec, double x, double y, double z);
+void		normalize(t_vec *normal_vec, t_vec *normarized_vec);
+void		inverse_vec(t_vec *inv_vec, t_vec *inved_vec);
+double		obtain_vecsize(t_vec *vec);
+void		times_vec(t_vec *tgt_vec, double t, t_vec *sub);
+//ここまでベクトル正規化//
+
 t_color		backgroundcolor_init();
 t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
 t_all_info	construct_info();
 bool		check_intersection(t_all_info info, t_ray eye2screen, t_intersection_point *its_p);
-t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
-double		obtain_vecsize(t_vec *vec);
-void		calc_outerproduct(t_vec *tgt_vec, t_vec *v1, t_vec *v2);
-void		neg_vec(t_vec *sub, t_vec *v1, t_vec *v2);
-double		dot_vec(t_vec *v1, t_vec *v2);
-void	    t_mix_vec_all(t_vec *tgt_vec, double t1, t_vec *v1, double t2, t_vec *v2);
-void		times_vec(t_vec *tgt_vec, double t, t_vec *sub);
 
 #endif
