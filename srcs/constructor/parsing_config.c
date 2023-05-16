@@ -7,26 +7,13 @@ static t_parse_res	get_config_controller(t_identifier id_no, const char *line, t
 
 	result = ERROR_FATAL;
 	if (id_no == id_camera)
-	{
 		result = get_camera_setting(line, all->camera_info);
-//		printf("  [DEBUG] get_params -> camera_ret=%s\n", parse_result_char(result));
-	}
 	else if (id_no == id_ambient)
-	{
 		result = get_ambient_setting(line, all->scene_info);
-//		printf("  [DEBUG] get_params -> ambient_ret=%s\n", parse_result_char(result));
-	}
 	else if (id_no == id_point_light || id_no == id_spot_light)
-	{
 		result = get_lights_setting(line, all->scene_info, id_no);
-//		printf("  [DEBUG] get_params -> light_ret=%s\n", parse_result_char(result));
-	}
 	else if (id_no == id_plane || id_no == id_sphere || id_no == id_cylinder || id_no == id_corn)
-	{
 		result = get_objects_setting(line, all->scene_info, id_no);
-//		printf("  [DEBUG] get_params -> objects_ret=%s\n", parse_result_char(result));
-	}
-//	printf("  [DEBUG] get_params :: ret=%s\n", parse_result_char(result));
 	return (result);
 }
 
@@ -57,28 +44,6 @@ static t_parse_res	parse_line(t_all_info *all, const char *line)
 	return (result);
 }
 
-// debug
-void	print_parse_err(t_parse_res result)
-{
-	if (result == PASS)
-		ft_dprintf(STDERR_FILENO, "rf_file : parse complete :)\n");
-	else if (result == ERROR_FATAL)
-		ft_dprintf(STDERR_FILENO, "rf_file : fatal error occurred X(\n");
-	else if (result == ERROR_INVALID_TYPE)
-		ft_dprintf(STDERR_FILENO, "rf_file : id invalid :(\n");
-	else if (result == ERROR_LACK_INFO)
-		ft_dprintf(STDERR_FILENO, "rf_file : line too shortage :o\n");
-	else if (result == ERROR_TOO_MANY_INFO)
-		ft_dprintf(STDERR_FILENO, "rf_file : line too long :o\n");
-	else if (result == ERROR_INVALID_ARG)
-		ft_dprintf(STDERR_FILENO, "rf_file : arg invalid ;<\n");
-	else if (result == ERROR_OUT_OF_RANGE)
-		ft_dprintf(STDERR_FILENO, "rf_file : arg out of range :(\n");
-	else if (result == ERROR_MULTIPLE_ID)
-		ft_dprintf(STDERR_FILENO, "rf_file : id duplicated :(\n");
-
-}
-
 static int	parse_config_line_by_line(t_all_info *all, int fd)
 {
 	char		*line;
@@ -94,11 +59,13 @@ static int	parse_config_line_by_line(t_all_info *all, int fd)
 		parse_result = parse_line(all, line);
 		if (parse_result != PASS)
 		{
-			print_parse_err(result);
+			printf("[Error] parse_config_line: %s\n", parse_result_char(parse_result));
 			result = FAILURE;
 		}
 		free(line);
 	}
+	if (result == SUCCESS)
+		printf("parse_config_line:%s\n", parse_result_char(PASS));
 	return (result);
 }
 

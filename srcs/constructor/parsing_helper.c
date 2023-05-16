@@ -26,6 +26,7 @@ char	*get_identifier_str(const char *line, size_t idx)
 	size_t 		str_len;
 
 	str_len = 0;
+	skip_spece(line, &idx);
 	while (line[idx + str_len] && !ft_isspace(line[idx + str_len]))
 		str_len++;
 	id_str = ft_substr(line, idx, str_len);

@@ -44,9 +44,9 @@ t_parse_res	get_bonus_detail(const char *line, t_obj *obj, size_t *idx)
 	t_parse_res	res;
 
 	option_id = get_identifier_str(line, *idx);
-	increment_idx_to_next_format(line, idx, option_id);
 	if (!option_id)
 		return (ERROR_FATAL);
+	increment_idx_to_next_format(line, idx, option_id);
 	res = ERROR_FATAL;
 	if (is_same_str(option_id, OP_CHECKER_TEXTURE))
 		res = get_checker_info(line, &obj->obj_color, idx);
@@ -61,6 +61,6 @@ t_parse_res	get_bonus_detail(const char *line, t_obj *obj, size_t *idx)
 	free(option_id);
 	if (line[*idx])
 		return (ERROR_TOO_MANY_INFO);
-//	printf("[DEBUG] get_bonus_op SUCCESS\n");
+//	printf("[DEBUG] get_bonus res:%s\n", parse_result_char(res));
 	return (res);
 }

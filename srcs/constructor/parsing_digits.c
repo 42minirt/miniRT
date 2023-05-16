@@ -87,10 +87,8 @@ int parsing_vec(const char *line, t_vec *vec, size_t *idx)
 //		printf("    parsing_vec NG :: parsing_double_num 3\n");
 		return (FAILURE);
 	}
-//	printf(" parsing vec(7) %s\n", &line[*idx]);
 
 	skip_spece(line, idx);
-//	printf(" parsing vec(8) %s\n", &line[*idx]);
 
 //	printf("    parsing_vec :: SUCCESS, (x,y,z)=(%f,%f,%f)\n", vec->x, vec->y, vec->z);
 

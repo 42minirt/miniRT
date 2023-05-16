@@ -15,7 +15,7 @@ static t_parse_res	get_sphere_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) == FAILURE)
+	if (get_bonus_detail(line, obj, &idx) != PASS)
 		return (ERROR_INVALID_ARG);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
@@ -37,7 +37,7 @@ static t_parse_res	get_plane_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) == FAILURE)
+	if (get_bonus_detail(line, obj, &idx)!= PASS)
 		return (ERROR_INVALID_ARG);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
@@ -63,7 +63,7 @@ static t_parse_res	get_cylinder_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) == FAILURE)
+	if (get_bonus_detail(line, obj, &idx)!= PASS)
 		return (ERROR_INVALID_ARG);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
@@ -89,7 +89,7 @@ static t_parse_res	get_corn_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) == FAILURE)
+	if (get_bonus_detail(line, obj, &idx)!= PASS)
 		return (ERROR_INVALID_ARG);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);

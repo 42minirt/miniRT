@@ -46,7 +46,7 @@ void	print_sphere(t_obj *obj)
 
 	pos = obj->shape_data.sphere.center;
 	c = obj->obj_color.kd;
-	printf("  ● Sphere    : (%5.1f, % 3.1f, % 3.1f),                                    %5.1f,        (%5.1f, %5.1f, %5.1f)", \
+	printf("  ● Sphere    : (%5.1f, % 5.1f, % 5.1f),                                    %5.1f,        (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
 	obj->shape_data.sphere.diameter, \
 	c.r, c.g, c.b);
@@ -137,7 +137,7 @@ void	debug_print_config(t_all_info *info)
 {
 	t_color	c;
 
-	printf("====== [DEBUG PRINT CONFIG] ======\n");
+	printf("======================================== [DEBUG PRINT CONFIG] ========================================\n");
 	c = info->scene_info->ambient_color;
 	printf("Ambient       : %5.1f,                                                                (%5.1f, %5.1f, %5.1f)\n", info->scene_info->brightness, c.r, c.b, c.g);
 
@@ -148,8 +148,9 @@ void	debug_print_config(t_all_info *info)
 
 	printf("Objects\n");
 	print_objects(info->scene_info);
-	printf("====== ==================== ======\n");
+	printf("======================================================================================================\n");
 }
+
 
 const char *parse_result_char(t_parse_res res)
 {
