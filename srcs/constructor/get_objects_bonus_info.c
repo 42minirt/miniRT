@@ -61,6 +61,5 @@ t_parse_res	get_bonus_detail(const char *line, t_obj *obj, size_t *idx)
 	free(option_id);
 	if (line[*idx])
 		return (ERROR_TOO_MANY_INFO);
-//	printf("[DEBUG] get_bonus res:%s\n", parse_result_char(res));
 	return (res);
 }
