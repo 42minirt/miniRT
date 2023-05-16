@@ -11,7 +11,6 @@ t_obj	*init_obj(void)
 	obj->obj_color.is_checker = false;
 	obj->obj_color.texture_data.data = NULL;
 	obj->obj_color.bump_data.data = NULL;
-
 	obj->obj_color.shininess = 10.0;	// fix ?
 	obj->obj_color.ks = init_color(1.0, 1.0, 1.0);
 	return (obj);
@@ -27,7 +26,8 @@ t_obj	*init_obj(void)
 //    checker         RGB[0,255]
 //    image           "image_texture_path",   "bumpmap_path"
 
-t_parse_res	get_objects_setting(const char *line, t_scene_info *scene, int id_no)
+t_parse_res	get_objects_setting(const char *line, \
+								t_scene_info *scene, int id_no)
 {
 	t_parse_res	parse_result;
 	t_obj		*obj;

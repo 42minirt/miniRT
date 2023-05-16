@@ -8,7 +8,8 @@ int	parsing_int_num(const char *line, int *int_num, size_t *idx)
 
 	skip_spece(line, idx);
 	len = 0;
-	while (line[*idx + len] && !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
+	while (line[*idx + len] \
+	&& !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
 		len++;
 	num_str = ft_substr(line, *idx, len);
 	if (!num_str)
@@ -33,7 +34,8 @@ int	parsing_double_num(const char *line, double *double_num, size_t *idx)
 
 	skip_spece(line, idx);
 	len = 0;
-	while (line[*idx + len] && !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
+	while (line[*idx + len] \
+	&& !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
 		len++;
 	num_str = ft_substr(line, *idx, len);
 	if (!num_str)

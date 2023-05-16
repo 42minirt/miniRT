@@ -7,7 +7,6 @@ t_parse_res	get_ambient_setting(const char *line, t_scene_info *scene)
 
 	if (scene->brightness >= 0)
 		return (ERROR_MULTIPLE_ID);
-
 	idx = 0;
 	if (parsing_double_num(line, &scene->brightness, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);

@@ -14,7 +14,8 @@ void	skip_delimiter(const char *line, size_t *idx)
 	skip_spece(line, idx);
 }
 
-void	increment_idx_to_next_format(const char *line, size_t *idx, char *prev_str)
+void	increment_idx_to_next_format(const char *line, \
+									size_t *idx, char *prev_str)
 {
 	*idx += ft_strlen_ns(prev_str);
 	skip_spece(line, idx);
@@ -22,8 +23,8 @@ void	increment_idx_to_next_format(const char *line, size_t *idx, char *prev_str)
 
 char	*get_identifier_str(const char *line, size_t idx)
 {
-	char		*id_str;
-	size_t 		str_len;
+	char	*id_str;
+	size_t	str_len;
 
 	str_len = 0;
 	skip_spece(line, &idx);
@@ -35,11 +36,11 @@ char	*get_identifier_str(const char *line, size_t idx)
 	return (id_str);
 }
 
-int		get_identifier_no(const char *id_str)
+int	get_identifier_no(const char *id_str)
 {
 	size_t		idx;
-	const char	*ids[] = { \
-	"C", "A","L", "sl", \
+	const char	*ids[] = {\
+	"C", "A", "L", "sl", \
 	"sp", "pl", "cy", "co", NULL};
 
 	idx = 0;

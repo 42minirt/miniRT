@@ -2,9 +2,9 @@
 
 static bool	is_vec_in_normal_range(t_vec vec)
 {
-	const double x = vec.x;
-	const double y = vec.y;
-	const double z = vec.z;
+	const double	x = vec.x;
+	const double	y = vec.y;
+	const double	z = vec.z;
 
 	return ((-1.0 <= x && x <= 1.0) \
 	&& (-1.0 <= y && y <= 1.0) \
@@ -22,12 +22,12 @@ static bool is_color_in_range(t_color color)
 	&& (0.0 <= b && b <= 255.0));
 }
 
-static bool is_ratio_in_range(double ratio)
+static bool	is_ratio_in_range(double ratio)
 {
 	return (0.0 <= ratio && ratio <= 1.0);
 }
 
-static bool is_angle_in_range(double ratio)
+static bool	is_angle_in_range(double ratio)
 {
 	return (0.0 <= ratio && ratio <= 180.0);
 }
@@ -132,7 +132,7 @@ t_parse_res	validate_obj_color(t_obj *obj)
 t_parse_res	validate_objects_info(t_scene_info *scene)
 {
 	t_list		*node;
-	t_obj 		*obj;
+	t_obj		*obj;
 	t_parse_res	res;
 
 	node = scene->objs;
@@ -169,4 +169,3 @@ t_parse_res	validate_camera(t_camera_info *camera)
 	(void )camera;
 	return (PASS);
 }
-

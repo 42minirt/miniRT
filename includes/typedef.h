@@ -138,8 +138,6 @@ struct	s_corn_shape
 	double  height;
 };
 
-
-
 /********** union **********/
 union	u_shape_data // sphere or plane
 {
@@ -211,13 +209,10 @@ struct s_mlx_info{
 };
 
 struct s_scene_info {
-	// ambient
 	t_color	ambient_color;
 	double	brightness;
-	// lights
-	t_list *lights; //content: light;
-	// objs
-	t_list *objs;   //content : obj;
+	t_list *lights;		 //content: light;
+	t_list *objs;		//content : obj;
 };
 
 // eye2screen
@@ -230,7 +225,6 @@ struct s_camera_info {
 	t_ray	camera;		//しばらく固定
 	double 	fov;	//tmp -1 で初期化
 	float	distance_camera_to_screen;
-
 	// vec or matrix
 };
 

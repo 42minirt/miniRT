@@ -46,9 +46,7 @@ t_parse_res	get_image_texture(const char *line, t_img *img, size_t *idx, bool *e
 	if (!path)
 		return (res);
 	if (is_filename_empty(path))
-	{
 		res = validate_continuous_empty_path(empty);
-	}
 	else
 	{
 		fd = open(path, O_RDONLY);

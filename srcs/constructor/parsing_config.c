@@ -1,7 +1,8 @@
 #include "minirt.h"
 #include <fcntl.h>
 
-static t_parse_res	get_config_controller(t_identifier id_no, const char *line, t_all_info *all)
+static t_parse_res	get_config_controller(t_identifier id_no, \
+										const char *line, t_all_info *all)
 {
 	t_parse_res	result;
 
@@ -12,7 +13,8 @@ static t_parse_res	get_config_controller(t_identifier id_no, const char *line, t
 		result = get_ambient_setting(line, all->scene_info);
 	else if (id_no == id_point_light || id_no == id_spot_light)
 		result = get_lights_setting(line, all->scene_info, id_no);
-	else if (id_no == id_plane || id_no == id_sphere || id_no == id_cylinder || id_no == id_corn)
+	else if (id_no == id_plane || id_no == id_sphere \
+	|| id_no == id_cylinder || id_no == id_corn)
 		result = get_objects_setting(line, all->scene_info, id_no);
 	return (result);
 }
@@ -59,7 +61,8 @@ static int	parse_config_line_by_line(t_all_info *all, int fd)
 		parse_result = parse_line(all, line);
 		if (parse_result != PASS)
 		{
-			printf("[Error] parse_config_line: %s\n", parse_result_char(parse_result));
+			printf("[Error] parse_config_line: %s\n", \
+			parse_result_char(parse_result));
 			result = FAILURE;
 		}
 		free(line);

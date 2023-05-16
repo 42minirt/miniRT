@@ -33,8 +33,6 @@
 /********** value **********/
 #define MAX_RECURSION	8
 
-
-
 //単位ベクトル以外の情報に下記のように記載するのかどうか
 //1 unit_vec
 //2 size
@@ -42,16 +40,14 @@
 
 //eyevecはどこにおくべきか
 
-/////////////////
 t_color		backgroundcolor_init();
 t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
-bool		check_intersection(t_all_info info, t_ray eye2screen, t_intersection_point *its_p);
+bool		check_intersection(t_all_info info, t_ray eye2screen, \
+								t_intersection_point *its_p);
 t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
-
 
 // mlx_helpers
 void	put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);
-
 
 void	destruct_info(t_all_info *info);
 
