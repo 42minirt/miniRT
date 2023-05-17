@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/17 22:19:11 by user             ###   ########.fr       */
+/*   Updated: 2023/05/17 22:34:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@
 
 /* nanika */
 t_color		backgroundcolor_init();
+void		colort_init_pointer(t_color *color);
 t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
+void		color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
 bool		check_intersection(t_all_info info, t_ray eye2screen, \
 								t_intersection_point *its_p);
 t_color		raytrace(t_all_info info, t_ray eye2screen_xy);

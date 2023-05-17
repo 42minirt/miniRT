@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/17 22:21:24 by user             ###   ########.fr       */
+/*   Updated: 2023/05/17 22:41:04 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static bool	check_intersection(t_all_info info, t_ray eye2screen, t_intersection
 		return (true);
 }
 
-t_color raytrace(t_all_info info, t_ray eye2screen)
+t_color	recursive_raytrace(t_all_info info, t_ray eye2screen, size_t counter)
 {
 	bool					is_intersect;
 	t_color					color;
@@ -73,9 +73,16 @@ t_color raytrace(t_all_info info, t_ray eye2screen)
     if (is_intersect == false)
         return (backgroundcolor_init());
 	// 色の計算（background or obj color
-	
-	color = calc_color(info.scene_info, eye2screen);
+	color_set(&color, 0.0, 0.0, 0.0);
+	color = color_add(color, calc_diffuse_reflection(info, its_p, eye2screen));
+	color = color_add(color, calc_specular_reflection(info, its_p, eye2screen));
+	color = color_add(color, calc_perfect_reflection(info, its_p, eye2screen));
     return (color);
+}
+
+t_color raytrace(t_all_info info, t_ray eye2screen)
+{
+	return (recursive_raytrace(info, eye2screen, 0));
 }
 
 ///* ************************************************************************** */

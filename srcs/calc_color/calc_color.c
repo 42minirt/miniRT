@@ -53,3 +53,10 @@ t_color	init_color(double r, double g, double b)
 	color.b = b;
 	return (color);
 }
+
+void	colort_init_pointer(t_color *color)
+{
+	color->r = 0;
+	color->g = 0;
+	color->b = 0;
+}
