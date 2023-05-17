@@ -83,3 +83,10 @@ put関数を用いて描画
 constructor → mocha takira<br>
 ratio_ball ratio_corn → takira<br>
 ratio_plane ratio_cylinder → mocha<br>
+
+もちゃ対応
+calc_specular_reflection(scene, eye_ray, intp, shape);
+perfect_reflect_color = calc_perfect_reflection(scene, eye_ray, out_col, recursion_level, intp, shape);
+
+あきらさん対応
+calc_diffuse_reflection(scene, intp, *eye_ray, shape);
