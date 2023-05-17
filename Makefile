@@ -67,7 +67,11 @@ SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 
 #-------------------------------------------------------------------------
 RAYTRACE_DIR	= raytrace
-RAYTRACE_SRC	= raytrace.c
+RAYTRACE_SRC	= raytrace.c \
+				  intersection_helper.c \
+				  intersection_with_sphere.c \
+				  intersection_with_corn.c \
+				  intersection_with_corn_calc_param.c
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 

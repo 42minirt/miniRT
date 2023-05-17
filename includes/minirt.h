@@ -57,6 +57,9 @@ bool	is_intersect_with_corn(t_shape_data *shape, t_ray ray, \
 void	solve_quadratic_equation(t_d_param *d_param);
 double	get_valid_distance(double t1, double t2);
 double	calc_discriminant(double a, double b, double c);
+t_corn_param	calc_inpt_param_of_corn(t_corn *c, t_ray ray);
+t_d_param		calc_d_param_of_corn(t_corn_param p);
+
 
 /* destructor */
 void	destruct_info(t_all_info *info);

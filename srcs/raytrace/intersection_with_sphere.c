@@ -12,20 +12,22 @@ static t_d_param	calc_d_param_of_sphere(t_sphere *sphere, t_ray ray)
 	return (d_param);
 }
 
-static t_intersection_point	calc_intp_info_of_shpere(t_sphere *sphere, t_ray ray, double t)
+static t_intersection_point	calc_intp_info_of_shpere(t_sphere *sphere, \
+													t_ray ray, double t)
 {
 	t_intersection_point	intp;
 	t_vec					td;
 
 	intp.distance = t;
 	td = k_vec(t, ray.unit_dir);
-	add_vec(&intp.position, &ray.pos, &sphere->center);
+	add_vec(&intp.position, &ray.pos, &td);
 	neg_vec(&intp.normal, &intp.position, &sphere->center);
 	normalize(&intp.normal, &intp.normal);
 	return (intp);
 }
 
-double	calc_intersect_with_sphere(t_sphere *sphere, t_ray ray, t_intersection_point *intp)
+double	calc_intersect_with_sphere(t_sphere *sphere, \
+									t_ray ray, t_intersection_point *intp)
 {
 	t_d_param	d_param;
 	double		t;
