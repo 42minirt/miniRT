@@ -19,27 +19,6 @@ void	setvec(t_vec *tgt_vec, double x, double y, double z)
 	tgt_vec->z = z;
 }
 
-void	normalize(t_vec *normal_vec, t_vec *normarized_vec)
-{
-	double	vec_size;
-
-	vec_size = sqrt(
-		pow(normarized_vec->x, 2) \
-		+ pow(normarized_vec->y, 2) \
-		+ pow(normarized_vec->z, 2));
-	if (vec_size == 0.0)
-	{
-		printf("this size 0 ! So exit");
-		exit(1);
-	}
-	setvec(
-		normal_vec,
-		normarized_vec->x / vec_size,
-		normarized_vec->y / vec_size,
-		normarized_vec->z / vec_size
-	);
-}
-
 void	inverse_vec(t_vec *inv_vec, t_vec *inved_vec)
 {
 	setvec(
@@ -48,4 +27,12 @@ void	inverse_vec(t_vec *inv_vec, t_vec *inved_vec)
 		inved_vec->y * (-1),
 		inved_vec->z * (-1)
 	);
+}
+
+t_vec	inverse(t_vec vec)
+{
+	t_vec	ret;
+
+	inverse_vec(&ret, &vec);
+	return (ret);
 }

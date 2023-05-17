@@ -9,7 +9,7 @@ static void	print_bonus(t_obj_color o)
 	if (o.is_checker)
 	{
 		c = o.checker_color;
-		printf(",   checker (%5.1f, %5.1f, %5.1f)", c.r, c.g, c.b);
+		printf(",   checker(%5.1f, %5.1f, %5.1f)", c.r, c.g, c.b);
 	}
 	if (o.texture_data.data)
 		printf(",   img_texture");

@@ -2,19 +2,20 @@
 # define MINIRT_H
 
 # include <unistd.h>
-# include <sys/errno.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <sys/errno.h>
 # include <math.h>
 
 # include "./../minilibx-linux/mlx.h"
 # include "./../libs/include/libft.h"
 
 # include "typedef.h"
-# include "vector.h"
+
 # include "color.h"
 # include "constructor.h"
 # include "debug.h"
+# include "vector.h"
 
 /********** return value **********/
 # define OPEN_ERROR		(-1)
@@ -38,17 +39,30 @@
 //2 size
 //3 vec
 
-//eyevecはどこにおくべきか
-
+/* nanika */
 t_color		backgroundcolor_init();
 t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
 bool		check_intersection(t_all_info info, t_ray eye2screen, \
 								t_intersection_point *its_p);
 t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
 
-// mlx_helpers
+
+
+
+/* intersection */
+bool	is_intersect_with_sphere(t_shape_data *shape, t_ray ray, \
+								t_intersection_point *intp);
+bool	is_intersect_with_corn(t_shape_data *shape, t_ray ray, \
+								t_intersection_point *intp);
+void	solve_quadratic_equation(t_d_param *d_param);
+double	get_valid_distance(double t1, double t2);
+double	calc_discriminant(double a, double b, double c);
+
+/* destructor */
+void	destruct_info(t_all_info *info);
+
+/* mlx helper */
 void	put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);
 
-void	destruct_info(t_all_info *info);
 
 #endif
