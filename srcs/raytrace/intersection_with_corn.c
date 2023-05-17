@@ -76,7 +76,10 @@ static t_intersection_point	calc_intp_info_of_corn(t_corn *corn, t_ray ray, \
 	if (is_in_range_corn_height(d.t1, ints_t1.h, corn->height))
 		assign_intp_info(&ret, ints_t1, d.t1);
 	else if (is_in_range_corn_height(d.t2, ints_t2.h, corn->height))
+	{
 		assign_intp_info(&ret, ints_t2, d.t2);
+		ret.normal = inverse(ret.normal);
+	}
 	return (ret);
 }
 
@@ -93,7 +96,6 @@ double	calc_intersect_with_sphere(t_corn *corn, t_ray ray, t_intersection_point 
 	solve_quadratic_equation(&d_param);
 	if ((d_param.t1 <= 0.0 && d_param.t2 <= 0) || !intp)
 		return (-1.0);
-
 	*intp = calc_intp_info_of_corn(corn, ray, intp_param, d_param);
 	return (intp->distance);
 }
