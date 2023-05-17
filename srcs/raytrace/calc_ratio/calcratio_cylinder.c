@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 20:23:55 by user              #+#    #+#             */
-/*   Updated: 2023/05/16 20:00:24 by user             ###   ########.fr       */
+/*   Updated: 2023/05/17 21:32:02 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,20 @@ double	calc_discreminant(double A, double B, double C)
 	return (D);
 }
 
-double	set_itsp(t_intersection_point *itp, double t, t_cylinder *cyl, t_ray *ray, int i)
+double	select_t(double t, t_ray *ray, t_cylinder *cyl, int *i)
 {
-	t_vec	normal;
-	t_vec	position;
+	t_vec	eye2its;
+	t_vec	bottom2its;
+
+	t_mix_vec_all(&eye2its, 1, &ray->pos, t, &ray->unit_dir);
+	neg_vec(&bottom2its, &eye2its, &cyl->bottom_center);
+	if (0 <= dot_vec(&bottom2its, &cyl->axis) && dot_vec(&bottom2its, &cyl->axis) <= cyl->height)
+		return (t);
+	return (-1);
+}
+
+void	set_intersection_t2(t_intersection_point *itp, double t, t_cylinder *cyl, t_ray *ray)
+{
 	t_vec	center2its;
 	t_vec	axis_size_vec;
 	t_vec	normal_timessize;
@@ -34,77 +44,107 @@ double	set_itsp(t_intersection_point *itp, double t, t_cylinder *cyl, t_ray *ray
 	t_mix_vec_all(&itp->position, 1, &ray->pos, t, &ray->unit_dir);
 	neg_vec(&center2its, &itp->position, &cyl->bottom_center);
 	times_vec(&axis_size_vec, dot_vec(&center2its, &cyl->axis), &cyl->axis);
-	if (i == 1)
-		neg_vec(&normal_timessize, &center2its, &axis_size_vec);
-	else
-		neg_vec(&normal_timessize, &axis_size_vec, &center2its);
+	neg_vec(&normal_timessize, &axis_size_vec, &center2its);
 	normalize(&itp->normal, &normal_timessize);
 	itp->obj = cyl;
-	return (t);
 }
 
-double	set_itp_befor(double t1, double t2, t_ray *ray, t_intersection_point *itsp, t_cylinder *cyl)
+double	check_intersection_t2(t_vec *d_n, t_vec *ac_n, t_cylinder *cyl, t_ray *ray) //名前をもう少し考えたい
 {
-	t_vec	eye2its_t1;
-	t_vec	eye2its_t2;
-	t_vec	bottom12its;
-	t_vec	bottom22its;
-
-	t_mix_vec_all(&eye2its_t1, 1, &ray->pos, t1, &ray->unit_dir);
-	t_mix_vec_all(&eye2its_t2, 1, &ray->pos, t2, &ray->unit_dir);
-	//t1と交点を持つベクトルのaxis方向の大きさを調べる
-	neg_vec(&bottom12its, &eye2its_t1, &cyl->bottom_center);
-	neg_vec(&bottom22its, &eye2its_t2, &cyl->bottom_center);
-	//サイズないならこっちが該当のもの
-	if (0 <= dot_vec(&bottom12its, &cyl->axis) && dot_vec(&bottom12its, &cyl->axis) <= cyl->height)
-		return (set_itsp(itsp, t1, cyl, ray, 1));
-	else if (0 <= dot_vec(&bottom22its, &cyl->axis) && dot_vec(&bottom22its, &cyl->axis) <= cyl->height)
-		return (set_itsp(itsp, t2, cyl, ray, 2));
-	return (-1.0);
-}
-
-double	set_intersection(t_vec *d_n, t_vec *ac_n, t_cylinder *cyl, t_ray *ray, t_intersection_point *itsp) //名前をもう少し考えたい
-{
-	double	A;
-	double	B;
 	double	D;
-	double	t1;
-	double	t2;
+	t_vec	eye2its;
+	t_vec	bottom2its;
+	double	t;
 
 	if (obtain_vecsize(d_n) == 0.0) //ここはイプシロンを用いたチェックが必要かも
 		return (-1.0);
-	A = pow(obtain_vecsize(d_n), 2);
-	B = 2.0 * dot_vec(d_n, ac_n);
-	D = calc_discreminant(A, B, pow(obtain_vecsize(&ac_n), 2) - pow(cyl->radius, 2));
+	D = calc_discreminant(
+		pow(obtain_vecsize(d_n), 2), 
+		2.0 * dot_vec(d_n, ac_n), 
+		pow(obtain_vecsize(&ac_n), 2) - pow(cyl->radius, 2)
+	);
 	if (D < 0.0)
 		return (-1.0);
-	t1 = -1.0 * B + sqrt(D) / (2.0 * A);
-	t2 = -1.0 * B - sqrt(D) / (2.0 * A);
-	return (set_itp_befor(t1, t2, ray, itsp, cyl));// t1とt2で近い方のtを設定してitsを設定する
+	t = -1.0 * 2.0 * dot_vec(d_n, ac_n) + sqrt(D) / (2.0 * pow(obtain_vecsize(d_n), 2));
+	t_mix_vec_all(&eye2its, 1, &ray->pos, t, &ray->unit_dir);
+	neg_vec(&bottom2its, &eye2its, &cyl->bottom_center);
+	if (0 <= dot_vec(&bottom2its, &cyl->axis) && dot_vec(&bottom2its, &cyl->axis) <= cyl->height)
+		return (t);
+	return (-1.0);
 }
 
-double	check_intersection_cylinder(t_ray *eye2scr, t_cylinder *cylinder, t_vec axis, t_intersection_point *itsp)
+void	set_intersection_t1(t_intersection_point *itp, double t, t_cylinder *cyl, t_ray *ray)
 {
-	t_vec	d_n_oupro;
-	t_vec	eye2cylinderbottom;
-	t_vec	ac_n_oupro;
+	t_vec	center2its;
+	t_vec	axis_size_vec;
+	t_vec	normal_timessize;
 
-	calc_outerproduct(&d_n_oupro, &eye2scr->unit_dir, &axis);
-	neg_vec(&eye2cylinderbottom, &eye2scr->pos, &cylinder->bottom_center);
-	calc_outerproduct(&ac_n_oupro, &eye2cylinderbottom, &axis);
-	if (obtain_vecsize(&d_n_oupro) == 0.0)
+	itp->distance = t;
+	t_mix_vec_all(&itp->position, 1, &ray->pos, t, &ray->unit_dir);
+	neg_vec(&center2its, &itp->position, &cyl->bottom_center);
+	times_vec(&axis_size_vec, dot_vec(&center2its, &cyl->axis), &cyl->axis);
+	neg_vec(&normal_timessize, &center2its, &axis_size_vec);
+	normalize(&itp->normal, &normal_timessize);
+	itp->obj = cyl;
+}
+
+double	check_intersection_t1(t_vec *d_n, t_vec *ac_n, t_cylinder *cyl, t_ray *ray) //名前をもう少し考えたい
+{
+	double	D;
+	t_vec	eye2its;
+	t_vec	bottom2its;
+	double	t;
+
+	if (obtain_vecsize(d_n) == 0.0) //ここはイプシロンを用いたチェックが必要かも
 		return (-1.0);
-	return (set_intersection(&d_n_oupro, &ac_n_oupro, cylinder, eye2scr, itsp));
+	D = calc_discreminant(
+		pow(obtain_vecsize(d_n), 2), 
+		2.0 * dot_vec(d_n, ac_n), 
+		pow(obtain_vecsize(&ac_n), 2) - pow(cyl->radius, 2)
+	);
+	if (D < 0.0)
+		return (-1.0);
+	t = -1.0 * 2.0 * dot_vec(d_n, ac_n) + sqrt(D) / (2.0 * pow(obtain_vecsize(d_n), 2));
+	t_mix_vec_all(&eye2its, 1, &ray->pos, t, &ray->unit_dir);
+	neg_vec(&bottom2its, &eye2its, &cyl->bottom_center);
+	if (0 <= dot_vec(&bottom2its, &cyl->axis) && dot_vec(&bottom2its, &cyl->axis) <= cyl->height)
+		return (t);
+	return (-1.0);
+}
+
+void	outerproduct_ready(t_vec *d_n_oupro, t_vec *ac_n_oupro, t_ray *eye2scr, t_cylinder *cylinder)
+{
+	t_vec	eye2cylinderbottom;
+
+	calc_outerproduct(d_n_oupro, &eye2scr->unit_dir, &cylinder->axis);
+	neg_vec(&eye2cylinderbottom, &eye2scr->pos, &cylinder->bottom_center);
+	calc_outerproduct(&ac_n_oupro, &eye2cylinderbottom, &cylinder->axis);
 }
 
 double	calc_cylinderratio(t_obj *obj, t_all_info *info, t_ray *eye2scr, t_intersection_point *tmp_itsp)
 {
-	t_vec		eye_direction;
 	t_cylinder	*cylinder;
+	t_vec		d_n;
+	t_vec		ac_n;
 	double		t;
 
 	tmp_itsp = NULL;
-	eye_direction = eye2scr->unit_dir;
 	cylinder = (t_cylinder *)obj;
-	return (check_intersection_cylinder(eye2scr, cylinder, cylinder->axis, tmp_itsp));
+	outerproduct_ready(&d_n, &ac_n, eye2scr, cylinder);
+	t = check_intersection_t1(&d_n, &ac_n, cylinder, eye2scr);
+	if (t >= 0.0)
+	{
+		set_intersection_t1(tmp_itsp, t, cylinder, eye2scr);
+		return (t);
+	}
+	t = check_intersection_t2(&d_n, &ac_n, cylinder, eye2scr);
+	if (t >= 0.0)
+	{
+		set_intersection_t2(tmp_itsp, t, cylinder, eye2scr);
+		inverse_vec(&tmp_itsp->normal, &tmp_itsp->normal);
+		return (t);
+	}
+	if (t >= 0.0)
+		return (t);
+	return (-1.0);
 }
