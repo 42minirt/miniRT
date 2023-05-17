@@ -7,11 +7,20 @@
 !*.rt
 !Makefile
 !*.md
+!*.ppm
 
 !includes/
 !srcs/
 !srcs/*/
 !srcs/*/*/
+
+!rt_file
+!img/
+!libs
+!libs/**
+
+!minilibx-linux/
+!minilibx-linux/**
 
 .idea/
 objs/
