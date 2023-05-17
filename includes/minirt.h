@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/17 22:34:50 by user             ###   ########.fr       */
+/*   Updated: 2023/05/17 23:30:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,10 @@ void	destruct_info(t_all_info *info);
 
 /* mlx helper */
 void	put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);
+
+t_color	calc_diffuse_reflection(info, its_p, eye2screen);
+t_color	calc_specular_reflection(info, its_p, eye2screen);
+t_color	calc_perfect_reflection(info, its_p, eye2screen);
 
 
 #endif
