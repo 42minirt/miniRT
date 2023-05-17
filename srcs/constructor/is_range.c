@@ -11,7 +11,7 @@ bool	is_vec_in_normal_range(t_vec vec)
 	&& (-1.0 <= z && z <= 1.0));
 }
 
-bool is_color_in_range(t_color color)
+bool	is_color_in_range(t_color color)
 {
 	const double	r = color.r;
 	const double	g = color.g;

@@ -52,5 +52,4 @@ t_parse_res	get_lights_setting(const char *line, t_scene_info *scene, int id_no)
 	}
 	ft_lstadd_back(&scene->lights, new_list);
 	return (PASS);
-
 }

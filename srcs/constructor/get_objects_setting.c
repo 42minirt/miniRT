@@ -11,7 +11,7 @@ t_obj	*init_obj(void)
 	obj->obj_color.is_checker = false;
 	obj->obj_color.texture_data.data = NULL;
 	obj->obj_color.bump_data.data = NULL;
-	obj->obj_color.shininess = 10.0;	// fix ?
+	obj->obj_color.shininess = 10.0; // fix ?
 	obj->obj_color.ks = init_color(1.0, 1.0, 1.0);
 	return (obj);
 }

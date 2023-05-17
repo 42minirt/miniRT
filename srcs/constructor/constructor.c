@@ -7,7 +7,6 @@ static int	alloc_info_ptr(t_all_info *all_info)
 	all_info->camera_info = ft_calloc(sizeof(t_camera_info), 1);
 	if (!all_info->mlx_info || !all_info->scene_info || !all_info->camera_info)
 		return (FAILURE);
-
 	all_info->scene_info->lights = NULL;
 	all_info->scene_info->objs = NULL;
 	all_info->scene_info->brightness = -1.0;

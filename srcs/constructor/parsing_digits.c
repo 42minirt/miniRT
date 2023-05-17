@@ -20,7 +20,6 @@ int	parse_int(const char *line, int *int_num, size_t *idx)
 	*idx += len;
 	*int_num = ft_atoi(num_str, &is_success);
 	free(num_str);
-
 	if (!is_success)
 		return (FAILURE);
 	return (SUCCESS);
@@ -51,7 +50,7 @@ int	parse_double(const char *line, double *double_num, size_t *idx)
 	return (SUCCESS);
 }
 
-int parsing_vec(const char *line, t_vec *vec, size_t *idx)
+int	parsing_vec(const char *line, t_vec *vec, size_t *idx)
 {
 	skip_spece(line, idx);
 	if (parse_double(line, &vec->x, idx) == FAILURE)
@@ -67,7 +66,7 @@ int parsing_vec(const char *line, t_vec *vec, size_t *idx)
 }
 
 // int_num1, int_num2, int_num3
-int parsing_color(const char *line, t_color *color, size_t *idx)
+int	parsing_color(const char *line, t_color *color, size_t *idx)
 {
 	int	int_r;
 	int	int_g;

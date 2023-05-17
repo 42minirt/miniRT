@@ -25,14 +25,14 @@ static t_parse_res	get_image_texture_info(const char *line, \
 										t_obj_color *obj_color, size_t *idx)
 {
 	t_parse_res	res;
-	bool		filename_empty;
+	bool		is_empty;
 
-	filename_empty = false;
-	res = get_image_texture(line, &obj_color->texture_data, idx, &filename_empty);
+	is_empty = false;
+	res = get_image_texture(line, &obj_color->texture_data, idx, &is_empty);
 	if (res != PASS)
 		return (ERROR_FATAL);
 	skip_delimiter(line, idx);
-	res = get_image_texture(line, &obj_color->bump_data, idx, &filename_empty);
+	res = get_image_texture(line, &obj_color->bump_data, idx, &is_empty);
 	if (res != PASS)
 		return (ERROR_FATAL);
 	skip_spece(line, idx);
