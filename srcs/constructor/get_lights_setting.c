@@ -15,7 +15,7 @@ t_parse_res	get_light_detail(const char *line, int id_no, t_light *light)
 
 	light->type = get_light_type(id_no);
 	idx = 0;
-	if (parsing_vec(line, &light->point, &idx) == FAILURE)
+	if (parse_vec(line, &light->point, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
 	if (parse_double(line, &light->brightness, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);

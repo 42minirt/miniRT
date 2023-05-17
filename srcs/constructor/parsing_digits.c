@@ -50,7 +50,7 @@ int	parse_double(const char *line, double *double_num, size_t *idx)
 	return (SUCCESS);
 }
 
-int	parsing_vec(const char *line, t_vec *vec, size_t *idx)
+int	parse_vec(const char *line, t_vec *vec, size_t *idx)
 {
 	skip_spece(line, idx);
 	if (parse_double(line, &vec->x, idx) == FAILURE)
