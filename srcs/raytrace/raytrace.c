@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/17 22:41:04 by user             ###   ########.fr       */
+/*   Updated: 2023/05/17 23:28:59 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "includes/minirt.h"
 
 //intersectionが存在するかとともに、存在していればintersectionの情報を格納する
 
