@@ -63,7 +63,6 @@ static t_intersection_point	calc_intp_info_of_corn(t_corn *corn, t_ray ray, \
 		assign_intp_info(&ret_intp, ints_t2, d.t2);
 		ret_intp.normal = inverse(ret_intp.normal);
 	}
-	ret_intp.obj = (t_shape_data *)corn;
 	return (ret_intp);
 }
 
@@ -84,5 +83,6 @@ double	calc_intersect_with_corn(t_obj *obj, t_ray ray, \
 	if ((d_param.t1 <= 0.0 && d_param.t2 <= 0) || !intp)
 		return (-1.0);
 	*intp = calc_intp_info_of_corn(corn, ray, intp_param, d_param);
+	(*intp).obj = obj;
 	return (intp->distance);
 }

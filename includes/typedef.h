@@ -239,10 +239,10 @@ struct s_all_info
 
 struct	s_intersection_point
 {
-	double			distance;	// 交点から目までの距離　tの値　元となるベクトルが単位ベクトルがtはサイズと重なる
-	t_vec			position;	// 交点の位置ベクトル
-	t_vec			normal;		// 交点における物体表面の法線ベクトル
-	t_shape_data	*obj;
+	double	distance;	// 交点から目までの距離　tの値　元となるベクトルが単位ベクトルがtはサイズと重なる
+	t_vec	position;	// 交点の位置ベクトル
+	t_vec	normal;		// 交点における物体表面の法線ベクトル
+	t_obj	*obj;
 };
 
 struct	s_discriminant_param

@@ -55,6 +55,6 @@ double	calc_intersect_with_sphere(t_obj *obj, \
 	if (t <= 0.0 || !intp)
 		return (-1.0);
 	*intp = calc_intp_info_of_shpere(sphere, ray, t);
-	(*intp).obj = (t_shape_data *)sphere;
+	(*intp).obj = obj;
 	return (intp->distance);
 }

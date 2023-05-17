@@ -25,7 +25,7 @@ t_d_param		calc_d_param_of_corn(t_corn_param p);
 bool	raytrace(t_all_info *info, t_ray eye2screen, t_color *color);
 
 t_color	calc_ambient_reflection(t_scene_info *scene);
-t_color	calc_diffuse_reflection(t_all_info *info, \
+t_color	calc_diffuse_reflection(t_scene_info *scene, \
 							t_intersection_point *its_p, t_ray eye2screen);
 t_color	calc_specular_reflection(t_all_info *info, \
 							t_intersection_point *its_p, t_ray eye2screen);
