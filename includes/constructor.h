@@ -52,4 +52,10 @@ t_parse_res	validate_obj_color(t_obj *obj);
 t_parse_res	validate_lights_info(t_scene_info *scene);
 t_parse_res	validate_ambient_info(t_scene_info *scene);
 
+void	update_scene_sphere_info(t_sphere *sphere);
+void	update_scene_plane_info(t_plane *plane);
+void	update_scene_cylinder_info(t_cylinder *cylinder);
+void	update_scene_corn_info(t_corn *corn);
+
+
 #endif //CONSTRUCTOR_H

@@ -42,6 +42,7 @@ CONSTRUCTOR_SRC	= constructor.c \
 				  parsing_digits.c \
 				  parsing_helper.c \
 				  update_scene.c \
+				  update_scene_each_obj.c \
 				  validate_config.c \
 				  validate_config_color.c \
 				  validate_config_shape.c \

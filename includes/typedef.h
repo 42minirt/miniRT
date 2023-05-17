@@ -108,17 +108,17 @@ struct s_light
 
 //---------------------------------------------
 
-struct	s_plane_shape
-{
-	t_vec	center;
-	t_vec	normal;
-};
-
 struct	s_sphere_shape
 {
 	t_vec	center;
 	double	radius;
 	double	diameter;
+};
+
+struct	s_plane_shape
+{
+	t_vec	center;
+	t_vec	normal;
 };
 
 struct	s_cylinder_shape
@@ -134,8 +134,8 @@ struct	s_cylinder_shape
 struct	s_corn_shape
 {
 	t_vec	bottom_center;
-	t_vec	axis;
 	t_vec	origin;
+	t_vec	axis;
 
 	double  radius;
 	double	diameter;
