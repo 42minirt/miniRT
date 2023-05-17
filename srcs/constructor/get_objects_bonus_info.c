@@ -16,7 +16,7 @@ static t_parse_res	get_perfect_ref_info(const char *line, \
 										t_obj_color *obj_color, size_t *idx)
 {
 	obj_color->is_perfect_ref = true;
-	obj_color->perfect_ref_color = init_color(1.0, 1.0, 1.0);
+	obj_color->kf = init_color(1.0, 1.0, 1.0);
 	skip_spece(line, idx);
 	return (PASS);
 }

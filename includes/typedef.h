@@ -52,11 +52,9 @@ enum	e_identifier
 enum	e_parse_result
 {
 	PASS = 10,
-
 	ERROR_FATAL = 11,
 	ERROR_INVALID_TYPE = 12,
 	ERROR_LACK_INFO = 13,
-
 	ERROR_TOO_MANY_INFO = 14,
 	ERROR_INVALID_ARG = 15,
 	ERROR_OUT_OF_RANGE = 16,
@@ -120,13 +118,13 @@ struct	s_sphere_shape
 struct	s_plane_shape
 {
 	t_vec	center;
-	t_vec	normal;
+	t_vec	normal;	//todo:normalize
 };
 
 struct	s_cylinder_shape
 {
 	t_vec	bottom_center;
-	t_vec	axis;
+	t_vec	axis;	//todo:normalize
 
 	double  radius;
 	double	diameter;
@@ -137,7 +135,7 @@ struct	s_corn_shape
 {
 	t_vec	bottom_center;
 	t_vec	origin;
-	t_vec	axis;
+	t_vec	axis;	//todo:normalize
 
 	double  radius;
 	double	diameter;
@@ -167,15 +165,15 @@ struct s_obj_color
 	t_color kd; // diffuse ref
 	t_color ks; // specular ref //fix
 
-	double	shininess;	// alpha
+	double	shininess;	// alpha, fix
 
-	double	ia;
-	double	id;
-	double	is;
+	double	ia;	// fix
+	double	id;	// fix
+	double	is;	// fix
 
 // bonus
 	bool	is_perfect_ref;
-	t_color	perfect_ref_color; // kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
+	t_color	kf; // kf kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
 
 	bool 	is_checker;
 	t_color	checker_color;
@@ -185,28 +183,25 @@ struct s_obj_color
 };
 
 struct s_obj
-{ // t_list's content
-	// type
+{
 	t_shape_type	type; //shere or ...
-
-	// shape
 	t_shape_data	shape_data;
-
-	// material
 	t_obj_color		obj_color;
 };
 
 //---------------------------------------------
 
 // eye2screen
-struct s_ray {
+struct s_ray
+{
 	t_vec pos;
 	t_vec unit_dir;
 };
 
 //---------------------------------------------
 
-struct s_mlx_info{
+struct s_mlx_info
+{
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -217,21 +212,24 @@ struct s_mlx_info{
 	int		endian;
 };
 
-struct s_scene_info {
+struct s_scene_info
+{
 	t_color	ambient_color;
 	double	brightness;
 	t_list *lights;		 //content: light;
 	t_list *objs;		//content : obj;
 };
 
-struct s_camera_info {
+struct s_camera_info
+{
 	t_ray	camera;		//しばらく固定
 	double 	fov;	//tmp -1 で初期化
 	float	distance_camera_to_screen;
 	// vec or matrix
 };
 
-struct s_all_info {
+struct s_all_info
+{
 	t_mlx_info		*mlx_info;
 	t_scene_info	*scene_info;
 	t_camera_info	*camera_info;
