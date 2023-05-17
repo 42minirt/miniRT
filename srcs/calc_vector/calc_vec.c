@@ -26,7 +26,15 @@ void	vector_scalar_product(t_vec *tgt_vec, double k, t_vec *v)
 	setvec(tgt_vec, k * v->x, k * v->y, k * v->z);
 }
 
-double	get_norm(t_vec vec)
+t_vec	k_vec(double k, t_vec v)
+{
+	t_vec	ret;
+
+	vector_scalar_product(&ret, k, &v);
+	return (ret);
+}
+
+double	norm(t_vec vec)
 {
 	return (sqrt(pow(vec.x,2) + pow(vec.y,2) + pow(vec.z,2)));
 }

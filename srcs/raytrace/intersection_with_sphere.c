@@ -18,7 +18,7 @@ static t_intersection_point	calc_intp_info_of_shpere(t_sphere *sphere, t_ray ray
 	t_vec					td;
 
 	intp.distance = t;
-	vector_scalar_product(&td, t, &ray.unit_dir);
+	td = k_vec(t, ray.unit_dir);
 	add_vec(&intp.position, &ray.pos, &sphere->center);
 	neg_vec(&intp.normal, &intp.position, &sphere->center);
 	normalize(&intp.normal, &intp.normal);

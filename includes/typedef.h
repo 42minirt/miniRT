@@ -30,6 +30,8 @@ typedef struct	s_sphere_shape			t_sphere;
 typedef struct	s_cylinder_shape		t_cylinder;
 typedef struct	s_corn_shape			t_corn;
 typedef struct	s_discriminant_param	t_d_param;
+typedef struct	s_intp_param_of_corn	t_corn_param;
+typedef struct	s_corn_ints				t_corn_ints;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -133,6 +135,7 @@ struct	s_corn_shape
 {
 	t_vec	bottom_center;
 	t_vec	axis;
+	t_vec	origin;
 
 	double  radius;
 	double	diameter;
@@ -245,6 +248,36 @@ struct	s_discriminant_param
 	double	d;
 	double	t1;
 	double	t2;
+};
+
+struct	s_intp_param_of_corn
+{
+	t_vec	pe_po;
+	t_vec	cross_de_n;
+	t_vec	cross_pepo_n;
+	t_vec	two_x_cross_de_n;
+
+	t_vec	inv_axis;
+
+	double	ratio_r_h;
+	double	half_of_vertex_angle;
+
+	double	dot_de_n;
+	double	dot_pepo_n;
+	double	norm_de_x_n;
+	double	norm_pepo_x_n;
+};
+
+struct	s_corn_ints
+{
+	t_vec	ti_d;
+	t_vec	pos;
+	t_vec	pos_po;
+	t_vec	norm_pos_po;
+
+	t_vec	normal;
+
+	double	h;
 };
 
 #endif //TYPEDEF_H

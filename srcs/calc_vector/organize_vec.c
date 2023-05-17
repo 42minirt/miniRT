@@ -28,3 +28,11 @@ void	inverse_vec(t_vec *inv_vec, t_vec *inved_vec)
 		inved_vec->z * (-1)
 	);
 }
+
+t_vec	inverse(t_vec vec)
+{
+	t_vec	ret;
+
+	inverse_vec(&ret, &vec);
+	return (ret);
+}
