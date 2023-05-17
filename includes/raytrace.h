@@ -22,14 +22,14 @@ t_corn_param	calc_inpt_param_of_corn(t_corn *c, t_ray ray);
 t_d_param		calc_d_param_of_corn(t_corn_param p);
 
 /* raytracing */
-t_color	calc_ambient_reflection(t_all_info *info, \
-							t_intersection_point *its_p, t_ray eye2screen);
+bool	raytrace(t_all_info *info, t_ray eye2screen, t_color *color);
+
+t_color	calc_ambient_reflection(t_scene_info *scene);
 t_color	calc_diffuse_reflection(t_all_info *info, \
 							t_intersection_point *its_p, t_ray eye2screen);
 t_color	calc_specular_reflection(t_all_info *info, \
 							t_intersection_point *its_p, t_ray eye2screen);
 t_color	calc_perfect_reflection(t_all_info *info, \
 							t_intersection_point *its_p, t_ray eye2screen);
-
 
 #endif //RAYTRACE_H

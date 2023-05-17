@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
+#include "minirt.h"
 
 //intersectionが存在するかとともに、存在していればintersectionの情報を格納する
 
@@ -56,25 +56,31 @@ static bool	check_intersection(t_all_info *info, t_ray eye2screen, t_intersectio
 		return (true);
 }
 
-static t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, size_t counter)
+static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
+									t_color *ret_color, size_t counter)
 {
 	bool					is_intersect;
 	t_color					color;
 	t_intersection_point	its_p;
 
+	if (counter > MAX_RECURSION)
+		return (false);
 	// 交点判定
 	is_intersect = check_intersection(info, eye2screen, &its_p);
     if (is_intersect == false)
-        return (backgroundcolor_init());
+        return (false);
+
 	// 色の計算（background or obj color
 	color_set(&color, 0.0, 0.0, 0.0);
-	color = color_add(color, calc_diffuse_reflection(info, its_p, eye2screen));
-	color = color_add(color, calc_specular_reflection(info, its_p, eye2screen));
-	color = color_add(color, calc_perfect_reflection(info, its_p, eye2screen));
-    return (color);
+	color = color_add(color, calc_ambient_reflection(info->scene_info));
+	color = color_add(color, calc_diffuse_reflection(info, &its_p, eye2screen));
+	color = color_add(color, calc_specular_reflection(info, &its_p, eye2screen));
+	color = color_add(color, calc_perfect_reflection(info, &its_p, eye2screen));
+	*ret_color = color;
+    return (true);
 }
 
-t_color raytrace(t_all_info *info, t_ray eye2screen)
+bool	raytrace(t_all_info *info, t_ray eye2screen, t_color *color)
 {
-	return (recursive_raytrace(info, eye2screen, 0));
+	return (recursive_raytrace(info, eye2screen, color, 0));
 }
