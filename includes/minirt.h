@@ -54,7 +54,9 @@ bool	is_intersect_with_sphere(t_shape_data *shape, t_ray ray, \
 								t_intersection_point *intp);
 bool	is_intersect_with_corn(t_shape_data *shape, t_ray ray, \
 								t_intersection_point *intp);
-void	calc_t(t_d_param *d_param);
+void	solve_quadratic_equation(t_d_param *d_param);
+double	get_valid_distance(double t1, double t2);
+double	calc_discriminant(double a, double b, double c);
 
 /* destructor */
 void	destruct_info(t_all_info *info);
