@@ -229,6 +229,10 @@ double		obtain_vecsize(t_vec *vec);
 void		times_vec(t_vec *tgt_vec, double t, t_vec *sub);
 //ここまでベクトル正規化//
 
+//colorに関する関数
+void		color_set(t_color *tgt, double R, double G, double B);
+void		color_add(t_color *tgt, t_color *t1, t_color *t2);
+
 t_color		backgroundcolor_init();
 t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
 t_all_info	construct_info();

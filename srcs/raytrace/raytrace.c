@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/16 23:29:50 by user             ###   ########.fr       */
+/*   Updated: 2023/05/17 00:20:04 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ t_color raytrace(t_all_info info, t_ray eye2screen)
     if (is_intersect == false)
         return (backgroundcolor_init());
 	// 色の計算（background or obj color
-    init_color(&color);
 	
 	color = calc_color(info.scene_info, eye2screen);
     return (color);
