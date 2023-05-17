@@ -12,19 +12,27 @@
 
 #include "minirt.h"
 
-static int get_num_part(const char *str, double *num, double *sign, size_t *idx)
+static void	handle_before_num(const char *str, \
+								double *sign, size_t *idx, size_t *i)
 {
-	double	scale;
-	size_t 	i;
-
 	while (ft_isspace(str[*idx]))
 		*idx += 1;
 	if (str[*idx] == '-')
 		*sign = -1.0;
-	i = 0;
-	if (str[*idx + i] == '-' || str[*idx + i] == '+')
-		i++;
-	if (!str[*idx + i] || !(ft_isdigit(str[*idx + i]) || (str[*idx + i] == '.' && ft_isdigit(str[*idx + i + 1]))))
+	*i = 0;
+	if (str[*idx + *i] == '-' || str[*idx + *i] == '+')
+		*i += 1;
+}
+
+static int	get_num_part(const char *str, \
+						double *num, double *sign, size_t *idx)
+{
+	double	scale;
+	size_t	i;
+
+	handle_before_num(str, sign, idx, &i);
+	if (!str[*idx + i] || !(ft_isdigit(str[*idx + i]) \
+		|| (str[*idx + i] == '.' && ft_isdigit(str[*idx + i + 1]))))
 		return (FAILURE);
 	*idx += i;
 	while (ft_isdigit(str[*idx]))
@@ -38,7 +46,7 @@ static int get_num_part(const char *str, double *num, double *sign, size_t *idx)
 		scale = 0.1;
 		while (ft_isdigit(str[*idx]))
 		{
-			*num += (double)(str[*idx] - '0') * scale;
+			*num += scale * (double)(str[*idx] - '0');
 			scale *= 0.1;
 			*idx += 1;
 		}
@@ -48,9 +56,9 @@ static int get_num_part(const char *str, double *num, double *sign, size_t *idx)
 
 static int	get_exp_part(const char *str, double *num, size_t *idx)
 {
-	double 	exp;
-	double 	exp_sign;
-	size_t 	i;
+	double	exp;
+	double	exp_sign;
+	size_t	i;
 
 	exp = 0.0;
 	exp_sign = 1.0;
@@ -75,10 +83,17 @@ static int	get_exp_part(const char *str, double *num, size_t *idx)
 	return (SUCCESS);
 }
 
+static double	ret_num_and_err(double num, const char *str, char **err)
+{
+	if (err)
+		*err = (char *)str;
+	return (num);
+}
+
 double	ft_strtod(const char *str, bool *is_success, char **err)
 {
 	double	num;
-	double 	num_sign;
+	double	num_sign;
 	size_t	idx;
 
 	idx = 0;
@@ -86,26 +101,12 @@ double	ft_strtod(const char *str, bool *is_success, char **err)
 	num_sign = 1.0;
 	*is_success = false;
 	if (!str)
-	{
-		if (err)
- 			*err = (char *)&str[idx];
-		return (num);
-	}
+		return (ret_num_and_err(num, &str[idx], err));
 	if (get_num_part(str, &num, &num_sign, &idx) == FAILURE)
-	{
-		if (err)
-			*err = (char *)&str[idx];
-		return (num);
-	}
+		return (ret_num_and_err(num, &str[idx], err));
 	if (get_exp_part(str, &num, &idx) == FAILURE)
-	{
-		if (err)
-			*err = (char *)&str[idx];
-		return (num_sign * num);
-	}
+		return (ret_num_and_err(num_sign * num, &str[idx], err));
 	if (!str[idx])
 		*is_success = true;
-	if (err)
-		*err = (char *)&str[idx];
-	return (num_sign * num);
+	return (ret_num_and_err(num_sign * num, &str[idx], err));
 }
