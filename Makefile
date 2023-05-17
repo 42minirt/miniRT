@@ -80,7 +80,8 @@ SRC				+= $(addprefix $(COLOR_DIR)/, $(COLOR_SRC))
 #-------------------------------------------------------------------------
 VECTOR_DIR		= calc_vector
 VECTOR_SRC		= arithmetic.c \
-				  organize_vec.c
+				  organize_vec.c \
+				  calc_vec.c
 
 SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
 

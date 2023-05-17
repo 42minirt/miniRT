@@ -6,7 +6,8 @@ static t_d_param	calc_d_param_of_corn(t_corn *corn, t_ray ray)
 {
 	t_d_param	d_param;
 
-	d_param.d = pow(d_param.b, 2) - 4.0 * d_param.a * d_param.c;
+
+
 	return (d_param);
 }
 
