@@ -28,6 +28,7 @@
 # include "constructor.h"
 # include "debug.h"
 # include "vector.h"
+# include "raytrace.h"
 
 /********** return value **********/
 # define OPEN_ERROR		(-1)
@@ -58,24 +59,6 @@ void		colort_init_pointer(t_color *color);
 t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
 void		color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
 t_color		raytrace(t_all_info *info, t_ray eye2screen_xy);
-
-
-
-
-/* intersection */
-double	calc_planeratio(t_obj *obj, t_all_info *info, t_ray *ray, t_intersection_point *itsp);
-double	calc_cylinderratio(t_obj *obj, t_all_info *info, t_ray *eye2scr, t_intersection_point *tmp_itsp);
-double	set_itsp(t_plane *plane, double t, t_ray *ray, t_intersection_point *itsp);
-
-double	calc_intersect_with_sphere(t_obj *obj, t_ray ray, \
-								t_intersection_point *intp);
-double	calc_intersect_with_corn(t_obj *obj, t_ray ray, \
-								t_intersection_point *intp);
-void	solve_quadratic_equation(t_d_param *d_param);
-double	get_valid_distance(double t1, double t2);
-double	calc_discriminant(double a, double b, double c);
-t_corn_param	calc_inpt_param_of_corn(t_corn *c, t_ray ray);
-t_d_param		calc_d_param_of_corn(t_corn_param p);
 
 
 /* destructor */

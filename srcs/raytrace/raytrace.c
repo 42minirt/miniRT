@@ -12,14 +12,7 @@
 
 #include "minirt.h"
 
-//色の計算はambient_reflection　diffuse_reflection　specular_reflection　perfect_reflection　で行う
-t_color	calc_color(t_scene_info *scene_info, t_ray eye2screen)
-{
-
-}
-
 //intersectionが存在するかとともに、存在していればintersectionの情報を格納する
-
 
 static double	calc_intersection(t_list *obj, t_all_info *info, t_ray eye2screen, t_intersection_point *tmp_itsp)
 {
@@ -63,7 +56,7 @@ static bool	check_intersection(t_all_info *info, t_ray eye2screen, t_intersectio
 		return (true);
 }
 
-t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, size_t counter)
+static t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, size_t counter)
 {
 	bool					is_intersect;
 	t_color					color;
