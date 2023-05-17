@@ -57,17 +57,19 @@ t_color		backgroundcolor_init();
 void		colort_init_pointer(t_color *color);
 t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
 void		color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
-bool		check_intersection(t_all_info info, t_ray eye2screen, \
-								t_intersection_point *its_p);
-t_color		raytrace(t_all_info info, t_ray eye2screen_xy);
+t_color		raytrace(t_all_info *info, t_ray eye2screen_xy);
 
 
 
 
 /* intersection */
-bool	is_intersect_with_sphere(t_shape_data *shape, t_ray ray, \
+double	calc_planeratio(t_obj *obj, t_all_info *info, t_ray *ray, t_intersection_point *itsp);
+double	calc_cylinderratio(t_obj *obj, t_all_info *info, t_ray *eye2scr, t_intersection_point *tmp_itsp);
+double	set_itsp(t_plane *plane, double t, t_ray *ray, t_intersection_point *itsp);
+
+double	calc_intersect_with_sphere(t_obj *obj, t_ray ray, \
 								t_intersection_point *intp);
-bool	is_intersect_with_corn(t_shape_data *shape, t_ray ray, \
+double	calc_intersect_with_corn(t_obj *obj, t_ray ray, \
 								t_intersection_point *intp);
 void	solve_quadratic_equation(t_d_param *d_param);
 double	get_valid_distance(double t1, double t2);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
+#include "minirt.h"
 
 double	set_itsp(t_plane *plane, double t, t_ray *ray, t_intersection_point *itsp)
 {
@@ -20,7 +20,7 @@ double	set_itsp(t_plane *plane, double t, t_ray *ray, t_intersection_point *itsp
 	{
 		itsp->distance = t;
 		itsp->normal = plane->center;
-		itsp->obj = plane;
+		itsp->obj = (t_shape_data *)plane;
 		times_vec(&eye2its, t, &ray->unit_dir);
 		add_vec(&itsp->position, &ray->pos, &eye2its);
 	}
@@ -36,7 +36,7 @@ double	calc_planeratio(t_obj *obj, t_all_info *info, t_ray *ray, t_intersection_
 
 	plane = (t_plane *)obj;
 	neg_vec(&pos2center, &plane->center, &ray->pos);
-	n_pos2center = dot(&plane->normal, &pos2center);
-	dis_n = dot(&ray->unit_dir, &plane->normal);
+	n_pos2center = dot(plane->normal, pos2center);
+	dis_n = dot(ray->unit_dir, plane->normal);
 	return (set_itsp(plane, n_pos2center / dis_n, ray, itsp));
 }

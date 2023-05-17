@@ -66,12 +66,14 @@ static t_intersection_point	calc_intp_info_of_corn(t_corn *corn, t_ray ray, \
 	return (ret_intp);
 }
 
-double	calc_intersect_with_sphere(t_corn *corn, t_ray ray, \
+double	calc_intersect_with_corn(t_obj *obj, t_ray ray, \
 									t_intersection_point *intp)
 {
+	t_corn			*corn;
 	t_corn_param	intp_param;
 	t_d_param		d_param;
 
+	corn = &obj->shape_data.corn;
 	intp_param = calc_inpt_param_of_corn(corn, ray);
 	d_param = calc_d_param_of_corn(intp_param);
 	d_param.d = calc_discriminant(d_param.a, d_param.b, d_param.c);
