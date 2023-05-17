@@ -77,7 +77,9 @@ enum	e_light_type
 	LT_SPOT = 31,
 };
 
-/********** struct **********/
+//////////////////////////////////////////////////////////////////////////////////////////
+
+/********** struct & union **********/
 
 // create unit
 struct s_vec {
@@ -142,7 +144,6 @@ struct	s_corn_shape
 	double  height;
 };
 
-/********** union **********/
 union	u_shape_data // sphere or plane
 {
 	t_plane		plane;
@@ -150,6 +151,8 @@ union	u_shape_data // sphere or plane
 	t_cylinder	cylinder;
 	t_corn		corn;
 };
+
+//---------------------------------------------
 
 struct    s_img
 {
@@ -195,11 +198,13 @@ struct s_obj
 
 //---------------------------------------------
 
-struct s_all_info {
-	t_mlx_info		*mlx_info;
-	t_scene_info	*scene_info;
-	t_camera_info	*camera_info;
+// eye2screen
+struct s_ray {
+	t_vec pos;
+	t_vec unit_dir;
 };
+
+//---------------------------------------------
 
 struct s_mlx_info{
 	void	*mlx;
@@ -219,18 +224,20 @@ struct s_scene_info {
 	t_list *objs;		//content : obj;
 };
 
-// eye2screen
-struct s_ray {
-	t_vec pos;
-	t_vec unit_dir;
-};
-
 struct s_camera_info {
 	t_ray	camera;		//しばらく固定
 	double 	fov;	//tmp -1 で初期化
 	float	distance_camera_to_screen;
 	// vec or matrix
 };
+
+struct s_all_info {
+	t_mlx_info		*mlx_info;
+	t_scene_info	*scene_info;
+	t_camera_info	*camera_info;
+};
+
+//---------------------------------------------
 
 struct	s_intersection_point
 {
