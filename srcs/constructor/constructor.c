@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-static int	initialize_by_zero(t_all_info *all_info)
+static int	alloc_info_ptr(t_all_info *all_info)
 {
 	all_info->mlx_info = ft_calloc(sizeof(t_mlx_info), 1);
 	all_info->scene_info = ft_calloc(sizeof(t_scene_info), 1);
@@ -46,7 +46,7 @@ static int	init_scene_and_camera(t_all_info *all_info, const char *rt_path)
 
 int	construct_info(t_all_info *all_info, const char *rt_path)
 {
-	if (initialize_by_zero(all_info) == FAILURE)
+	if (alloc_info_ptr(all_info) == FAILURE)
 		return (FAILURE);
 	if (init_mlx(all_info->mlx_info) == FAILURE)
 		return (FAILURE);
