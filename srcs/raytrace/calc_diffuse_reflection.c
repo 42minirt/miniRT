@@ -13,7 +13,7 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 		return (ret_color);
 	ret_color = color_add(ret_color, get_diffuse_ref_color(p));
 	ret_color = color_add(ret_color, get_checker_ref_color(p));
-	ret_color = color_add(ret_color, get_image_ref_color(p));
+	ret_color = color_add(ret_color, get_image_texture_ref_color(p));
 	return (ret_color);
 }
 

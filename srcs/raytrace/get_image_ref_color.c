@@ -13,7 +13,7 @@ t_vec	get_bump_normal(t_intersection_point *its_p)
 	t_vec		bump_normal_world;
 	t_matrix	trans_mat;
 
-	img_color = get_img_color(its_p);
+	img_color = get_intpos_img_color(its_p, its_p->obj->obj_color.bump_data);
 	bump_normal_local.x = (img_color.r - 0.5) / 0.5;
 	bump_normal_local.y = (img_color.g - 0.5) / 0.5;
 	bump_normal_local.z = (img_color.b - 0.5) / 0.5;
@@ -25,7 +25,7 @@ t_vec	get_bump_normal(t_intersection_point *its_p)
 	return (bump_normal_world);
 }
 
-t_color	get_image_ref_color(t_diffuse_param p)
+t_color	get_image_texture_ref_color(t_diffuse_param p)
 {
 	t_color	ret_color;
 	t_color	img_color;
@@ -34,7 +34,8 @@ t_color	get_image_ref_color(t_diffuse_param p)
 	if (!is_image_data_exists(p.its_p->obj->obj_color))
 		return (ret_color);
 
-	img_color = get_img_color(p.its_p);
+	img_color = get_intpos_img_color(p.its_p,
+									 p.its_p->obj->obj_color.texture_data);
 	ret_color = color_k1c1_k2c2(1.0, img_color, \
 								p.dot_n_pos2light, p.light->light_color);
 	return (ret_color);

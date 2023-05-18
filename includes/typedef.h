@@ -37,6 +37,9 @@ typedef struct	s_matrix					t_matrix;
 typedef struct	s_basis_vec_world			t_basis_world;
 typedef struct	s_basis_vec_local			t_basis_local;
 typedef struct	s_texture_map				t_texture_map;
+typedef struct	s_map_idx					t_map_idx;
+
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 /********** enum **********/
@@ -308,6 +311,13 @@ struct	s_texture_map
 {
 	double	u;
 	double	v;
+};
+
+struct	s_map_idx
+{
+	size_t	row;
+	size_t	col;
+	size_t	idx;
 };
 
 #endif //TYPEDEF_H
