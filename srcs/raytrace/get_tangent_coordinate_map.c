@@ -1,14 +1,5 @@
 #include "minirt.h"
 
-//static t_tangetnt_map	set_map(double u, double v)
-//{
-//	t_tangetnt_map	map;
-//
-//	map.u = u;
-//	map.v = v;
-//	return (map);
-//}
-
 // 0 <= u <= 1
 // 0 <= v <= 1
 
@@ -51,7 +42,7 @@ static t_tangetnt_map	get_cylindrical_map(t_intersection_point *its_p)
 	double			azimuth_angle_phi;
 
 	pos_local = sub(its_p->position, its_p->obj->shape_data.cylinder.bottom_center);
-	tarns_mat_world2tangent = get_transform_matrix_world2local_yup(its_p->normal);
+	tarns_mat_world2tangent = get_transform_matrix_world2local_zup(its_p->normal);
 	pos_uv = mul_matrix_vec(tarns_mat_world2tangent, pos_local);
 	azimuth_angle_phi = atan2(pos_uv.z, pos_uv.x);
 	map.u = (azimuth_angle_phi + M_PI) / (2.0 * M_PI);
@@ -68,8 +59,8 @@ static t_tangetnt_map	get_conical_map(t_intersection_point *its_p)
 	t_matrix		tarns_mat_world2tangent;
 	double			azimuth_angle_phi;
 
-	pos_local = sub(its_p->position, its_p->obj->shape_data.corn.bottom_center); // todo: pos
-	tarns_mat_world2tangent = get_transform_matrix_world2local_yup(its_p->normal);
+	pos_local = sub(its_p->position, its_p->obj->shape_data.corn.bottom_center); // todo: bottom or origin
+	tarns_mat_world2tangent = get_transform_matrix_world2local_zup(its_p->normal);
 	pos_uv = mul_matrix_vec(tarns_mat_world2tangent, pos_local);
 	azimuth_angle_phi = atan2(pos_uv.z, pos_uv.x);
 	map.u = (azimuth_angle_phi + M_PI) / (2.0 * M_PI);

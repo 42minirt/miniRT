@@ -35,13 +35,11 @@ t_color	calc_perfect_reflection(t_all_info *info, \
 t_vec	get_bump_normal(t_intersection_point *its_p);
 
 
-
 /* calc_diffuse_color */
 t_color	get_image_texture_ref_color(t_diffuse_param p);
 
 void	calc_diffuse_param(t_diffuse_param *p,
 						   t_intersection_point *its_p, t_ray ray, t_light *light);
-
 
 /* is_condition */
 bool	is_bump_data_exists(t_obj_color obj_color);
@@ -50,10 +48,8 @@ bool	is_obj_perfect_ref(t_intersection_point *its_p);
 bool	is_obj_exists_extension_of_ray(t_scene_info *scene, t_diffuse_param p);
 
 /* get_its_pos_img_color */
-t_color			get_its_pos_img_color(t_intersection_point *its_p, t_img img);
 
 t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p);
-
 
 
 #endif //RAYTRACE_H
