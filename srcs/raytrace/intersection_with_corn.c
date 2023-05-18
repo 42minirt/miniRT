@@ -74,7 +74,7 @@ double	calc_intersect_with_corn(t_obj *obj, t_ray ray, \
 	t_d_param		d_param;
 
 	corn = &obj->shape_data.corn;
-	intp_param = calc_inpt_param_of_corn(corn, ray);
+	intp_param = calc_ints_param_of_corn(corn, ray);
 	d_param = calc_d_param_of_corn(intp_param);
 	d_param.d = calc_discriminant(d_param.a, d_param.b, d_param.c);
 	if (d_param.a == 0.0 || d_param.d < 0.0)
