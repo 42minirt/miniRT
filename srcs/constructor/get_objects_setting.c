@@ -33,7 +33,8 @@ t_obj	*init_obj(void)
 // #Cylinder   bottom_center(xyz)   normalized_vec[-1,1]   diameter   height   RGB[0,255]  <bonus_options>
 // #Corn       bottom_center(xyz)   normalized_vec[-1,1]   diameter   height   RGB[0,255]  <bonus_options>
 
-// <OPTION>
+// #bonus_options
+//    < bonus id >    < parameters >
 //    perfect_ref
 //    checker         RGB[0,255]
 //    image           "image_texture_path",   "bumpmap_path"
