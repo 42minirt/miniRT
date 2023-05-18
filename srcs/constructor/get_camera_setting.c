@@ -12,6 +12,7 @@
 
 #include "minirt.h"
 
+// #Camera     viewpoint(xyz)         normalized_orientation_vec[-1,1]   FOV[0,180]
 t_parse_res	get_camera_setting(const char *line, t_camera_info *camera)
 {
 	(void)line;
