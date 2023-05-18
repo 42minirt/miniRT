@@ -28,17 +28,6 @@ struct s_matrix
 	double	m33;
 };
 
-/* **********************
-
-   +y                +v
-   |  +z             |  +w
-   | /               | /
-   |/_____ +x        |/_____ +u
-
- world(x,y,z)       local(u,v,w)
-
- ********************** */
-
 struct s_basis_vec_world
 {
 	t_vec	ex;

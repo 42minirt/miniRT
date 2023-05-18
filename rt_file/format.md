@@ -38,8 +38,21 @@ sl   -40,50,00       0.6        60.0            10, 0, 255
 <br>
 <hr>
 
+# figure
+## coordinate
+Left hand
+```
++y
+|  +z
+| /
+|/_____ +x
+```
+<hr>
+
+
 # Description Rule
-フォーマットを満たさなければNGとする
+* 記載順はformatに準拠
+* formatを満たさなければNG
 
 ## string, id
 * id(`A`, `C`, `L`, `sp`, `pl`, `cy`, `sl`), bonus指定子(`perfect_ref`, `checker`, `image`) は完全一致を判定

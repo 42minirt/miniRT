@@ -17,17 +17,6 @@
 //	//todo:  後回し
 //}
 
-/* **********************
-
- Coordinates : Left hand
-
-   +y
-   |  +z
-   | /
-   |/_____ +x
-
- ********************** */
-
 void	draw(t_all_info info)
 {
 	t_ray	eye2screen_xy;

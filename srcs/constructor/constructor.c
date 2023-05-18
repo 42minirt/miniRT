@@ -21,8 +21,8 @@ static int	alloc_info_ptr(t_all_info *all_info)
 		return (FAILURE);
 	all_info->scene_info->lights = NULL;
 	all_info->scene_info->objs = NULL;
-	all_info->scene_info->brightness = -1.0;
-	all_info->camera_info->fov_deg = -1.0;
+	all_info->scene_info->brightness = -1.0; // check for duplicate id
+	all_info->camera_info->fov_deg = -1.0;   // check for duplicate id
 	return (SUCCESS);
 }
 

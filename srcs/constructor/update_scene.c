@@ -29,6 +29,9 @@ static void	update_scene_lights(t_scene_info *scene)
 		light = node->content;
 		light->light_color = \
 		color_k1c1(light->brightness / 255.0, light->light_color);
+
+		if (light->type == LT_SPOT)
+			light->sl_angle_half = light->sl_angle / 2.0;
 		node = node->next;
 	}
 }

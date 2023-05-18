@@ -126,7 +126,8 @@ struct s_light
 
 	// bonus
 	t_color			light_color;
-	double			sl_angle; //fix 30deg
+	double			sl_angle;
+	double			sl_angle_half;
 	t_vec			sl_dir;
 };
 

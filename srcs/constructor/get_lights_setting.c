@@ -19,8 +19,8 @@ static t_light_type	get_light_type(t_identifier id)
 	return (LT_SPOT);
 }
 
-// L   XYZ   brightness_ratio[0,1]   RGB[0,255]
-// sl  XYZ   brightness_ratio[0,1]   RGB[0,255]   angle[0,180]
+// #Light      point(xyz)         light_brightness_ratio[0,1]                  RGB[0,255]
+// #Spotlight  Light_point(xyz)   light_brightness_ratio[0,1]   angle[0-180]   RGB[0,255]
 t_parse_res	get_light_detail(const char *line, int id_no, t_light *light)
 {
 	size_t	idx;
