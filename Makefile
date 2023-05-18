@@ -99,7 +99,8 @@ SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
 #-------------------------------------------------------------------------
 MATRIX_DIR		= matrix
 MATRIX_SRC		= matrix.c \
-				  calc_matrix.c
+				  calc_matrix.c \
+				  is_basis_equals.c
 
 SRC				+= $(addprefix $(MATRIX_DIR)/, $(MATRIX_SRC))
 

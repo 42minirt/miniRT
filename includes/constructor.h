@@ -43,19 +43,21 @@ t_parse_res	get_image_texture(const char *line, \
 t_parse_res	get_img(t_img *img, int fd);
 
 
-bool	is_vec_in_normal_range(t_vec vec);
-bool	is_color_in_range(t_color color);
-bool	is_ratio_in_range(double ratio);
-bool	is_angle_in_range(double ratio);
+// validate
+bool		is_vec_in_normal_range(t_vec vec);
+bool		is_color_in_range(t_color color);
+bool		is_ratio_in_range(double ratio);
+bool		is_angle_in_range(double ratio);
 t_parse_res	validate_obj_shape(t_obj *obj);
 t_parse_res	validate_obj_color(t_obj *obj);
 t_parse_res	validate_lights_info(t_scene_info *scene);
 t_parse_res	validate_ambient_info(t_scene_info *scene);
 
-void	update_scene_sphere_info(t_sphere *sphere);
-void	update_scene_plane_info(t_plane *plane);
-void	update_scene_cylinder_info(t_cylinder *cylinder);
-void	update_scene_corn_info(t_corn *corn);
+// update param
+void		update_scene_sphere_info(t_sphere *sphere);
+void		update_scene_plane_info(t_plane *plane);
+void		update_scene_cylinder_info(t_cylinder *cylinder);
+void		update_scene_corn_info(t_corn *corn);
 
 
 #endif //CONSTRUCTOR_H
