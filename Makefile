@@ -67,41 +67,45 @@ SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 
 #-------------------------------------------------------------------------
 RAYTRACE_DIR	= raytrace
-RAYTRACE_SRC	= raytrace.c \
-				  intersection_helper.c \
-				  intersection_with_sphere.c \
-				  intersection_with_corn.c \
-				  intersection_with_corn_calc_param.c \
+RAYTRACE_SRC	= calc_ambient_reflection.c \
 				  calc_diffuse_reflection.c \
 				  calc_diffuse_reflection_param.c \
 				  get_image_ref_color.c \
-				  get_img_color.c \
 				  get_tangent_coordinate_map.c \
-				  is_condition.c
+				  get_texture_coordinate_map.c \ # maybe delete
+				  intersection_helper.c \
+				  intersection_with_corn.c \
+				  intersection_with_corn_calc_param.c \
+				  intersection_with_sphere.c \
+				  is_condition.c \
+				  raytrace.c \
+				  calc_ratio/calcratio_cylinder.c \
+				  calc_ratio/calcratio_plane.c
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 
 
 #-------------------------------------------------------------------------
 COLOR_DIR		= calc_color
-COLOR_SRC		= calc_color.c
+COLOR_SRC		= calc_color.c \
+				  color_handring.c
 
 SRC				+= $(addprefix $(COLOR_DIR)/, $(COLOR_SRC))
 
 #-------------------------------------------------------------------------
 VECTOR_DIR		= calc_vector
 VECTOR_SRC		= arithmetic.c \
-				  organize_vec.c \
 				  arithmetic_ret_vec.c \
-				  calc_vec.c
+				  calc_vec.c \
+				  organize_vec.c
 
 SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
 
 #-------------------------------------------------------------------------
 MATRIX_DIR		= matrix
-MATRIX_SRC		= matrix.c \
-				  calc_matrix.c \
-				  is_basis_equals.c
+MATRIX_SRC		= calc_matrix.c \
+				  is_basis_equals.c \
+				  matrix.c
 
 SRC				+= $(addprefix $(MATRIX_DIR)/, $(MATRIX_SRC))
 
