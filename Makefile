@@ -17,7 +17,6 @@ endif
 NAME			= miniRT
 
 
-
 #####################################################
 # SRC FILE
 VPATH			= $(SRC_DIR) $(INCLUDE_DIR)
@@ -49,7 +48,6 @@ CONSTRUCTOR_SRC	= constructor.c \
 				  validate_config_light.c \
 				  is_range.c
 
-
 SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
 #-------------------------------------------------------------------------
@@ -57,7 +55,6 @@ DESTRUCTOR_DIR	= destructor
 DESTRUCTOR_SRC	= destructor.c
 
 SRC				+= $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_SRC))
-
 
 #-------------------------------------------------------------------------
 MLX_HELPER		= mlx_helper
@@ -83,7 +80,6 @@ RAYTRACE_SRC	= calc_ambient_reflection.c \
 				  calc_ratio/calcratio_plane.c
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
-
 
 #-------------------------------------------------------------------------
 COLOR_DIR		= calc_color
@@ -115,7 +111,6 @@ DEBUG_SRC		= print_config.c \
 				  print_config_helper.c
 
 SRC				+= $(addprefix $(DEBUG_DIR)/, $(DEBUG_SRC))
-
 
 
 
