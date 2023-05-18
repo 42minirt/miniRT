@@ -74,8 +74,6 @@ RAYTRACE_SRC	= raytrace.c \
 				  intersection_with_corn_calc_param.c \
 				  calc_diffuse_reflection.c \
 				  calc_diffuse_reflection_param.c \
-				  get_diffuse_ref_color.c \
-				  get_checker_ref_color.c \
 				  get_image_ref_color.c \
 				  get_img_color.c \
 				  get_tangent_coordinate_map.c \

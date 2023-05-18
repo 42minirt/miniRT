@@ -37,8 +37,6 @@ t_vec	get_bump_normal(t_intersection_point *its_p);
 
 
 /* calc_diffuse_color */
-t_color	get_diffuse_ref_color(t_diffuse_param p);
-t_color	get_checker_ref_color(t_diffuse_param p);
 t_color	get_image_texture_ref_color(t_diffuse_param p);
 
 void	calc_diffuse_param(t_diffuse_param *p,
