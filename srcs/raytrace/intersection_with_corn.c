@@ -16,15 +16,15 @@ static t_corn_ints	calc_ints(t_corn *c, t_ray r, t_corn_param p, double t)
 {
 	t_corn_ints	ints;
 
-	ints.ti_d = k_vec(t, r.unit_dir);
-	ints.pos = add(r.pos, ints.ti_d);
-	ints.pos_po = sub(ints.pos_po, c->origin);
-	ints.norm_pos_po = norm_vec(ints.pos_po);
-	ints.normal = vec_k1v1_k2v2(\
-					norm(p.inv_axis) * p.half_of_vertex_angle, \
-					ints.norm_pos_po, \
-					-1.0, p.inv_axis);
-	ints.h = dot(ints.pos, c->axis);
+	ints.vec_ti_d = k_vec(t, r.unit_dir);
+	ints.vec_pos = add(r.pos, ints.vec_ti_d);
+	ints.vec_pos_po = sub(ints.vec_pos_po, c->origin);
+	ints.vec_norm_pos_po = norm_vec(ints.vec_pos_po);
+	ints.vec_normal = vec_k1v1_k2v2(\
+					norm(p.vec_inv_axis) * p.half_of_vertex_angle, \
+					ints.vec_norm_pos_po, \
+					-1.0, p.vec_inv_axis);
+	ints.h = dot(ints.vec_pos, c->axis);
 	return (ints);
 }
 
@@ -44,8 +44,8 @@ static void	assign_intp_info(t_intersection_point *ret_intp, \
 								t_corn_ints ints, double t)
 {
 	ret_intp->distance = t;
-	ret_intp->position = ints.pos;
-	ret_intp->normal = ints.normal;
+	ret_intp->position = ints.vec_pos;
+	ret_intp->normal = ints.vec_normal;
 }
 
 static t_intersection_point	calc_intp_info_of_corn(t_corn *corn, t_ray ray, \
