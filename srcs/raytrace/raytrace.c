@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/18 22:25:15 by user             ###   ########.fr       */
+/*   Updated: 2023/05/19 08:14:13 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, size_t counter)
         return (backgroundcolor_init());
 	color = color_add(color, calc_diffuse_reflection(info, its_p, eye2screen));
 	color = color_add(color, calc_specular_reflection(info, its_p, eye2screen));
-	if (its_p.obj->type == MT_PERFECT_REFLECTION)
+	if (its_p.obj->obj_color.is_perfect_ref == true)
 		color = color_add(color, calc_perfect_reflection(info, its_p, eye2screen, counter));
     return (color);
 }
