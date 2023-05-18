@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/17 23:28:59 by user             ###   ########.fr       */
+/*   Updated: 2023/05/18 22:25:15 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,17 @@ t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, size_t counter)
 	t_color					color;
 	t_intersection_point	its_p;
 
+	color_set(&color, 0.0, 0.0, 0.0);
+	if (counter > MAX_RECURSION)
+		return (color);
 	// 交点判定
 	is_intersect = check_intersection(info, eye2screen, &its_p);
     if (is_intersect == false)
         return (backgroundcolor_init());
-	// 色の計算（background or obj color
-	color_set(&color, 0.0, 0.0, 0.0);
 	color = color_add(color, calc_diffuse_reflection(info, its_p, eye2screen));
 	color = color_add(color, calc_specular_reflection(info, its_p, eye2screen));
-	color = color_add(color, calc_perfect_reflection(info, its_p, eye2screen));
+	if (its_p.obj->type == MT_PERFECT_REFLECTION)
+		color = color_add(color, calc_perfect_reflection(info, its_p, eye2screen, counter));
     return (color);
 }
 
