@@ -3,11 +3,17 @@
 
 # include "minirt.h"
 
-struct s_matrix	//todo:norm
+struct s_matrix
 {
-	double	m11, m12, m13;
-	double	m21, m22, m23;
-	double	m31, m32, m33;
+	double	m11;
+	double	m12;
+	double	m13;
+	double	m21;
+	double	m22;
+	double	m23;
+	double	m31;
+	double	m32;
+	double	m33;
 };
 
 /* **********************

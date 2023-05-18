@@ -57,7 +57,6 @@
 //2 size
 //3 vec
 
-
 /* nanika */
 t_color		backgroundcolor_init();
 void		colort_init_pointer(t_color *color);
@@ -67,10 +66,10 @@ t_color		raytrace(t_all_info *info, t_ray eye2screen_xy);
 
 
 /* destructor */
-void	destruct_info(t_all_info *info);
+void		destruct_info(t_all_info *info);
 
 /* mlx helper */
-void	put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);
+void		put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);
 
 
 #endif
