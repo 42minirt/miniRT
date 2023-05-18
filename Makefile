@@ -78,7 +78,7 @@ RAYTRACE_SRC	= raytrace.c \
 				  get_checker_ref_color.c \
 				  get_image_ref_color.c \
 				  get_img_color.c \
-				  get_texture_uv_map.c \
+				  get_tangent_coordinate_map.c \
 				  is_condition.c
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))

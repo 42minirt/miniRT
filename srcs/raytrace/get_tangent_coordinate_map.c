@@ -1,20 +1,20 @@
 #include "minirt.h"
 
-static t_texture_map	set_map(double u, double v)
-{
-	t_texture_map	map;
-
-	map.u = u;
-	map.v = v;
-	return (map);
-}
+//static t_tangetnt_map	set_map(double u, double v)
+//{
+//	t_tangetnt_map	map;
+//
+//	map.u = u;
+//	map.v = v;
+//	return (map);
+//}
 
 // 0 <= u <= 1
 // 0 <= v <= 1
 
-t_texture_map	get_planer_map(t_intersection_point *its_p)
+static t_tangetnt_map	get_planer_map(t_intersection_point *its_p)
 {
-	t_texture_map	map;
+	t_tangetnt_map	map;
 	t_vec			pos_local;
 	t_vec			pos_uv;
 	t_matrix		trans_mat_world2tangent;
@@ -27,9 +27,9 @@ t_texture_map	get_planer_map(t_intersection_point *its_p)
 	return (map);
 }
 
-t_texture_map	get_spherical_map(t_intersection_point *its_p)
+static t_tangetnt_map	get_spherical_map(t_intersection_point *its_p)
 {
-	t_texture_map	map;
+	t_tangetnt_map	map;
 	t_vec			pos_local;
 	double			azimuth_angle_phi;
 	double			elevation_angle_theta;
@@ -42,9 +42,9 @@ t_texture_map	get_spherical_map(t_intersection_point *its_p)
 	return (map);
 }
 
-t_texture_map	get_cylindrical_map(t_intersection_point *its_p)
+static t_tangetnt_map	get_cylindrical_map(t_intersection_point *its_p)
 {
-	t_texture_map	map;
+	t_tangetnt_map	map;
 	t_vec			pos_local;
 	t_vec			pos_uv;
 	t_matrix		tarns_mat_world2tangent;
@@ -60,9 +60,9 @@ t_texture_map	get_cylindrical_map(t_intersection_point *its_p)
 
 }
 
-t_texture_map	get_conical_map(t_intersection_point *its_p)
+static t_tangetnt_map	get_conical_map(t_intersection_point *its_p)
 {
-	t_texture_map	map;
+	t_tangetnt_map	map;
 	t_vec			pos_local;
 	t_vec			pos_uv;
 	t_matrix		tarns_mat_world2tangent;
@@ -74,5 +74,21 @@ t_texture_map	get_conical_map(t_intersection_point *its_p)
 	azimuth_angle_phi = atan2(pos_uv.z, pos_uv.x);
 	map.u = (azimuth_angle_phi + M_PI) / (2.0 * M_PI);
 	map.v = pos_uv.y / its_p->obj->shape_data.corn.height;
+	return (map);
+}
+
+t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p)
+{
+	const t_shape_type	type = its_p->obj->type;
+	t_tangetnt_map		map;
+
+	if (type == PLANE)
+		map = get_planer_map(its_p);
+	else if (type == BALL)
+		map = get_spherical_map(its_p);
+	else if (type == CYLINDER)
+		map = get_cylindrical_map(its_p);
+	else
+		map = get_conical_map(its_p);
 	return (map);
 }

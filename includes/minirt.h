@@ -49,6 +49,8 @@
 #define MAX_RECURSION	8
 #define IMG_FREQUENCY	1
 #define	PPM_RGB_UNIT	3
+#define CHECKER_U_MAG	10
+#define CHECKER_V_MAG	10
 
 //単位ベクトル以外の情報に下記のように記載するのかどうか
 //1 unit_vec

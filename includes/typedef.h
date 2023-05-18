@@ -36,7 +36,7 @@ typedef struct	s_calc_diffuse_ref_param	t_diffuse_param;
 typedef struct	s_matrix					t_matrix;
 typedef struct	s_basis_vec_world			t_basis_world;
 typedef struct	s_basis_vec_local			t_basis_local;
-typedef struct	s_texture_map				t_texture_map;
+typedef struct	s_texture_map				t_tangetnt_map;
 typedef struct	s_map_idx					t_map_idx;
 
 

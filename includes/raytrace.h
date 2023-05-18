@@ -51,17 +51,11 @@ bool	is_image_data_exists(t_obj_color obj_color);
 bool	is_obj_perfect_ref(t_intersection_point *its_p);
 bool	is_obj_exists_extension_of_ray(t_scene_info *scene, t_diffuse_param p);
 
-/* get_intpos_img_color */
-t_color			get_intpos_img_color(t_intersection_point *its_p, t_img img);
-t_texture_map	get_planer_map(t_intersection_point *its_p);
-t_texture_map	get_spherical_map(t_intersection_point *its_p);
-t_texture_map	get_cylindrical_map(t_intersection_point *its_p);
-t_texture_map	get_conical_map(t_intersection_point *its_p);
+/* get_its_pos_img_color */
+t_color			get_its_pos_img_color(t_intersection_point *its_p, t_img img);
 
-t_texture_map	get_planner_texture_coordinate(t_intersection_point *its_p, t_img img);
-t_texture_map	get_spherical_texture_coordinate(t_intersection_point *its_p, t_img img);
-t_texture_map	get_cylindrical_texture_coordinate(t_intersection_point *its_p, t_img img);
-t_texture_map	get_conical_texture_coordinate(t_intersection_point *its_p, t_img img);
+t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p);
+
 
 
 #endif //RAYTRACE_H
