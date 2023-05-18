@@ -30,7 +30,7 @@ typedef struct	s_sphere_shape				t_sphere;
 typedef struct	s_cylinder_shape			t_cylinder;
 typedef struct	s_corn_shape				t_corn;
 typedef struct	s_discriminant_param		t_d_param;
-typedef struct	s_intp_param_of_corn		t_corn_param;
+typedef struct	s_ints_param_of_corn		t_corn_param;
 typedef struct	s_corn_ints					t_corn_ints;
 typedef struct	s_calc_diffuse_ref_param	t_diffuse_param;
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -256,7 +256,7 @@ struct	s_discriminant_param
 	double	t2;
 };
 
-struct	s_intp_param_of_corn
+struct	s_ints_param_of_corn
 {
 	t_vec	vec_pe_po;
 	t_vec	vec_cross_de_n;
