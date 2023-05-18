@@ -104,6 +104,7 @@ struct s_light
 	// bonus
 	t_color			light_color;
 	double			sl_angle; //fix 30deg
+	t_vec			sl_dir;
 };
 
 //---------------------------------------------
@@ -290,7 +291,7 @@ struct	s_calc_diffuse_ref_param
 	t_vec					vec_normal;
 	t_vec					vec_pos2light;
 	t_vec					vec_light2pos;
-	t_vec					vec_norm_light2pos;
+	t_vec					vec_specular;
 
 	double					dot_n_pos2light;
 

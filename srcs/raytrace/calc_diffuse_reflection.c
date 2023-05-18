@@ -27,14 +27,14 @@ bool	is_obj_exists_extension_of_ray(t_scene_info *scene, t_diffuse_param p)
 
 }
 
-t_color	calc_diffuse_ref_by_point_light(t_diffuse_param p)
+bool	is_in_range_spotlight(t_diffuse_param p)
 {
+	double	angle_pos2light;
 
-}
-
-t_color	calc_diffuse_ref_by_spotlight(t_diffuse_param p)
-{
-
+	angle_pos2light = acos(dot(p.vec_light2pos, p.light->sl_dir)) * 180.0 / (2.0 * M_PI);
+	if (angle_pos2light < 0)
+		angle_pos2light *= -1.0; //todo: check
+	return (angle_pos2light <= p.light->sl_angle);
 }
 
 t_color	get_diffuse_color(t_diffuse_param p)
@@ -44,11 +44,13 @@ t_color	get_diffuse_color(t_diffuse_param p)
 	ret_color = init_color(0.0, 0.0, 0.0);
 	if (is_image_data_exists(p.its_p->obj->obj_color))
 		return (ret_color);
+	if (p.dot_n_pos2light <= 0.0)
+		return (ret_color);
 
-	if (p.light->type == LT_POINT)
-		ret_color = calc_diffuse_ref_by_point_light(p);
-	else
-		ret_color = calc_diffuse_ref_by_spotlight(p);
+	if (p.light->type == LT_POINT && !is_in_range_spotlight(p))
+		return (ret_color);
+	ret_color = color_k1c1_k2c2(1.0, p.its_p->obj->obj_color.kd, \
+							p.dot_n_pos2light, p.light->light_color);
 	return (ret_color);
 }
 
@@ -68,9 +70,10 @@ void	calc_diffuse_param(t_diffuse_param *p, t_intersection_point *its_p, t_ray r
 	p->vec_normal = get_normal(its_p);
 	p->vec_pos2light = sub(light->point, its_p->position);
 	p->vec_pos2light = norm_vec(p->vec_pos2light);
-	p->dot_n_pos2light = dot(its_p->normal, p->vec_pos2light); // dot_n_pos2_light <= 0 ?
 	p->vec_light2pos = inverse(p->vec_pos2light);
-	p->vec_norm_light2pos = norm_vec(p->vec_light2pos);
+	p->vec_specular = norm_vec(p->vec_light2pos);
+
+	p->dot_n_pos2light = dot(its_p->normal, p->vec_pos2light);
 }
 
 t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
