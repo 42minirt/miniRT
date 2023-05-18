@@ -1,6 +1,7 @@
 #include "minirt.h"
 
-static bool	is_obj_exists_extension_of_ray(t_scene_info *scene, \
+// todo : 共通
+bool	is_obj_exists_extension_of_ray(t_scene_info *scene, \
 											t_diffuse_param p)
 {
 

@@ -32,4 +32,7 @@ t_color	calc_specular_reflection(t_all_info *info, \
 t_color	calc_perfect_reflection(t_all_info *info, \
 							t_intersection_point *its_p, t_ray eye2screen);
 
+t_vec	get_bump_normal(t_intersection_point *its_p);
+
+
 #endif //RAYTRACE_H

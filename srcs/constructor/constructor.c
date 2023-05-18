@@ -40,6 +40,8 @@ static int	init_scene_and_camera(t_all_info *all_info, const char *rt_path)
 		return (FAILURE);
 	if (validate_camera(all_info->camera_info) == FAILURE)
 		return (FAILURE);
+	debug_print_config(all_info);
+	update_scene(all_info->scene_info); // color = brightness * color,...
 	return (SUCCESS);
 }
 
@@ -51,7 +53,5 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 		return (FAILURE);
 	if (init_scene_and_camera(all_info, rt_path) == FAILURE)
 		return (FAILURE);
-	debug_print_config(all_info);
-	update_scene(all_info->scene_info); // color = brightness * color,...
 	return (SUCCESS);
 }
