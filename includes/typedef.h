@@ -33,6 +33,10 @@ typedef struct	s_discriminant_param		t_d_param;
 typedef struct	s_ints_param_of_corn		t_corn_param;
 typedef struct	s_corn_ints					t_corn_ints;
 typedef struct	s_calc_diffuse_ref_param	t_diffuse_param;
+typedef struct	s_matrix					t_matrix;
+typedef struct	s_basis_vec_world			t_basis_world;
+typedef struct	s_basis_vec_local			t_basis_local;
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 /********** enum **********/

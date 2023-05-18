@@ -27,8 +27,9 @@
 # include "color.h"
 # include "constructor.h"
 # include "debug.h"
-# include "vector.h"
+# include "matrix.h"
 # include "raytrace.h"
+# include "vector.h"
 
 /********** return value **********/
 # define OPEN_ERROR		(-1)
@@ -71,5 +72,19 @@ t_color	calc_diffuse_reflection(info, its_p, eye2screen);
 t_color	calc_specular_reflection(info, its_p, eye2screen);
 t_color	calc_perfect_reflection(info, its_p, eye2screen);
 
+
+/* calc_diffuse_color */
+t_color	get_diffuse_color(t_diffuse_param p);
+t_color	get_checker_color(t_diffuse_param p);
+t_color	get_image_color(t_diffuse_param p);
+
+void	calc_diffuse_param(t_diffuse_param *p,
+								t_intersection_point *its_p, \
+								t_ray ray, t_light *light);
+bool	is_bump_data_exists(t_obj_color obj_color);
+bool	is_image_data_exists(t_obj_color obj_color);
+t_vec	get_normal(t_intersection_point *its_p);
+t_vec	get_bump_normal(t_intersection_point *its_p);
+t_vec	get_bump_normal(t_intersection_point *its_p);
 
 #endif

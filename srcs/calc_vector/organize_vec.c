@@ -57,3 +57,20 @@ t_vec	inverse(t_vec vec)
 	inverse_vec(&ret, &vec);
 	return (ret);
 }
+
+t_vec	inv_norm(t_vec vec)
+{
+	t_vec	ret;
+
+	inverse_vec(&ret, &vec);
+	ret = norm_vec(ret);
+	return (ret);
+}
+
+t_vec	set(double x, double y, double z)
+{
+	t_vec	ret;
+
+	setvec(&ret, x, y, z);
+	return (ret);
+}

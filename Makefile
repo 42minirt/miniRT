@@ -71,7 +71,12 @@ RAYTRACE_SRC	= raytrace.c \
 				  intersection_helper.c \
 				  intersection_with_sphere.c \
 				  intersection_with_corn.c \
-				  intersection_with_corn_calc_param.c
+				  intersection_with_corn_calc_param.c \
+				  calc_diffuse_reflection.c \
+				  calc_diffuse_reflection_param.c \
+				  get_diffuse_color.c \
+				  get_checker_color.c \
+				  get_image_color.c
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 
@@ -90,6 +95,13 @@ VECTOR_SRC		= arithmetic.c \
 				  calc_vec.c
 
 SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
+
+#-------------------------------------------------------------------------
+MATRIX_DIR		= matrix
+MATRIX_SRC		= matrix.c \
+				  calc_matrix.c
+
+SRC				+= $(addprefix $(MATRIX_DIR)/, $(MATRIX_SRC))
 
 #-------------------------------------------------------------------------
 DEBUG_DIR		= debug
