@@ -1,6 +1,5 @@
 #include "minirt.h"
 
-
 static bool	is_obj_exists_extension_of_ray(t_scene_info *scene, \
 											t_diffuse_param p)
 {
@@ -20,7 +19,7 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 		return (ret_color);
 	ret_color = color_add(ret_color, get_diffuse_color(p));
 	ret_color = color_add(ret_color, get_checker_color(p));
-	ret_color = color_add(ret_color, get_image_color(p));
+	ret_color = color_add(ret_color, get_image_color(its_p));
 	return (ret_color);
 }
 

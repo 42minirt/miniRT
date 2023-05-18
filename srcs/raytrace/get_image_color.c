@@ -12,7 +12,7 @@ t_vec	get_normal(t_intersection_point *its_p)
 	return (its_p->normal);
 }
 
-t_color	get_image_color(t_diffuse_param p)
+t_color	get_image_color(t_intersection_point *its_p)
 {
 
 }

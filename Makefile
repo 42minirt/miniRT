@@ -76,7 +76,8 @@ RAYTRACE_SRC	= raytrace.c \
 				  calc_diffuse_reflection_param.c \
 				  get_diffuse_color.c \
 				  get_checker_color.c \
-				  get_image_color.c
+				  get_image_color.c \
+				  is_img_data_exists.c
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 
