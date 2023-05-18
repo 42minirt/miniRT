@@ -26,6 +26,7 @@ typedef struct	s_obj_color				t_obj_color;
 typedef struct	s_ray					t_ray;
 typedef struct	s_intersection_point	t_intersection_point;
 typedef struct	s_plane_shape			t_plane;
+typedef struct	s_ball_shape			t_ball;
 typedef struct	s_sphere_shape			t_sphere;
 typedef struct	s_cylinder_shape		t_cylinder;
 typedef struct	s_corn_shape			t_corn;
@@ -99,6 +100,7 @@ struct s_light
 {
 	t_light_type	type;
 	t_vec			point;
+	t_vec			direction;
 	double			brightness;
 
 	// bonus
@@ -242,7 +244,7 @@ struct	s_intersection_point
 	double			distance;	// 交点から目までの距離　tの値　元となるベクトルが単位ベクトルがtはサイズと重なる
 	t_vec			position;	// 交点の位置ベクトル
 	t_vec			normal;		// 交点における物体表面の法線ベクトル
-	t_shape_data	*obj;
+	t_obj			*obj;
 };
 
 struct	s_discriminant_param
