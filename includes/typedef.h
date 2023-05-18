@@ -13,26 +13,26 @@ typedef enum	e_identifier			t_identifier;
 typedef enum	e_light_type			t_light_type;
 
 /********** typedef struct **********/
-typedef struct	s_all_info				t_all_info;
-typedef struct	s_mlx_info				t_mlx_info;
-typedef struct	s_scene_info			t_scene_info;
-typedef struct	s_camera_info			t_camera_info;
-typedef struct	s_color					t_color;
-typedef struct	s_img					t_img;
-typedef	struct	s_light					t_light;
-typedef struct	s_obj					t_obj;
-typedef struct	s_vec					t_vec;
-typedef struct	s_obj_color				t_obj_color;
-typedef struct	s_ray					t_ray;
-typedef struct	s_intersection_point	t_intersection_point;
-typedef struct	s_plane_shape			t_plane;
-typedef struct	s_sphere_shape			t_sphere;
-typedef struct	s_cylinder_shape		t_cylinder;
-typedef struct	s_corn_shape			t_corn;
-typedef struct	s_discriminant_param	t_d_param;
-typedef struct	s_intp_param_of_corn	t_corn_param;
-typedef struct	s_corn_ints				t_corn_ints;
-
+typedef struct	s_all_info					t_all_info;
+typedef struct	s_mlx_info					t_mlx_info;
+typedef struct	s_scene_info				t_scene_info;
+typedef struct	s_camera_info				t_camera_info;
+typedef struct	s_color						t_color;
+typedef struct	s_img						t_img;
+typedef	struct	s_light						t_light;
+typedef struct	s_obj						t_obj;
+typedef struct	s_vec						t_vec;
+typedef struct	s_obj_color					t_obj_color;
+typedef struct	s_ray						t_ray;
+typedef struct	s_intersection_point		t_intersection_point;
+typedef struct	s_plane_shape				t_plane;
+typedef struct	s_sphere_shape				t_sphere;
+typedef struct	s_cylinder_shape			t_cylinder;
+typedef struct	s_corn_shape				t_corn;
+typedef struct	s_discriminant_param		t_d_param;
+typedef struct	s_intp_param_of_corn		t_corn_param;
+typedef struct	s_corn_ints					t_corn_ints;
+typedef struct	s_calc_diffuse_ref_param	t_diffuse_param;
 //////////////////////////////////////////////////////////////////////////////////////////
 
 /********** enum **********/
@@ -103,7 +103,7 @@ struct s_light
 
 	// bonus
 	t_color			light_color;
-	double			sl_angle;
+	double			sl_angle; //fix 30deg
 };
 
 //---------------------------------------------
@@ -283,6 +283,20 @@ struct	s_corn_ints
 	t_vec	normal;
 
 	double	h;
+};
+
+struct	s_calc_diffuse_ref_param
+{
+	t_vec					vec_normal;
+	t_vec					vec_pos2light;
+	t_vec					vec_light2pos;
+	t_vec					vec_norm_light2pos;
+
+	double					dot_n_pos2light;
+
+	t_light					*light;
+	t_intersection_point	*its_p;
+	t_ray					ray;
 };
 
 #endif //TYPEDEF_H
