@@ -22,6 +22,7 @@ static int	alloc_info_ptr(t_all_info *all_info)
 	all_info->scene_info->lights = NULL;
 	all_info->scene_info->objs = NULL;
 	all_info->scene_info->brightness = -1.0;
+	all_info->camera_info->fov_deg = -1.0;
 	return (SUCCESS);
 }
 

@@ -248,7 +248,7 @@ struct s_camera_info
 {
 	t_vec	position;
 	t_vec	direction;
-	double 	fov_deg;	//tmp -1 で初期化
+	double 	fov_deg;	//init:-1
 
 
 	t_ray	camera;	//vec or matrix
