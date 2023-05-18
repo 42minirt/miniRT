@@ -28,10 +28,10 @@ t_obj	*init_obj(void)
 	return (obj);
 }
 
-// sp   XYZ                    diameter            RGB[0,255]   <OPTION>
-// pl   XYZ   norm_vec[-1,1]                       RGB[0,255]   <OPTION>
-// cy   XYZ   norm_vec[-1,1]   diameter   height   RGB[0,255]   <OPTION>
-// co   XYZ   norm_vec[-1,1]   diameter   height   RGB[0,255]   <OPTION>
+// #Sphere     center_point(xyz)                           diameter            RGB[0,255]  <bonus_options>
+// #Plane      point(xyz)           normalized_vec[-1,1]                       RGB[0,255]  <bonus_options>
+// #Cylinder   bottom_center(xyz)   normalized_vec[-1,1]   diameter   height   RGB[0,255]  <bonus_options>
+// #Corn       bottom_center(xyz)   normalized_vec[-1,1]   diameter   height   RGB[0,255]  <bonus_options>
 
 // <OPTION>
 //    perfect_ref

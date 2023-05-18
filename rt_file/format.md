@@ -20,16 +20,18 @@ sl   -40,50,00       0.6        60.0            10, 0, 255
 ```
 
 ```
- #Ambient    lightning_ratio[0,1]                                                               RGB[0,255]
+ < id >      < paramters >
+ #Ambient    lightning_ratio[0,1]                                                            RGB[0,255]
  #Camera     viewpoint(xyz)         normalized_orientation_vec[-1,1]   FOV[0,180]
- #Light      point(xyz)             light_brightness_ratio[0,1]                                 RGB[0,255]
- #Spotlight  Light_point(xyz)       light_brightness_ratio[0,1]        angle[0-90]              RGB[0,255]
- #Sphere     center_point(xyz)                                         diameter                 RGB[0,255]  <bonus_options>
- #Plane      point(xyz)             normalized_vec[-1,1]                                        RGB[0,255]  <bonus_options>
- #Cylinder   center(xyz)            normalized_vec[-1,1]               diameter    height       RGB[0,255]  <bonus_options>
- #Corn       center(xyz)            normalized_vec[-1,1]               diameter    height       RGB[0,255]  <bonus_options>
+ #Light      point(xyz)             light_brightness_ratio[0,1]                              RGB[0,255]
+ #Spotlight  Light_point(xyz)       light_brightness_ratio[0,1]        angle[0-90]           RGB[0,255]
+ #Sphere     center_point(xyz)                                         diameter              RGB[0,255]   <bonus_options>
+ #Plane      point(xyz)             normalized_vec[-1,1]                                     RGB[0,255]   <bonus_options>
+ #Cylinder   bottom_center(xyz)     normalized_vec[-1,1]               diameter    height    RGB[0,255]   <bonus_options>
+ #Corn       bottom_center(xyz)     normalized_vec[-1,1]               diameter    height    RGB[0,255]   <bonus_options>
 
  bonus options
+    < bonus id >    < parameters >
     perfect_ref
     checker         RGB
     image           "image_texture_path",   "bumpmap_path"
