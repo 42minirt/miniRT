@@ -15,15 +15,9 @@
 t_parse_res	validate_ambient_info(t_scene_info *scene)
 {
 	if (!is_ratio_in_range(scene->brightness))
-	{
-		printf("   [DEBUG] ambient NG :: brightness out of range\n");
 		return (ERROR_OUT_OF_RANGE);
-	}
 	if (!is_color_in_range(scene->ambient_color))
-	{
-		printf("   [DEBUG] ambient NG :: color out of range\n");
 		return (ERROR_OUT_OF_RANGE);
-	}
 	return (PASS);
 }
 

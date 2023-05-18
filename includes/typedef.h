@@ -51,6 +51,10 @@ typedef struct	s_basis_vec_local			t_basis_local;
 typedef struct	s_texture_map				t_tangetnt_map;
 typedef struct	s_map_idx					t_map_idx;
 
+// tmp
+typedef struct	t_vec						t_unit_vec;
+typedef double								t_deg;
+typedef double								t_rad;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -242,10 +246,12 @@ struct s_scene_info
 
 struct s_camera_info
 {
-	t_ray	camera;		//しばらく固定
-	double 	fov;	//tmp -1 で初期化
-	float	distance_camera_to_screen;
-	// vec or matrix
+	t_vec	position;
+	t_vec	direction;
+	double 	fov_deg;	//tmp -1 で初期化
+
+
+	t_ray	camera;	//vec or matrix
 };
 
 struct s_all_info
