@@ -1,12 +1,5 @@
 #include "minirt.h"
 
-// todo : 共通
-bool	is_obj_exists_extension_of_ray(t_scene_info *scene, \
-											t_diffuse_param p)
-{
-
-}
-
 static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 								t_intersection_point *its_p, \
 								t_ray eye2screen, t_light *light)
@@ -18,9 +11,9 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 	ret_color = init_color(0.0, 0.0, 0.0);
 	if (is_obj_exists_extension_of_ray(scene, p))
 		return (ret_color);
-	ret_color = color_add(ret_color, get_diffuse_color(p));
-	ret_color = color_add(ret_color, get_checker_color(p));
-	ret_color = color_add(ret_color, get_image_color(its_p));
+	ret_color = color_add(ret_color, get_diffuse_ref_color(p));
+	ret_color = color_add(ret_color, get_checker_ref_color(p));
+	ret_color = color_add(ret_color, get_image_ref_color(p));
 	return (ret_color);
 }
 
@@ -32,7 +25,7 @@ t_color	calc_diffuse_reflection(t_scene_info *scene, \
 	t_light	*light;
 
 	ret_color = init_color(0.0, 0.0, 0.0);
-	if (its_p->obj->obj_color.is_perfect_ref)
+	if (is_obj_perfect_ref(its_p))
 		return (ret_color);
 	node = scene->lights;
 	while (node)

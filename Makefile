@@ -74,10 +74,12 @@ RAYTRACE_SRC	= raytrace.c \
 				  intersection_with_corn_calc_param.c \
 				  calc_diffuse_reflection.c \
 				  calc_diffuse_reflection_param.c \
-				  get_diffuse_color.c \
-				  get_checker_color.c \
-				  get_image_color.c \
-				  is_img_data_exists.c
+				  get_diffuse_ref_color.c \
+				  get_checker_ref_color.c \
+				  get_image_ref_color.c \
+				  get_img_color.c \
+				  get_texture_uv_map.c \
+				  is_condition.c
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 

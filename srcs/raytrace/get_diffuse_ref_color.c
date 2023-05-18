@@ -10,7 +10,7 @@ static bool	is_in_range_spotlight(t_diffuse_param p)
 	return (angle_pos2light <= p.light->sl_angle);
 }
 
-t_color	get_diffuse_color(t_diffuse_param p)
+t_color	get_diffuse_ref_color(t_diffuse_param p)
 {
 	t_color	ret_color;
 
