@@ -34,7 +34,7 @@ static t_map_idx	get_map_idx(t_tangetnt_map map, t_img img)
 	t_map_idx	ret;
 
 	map.u *= (double)img.width * IMG_FREQUENCY;
-	map.v *= -1.0 * (double)img.height * IMG_FREQUENCY;
+	map.v *= (double)img.height * IMG_FREQUENCY;
 	ret.row = ((int)map.u % img.width + img.width ) % img.width;
 	ret.col = ((int)map.v % img.height + img.height ) % img.height;
 	ret.idx = ((ret.col * img.width + ret.row) * PPM_RGB_UNIT) % (img.width * img.height * PPM_RGB_UNIT);

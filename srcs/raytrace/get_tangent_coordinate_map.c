@@ -40,7 +40,7 @@ static t_tangetnt_map	get_spherical_map(t_intersection_point *its_p)
 	pos_local = sub(its_p->position, its_p->obj->shape_data.sphere.center);
 	azimuth_angle_phi = atan2(pos_local.z, pos_local.x);
 	elevation_angle_theta = acos(pos_local.y / its_p->obj->shape_data.sphere.radius);
-	map.u = (azimuth_angle_phi + M_PI) / (2.0 * M_PI);
+	map.u = (azimuth_angle_phi) / (2.0 * M_PI);
 	map.v = elevation_angle_theta / M_PI;
 	return (map);
 }
