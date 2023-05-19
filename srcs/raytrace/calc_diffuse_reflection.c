@@ -17,13 +17,13 @@ static t_color	get_checker_ref_color(t_diffuse_param p)
 	t_tangetnt_map	map;
 	int				pattern_a;
 
-	if (is_obj_checker(p.its_p))
+	if (is_obj_checker(p.its_p.obj->obj_color))
 		return (init_color(0.0, 0.0, 0.0));
-	map = get_tangent_coordinate_map(p.its_p);
+	map = get_tangent_coordinate_map(&p.its_p);
 	pattern_a = (int)(floor(map.u * CHECKER_U_MAG) + floor(map.v * CHECKER_V_MAG)) % 2;
 	if (pattern_a)
-		return (p.its_p->obj->obj_color.checker_color);
-	return (p.its_p->obj->obj_color.kd);
+		return (p.its_p.obj->obj_color.checker_color);
+	return (p.its_p.obj->obj_color.kd);
 }
 
 static bool	is_in_range_spotlight(t_diffuse_param p)
@@ -41,32 +41,28 @@ static t_color	get_diffuse_ref_color(t_diffuse_param p)
 {
 	t_color	ret_color;
 
-	if (is_image_data_exists(p.its_p))
+	if (is_image_data_exists(p.its_p.obj->obj_color))
 		return (init_color(0.0, 0.0, 0.0));
 	if (p.dot_n_pos2light <= 0.0)
 		return (init_color(0.0, 0.0, 0.0));
 	if (p.light->type == LT_POINT && !is_in_range_spotlight(p))
 		return (init_color(0.0, 0.0, 0.0));
-	ret_color = color_k1c1_k2c2(1.0, p.its_p->obj->obj_color.kd, \
+	ret_color = color_k1c1_k2c2(1.0, p.its_p.obj->obj_color.kd, \
 							p.dot_n_pos2light, p.light->light_color);
 	return (ret_color);
 }
 
 static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
-								t_intersection_point *its_p, \
+								t_intersection_point its_p, \
 								t_ray eye2screen, t_light *light)
 {
 	t_color			ret_color;
 	t_diffuse_param	p;
 
-	printf("%s 1\n", __func__);
-	p = calc_diffuse_param(its_p, &eye2screen, light);
-	printf("%s 2\n", __func__);
+	p = calc_diffuse_param(&its_p, &eye2screen, light);
 	ret_color = init_color(0.0, 0.0, 0.0);
-	printf("%s 3\n", __func__);
-	if (is_obj_exists_between_itspos_and_light(scene, &p))
+	if (is_obj_exists_between_itspos_and_light(scene, p))
 		return (ret_color);
-	printf("%s 4\n", __func__);
 	ret_color = color_add(ret_color, get_diffuse_ref_color(p));
 	ret_color = color_add(ret_color, get_checker_ref_color(p));
 	ret_color = color_add(ret_color, get_image_texture_ref_color(p));
@@ -74,17 +70,15 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 }
 
 t_color	calc_diffuse_reflection(t_scene_info *scene, \
-							t_intersection_point *its_p, t_ray eye2screen)
+							t_intersection_point its_p, t_ray eye2screen)
 {
 	t_color	ret_color;
 	t_list	*node;
 	t_light	*light;
 
 	ret_color = init_color(0.0, 0.0, 0.0);
-	printf("%s 1\n", __func__);
-	if (is_obj_perfect_ref(its_p))
+	if (is_obj_perfect_ref(its_p.obj->obj_color))
 		return (ret_color);
-	printf("%s 2\n", __func__);
 	node = scene->lights;
 	while (node)
 	{

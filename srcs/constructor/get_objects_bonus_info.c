@@ -40,6 +40,8 @@ static t_parse_res	get_image_texture_info(const char *line, \
 	bool		is_empty;
 
 	is_empty = false;
+	obj_color->texture_data.data = NULL;
+	obj_color->bump_data.data = NULL;
 	res = get_image_texture(line, &obj_color->texture_data, idx, &is_empty);
 	if (res != PASS)
 		return (ERROR_FATAL);
@@ -48,6 +50,10 @@ static t_parse_res	get_image_texture_info(const char *line, \
 	if (res != PASS)
 		return (ERROR_FATAL);
 	skip_spece(line, idx);
+	if (obj_color->texture_data.data)
+		obj_color->is_texture = true;
+	if (obj_color->bump_data.data)
+		obj_color->is_bump = true;
 	return (PASS);
 }
 

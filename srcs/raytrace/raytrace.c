@@ -42,7 +42,6 @@ bool	check_intersection(t_scene_info *scene, t_ray eye2screen, t_intersection_po
 		{
 			ret_t = tmp_t;
 			nearest_itsp = tmp_itsp;
-			printf(" its_pos(%s) (x,y,z)=(%f,%f,%f)\n", __func__, nearest_itsp.position.x, nearest_itsp.position.y, nearest_itsp.position.z);
 		}
 		obj_node = obj_node->next;
 	}
@@ -72,8 +71,7 @@ static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	color_set(&color, 0.0, 0.0, 0.0);
 //	color_set(&color, 1, 0.0, 0.0);
 	color = color_add(color, calc_ambient_reflection(info->scene_info, its_p));
-
-//	color = color_add(color, calc_diffuse_reflection(info->scene_info, &its_p, eye2screen));
+	color = color_add(color, calc_diffuse_reflection(info->scene_info, its_p, eye2screen));
 //	color = color_add(color, calc_specular_reflection(info, &its_p, eye2screen));
 //	color = color_add(color, calc_perfect_reflection(info, &its_p, eye2screen));
 	*ret_color = color;
