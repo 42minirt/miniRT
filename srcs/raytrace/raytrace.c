@@ -27,30 +27,28 @@ static double	calc_intersection(t_obj *obj, t_ray eye2screen, t_intersection_poi
 
 bool	check_intersection(t_scene_info *scene, t_ray eye2screen, t_intersection_point *its_p)
 {
-	double					t;
+	double					ret_t;
 	double					tmp_t;
 	t_list					*obj_node;
 	t_intersection_point	tmp_itsp;
+	t_intersection_point	nearest_itsp;
 
-	t = INFINITY;
-	its_p = NULL;
+	ret_t = INFINITY;
 	obj_node = scene->objs;
-	//intersectionが存在しているか確認
 	while (obj_node != NULL)
 	{
 		tmp_t = calc_intersection(obj_node->content, eye2screen, &tmp_itsp);
-		// todo:中途半端なitspのupdateはバグの原因になりそう
-		// calc_intersection()内でもtmp_itspに代入し、交点があれば*itsp = tmp_itsp　
-
-		if ( 0 <= tmp_t && tmp_t < t)
+		if ( 0 < tmp_t && tmp_t < ret_t)
 		{
-			t = tmp_t;
-			its_p = &tmp_itsp;
+			ret_t = tmp_t;
+			nearest_itsp = tmp_itsp;
+			printf(" its_pos(%s) (x,y,z)=(%f,%f,%f)\n", __func__, nearest_itsp.position.x, nearest_itsp.position.y, nearest_itsp.position.z);
 		}
 		obj_node = obj_node->next;
 	}
-	if (its_p == NULL)
+	if (ret_t == INFINITY)
 		return (false);
+	*its_p = nearest_itsp;
 	return (true);
 }
 
@@ -71,9 +69,10 @@ static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
         return (false);
 
 	// 色の計算（background or obj color
-//	color_set(&color, 0.0, 0.0, 0.0);
-	color_set(&color, 1, 0.0, 0.0);
-//	color = color_add(color, calc_ambient_reflection(info->scene_info, its_p));
+	color_set(&color, 0.0, 0.0, 0.0);
+//	color_set(&color, 1, 0.0, 0.0);
+	color = color_add(color, calc_ambient_reflection(info->scene_info, its_p));
+
 //	color = color_add(color, calc_diffuse_reflection(info->scene_info, &its_p, eye2screen));
 //	color = color_add(color, calc_specular_reflection(info, &its_p, eye2screen));
 //	color = color_add(color, calc_perfect_reflection(info, &its_p, eye2screen));

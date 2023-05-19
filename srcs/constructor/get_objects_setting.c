@@ -21,13 +21,17 @@ t_obj	*init_obj(void)
 		return (FAILURE);
 	obj->obj_color.is_perfect_ref = false;
 	obj->obj_color.is_checker = false;
+	obj->obj_color.is_texture = false;
+	obj->obj_color.is_bump = false;
 	obj->obj_color.texture_data.data = NULL;
 	obj->obj_color.bump_data.data = NULL;
 	obj->obj_color.shininess = 10.0; // tmp
-	obj->obj_color.ka = init_color(0.1, 0.1, 0.1); // tmp
-	obj->obj_color.ks = init_color(1.0, 1.0, 1.0); // tmp
-	obj->obj_color.kf = init_color(1.0, 1.0, 1.0); // tmp
-
+	obj->obj_color.ka = init_color(255, 255, 255); // tmp
+	obj->obj_color.ks = init_color(255, 255, 255); // tmp
+	obj->obj_color.kf = init_color(255, 255, 255); // tmp
+	obj->obj_color.ia = 0.5; // tmp
+	obj->obj_color.id = 0.5; // tmp
+	obj->obj_color.is = 0.5; // tmp
 	return (obj);
 }
 

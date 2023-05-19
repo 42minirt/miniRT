@@ -70,7 +70,7 @@ void	debug_print_config(t_all_info *info)
 	printf("Ambient       : %5.1f, "\
 	"                                  "\
 	"                               (%5.1f, %5.1f, %5.1f)\n", \
-	info->scene_info->brightness, c.r, c.b, c.g);
+	info->scene_info->brightness, c.r, c.g, c.b);
 	printf("Camera        : \n");
 	printf("Lights\n");
 	print_lights(info->scene_info);

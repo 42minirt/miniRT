@@ -194,9 +194,9 @@ struct s_obj_color
 	double	shininess;	// alpha, fix
 
 	// ia, id, is は light依存？
-//	double	ia;	// fix
-//	double	id;	// fix
-//	double	is;	// fix
+	double	ia;	// fix
+	double	id;	// fix
+	double	is;	// fix
 
 // bonus
 	bool	is_perfect_ref;	// init:false
@@ -205,7 +205,9 @@ struct s_obj_color
 	bool 	is_checker;		// init:false
 	t_color	checker_color;
 
+	bool 	is_texture;		// init:false
 	t_img	texture_data;	// init: texture_data.data=NULL
+	bool 	is_bump;		// init:false
 	t_img	bump_data; 		// init: bump_data.data=NULL
 };
 

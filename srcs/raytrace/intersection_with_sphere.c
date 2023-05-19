@@ -41,9 +41,10 @@ static t_intersection_point	calc_intp_info_of_shpere(t_sphere *sphere, \
 double	calc_intersect_with_sphere(t_obj *obj, \
 									t_ray ray, t_intersection_point *its_p)
 {
-	t_sphere	*sphere;
-	t_d_param	d_param;
-	double		t;
+	t_sphere				*sphere;
+	t_d_param				d_param;
+	t_intersection_point	tmp_its_p;
+	double					t;
 
 	sphere = &obj->shape_data.sphere;
 	d_param = calc_d_param_of_sphere(sphere, ray);
@@ -54,7 +55,8 @@ double	calc_intersect_with_sphere(t_obj *obj, \
 	t = get_valid_distance(d_param.t1, d_param.t2);
 	if (t <= 0.0)
 		return (-1.0);
-	*its_p = calc_intp_info_of_shpere(sphere, ray, t);
-	(*its_p).obj = obj;
+	tmp_its_p = calc_intp_info_of_shpere(sphere, ray, t);
+	tmp_its_p.obj = obj;
+	*its_p = tmp_its_p;
 	return (its_p->distance);
 }

@@ -57,8 +57,10 @@ static void	update_scene_objs(t_scene_info *scene)
 	while (node)
 	{
 		obj = node->content;
-		obj->obj_color.ka = init_color(1, 1, 1);
+		obj->obj_color.ka = color_k1c1(1.0 / 255.0, obj->obj_color.ka);
 		obj->obj_color.kd = color_k1c1(1.0 / 255.0, obj->obj_color.kd);
+		obj->obj_color.ks = color_k1c1(1.0 / 255.0, obj->obj_color.ks);
+		obj->obj_color.kf = color_k1c1(1.0 / 255.0, obj->obj_color.kf);
 		if (obj->obj_color.is_checker)
 			obj->obj_color.checker_color = \
 			color_k1c1(1.0 / 255.0, obj->obj_color.checker_color);

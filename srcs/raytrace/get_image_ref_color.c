@@ -61,7 +61,7 @@ t_color	get_image_texture_ref_color(t_diffuse_param p)
 	t_color	img_color;
 
 	ret_color = init_color(0.0, 0.0, 0.0);
-	if (!is_image_data_exists(p.its_p->obj->obj_color))
+	if (!is_image_data_exists(p.its_p))
 		return (ret_color);
 
 	img_color = get_its_pos_img_color(p.its_p,

@@ -22,7 +22,7 @@ void	normalize(t_vec *normal_vec, t_vec *normarized_vec)
 		+ pow(normarized_vec->z, 2));
 	if (vec_size == 0.0)
 	{
-		printf("this size 0 ! So exit");
+		printf("[Error] division by zero in normalize.\n");
 		exit(1);
 	}
 	setvec(

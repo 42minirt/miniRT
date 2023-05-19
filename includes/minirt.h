@@ -52,7 +52,8 @@
 #define	PPM_RGB_UNIT	3
 #define CHECKER_U_MAG	10
 #define CHECKER_V_MAG	10
-#define	EPSILON			(1.0/512.0)
+#define	EPSILON			(1.0 / 512.0)
+//#define	EPSILON			(1.0 / 256.0)
 
 /********** key hook **********/
 # define EVENT_DESTROY		33

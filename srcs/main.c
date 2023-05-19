@@ -50,7 +50,6 @@ void	draw(t_all_info info)
     size_t	y;
     size_t	x;
 	double	height_ratio = 1.0f;
-	int			r, g, b;
 
 	y = 0;
 	while (y < WINDOW_HEIGHT)
