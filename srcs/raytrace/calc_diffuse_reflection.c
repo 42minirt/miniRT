@@ -41,11 +41,11 @@ static t_color	get_diffuse_ref_color(t_diffuse_param p)
 {
 	t_color	ret_color;
 
-	if (!is_image_texture(p.its_p.obj->obj_color))
+	if (is_image_texture(p.its_p.obj->obj_color))
 		return (init_color(0.0, 0.0, 0.0));
 	if (p.dot_n_pos2light <= 0.0)
 		return (init_color(0.0, 0.0, 0.0));
-	if (p.light->type == LT_POINT && !is_in_range_spotlight(p))
+	if (p.light->type == LT_SPOT && !is_in_range_spotlight(p))
 		return (init_color(0.0, 0.0, 0.0));
 	ret_color = color_k1c1_k2c2(1.0, p.its_p.obj->obj_color.kd, \
 							p.dot_n_pos2light, p.light->light_color);

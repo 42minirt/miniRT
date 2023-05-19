@@ -29,7 +29,7 @@ t_obj	*init_obj(void)
 	obj->obj_color.ka = init_color(255, 255, 255); // tmp
 	obj->obj_color.ks = init_color(255, 255, 255); // tmp
 	obj->obj_color.kf = init_color(255, 255, 255); // tmp
-	obj->obj_color.ia = 0.5; // tmp
+	obj->obj_color.ia = 0.1; // tmp
 	obj->obj_color.id = 1.0; // tmp
 	obj->obj_color.is = 1.0; // tmp
 	return (obj);
