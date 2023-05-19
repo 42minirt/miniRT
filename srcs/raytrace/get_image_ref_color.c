@@ -55,7 +55,7 @@ static t_color	get_its_pos_img_color(t_intersection_point *its_p, t_img img)
 	return (ret_color);
 }
 
-t_color	get_image_texture_ref_color(t_diffuse_param p)
+t_color	get_itspos_image_texture_color(t_diffuse_param p)
 {
 	t_color	ret_color;
 	t_color	img_color;
@@ -67,7 +67,8 @@ t_color	get_image_texture_ref_color(t_diffuse_param p)
 									  p.its_p.obj->obj_color.texture_data);
 //	ret_color = color_k1c1_k2c2(1.0, img_color, \
 //								p.dot_n_pos2light, p.light->light_color);
-	return (img_color);
+	ret_color = color_k1c1(1.0 / 255.0, img_color);
+	return (ret_color);
 }
 
 // img_color

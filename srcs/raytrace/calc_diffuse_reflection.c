@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-static t_color	get_checker_ref_color(t_diffuse_param p)
+static t_color	get_itspos_checker_color(t_diffuse_param p)
 {
 	t_tangetnt_map	map;
 	int				pattern_a;
@@ -37,27 +37,10 @@ static bool	is_in_range_spotlight(t_diffuse_param p)
 	return (angle_pos2light <= p.light->sl_angle);
 }
 
-//static t_color	get_diffuse_ref_color(t_diffuse_param p)
-//{
-//	t_color	ret_color;
-//
-//	if (is_obj_image_texture(p.its_p.obj->obj_color))
-//		return (init_color(0.0, 0.0, 0.0));
-//	if (p.dot_n_pos2light <= 0.0)
-//		return (init_color(0.0, 0.0, 0.0));
-//	if (p.light->type == LT_SPOT && !is_in_range_spotlight(p))
-//		return (init_color(0.0, 0.0, 0.0));
-//	ret_color = color_k1c1_k2c2(1.0, p.its_p.obj->obj_color.kd, \
-//							p.dot_n_pos2light, p.light->light_color);
-//	return (ret_color);
-//}
-
 static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
 {
 	t_color	ret_color;
 
-	if (is_obj_image_texture(p.its_p.obj->obj_color))
-		return (init_color(0.0, 0.0, 0.0));
 	if (p.dot_n_pos2light <= 0.0)
 		return (init_color(0.0, 0.0, 0.0));
 	if (p.light->type == LT_SPOT && !is_in_range_spotlight(p))
@@ -80,14 +63,9 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 		return (ret_color);
 	kd = p.its_p.obj->obj_color.kd;
 	if (is_obj_checker(its_p.obj->obj_color))
-		kd = get_checker_ref_color(p);
-	else if (is_obj_bump_texture(its_p.obj->obj_color))
-		kd = get_image_texture_ref_color(p);
-
-//	ret_color = color_add(ret_color, get_diffuse_ref_color(p));
-//	ret_color = color_add(ret_color, get_checker_ref_color(p));
-//	ret_color = color_add(ret_color, get_image_texture_ref_color(p));
-
+		kd = get_itspos_checker_color(p);
+	if (is_obj_image_texture(its_p.obj->obj_color))
+		kd = get_itspos_image_texture_color(p);
 	ret_color = get_diffuse_ref_color(p, kd);
 	return (ret_color);
 }
