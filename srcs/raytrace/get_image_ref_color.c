@@ -61,14 +61,13 @@ t_color	get_image_texture_ref_color(t_diffuse_param p)
 	t_color	img_color;
 
 	ret_color = init_color(0.0, 0.0, 0.0);
-	if (!is_image_texture(p.its_p.obj->obj_color))
+	if (!is_obj_image_texture(p.its_p.obj->obj_color))
 		return (ret_color);
-
 	img_color = get_its_pos_img_color(&p.its_p,
 									  p.its_p.obj->obj_color.texture_data);
-	ret_color = color_k1c1_k2c2(1.0, img_color, \
-								p.dot_n_pos2light, p.light->light_color);
-	return (ret_color);
+//	ret_color = color_k1c1_k2c2(1.0, img_color, \
+//								p.dot_n_pos2light, p.light->light_color);
+	return (img_color);
 }
 
 // img_color

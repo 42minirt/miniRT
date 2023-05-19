@@ -31,6 +31,7 @@ double			get_valid_distance(double t1, double t2);
 double			calc_discriminant(double a, double b, double c);
 t_corn_param	calc_ints_param_of_corn(t_corn *c, t_ray ray);
 t_d_param		calc_d_param_of_corn(t_corn_param p);
+t_corn_ints		calc_ints(t_corn *corn, t_ray ray, t_corn_param p, double t);
 
 /* raytracing */
 bool			raytrace(t_all_info *info, t_ray eye2screen, t_color *color);
@@ -49,8 +50,8 @@ t_color			get_image_texture_ref_color(t_diffuse_param p);
 t_diffuse_param	calc_diffuse_param(t_intersection_point *its_p, t_ray *ray, t_light *light);
 
 /* is_condition */
-bool			is_bump_texture(t_obj_color obj_color);
-bool			is_image_texture(t_obj_color obj_color);
+bool			is_obj_bump_texture(t_obj_color obj_color);
+bool			is_obj_image_texture(t_obj_color obj_color);
 bool			is_obj_perfect_ref(t_obj_color obj_color);
 bool			is_obj_checker(t_obj_color obj_color);
 bool			is_obj_exists_between_itspos_and_light(t_scene_info *scene, t_diffuse_param p);

@@ -40,13 +40,13 @@ bool	is_obj_checker(t_obj_color obj_color)
 	return (obj_color.is_checker);
 }
 
-bool	is_bump_texture(t_obj_color obj_color)
+bool	is_obj_bump_texture(t_obj_color obj_color)
 {
 	return (obj_color.is_bump);
 //	return (its_p->obj->obj_color.bump_data.data != NULL);
 }
 
-bool	is_image_texture(t_obj_color obj_color)
+bool	is_obj_image_texture(t_obj_color obj_color)
 {
 	return (obj_color.is_texture);
 //	return (obj_color.texture_data.data != NULL);

@@ -37,18 +37,32 @@ static bool	is_in_range_spotlight(t_diffuse_param p)
 	return (angle_pos2light <= p.light->sl_angle);
 }
 
-static t_color	get_diffuse_ref_color(t_diffuse_param p)
+//static t_color	get_diffuse_ref_color(t_diffuse_param p)
+//{
+//	t_color	ret_color;
+//
+//	if (is_obj_image_texture(p.its_p.obj->obj_color))
+//		return (init_color(0.0, 0.0, 0.0));
+//	if (p.dot_n_pos2light <= 0.0)
+//		return (init_color(0.0, 0.0, 0.0));
+//	if (p.light->type == LT_SPOT && !is_in_range_spotlight(p))
+//		return (init_color(0.0, 0.0, 0.0));
+//	ret_color = color_k1c1_k2c2(1.0, p.its_p.obj->obj_color.kd, \
+//							p.dot_n_pos2light, p.light->light_color);
+//	return (ret_color);
+//}
+
+static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
 {
 	t_color	ret_color;
 
-	if (is_image_texture(p.its_p.obj->obj_color))
+	if (is_obj_image_texture(p.its_p.obj->obj_color))
 		return (init_color(0.0, 0.0, 0.0));
 	if (p.dot_n_pos2light <= 0.0)
 		return (init_color(0.0, 0.0, 0.0));
 	if (p.light->type == LT_SPOT && !is_in_range_spotlight(p))
 		return (init_color(0.0, 0.0, 0.0));
-	ret_color = color_k1c1_k2c2(1.0, p.its_p.obj->obj_color.kd, \
-							p.dot_n_pos2light, p.light->light_color);
+	ret_color = color_k1c1_k2c2(1.0, kd, p.dot_n_pos2light, p.light->light_color);
 	return (ret_color);
 }
 
@@ -57,15 +71,24 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 								t_ray eye2screen, t_light *light)
 {
 	t_color			ret_color;
+	t_color			kd;
 	t_diffuse_param	p;
 
 	p = calc_diffuse_param(&its_p, &eye2screen, light);
 	ret_color = init_color(0.0, 0.0, 0.0);
 	if (is_obj_exists_between_itspos_and_light(scene, p))
 		return (ret_color);
-	ret_color = color_add(ret_color, get_diffuse_ref_color(p));
-	ret_color = color_add(ret_color, get_checker_ref_color(p));
-	ret_color = color_add(ret_color, get_image_texture_ref_color(p));
+	kd = p.its_p.obj->obj_color.kd;
+	if (is_obj_checker(its_p.obj->obj_color))
+		kd = get_checker_ref_color(p);
+	else if (is_obj_bump_texture(its_p.obj->obj_color))
+		kd = get_image_texture_ref_color(p);
+
+//	ret_color = color_add(ret_color, get_diffuse_ref_color(p));
+//	ret_color = color_add(ret_color, get_checker_ref_color(p));
+//	ret_color = color_add(ret_color, get_image_texture_ref_color(p));
+
+	ret_color = get_diffuse_ref_color(p, kd);
 	return (ret_color);
 }
 

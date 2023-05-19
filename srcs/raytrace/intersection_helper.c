@@ -19,13 +19,9 @@ void	solve_quadratic_equation(t_d_param *d_param)
 	const double	a = d_param->a;
 	const double	b = d_param->b;
 	const double	d = d_param->d;
-	double			t1;
-	double			t2;
 
-	t1 = (-b - sqrt(d)) / (2.0 * a);
-	t2 = (-b + sqrt(d)) / (2.0 * a);
-	d_param->t1 = t1;
-	d_param->t2 = t2;
+	d_param->t1 = (-b - sqrt(d)) / (2.0 * a);
+	d_param->t2 = (-b + sqrt(d)) / (2.0 * a);
 }
 
 double	get_valid_distance(double t1, double t2)
