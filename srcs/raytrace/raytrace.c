@@ -28,7 +28,7 @@ static double	calc_intersection(t_list *obj, t_all_info *info, t_ray eye2screen,
 	return (calc_intersect_with_corn(shape, eye2screen, tmp_itsp));
 }
 
-static bool	check_intersection(t_all_info *info, t_ray eye2screen, t_intersection_point *its_p)
+bool	check_intersection(t_all_info *info, t_ray eye2screen, t_intersection_point *its_p)
 {
 	double					t;
 	double					tmp_t;
@@ -74,8 +74,8 @@ static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	color_set(&color, 0.0, 0.0, 0.0);
 	color = color_add(color, calc_ambient_reflection(info->scene_info));
 	color = color_add(color, calc_diffuse_reflection(info->scene_info, &its_p, eye2screen));
-	color = color_add(color, calc_specular_reflection(info, &its_p, eye2screen));
-	color = color_add(color, calc_perfect_reflection(info, &its_p, eye2screen));
+//	color = color_add(color, calc_specular_reflection(info, &its_p, eye2screen));
+//	color = color_add(color, calc_perfect_reflection(info, &its_p, eye2screen));
 	*ret_color = color;
     return (true);
 }

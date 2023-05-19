@@ -31,7 +31,7 @@ static t_parse_res	get_config_controller(t_identifier id_no, \
 	return (result);
 }
 
-// <space> <id> <space> <num1> <space> <num2> ... <numN>
+// spaces <id> spaces <num1> spaces <num2> ... <numN>
 static t_parse_res	parse_line(t_all_info *all, const char *line)
 {
 	size_t		idx;

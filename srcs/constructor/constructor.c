@@ -55,6 +55,7 @@ static int	init_scene_and_camera(t_all_info *all_info, const char *rt_path)
 		return (FAILURE);
 	debug_print_config(all_info);
 	update_scene(all_info->scene_info); // color = brightness * color,...
+	update_camera(all_info->camera_info);
 	return (SUCCESS);
 }
 

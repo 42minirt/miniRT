@@ -40,6 +40,7 @@ CONSTRUCTOR_SRC	= constructor.c \
 				  parsing_config.c \
 				  parsing_digits.c \
 				  parsing_helper.c \
+				  update_camera.c \
 				  update_scene.c \
 				  update_scene_each_obj.c \
 				  validate_config.c \
@@ -69,7 +70,6 @@ RAYTRACE_SRC	= calc_ambient_reflection.c \
 				  calc_diffuse_reflection_param.c \
 				  get_image_ref_color.c \
 				  get_tangent_coordinate_map.c \
-				  get_texture_coordinate_map.c \ # maybe delete
 				  intersection_helper.c \
 				  intersection_with_corn.c \
 				  intersection_with_corn_calc_param.c \
@@ -84,7 +84,7 @@ SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 #-------------------------------------------------------------------------
 COLOR_DIR		= calc_color
 COLOR_SRC		= calc_color.c \
-				  color_handring.c
+				  color_handling.c
 
 SRC				+= $(addprefix $(COLOR_DIR)/, $(COLOR_SRC))
 

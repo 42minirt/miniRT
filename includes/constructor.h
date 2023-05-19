@@ -42,6 +42,8 @@ int			parse_double(const char *line, double *double_num, size_t *idx);
 int			parse_vec(const char *line, t_vec *vec, size_t *idx);
 int			parsing_color(const char *line, t_color *color, size_t *idx);
 void		update_scene(t_scene_info *scene);
+void		update_camera(t_camera_info *camera);
+
 
 // get_obj_detail
 t_parse_res	get_obj_detail(const char *line, int id_no, t_obj *obj);

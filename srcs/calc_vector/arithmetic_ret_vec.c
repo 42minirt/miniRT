@@ -45,7 +45,7 @@ t_vec	norm_vec(t_vec v)
 	return(ret);
 }
 
-t_vec	vec_k1v1_k2ve(double k1, t_vec v1, double k2, t_vec v2)
+t_vec	vec_k1v1_k2v2(double k1, t_vec v1, double k2, t_vec v2)
 {
 	t_vec	ret;
 

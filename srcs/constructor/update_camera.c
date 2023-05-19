@@ -1,3 +1,6 @@
-//
-// Created by Akira TANIDA on 2023/05/19.
-//
+#include "minirt.h"
+
+void	update_camera(t_camera_info *camera)
+{
+	camera->direction = norm_vec(camera->direction);
+}

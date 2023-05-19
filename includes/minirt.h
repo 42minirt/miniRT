@@ -51,6 +51,7 @@
 #define	PPM_RGB_UNIT	3
 #define CHECKER_U_MAG	10
 #define CHECKER_V_MAG	10
+#define	EPSILON			(1.0/512.0)
 
 //単位ベクトル以外の情報に下記のように記載するのかどうか
 //1 unit_vec
@@ -59,10 +60,6 @@
 
 /* nanika */
 t_color		backgroundcolor_init();
-void		colort_init_pointer(t_color *color);
-t_color		calc_color(t_scene_info *scene_info, t_ray eye2screen);
-void		color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
-t_color		raytrace(t_all_info *info, t_ray eye2screen_xy);
 
 
 /* destructor */

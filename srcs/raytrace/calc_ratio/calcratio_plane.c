@@ -20,7 +20,7 @@ double	set_itsp(t_plane *plane, double t, t_ray *ray, t_intersection_point *itsp
 	{
 		itsp->distance = t;
 		itsp->normal = plane->center;
-		itsp->obj = (t_shape_data *)plane;
+		itsp->obj->shape_data = (t_shape_data *)plane;
 		times_vec(&eye2its, t, &ray->unit_dir);
 		add_vec(&itsp->position, &ray->pos, &eye2its);
 	}

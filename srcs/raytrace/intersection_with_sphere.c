@@ -45,7 +45,7 @@ double	calc_intersect_with_sphere(t_obj *obj, \
 	t_d_param	d_param;
 	double		t;
 
-	sphere = &obj->shape_data.sphere;
+	sphere = &obj->shape_data->sphere;
 	d_param = calc_d_param_of_sphere(sphere, ray);
 	d_param.d = calc_discriminant(d_param.a, d_param.b, d_param.c);
 	if (d_param.a == 0.0 || d_param.d < 0.0)

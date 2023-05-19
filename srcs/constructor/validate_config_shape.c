@@ -51,12 +51,12 @@ static t_parse_res	validate_corn(t_corn *corn)
 t_parse_res	validate_obj_shape(t_obj *obj)
 {
 	if (obj->type == BALL)
-		return (validate_sphere(&obj->shape_data.sphere));
+		return (validate_sphere(&obj->shape_data->sphere));
 	if (obj->type == PLANE)
-		return (validate_plane(&obj->shape_data.plane));
+		return (validate_plane(&obj->shape_data->plane));
 	if (obj->type == CYLINDER)
-		return (validate_cylinder(&obj->shape_data.cylinder));
+		return (validate_cylinder(&obj->shape_data->cylinder));
 	if (obj->type == CORN)
-		return (validate_corn(&obj->shape_data.corn));
+		return (validate_corn(&obj->shape_data->corn));
 	return (ERROR_INVALID_TYPE);
 }
