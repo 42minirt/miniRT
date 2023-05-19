@@ -28,7 +28,7 @@ double	get_valid_distance(double t1, double t2)
 {
 	if (0.0 < t1)
 		return (t1);
-	if (0.0 < t2)
+	else if (0.0 < t2)
 		return (t2);
 	return (-1.0);
 }

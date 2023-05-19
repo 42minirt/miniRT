@@ -15,7 +15,7 @@
 static void	update_scene_ambient_color(t_scene_info *scene)
 {
 	scene->ambient_color = \
-	color_k1c1(scene->brightness / 255.0, scene->ambient_color);
+	color_k1c1(1.0 / 255.0, scene->ambient_color);
 }
 
 static void	update_scene_lights(t_scene_info *scene)
