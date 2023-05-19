@@ -52,17 +52,13 @@
 #define	PPM_RGB_UNIT	3
 #define CHECKER_U_MAG	10
 #define CHECKER_V_MAG	10
-#define	EPSILON			(1.0 / 512.0)
-//#define	EPSILON			(1.0 / 256.0)
+//#define	EPSILON			(1.0 / 512.0)
+#define	EPSILON			(1.0 / 256.0)
 
 /********** key hook **********/
 # define EVENT_DESTROY		33
 # define EVENT_KEY_PRESS	2
 # define KEY_ESC			0xff1b
-
-#define MIN(a, b)	(a <= b ? a : b)
-#define MAX(a, b)	(a >= b ? a : b)
-#define CLAMP(val, minval, maxval)	MIN(MAX(val, minval), maxval)
 
 
 //単位ベクトル以外の情報に下記のように記載するのかどうか

@@ -302,7 +302,7 @@ struct	s_ints_param_of_corn
 	double	dot_de_n;
 	double	dot_origin2pe_n;
 	double	vec_norm_de_x_n;
-	double	vec_norm_origin2pe_x_n;
+	double	norm_cross_origin2pe_x_n;
 };
 
 struct	s_corn_ints

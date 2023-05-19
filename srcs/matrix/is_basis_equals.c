@@ -39,3 +39,4 @@ bool	is_ew_equals_inv_ez(t_basis_world world, t_basis_local local)
 	&& local.ew.y == world.ez.y \
 	&& local.ew.z == -1.0 * world.ez.z);
 }
+

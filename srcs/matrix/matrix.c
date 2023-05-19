@@ -78,25 +78,66 @@ t_matrix	get_transform_matrix_world2local_yup(t_vec v_dir)
 }
 
 // cylinder, corn
-t_matrix	get_transform_matrix_world2local_zup(t_vec w_dir)
+//t_matrix	get_transform_matrix_world2local_zup(t_vec w_dir)
+//{
+//	t_basis_world	world;
+//	t_basis_local	local;
+//	t_matrix		transform_mat_w2l;
+//
+//	set_world_basis_vec(&world);
+//	local.ew = norm_vec(w_dir);
+//	local.eu = cross(local.ew, world.ez);
+//	local.ev = cross(local.eu, local.ew);
+//	if (is_ew_equals_ez(world, local))
+//	{
+//		local.eu = world.ex;
+//		local.ev = world.ey;
+//	}
+//	else if (is_ew_equals_inv_ez(world, local))
+//	{
+//		local.eu = world.ex;
+//		local.ev = inverse(world.ey);
+//	}
+//	transform_mat_w2l = set_vec_to_matrix(local);
+//	transform_mat_w2l = transpose_matrix(transform_mat_w2l);
+//	return (transform_mat_w2l);
+//}
+
+bool	is_ev_equals_ez(t_basis_world world, t_basis_local local)
+{
+	return (local.ev.x == world.ez.x \
+	&& local.ev.y == world.ez.y \
+	&& local.ev.z == world.ez.z);
+}
+
+
+bool	is_ev_equals_inv_ez(t_basis_world world, t_basis_local local)
+{
+	return (local.ev.x == world.ez.x \
+	&& local.ev.y == world.ez.y \
+	&& local.ev.z == -1.0 * world.ez.z);
+}
+
+
+t_matrix	get_transform_matrix_world2local_zup(t_vec y_dir)
 {
 	t_basis_world	world;
 	t_basis_local	local;
 	t_matrix		transform_mat_w2l;
 
 	set_world_basis_vec(&world);
-	local.ew = norm_vec(w_dir);
+	local.ev = norm_vec(y_dir);
 	local.eu = cross(local.ev, world.ez);
-	local.ev = cross(local.ew, local.eu);
-	if (is_ew_equals_ez(world, local))
+	local.ew = cross(local.eu, local.ev);
+	if (is_ev_equals_ez(world, local))
 	{
 		local.eu = world.ex;
-		local.ev = world.ey;
+		local.ew = inverse(world.ey);
 	}
-	else if (is_ew_equals_inv_ez(world, local))
+	else if (is_ev_equals_inv_ez(world, local))
 	{
 		local.eu = world.ex;
-		local.ev = inverse(world.ey);
+		local.ew = world.ey;
 	}
 	transform_mat_w2l = set_vec_to_matrix(local);
 	transform_mat_w2l = transpose_matrix(transform_mat_w2l);

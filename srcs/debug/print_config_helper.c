@@ -87,10 +87,12 @@ void	print_corn(t_obj *obj)
 {
 	t_vec	pos;
 	t_vec	nor;
+	t_vec	ori;
 	t_color	c;
 
 	pos = obj->shape_data.corn.bottom_center;
 	nor = obj->shape_data.corn.axis;
+	ori = obj->shape_data.corn.origin;
 	c = obj->obj_color.kd;
 	printf("  △ Corn      : (%5.1f, %5.1f, %5.1f),    (%5.1f, %5.1f, %5.1f),"\
 	"          %5.1f,  %5.1f,   (%5.1f, %5.1f, %5.1f)", \
@@ -101,4 +103,5 @@ void	print_corn(t_obj *obj)
 	c.r, c.g, c.b);
 	print_bonus(obj->obj_color);
 	printf("\n");
+	printf("       origin   (%5.1f, %5.1f, %5.1f)\n", ori.x, ori.y, ori.z);
 }

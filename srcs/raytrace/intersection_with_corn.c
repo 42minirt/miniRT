@@ -17,12 +17,11 @@
 // corn->axisを底面から先端方向に定義
 static bool	is_in_range_corn_height(double t, double intp_h, double corn_h)
 {
-	if (0.0 <= t)
+	if (t <= 0.0)
 		return (false);
-//	if (-corn_h <= intp_h && intp_h <= corn_h)
-//		return (true);
-//	return (false);
-	return (true);
+	if (0 <= intp_h && intp_h <= corn_h)
+		return (true);
+	return (false);
 }
 
 static void	assign_intp_info(t_intersection_point *ret_intp, \
@@ -40,18 +39,18 @@ static t_intersection_point	calc_intp_info_of_corn(t_corn *corn, t_ray ray, \
 	const t_corn_ints		ints_t1 = calc_ints(corn, ray, p, d.t1);
 	const t_corn_ints		ints_t2 = calc_ints(corn, ray, p, d.t2);
 
-	ret_intp.distance = -1.0;
 	if (is_in_range_corn_height(d.t1, ints_t1.h, corn->height))
 	{
 		assign_intp_info(&ret_intp, ints_t1, d.t1);
-		printf("t1 is valid:%f\n", d.t1);
+//		ret_intp.normal = inverse(ret_intp.normal);
 	}
 	else if (is_in_range_corn_height(d.t2, ints_t2.h, corn->height))
 	{
 		assign_intp_info(&ret_intp, ints_t2, d.t2);
 		ret_intp.normal = inverse(ret_intp.normal);
-		printf("t2 is valid:%f\n", d.t2);
 	}
+	else
+		ret_intp.distance = -1.0;
 	return (ret_intp);
 }
 
