@@ -180,10 +180,10 @@ re				: fclean all
 bonus			: all
 
 leaks			:
-	make all WITH_LEAKS=1
+	make re WITH_LEAKS=1
 
 sani			:
-	make all WITH_SANITIZE=1
+	make re WITH_SANITIZE=1
 
 norm			:
 	@norminette --version

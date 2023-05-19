@@ -67,22 +67,22 @@ static t_intersection_point	calc_intp_info_of_corn(t_corn *corn, t_ray ray, \
 }
 
 double	calc_intersect_with_corn(t_obj *obj, t_ray ray, \
-									t_intersection_point *intp)
+									t_intersection_point *its_p)
 {
 	t_corn			*corn;
 	t_corn_param	intp_param;
 	t_d_param		d_param;
 
-	corn = &obj->shape_data->corn;
+	corn = &obj->shape_data.corn;
 	intp_param = calc_ints_param_of_corn(corn, ray);
 	d_param = calc_d_param_of_corn(intp_param);
 	d_param.d = calc_discriminant(d_param.a, d_param.b, d_param.c);
 	if (d_param.a == 0.0 || d_param.d < 0.0)
 		return (-1.0);
 	solve_quadratic_equation(&d_param);
-	if ((d_param.t1 <= 0.0 && d_param.t2 <= 0) || !intp)
+	if ((d_param.t1 <= 0.0 && d_param.t2 <= 0) || !its_p)
 		return (-1.0);
-	*intp = calc_intp_info_of_corn(corn, ray, intp_param, d_param);
-	(*intp).obj = obj;
-	return (intp->distance);
+	*its_p = calc_intp_info_of_corn(corn, ray, intp_param, d_param);
+	(*its_p).obj = obj;
+	return (its_p->distance);
 }

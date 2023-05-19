@@ -39,13 +39,13 @@ static void	update_scene_lights(t_scene_info *scene)
 static void	update_scene_each_obj(t_obj *obj)
 {
 	if (obj->type == BALL)
-		update_scene_sphere_info(&obj->shape_data->sphere);
+		update_scene_sphere_info(&obj->shape_data.sphere);
 	else if (obj->type == PLANE)
-		update_scene_plane_info(&obj->shape_data->plane);
+		update_scene_plane_info(&obj->shape_data.plane);
 	else if (obj->type == CYLINDER)
-		update_scene_cylinder_info(&obj->shape_data->cylinder);
+		update_scene_cylinder_info(&obj->shape_data.cylinder);
 	else if (obj->type == CORN)
-		update_scene_corn_info(&obj->shape_data->corn);
+		update_scene_corn_info(&obj->shape_data.corn);
 }
 
 static void	update_scene_objs(t_scene_info *scene)

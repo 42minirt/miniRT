@@ -46,7 +46,6 @@ void	set_intersection_t2(t_intersection_point *itp, double t, t_cylinder *cyl, t
 	times_vec(&axis_size_vec, dot_vec(&center2its, &cyl->axis), &cyl->axis);
 	neg_vec(&normal_timessize, &axis_size_vec, &center2its);
 	normalize(&itp->normal, &normal_timessize);
-	itp->obj->shape_data = (t_shape_data *)cyl;
 }
 
 double	check_intersection_t2(t_vec *d_n, t_vec *ac_n, t_cylinder *cyl, t_ray *ray) //名前をもう少し考えたい
@@ -85,7 +84,6 @@ void	set_intersection_t1(t_intersection_point *itp, double t, t_cylinder *cyl, t
 	times_vec(&axis_size_vec, dot_vec(&center2its, &cyl->axis), &cyl->axis);
 	neg_vec(&normal_timessize, &center2its, &axis_size_vec);
 	normalize(&itp->normal, &normal_timessize);
-	itp->obj->shape_data = (t_shape_data *)cyl;
 }
 
 double	check_intersection_t1(t_vec *d_n, t_vec *ac_n, t_cylinder *cyl, t_ray *ray) //名前をもう少し考えたい
@@ -121,27 +119,28 @@ void	outerproduct_ready(t_vec *d_n_oupro, t_vec *ac_n_oupro, t_ray *eye2scr, t_c
 	calc_outerproduct(ac_n_oupro, &eye2cylinderbottom, &cylinder->axis);
 }
 
-double	calc_cylinderratio(t_obj *obj, t_all_info *info, t_ray *eye2scr, t_intersection_point *tmp_itsp)
+double	calc_cylinderratio(t_obj *obj, t_ray *eye2scr, t_intersection_point *itsp)
 {
 	t_cylinder	*cylinder;
 	t_vec		d_n;
 	t_vec		ac_n;
 	double		t;
 
-	tmp_itsp = NULL;
+	itsp = NULL;
 	cylinder = (t_cylinder *)obj;
+	itsp->obj = obj;
 	outerproduct_ready(&d_n, &ac_n, eye2scr, cylinder);
 	t = check_intersection_t1(&d_n, &ac_n, cylinder, eye2scr);
 	if (t >= 0.0)
 	{
-		set_intersection_t1(tmp_itsp, t, cylinder, eye2scr);
+		set_intersection_t1(itsp, t, cylinder, eye2scr);
 		return (t);
 	}
 	t = check_intersection_t2(&d_n, &ac_n, cylinder, eye2scr);
 	if (t >= 0.0)
 	{
-		set_intersection_t2(tmp_itsp, t, cylinder, eye2scr);
-		inverse_vec(&tmp_itsp->normal, &tmp_itsp->normal);
+		set_intersection_t2(itsp, t, cylinder, eye2scr);
+		inverse_vec(&itsp->normal, &itsp->normal);
 		return (t);
 	}
 	if (t >= 0.0)

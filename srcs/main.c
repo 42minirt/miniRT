@@ -84,10 +84,10 @@ int main(int argc, char **argv)
 
 //#ifdef LEAKS
 
-__attribute__((destructor))
-static void	destructor(void)
-{
-	system("leaks -q miniRT");
-}
+//__attribute__((destructor))
+//static void	destructor(void)
+//{
+//	system("leaks -q miniRT");
+//}
 
 //#endif

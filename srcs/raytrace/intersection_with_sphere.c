@@ -39,22 +39,22 @@ static t_intersection_point	calc_intp_info_of_shpere(t_sphere *sphere, \
 }
 
 double	calc_intersect_with_sphere(t_obj *obj, \
-									t_ray ray, t_intersection_point *intp)
+									t_ray ray, t_intersection_point *its_p)
 {
 	t_sphere	*sphere;
 	t_d_param	d_param;
 	double		t;
 
-	sphere = &obj->shape_data->sphere;
+	sphere = &obj->shape_data.sphere;
 	d_param = calc_d_param_of_sphere(sphere, ray);
 	d_param.d = calc_discriminant(d_param.a, d_param.b, d_param.c);
 	if (d_param.a == 0.0 || d_param.d < 0.0)
 		return (-1.0);
 	solve_quadratic_equation(&d_param);
 	t = get_valid_distance(d_param.t1, d_param.t2);
-	if (t <= 0.0 || !intp)
+	if (t <= 0.0 || !its_p)
 		return (-1.0);
-	*intp = calc_intp_info_of_shpere(sphere, ray, t);
-	(*intp).obj = obj;
-	return (intp->distance);
+	*its_p = calc_intp_info_of_shpere(sphere, ray, t);
+	(*its_p).obj = obj;
+	return (its_p->distance);
 }

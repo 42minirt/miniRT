@@ -23,7 +23,7 @@ bool	is_image_data_exists(t_obj_color obj_color)
 }
 
 // todo:tmp
-bool	is_obj_exists_extension_of_ray(t_all_info *info, t_diffuse_param p)
+bool	is_obj_exists_extension_of_ray(t_scene_info *scene, t_diffuse_param p)
 {
 	t_ray					shadow_ray;
 	t_intersection_point	its_p;
@@ -33,7 +33,7 @@ bool	is_obj_exists_extension_of_ray(t_all_info *info, t_diffuse_param p)
 	shadow_ray.pos = vec_k1v1_k2v2(1.0, p.its_p->position, EPSILON, p.vec_pos2light);
 	shadow_ray.unit_dir = norm_vec(p.vec_pos2light);
 	search_distance = norm(p.vec_pos2light) - EPSILON;
-	is_obj_exists = check_intersection(info, shadow_ray, &its_p);
+	is_obj_exists = check_intersection(scene, shadow_ray, &its_p);
 	if (is_obj_exists && its_p.distance <= search_distance)
 		return (true);
 	return (false);

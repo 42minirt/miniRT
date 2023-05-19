@@ -34,12 +34,12 @@ void	print_sphere(t_obj *obj)
 	t_vec	pos;
 	t_color	c;
 
-	pos = obj->shape_data->sphere.center;
+	pos = obj->shape_data.sphere.center;
 	c = obj->obj_color.kd;
 	printf("  ● Sphere    : (%5.1f, % 5.1f, % 5.1f),"\
 	"                                    %5.1f,        (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
-	obj->shape_data->sphere.diameter, \
+	obj->shape_data.sphere.diameter, \
 	c.r, c.g, c.b);
 	print_bonus(obj->obj_color);
 	printf("\n");
@@ -51,8 +51,8 @@ void	print_plane(t_obj *obj)
 	t_vec	nor;
 	t_color	c;
 
-	pos = obj->shape_data->plane.center;
-	nor = obj->shape_data->plane.normal;
+	pos = obj->shape_data.plane.center;
+	nor = obj->shape_data.plane.normal;
 	c = obj->obj_color.kd;
 	printf("  ■ Plane     : (%5.1f, %5.1f, %5.1f),    (%5.1f, %5.1f, %5.1f),"\
 	"                      (%5.1f, %5.1f, %5.1f)", \
@@ -69,15 +69,15 @@ void	print_cylinder(t_obj *obj)
 	t_vec	nor;
 	t_color	c;
 
-	pos = obj->shape_data->cylinder.bottom_center;
-	nor = obj->shape_data->cylinder.axis;
+	pos = obj->shape_data.cylinder.bottom_center;
+	nor = obj->shape_data.cylinder.axis;
 	c = obj->obj_color.kd;
 	printf("  ○ Cylinder  : (%5.1f, %5.1f, %5.1f),    (%5.1f, %5.1f, %5.1f),"\
 	"       %5.1f,   %5.1f,   (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
 	nor.x, nor.y, nor.z, \
-	obj->shape_data->cylinder.diameter, \
-	obj->shape_data->cylinder.height, \
+	obj->shape_data.cylinder.diameter, \
+	obj->shape_data.cylinder.height, \
 	c.r, c.g, c.b);
 	print_bonus(obj->obj_color);
 	printf("\n");
@@ -89,15 +89,15 @@ void	print_corn(t_obj *obj)
 	t_vec	nor;
 	t_color	c;
 
-	pos = obj->shape_data->corn.bottom_center;
-	nor = obj->shape_data->corn.axis;
+	pos = obj->shape_data.corn.bottom_center;
+	nor = obj->shape_data.corn.axis;
 	c = obj->obj_color.kd;
 	printf("  △ Corn      : (%5.1f, %5.1f, %5.1f),    (%5.1f, %5.1f, %5.1f),"\
 	"       %5.1f,   %5.1f,   (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
 	nor.x, nor.y, nor.z, \
-	obj->shape_data->corn.diameter, \
-	obj->shape_data->corn.height, \
+	obj->shape_data.corn.diameter, \
+	obj->shape_data.corn.height, \
 	c.r, c.g, c.b);
 	print_bonus(obj->obj_color);
 	printf("\n");

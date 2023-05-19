@@ -210,7 +210,7 @@ struct s_obj_color
 struct s_obj
 {
 	t_shape_type	type; //shere or ...
-	t_shape_data *shape_data;
+	t_shape_data	shape_data;
 	t_obj_color		obj_color;
 };
 

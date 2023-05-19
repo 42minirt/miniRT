@@ -16,12 +16,10 @@
 # include "minirt.h"
 
 /* intersection */
-bool	check_intersection(t_all_info *info, t_ray eye2screen, t_intersection_point *its_p);
+bool	check_intersection(t_scene_info *scene, t_ray eye2screen, t_intersection_point *its_p);
 
-double			calc_planeratio(t_obj *obj, t_all_info *info, \
-									t_ray *ray, t_intersection_point *itsp);
-double			calc_cylinderratio(t_obj *obj, t_all_info *info, \
-								t_ray *eye2scr, t_intersection_point *tmp_itsp);
+double			calc_planeratio(t_obj *obj, t_ray *ray, t_intersection_point *itsp);
+double			calc_cylinderratio(t_obj *obj, t_ray *eye2scr, t_intersection_point *tmp_itsp);
 double			set_itsp(t_plane *plane, double t, \
 							t_ray *ray, t_intersection_point *itsp);
 double			calc_intersect_with_sphere(t_obj *obj, t_ray ray, \
@@ -56,7 +54,7 @@ bool			is_bump_data_exists(t_obj_color obj_color);
 bool			is_image_data_exists(t_obj_color obj_color);
 bool			is_obj_perfect_ref(t_intersection_point *its_p);
 bool			is_obj_checker(t_intersection_point *its_p);
-bool			is_obj_exists_extension_of_ray(t_all_info *info, t_diffuse_param p);
+bool			is_obj_exists_extension_of_ray(t_scene_info *scene, t_diffuse_param p);
 
 /* get_its_pos_img_color */
 t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p);
