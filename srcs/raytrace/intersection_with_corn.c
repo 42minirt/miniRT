@@ -17,9 +17,7 @@
 // corn->axisを底面から先端方向に定義
 static bool	is_in_range_corn_height(double t, double intp_h, double corn_h)
 {
-	if (t <= 0.0)
-		return (false);
-	if (0 <= intp_h && intp_h <= corn_h)
+	if (0.0 < t && 0.0 <= intp_h && intp_h <= corn_h)
 		return (true);
 	return (false);
 }

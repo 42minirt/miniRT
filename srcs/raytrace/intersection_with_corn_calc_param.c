@@ -50,12 +50,18 @@ t_corn_ints	calc_ints(t_corn *corn, t_ray ray, t_corn_param p, double t)
 	ints.vec_origin2pos = sub(ints.vec_pos, corn->origin);
 	ints.vec_norm_origin2pos = norm_vec(ints.vec_origin2pos);
 	ints.vec_normal = k_vec(dot(ints.vec_norm_origin2pos, p.vec_inv_axis), ints.vec_norm_origin2pos);
-//	ints.vec_normal = add(corn->axis, ints.vec_normal);
+	ints.vec_normal = add(corn->axis, ints.vec_normal);
 
-	ints.vec_normal = vec_k1v1_k2v2(\
-					norm(p.vec_inv_axis) * cos(p.half_of_vertex_angle), \
-					ints.vec_norm_origin2pos, \
-					1.0, corn->axis);
+//	ints.vec_normal = vec_k1v1_k2v2(\
+//					norm(p.vec_inv_axis) * cos(p.half_of_vertex_angle), \
+//					ints.vec_norm_origin2pos, \
+//					1.0, corn->axis);
+//	ints.vec_normal = vec_k1v1_k2v2(\
+//					norm(p.vec_inv_axis) * cos(p.half_of_vertex_angle), \
+//					ints.vec_norm_origin2pos,
+//						-1.0, p.vec_inv_axis);
 	ints.h = dot(ints.vec_origin2pos, p.vec_inv_axis);
+//	ints.h = dot(ints.vec_origin2pos, corn->axis);
+
 	return (ints);
 }
