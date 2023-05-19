@@ -59,7 +59,8 @@ SRC				+= $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_SRC))
 
 #-------------------------------------------------------------------------
 MLX_HELPER		= mlx_helper
-MLX_HELPER_SRS	= mlx_pixcel_put.c
+MLX_HELPER_SRS	= mlx_pixcel_put.c \
+				  mlx_keyhooks.c
 
 SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 

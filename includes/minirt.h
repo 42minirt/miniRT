@@ -53,6 +53,11 @@
 #define CHECKER_V_MAG	10
 #define	EPSILON			(1.0/512.0)
 
+/********** key hook **********/
+# define EVENT_DESTROY		33
+# define EVENT_KEY_PRESS	2
+# define KEY_ESC			0xff1b
+
 //単位ベクトル以外の情報に下記のように記載するのかどうか
 //1 unit_vec
 //2 size
@@ -67,6 +72,6 @@ void		destruct_info(t_all_info *info);
 
 /* mlx helper */
 void		put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);
-
+void		mlx_hooks(t_mlx_info *mlx_info);
 
 #endif

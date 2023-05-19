@@ -45,6 +45,7 @@ void	draw(t_all_info info)
     size_t	x = 0;
 	double	height_ratio = 1.0f;
 
+	printf("draw start\n");
 	while (y < WINDOW_HEIGHT)
     {
 		while (x < WINDOW_WIDTH)
@@ -58,6 +59,7 @@ void	draw(t_all_info info)
         y++;
 		height_ratio = 1.0 - (double)y / WINDOW_HEIGHT;
 	}
+	printf("draw end\n");
 }
 
 int main(int argc, char **argv)
@@ -78,6 +80,11 @@ int main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	draw(info);
+
+	mlx_put_image_to_window(info.mlx_info->mlx, info.mlx_info->win, info.mlx_info->img, 0, 0);
+	mlx_hooks(info.mlx_info);
+	mlx_loop(info.mlx_info->mlx);
+
 	destruct_info(&info);
     return (0);
 }
