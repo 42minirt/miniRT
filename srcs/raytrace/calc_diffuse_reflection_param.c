@@ -16,7 +16,7 @@ static t_vec	get_normal(t_intersection_point *its_p)
 {
 	// todo: init_obj()でdata=NULLにしているのに入ってくる
 	// とりあえず、is_bump flagを持たせて対応
-	if (is_bump_data_exists(its_p->obj->obj_color))
+	if (is_bump_texture(its_p->obj->obj_color))
 	{
 		return (get_bump_normal(its_p));
 	}

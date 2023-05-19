@@ -12,19 +12,6 @@
 
 #include "minirt.h"
 
-bool	is_bump_data_exists(t_obj_color obj_color)
-{
-	return (obj_color.is_bump);
-//	return (its_p->obj->obj_color.bump_data.data != NULL);
-}
-
-bool	is_image_data_exists(t_obj_color obj_color)
-{
-	return (obj_color.is_texture);
-//	return (obj_color.texture_data.data != NULL);
-//	return (its_p->obj->obj_color.texture_data.data != NULL);
-}
-
 // todo:tmp
 bool	is_obj_exists_between_itspos_and_light(t_scene_info *scene, t_diffuse_param p)
 {
@@ -32,7 +19,6 @@ bool	is_obj_exists_between_itspos_and_light(t_scene_info *scene, t_diffuse_param
 	t_intersection_point	tmp_its_p;
 	bool					is_obj_exists;
 	double					search_distance;
-
 
 	shadow_ray.pos = vec_k1v1_k2v2(1.0, p.its_p.position, EPSILON, p.vec_pos2light);
 	shadow_ray.unit_dir = p.vec_pos2light;
@@ -52,4 +38,17 @@ bool	is_obj_perfect_ref(t_obj_color obj_color)
 bool	is_obj_checker(t_obj_color obj_color)
 {
 	return (obj_color.is_checker);
+}
+
+bool	is_bump_texture(t_obj_color obj_color)
+{
+	return (obj_color.is_bump);
+//	return (its_p->obj->obj_color.bump_data.data != NULL);
+}
+
+bool	is_image_texture(t_obj_color obj_color)
+{
+	return (obj_color.is_texture);
+//	return (obj_color.texture_data.data != NULL);
+//	return (its_p->obj->obj_color.texture_data.data != NULL);
 }
