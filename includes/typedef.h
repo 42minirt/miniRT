@@ -184,27 +184,29 @@ struct    s_img
 	int	*data;    // data=[R11,G11,B11, R12,G12,B12, ..., R21,G21,B21,..., Rhw,Ghw,Bhw]
 };
 
+// init: init_obj() in get_objects_setting.c
 struct s_obj_color
 {
-	t_color ka; // ambient ref
-	t_color kd; // diffuse ref
-	t_color ks; // specular ref //fix
+	t_color ka; // ambient ref	// fix(0.1, 0.1, 0.1)
+	t_color kd; // diffuse ref	// rf_file
+	t_color ks; // specular ref	// fix (1.0, 1.0, 1.0)
 
 	double	shininess;	// alpha, fix
 
-	double	ia;	// fix
-	double	id;	// fix
-	double	is;	// fix
+	// ia, id, is は light依存？
+//	double	ia;	// fix
+//	double	id;	// fix
+//	double	is;	// fix
 
 // bonus
-	bool	is_perfect_ref;
-	t_color	kf; // kf kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
+	bool	is_perfect_ref;	// init:false
+	t_color	kf;				// kf kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
 
-	bool 	is_checker;
+	bool 	is_checker;		// init:false
 	t_color	checker_color;
 
-	t_img	texture_data;
-	t_img	bump_data;
+	t_img	texture_data;	// init: texture_data.data=NULL
+	t_img	bump_data; 		// init: bump_data.data=NULL
 };
 
 struct s_obj
@@ -241,8 +243,9 @@ struct s_scene_info
 {
 	t_color	ambient_color;
 	double	brightness;
-	t_list *lights;		 //content: light;
-	t_list *objs;		//content : obj;
+
+	t_list	*lights;		 //content: light;
+	t_list	*objs;		//content : obj;
 };
 
 struct s_camera_info

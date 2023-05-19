@@ -61,12 +61,7 @@ void	draw(t_all_info info)
 			color = get_gradation_background_color(height_ratio);
 			eye2screen_xy = get_screen_vector(info, x, y);
 			raytrace(&info, eye2screen_xy, &color);
-
-			r = (int)(255 * CLAMP(color.r, 0, 1));
-			g = (int)(255 * CLAMP(color.g, 0, 1));
-			b = (int)(255 * CLAMP(color.b, 0, 1));
-//			put_pixel(info.mlx_info, x, y, color);
-			my_mlx_pixel_put(info.mlx_info, x, y, r << 16 | g << 8 | b);
+			put_pixel(info.mlx_info, x, y, color);
             x++;
         }
         y++;

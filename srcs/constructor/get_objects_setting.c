@@ -16,15 +16,18 @@ t_obj	*init_obj(void)
 {
 	t_obj	*obj;
 
-	obj = (t_obj *) ft_calloc(sizeof(t_obj), 1);
+	obj = (t_obj *)ft_calloc(sizeof(t_obj), 1);
 	if (!obj)
 		return (FAILURE);
 	obj->obj_color.is_perfect_ref = false;
 	obj->obj_color.is_checker = false;
 	obj->obj_color.texture_data.data = NULL;
 	obj->obj_color.bump_data.data = NULL;
-	obj->obj_color.shininess = 10.0; // fix ?
-	obj->obj_color.ks = init_color(1.0, 1.0, 1.0);
+	obj->obj_color.shininess = 10.0; // tmp
+	obj->obj_color.ka = init_color(0.1, 0.1, 0.1); // tmp
+	obj->obj_color.ks = init_color(1.0, 1.0, 1.0); // tmp
+	obj->obj_color.kf = init_color(1.0, 1.0, 1.0); // tmp
+
 	return (obj);
 }
 

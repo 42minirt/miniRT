@@ -60,7 +60,6 @@ static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	bool					is_intersect;
 	t_color					color;
 	t_intersection_point	its_p;
-	static int				ints_cnt = 0;
 
 	counter++;	// tmp
 	if (counter > MAX_RECURSION)
@@ -72,8 +71,9 @@ static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
         return (false);
 
 	// 色の計算（background or obj color
+//	color_set(&color, 0.0, 0.0, 0.0);
 	color_set(&color, 1, 0.0, 0.0);
-//	color = color_add(color, calc_ambient_reflection(info->scene_info));
+//	color = color_add(color, calc_ambient_reflection(info->scene_info, its_p));
 //	color = color_add(color, calc_diffuse_reflection(info->scene_info, &its_p, eye2screen));
 //	color = color_add(color, calc_specular_reflection(info, &its_p, eye2screen));
 //	color = color_add(color, calc_perfect_reflection(info, &its_p, eye2screen));

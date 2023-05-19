@@ -12,7 +12,10 @@
 
 #include "minirt.h"
 
-t_color	calc_ambient_reflection(t_scene_info *scene)
+t_color	calc_ambient_reflection(t_scene_info *scene, t_intersection_point its_p)
 {
-	return (scene->ambient_color);
+	t_color	ret;
+
+	ret = color_mul_k1c1k2c2(1.0, scene->ambient_color, 1.0, its_p.obj->obj_color.ka);
+	return (ret);
 }

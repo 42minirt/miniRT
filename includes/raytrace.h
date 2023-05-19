@@ -34,7 +34,7 @@ t_d_param		calc_d_param_of_corn(t_corn_param p);
 
 /* raytracing */
 bool			raytrace(t_all_info *info, t_ray eye2screen, t_color *color);
-t_color			calc_ambient_reflection(t_scene_info *scene);
+t_color			calc_ambient_reflection(t_scene_info *scene, t_intersection_point its_p);
 t_color			calc_diffuse_reflection(t_scene_info *scene, \
 									t_intersection_point *its_p, t_ray eye2screen);
 t_color			calc_specular_reflection(t_all_info *info, \
@@ -54,7 +54,7 @@ bool			is_bump_data_exists(t_obj_color obj_color);
 bool			is_image_data_exists(t_obj_color obj_color);
 bool			is_obj_perfect_ref(t_intersection_point *its_p);
 bool			is_obj_checker(t_intersection_point *its_p);
-bool			is_obj_exists_extension_of_ray(t_scene_info *scene, t_diffuse_param p);
+bool			is_obj_exists_between_itspos_and_light(t_scene_info *scene, t_diffuse_param p);
 
 /* get_its_pos_img_color */
 t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p);

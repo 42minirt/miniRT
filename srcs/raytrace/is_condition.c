@@ -23,7 +23,7 @@ bool	is_image_data_exists(t_obj_color obj_color)
 }
 
 // todo:tmp
-bool	is_obj_exists_extension_of_ray(t_scene_info *scene, t_diffuse_param p)
+bool	is_obj_exists_between_itspos_and_light(t_scene_info *scene, t_diffuse_param p)
 {
 	t_ray					shadow_ray;
 	t_intersection_point	its_p;
