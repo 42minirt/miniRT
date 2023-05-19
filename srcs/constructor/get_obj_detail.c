@@ -19,13 +19,10 @@ static t_parse_res	get_sphere_detail(const char *line, t_obj *obj)
 
 	obj->type = BALL;
 	idx = 0;
-	printf("%s 1\n", __func__);
 	if (parse_vec(line, &obj->shape_data.sphere.center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
-	printf("%s 2\n", __func__);
 	if (parse_double(line, &obj->shape_data.sphere.diameter, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
-	printf("%s 3\n", __func__);
 	if (parsing_color(line, &obj->obj_color.kd, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])

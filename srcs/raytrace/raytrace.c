@@ -30,27 +30,28 @@ bool	check_intersection(t_scene_info *scene, t_ray eye2screen, t_intersection_po
 	double					t;
 	double					tmp_t;
 	t_list					*obj_node;
-	t_intersection_point	*tmp_itsp;
+	t_intersection_point	tmp_itsp;
 
 	t = INFINITY;
 	its_p = NULL;
-	tmp_itsp = NULL;
 	obj_node = scene->objs;
 	//intersectionが存在しているか確認
 	while (obj_node != NULL)
 	{
-		tmp_t = calc_intersection(obj_node->content, eye2screen, tmp_itsp);
-		if (tmp_t >= 0 && tmp_t < t)
+		tmp_t = calc_intersection(obj_node->content, eye2screen, &tmp_itsp);
+		// todo:中途半端なitspのupdateはバグの原因になりそう
+		// calc_intersection()内でもtmp_itspに代入し、交点があれば*itsp = tmp_itsp　
+
+		if ( 0 <= tmp_t && tmp_t < t)
 		{
 			t = tmp_t;
-			its_p = tmp_itsp;
+			its_p = &tmp_itsp;
 		}
 		obj_node = obj_node->next;
 	}
 	if (its_p == NULL)
 		return (false);
-	else
-		return (true);
+	return (true);
 }
 
 static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
@@ -59,6 +60,7 @@ static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	bool					is_intersect;
 	t_color					color;
 	t_intersection_point	its_p;
+	static int				ints_cnt = 0;
 
 	counter++;	// tmp
 	if (counter > MAX_RECURSION)
@@ -70,9 +72,9 @@ static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
         return (false);
 
 	// 色の計算（background or obj color
-	color_set(&color, 0.0, 0.0, 0.0);
-	color = color_add(color, calc_ambient_reflection(info->scene_info));
-	color = color_add(color, calc_diffuse_reflection(info->scene_info, &its_p, eye2screen));
+	color_set(&color, 1, 0.0, 0.0);
+//	color = color_add(color, calc_ambient_reflection(info->scene_info));
+//	color = color_add(color, calc_diffuse_reflection(info->scene_info, &its_p, eye2screen));
 //	color = color_add(color, calc_specular_reflection(info, &its_p, eye2screen));
 //	color = color_add(color, calc_perfect_reflection(info, &its_p, eye2screen));
 	*ret_color = color;

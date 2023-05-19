@@ -22,44 +22,56 @@ static t_color	get_gradation_background_color(double height_ratio)
 	return (color);
 }
 
-// pos(0,0,0)
-// dir(0,0,1)
+// screen_z = 0
+// camera_pos(0,0,-5)
+// camera_dir(0,0,1)
 t_ray get_screen_vector(t_all_info info, size_t x, size_t y)
 {
-	t_ray	ret;
-	t_vec	pos_for_test = set(0.0, 0.0, -5.0);
+	t_vec	camera_pos_for_test = set(0.0, 0.0, -5.0);
+	t_vec	screen_pos;
+	t_ray	eye2screen;
 
-	ret.pos.x = 2.0 * (double)x / (WINDOW_WIDTH - 1.0) - 1.0;
-	ret.pos.y = -2.0 * (double)y / (WINDOW_HEIGHT - 1.0) + 1.0;
-	ret.pos.z = 0.0;
-	ret.unit_dir = sub(ret.pos, pos_for_test);
-	ret.unit_dir = norm_vec(ret.unit_dir);
-	return (ret);
+	(void)info;
+	screen_pos.x = 2.0 * (double)x / (WINDOW_WIDTH - 1.0) - 1.0;
+	screen_pos.y = -2.0 * (double)y / (WINDOW_HEIGHT - 1.0) + 1.0;
+//	screen_pos.x = (double)x - (WINDOW_WIDTH / 2.0);
+//	screen_pos.y = (WINDOW_HEIGHT / 2.0) - (double)y;
+	screen_pos.z = 0.0;
+	eye2screen.pos = camera_pos_for_test;
+	eye2screen.unit_dir = sub(screen_pos, camera_pos_for_test);
+	eye2screen.unit_dir = norm_vec(eye2screen.unit_dir);
+	return (eye2screen);
 }
 
 void	draw(t_all_info info)
 {
 	t_ray	eye2screen_xy;
 	t_color	color;
-    size_t	y = 0;
-    size_t	x = 0;
+    size_t	y;
+    size_t	x;
 	double	height_ratio = 1.0f;
+	int			r, g, b;
 
-	printf("draw start\n");
+	y = 0;
 	while (y < WINDOW_HEIGHT)
     {
+		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
 			color = get_gradation_background_color(height_ratio);
 			eye2screen_xy = get_screen_vector(info, x, y);
 			raytrace(&info, eye2screen_xy, &color);
-			put_pixel(info.mlx_info, x, y, color);
+
+			r = (int)(255 * CLAMP(color.r, 0, 1));
+			g = (int)(255 * CLAMP(color.g, 0, 1));
+			b = (int)(255 * CLAMP(color.b, 0, 1));
+//			put_pixel(info.mlx_info, x, y, color);
+			my_mlx_pixel_put(info.mlx_info, x, y, r << 16 | g << 8 | b);
             x++;
         }
         y++;
 		height_ratio = 1.0 - (double)y / WINDOW_HEIGHT;
 	}
-	printf("draw end\n");
 }
 
 int main(int argc, char **argv)
@@ -79,6 +91,7 @@ int main(int argc, char **argv)
 		ft_dprintf(STDERR_FILENO, "Error : init error :(\n");
 		return (EXIT_FAILURE);
 	}
+
 	draw(info);
 
 	mlx_put_image_to_window(info.mlx_info->mlx, info.mlx_info->win, info.mlx_info->img, 0, 0);

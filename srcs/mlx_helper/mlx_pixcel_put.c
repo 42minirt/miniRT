@@ -14,9 +14,9 @@
 
 double	clamp(double num, double min, double max)
 {
-	if (min >= num)
+	if (num <= min)
 		return (min);
-	if (num >= max)
+	if (max <= num)
 		return (max);
 	return ((int)num);
 }
@@ -26,9 +26,19 @@ void	put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color c)
 	char	*dst;
 	int		int_color;
 
+//	if (c.r > 250)
+//		printf("(r,g,b)=(%lf,%lf,%lf)\n", c.r, c.g, c.b);
 	int_color = (int)(255 * clamp(c.r, 0.0, 1.0)) << 16 \
 				| (int)(255 * clamp(c.g, 0.0, 1.0)) << 8 \
 				| (int)(255 * clamp(c.b, 0.0, 1.0));
 	dst = mlx_info->addr + (y * mlx_info->line_length + x * (mlx_info->bits_per_pixel / 8));
 	*(unsigned int*)dst = int_color;
+}
+
+void	my_mlx_pixel_put(t_mlx_info *mlx_info, size_t x, size_t y, int color)
+{
+	char	*dst;
+
+	dst = mlx_info->addr + (y * mlx_info->line_length + (int)x * (mlx_info->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }

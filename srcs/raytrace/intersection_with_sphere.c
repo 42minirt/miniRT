@@ -17,10 +17,10 @@ static t_d_param	calc_d_param_of_sphere(t_sphere *sphere, t_ray ray)
 	t_vec		pe_pc;
 	t_d_param	d_param;
 
-	neg_vec(&pe_pc, &ray.pos, &sphere->center);
-	d_param.a = dot_vec(&ray.unit_dir, &ray.unit_dir);
-	d_param.b = 2.0 * dot_vec(&ray.unit_dir, &pe_pc);
-	d_param.c = dot_vec(&pe_pc, &pe_pc) - pow(sphere->radius, 2);
+	pe_pc = sub(ray.pos, sphere->center);
+	d_param.a = dot(ray.unit_dir, ray.unit_dir);
+	d_param.b = 2.0 * dot(ray.unit_dir, pe_pc);
+	d_param.c = dot(pe_pc, pe_pc) - pow(sphere->radius, 2);
 	return (d_param);
 }
 
@@ -32,9 +32,9 @@ static t_intersection_point	calc_intp_info_of_shpere(t_sphere *sphere, \
 
 	intp.distance = t;
 	td = k_vec(t, ray.unit_dir);
-	add_vec(&intp.position, &ray.pos, &td);
-	neg_vec(&intp.normal, &intp.position, &sphere->center);
-	normalize(&intp.normal, &intp.normal);
+	intp.position = add(ray.pos, td);
+	intp.normal = sub(intp.position, sphere->center);
+	intp.normal = norm_vec(intp.normal);
 	return (intp);
 }
 
@@ -52,7 +52,7 @@ double	calc_intersect_with_sphere(t_obj *obj, \
 		return (-1.0);
 	solve_quadratic_equation(&d_param);
 	t = get_valid_distance(d_param.t1, d_param.t2);
-	if (t <= 0.0 || !its_p)
+	if (t <= 0.0)
 		return (-1.0);
 	*its_p = calc_intp_info_of_shpere(sphere, ray, t);
 	(*its_p).obj = obj;

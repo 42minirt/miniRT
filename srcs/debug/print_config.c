@@ -27,12 +27,12 @@ static void	print_lights(t_scene_info *scene)
 		c = light->light_color;
 		if (light->type == LT_POINT)
 			printf("  Point Light : (%5.1f, %5.1f, %5.1f), " \
-			"                                %5.1f," \
+			"                                    %5.1f," \
 			"          (%5.1f, %5.1f, %5.1f)\n", \
 			v.x, v.y, v.z, light->brightness, c.r, c.g, c.b);
 		else
 			printf("  Spot Light  : (%5.1f, %5.1f, %5.1f), " \
-			"                               %5.1f,   %5.1f," \
+			"                                    %5.1f,   %5.1f," \
 			"   (%5.1f, %5.1f, %5.1f)\n", \
 			v.x, v.y, v.z, light->brightness, light->sl_angle, c.r, c.g, c.b);
 		node = node->next;

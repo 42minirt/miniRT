@@ -31,12 +31,10 @@ static int	init_mlx(t_mlx_info *mlx_info)
 	mlx_info->mlx = mlx_init();
 	if (!mlx_info->mlx)
 		return (FAILURE);
-	mlx_info->win = mlx_new_window(mlx_info->mlx, \
-	WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
+	mlx_info->win = mlx_new_window(mlx_info->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
 	if (!mlx_info->win)
 		return (FAILURE);
-	mlx_info->img = mlx_new_image(mlx_info->mlx, \
-	WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx_info->img = mlx_new_image(mlx_info->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!mlx_info->img)
 		return (FAILURE);
 	mlx_info->addr = mlx_get_data_addr(mlx_info->img, \
@@ -56,6 +54,8 @@ static int	init_scene_and_camera(t_all_info *all_info, const char *rt_path)
 	debug_print_config(all_info);
 	update_scene(all_info->scene_info); // color = brightness * color,...
 	update_camera(all_info->camera_info);
+	printf("----- update -----\n");
+	debug_print_config(all_info);
 	return (SUCCESS);
 }
 

@@ -37,7 +37,8 @@
 
 /********** window **********/
 # define WINDOW_HEIGHT	540
-# define WINDOW_WIDTH	960
+# define WINDOW_WIDTH	540
+//# define WINDOW_WIDTH	960
 # define WINDOW_TITLE	"miniRT"
 
 /********** string **********/
@@ -58,6 +59,11 @@
 # define EVENT_KEY_PRESS	2
 # define KEY_ESC			0xff1b
 
+#define MIN(a, b)	(a <= b ? a : b)
+#define MAX(a, b)	(a >= b ? a : b)
+#define CLAMP(val, minval, maxval)	MIN(MAX(val, minval), maxval)
+
+
 //単位ベクトル以外の情報に下記のように記載するのかどうか
 //1 unit_vec
 //2 size
@@ -71,6 +77,7 @@ t_color		backgroundcolor_init();
 void		destruct_info(t_all_info *info);
 
 /* mlx helper */
+void		my_mlx_pixel_put(t_mlx_info *mlx_info, size_t x, size_t y, int color);
 void		put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);
 void		mlx_hooks(t_mlx_info *mlx_info);
 
