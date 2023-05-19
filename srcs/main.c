@@ -82,7 +82,6 @@ int main(int argc, char **argv)
 	{
 		// todo: error msg
 		destruct_info(&info);
-		ft_dprintf(STDERR_FILENO, "Error : init error :(\n");
 		return (EXIT_FAILURE);
 	}
 

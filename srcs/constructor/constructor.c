@@ -43,29 +43,45 @@ static int	init_mlx(t_mlx_info *mlx_info)
 }
 
 // 順番不明のため、scene, cameraを同時に初期化する
-static int	init_scene_and_camera(t_all_info *all_info, const char *rt_path)
+static t_parse_res	init_scene_and_camera(t_all_info *all_info, const char *rt_path)
 {
-	if (parsing_config(all_info, rt_path) == FAILURE)
-		return (FAILURE);
-	if (validate_scene(all_info->scene_info) == FAILURE)
-		return (FAILURE);
-	if (validate_camera(all_info->camera_info) == FAILURE)
-		return (FAILURE);
+	t_parse_res	result;
+	result = parsing_config(all_info, rt_path);
+	if (result != PASS)
+		return (result);
+	result = validate_scene(all_info->scene_info);
+	if (result != PASS)
+		return (result);
+	result = validate_camera(all_info->camera_info);
+	if (result != PASS)
+		return (result);
 	debug_print_config(all_info);
 	update_scene(all_info->scene_info); // color = brightness * color,...
 	update_camera(all_info->camera_info);
 	printf("\n----- update -----\n");
 	debug_print_config(all_info);
-	return (SUCCESS);
+	return (result);
 }
 
 int	construct_info(t_all_info *all_info, const char *rt_path)
 {
+	t_parse_res	result;
 	if (alloc_info_ptr(all_info) == FAILURE)
+	{
+		ft_dprintf(STDERR_FILENO, "[Error] : Failure in init memory allocate\n");
 		return (FAILURE);
+	}
 	if (init_mlx(all_info->mlx_info) == FAILURE)
+	{
+		ft_dprintf(STDERR_FILENO, "[Error] : Failure in init mlx\n");
 		return (FAILURE);
-	if (init_scene_and_camera(all_info, rt_path) == FAILURE)
+	}
+	result = init_scene_and_camera(all_info, rt_path);
+	if (result != PASS)
+	{
+		ft_dprintf(STDERR_FILENO, "[Error] : Failure in parse ; %s\n", parse_result_char(result));
 		return (FAILURE);
+	}
+	printf("[Parse config] : %s\n", parse_result_char(result));
 	return (SUCCESS);
 }

@@ -17,7 +17,7 @@
 
 // constructor, destructor
 int			construct_info(t_all_info *all_info, const char *rt_path);
-int			parsing_config(t_all_info *all_info, const char *rt_path);
+t_parse_res	parsing_config(t_all_info *all_info, const char *rt_path);
 t_parse_res	validate_scene(t_scene_info *scene_info);
 t_parse_res	validate_camera(t_camera_info *camera_info);
 t_parse_res	get_ambient_setting(const char *line, t_scene_info *scene);

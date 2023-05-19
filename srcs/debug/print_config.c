@@ -28,12 +28,12 @@ static void	print_lights(t_scene_info *scene)
 		if (light->type == LT_POINT)
 			printf("  Point Light : (%5.1f, %5.1f, %5.1f), " \
 			"                                   %5.1f," \
-			"        (%5.1f, %5.1f, %5.1f)\n", \
+			"           (%5.1f, %5.1f, %5.1f)\n", \
 			v.x, v.y, v.z, light->brightness, c.r, c.g, c.b);
 		else
 			printf("  Spot Light  : (%5.1f, %5.1f, %5.1f), " \
 			"                                   %5.1f,   %5.1f," \
-			"    (%5.1f, %5.1f, %5.1f)\n", \
+			"           (%5.1f, %5.1f, %5.1f)\n", \
 			v.x, v.y, v.z, light->brightness, light->sl_angle, c.r, c.g, c.b);
 		node = node->next;
 	}
@@ -69,7 +69,7 @@ void	debug_print_config(t_all_info *info)
 	c = info->scene_info->ambient_color;
 	printf("Ambient       : %5.1f, "\
 	"                                  "\
-	"                               (%5.1f, %5.1f, %5.1f)\n", \
+	"                                  (%5.1f, %5.1f, %5.1f)\n", \
 	info->scene_info->brightness, c.r, c.g, c.b);
 	printf("Camera        : \n");
 	printf("Lights\n");

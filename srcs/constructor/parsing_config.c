@@ -58,13 +58,13 @@ static t_parse_res	parse_line(t_all_info *all, const char *line)
 	return (result);
 }
 
-static int	parse_config_line_by_line(t_all_info *all, int fd)
+static t_parse_res	parse_config_line_by_line(t_all_info *all, int fd)
 {
 	char		*line;
-	int			result;
 	t_parse_res	parse_result;
+	t_parse_res	ret_res;
 
-	result = SUCCESS;
+	ret_res = PASS;
 	while (true)
 	{
 		line = get_next_line(fd, false);
@@ -72,36 +72,30 @@ static int	parse_config_line_by_line(t_all_info *all, int fd)
 			break ;
 		parse_result = parse_line(all, line);
 		if (parse_result != PASS)
-		{
-			printf("[Error] parse_config_line: %s\n", \
-			parse_result_char(parse_result));
-			result = FAILURE;
-		}
+			ret_res = parse_result;
 		free(line);
 	}
-	if (result == SUCCESS)
-		printf("parse_config_line:%s\n", parse_result_char(PASS));
-	return (result);
+	return (ret_res);
 }
 
-int	parsing_config(t_all_info *all, const char *rt_path)
+t_parse_res	parsing_config(t_all_info *all, const char *rt_path)
 {
-	int	fd;
-	int	result;
+	int			fd;
+	t_parse_res	result;
 
 	errno = 0;
 	fd = open(rt_path, O_RDONLY);
 	if (fd == OPEN_ERROR)
 	{
 		perror("open");
-		return (FAILURE);
+		return (ERROR_FATAL);
 	}
 	result = parse_config_line_by_line(all, fd);
 	errno = 0;
 	if (close(fd) == CLOSE_ERROR)
 	{
 		perror("close");
-		return (FAILURE);
+		return (ERROR_FATAL);
 	}
 	return (result);
 }
