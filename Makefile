@@ -40,9 +40,9 @@ CONSTRUCTOR_SRC	= constructor.c \
 				  parsing_config.c \
 				  parsing_digits.c \
 				  parsing_helper.c \
-				  update_camera.c \
-				  update_scene.c \
-				  update_scene_each_obj.c \
+				  update_camera_config.c \
+				  update_scene_config.c \
+				  update_scene_config_each_obj.c \
 				  validate_config.c \
 				  validate_config_color.c \
 				  validate_config_shape.c \

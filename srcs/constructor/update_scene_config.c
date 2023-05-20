@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_scene.c                                     :+:      :+:    :+:   */
+/*   update_scene_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,13 +12,13 @@
 
 #include "minirt.h"
 
-static void	update_scene_ambient_color(t_scene_info *scene)
+static void	update_config_ambient_color(t_scene_info *scene)
 {
 	scene->ambient_color = \
 	color_k1c1(1.0 / 255.0, scene->ambient_color);
 }
 
-static void	update_scene_lights(t_scene_info *scene)
+static void	update_config_lights(t_scene_info *scene)
 {
 	t_list	*node;
 	t_light	*light;
@@ -48,7 +48,7 @@ static void	update_scene_each_obj(t_obj *obj)
 		update_scene_corn_info(&obj->shape_data.corn);
 }
 
-static void	update_scene_objs(t_scene_info *scene)
+static void	update_config_objs(t_scene_info *scene)
 {
 	t_list	*node;
 	t_obj	*obj;
@@ -69,9 +69,9 @@ static void	update_scene_objs(t_scene_info *scene)
 	}
 }
 
-void	update_scene(t_scene_info *scene)
+void	update_scene_config(t_scene_info *scene)
 {
-	update_scene_ambient_color(scene);
-	update_scene_lights(scene);
-	update_scene_objs(scene);
+	update_config_ambient_color(scene);
+	update_config_lights(scene);
+	update_config_objs(scene);
 }

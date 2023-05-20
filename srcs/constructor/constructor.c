@@ -42,7 +42,7 @@ static int	init_mlx(t_mlx_info *mlx_info)
 	return (SUCCESS);
 }
 
-// 順番不明のため、scene, cameraを同時に初期化する
+// parse scene & camera -> update config
 static t_parse_res	init_scene_and_camera(t_all_info *all_info, const char *rt_path)
 {
 	t_parse_res	result;
@@ -56,8 +56,10 @@ static t_parse_res	init_scene_and_camera(t_all_info *all_info, const char *rt_pa
 	if (result != PASS)
 		return (result);
 	debug_print_config(all_info);
-	update_scene(all_info->scene_info); // color = brightness * color,...
-	update_camera(all_info->camera_info);
+
+	update_scene_config(all_info->scene_info); // color = brightness * color,...
+	update_camera_config(all_info->camera_info);
+
 	printf("\n  vvvvv update vvvvv \n");
 	debug_print_config(all_info);
 	return (result);
