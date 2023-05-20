@@ -31,6 +31,11 @@ static t_parse_res	get_config_controller(t_identifier id_no, \
 	return (result);
 }
 
+static bool	is_comment_line(char c)
+{
+	return (c == '#');
+}
+
 // spaces <id> spaces <num1> spaces <num2> ... <numN>
 static t_parse_res	parse_line(t_all_info *all, const char *line)
 {
@@ -41,7 +46,7 @@ static t_parse_res	parse_line(t_all_info *all, const char *line)
 
 	idx = 0;
 	skip_spece(line, &idx);
-	if (!line[idx])
+	if (!line[idx] || is_comment_line(line[idx]))
 		return (PASS);
 	id_str = get_identifier_str(line, idx);
 	if (!id_str)
