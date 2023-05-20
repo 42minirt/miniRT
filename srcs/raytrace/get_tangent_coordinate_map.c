@@ -42,7 +42,7 @@ static t_tangetnt_map	get_spherical_map(t_intersection_point *its_p)
 	azimuth_angle_phi = atan2(pos_local.z, pos_local.x);
 	elevation_angle_theta \
 		= acos(pos_local.y / its_p->obj->shape_data.sphere.radius);
-	map.u = azimuth_angle_phi / (2.0 * M_PI);
+	map.u = (azimuth_angle_phi) / (2.0 * M_PI);
 	map.v = elevation_angle_theta / M_PI;
 	return (map);
 }
@@ -81,7 +81,7 @@ static t_tangetnt_map	get_conical_map(t_intersection_point *its_p)
 	tarns_mat_world2tangent = transpose_matrix(tarns_mat_world2tangent);
 	pos_uv = mul_matrix_vec(tarns_mat_world2tangent, pos_local);
 	azimuth_angle_phi = atan2(pos_uv.z, pos_uv.x);
-	map.u = azimuth_angle_phi / (2.0 * M_PI); // 	map.u = (azimuth_angle_phi + M_PI) / (2.0 * M_PI);
+	map.u = (azimuth_angle_phi) / (2.0 * M_PI); // 	map.u = (azimuth_angle_phi + M_PI) / (2.0 * M_PI);
 	map.v = -1.0 * pos_uv.y / its_p->obj->shape_data.corn.height;
 	return (map);
 }

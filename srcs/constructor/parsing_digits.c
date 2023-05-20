@@ -77,23 +77,17 @@ int	parse_vec(const char *line, t_vec *vec, size_t *idx)
 	return (SUCCESS);
 }
 
-// int_num1, int_num2, int_num3
 int	parsing_color(const char *line, t_color *color, size_t *idx)
 {
-	int	int_r;
-	int	int_g;
-	int	int_b;
-
 	skip_spece(line, idx);
-	if (parse_int(line, &int_r, idx) == FAILURE)
+	if (parse_double(line, &color->r, idx) == FAILURE)
 		return (FAILURE);
 	skip_delimiter(line, idx);
-	if (parse_int(line, &int_g, idx) == FAILURE)
+	if (parse_double(line, &color->g, idx) == FAILURE)
 		return (FAILURE);
 	skip_delimiter(line, idx);
-	if (parse_int(line, &int_b, idx) == FAILURE)
+	if (parse_double(line, &color->b, idx) == FAILURE)
 		return (FAILURE);
 	skip_spece(line, idx);
-	*color = init_color((double)int_r, (double)int_g, (double)int_b);
 	return (SUCCESS);
 }

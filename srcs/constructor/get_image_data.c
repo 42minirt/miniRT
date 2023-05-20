@@ -50,7 +50,7 @@ static int	get_ppm_data(char **split, t_img *img, size_t *data_idx)
 
 	if (get_arr_size(split) == 0)
 	{
-		printf("PPM error : arrsize=0\n");
+		printf("PPM error : arrsize=0\n");//debug
 		return (FAILURE);
 	}
 	row = 0;
@@ -58,7 +58,7 @@ static int	get_ppm_data(char **split, t_img *img, size_t *data_idx)
 	{
 		if (*data_idx >= img->width * 3 * img->height)
 		{
-			printf("PPM error : index out of range\n");
+			printf("PPM error : index out of range\n");//debug
 			return (FAILURE);
 		}
 		img->data[*data_idx] = ft_atoi(split[row], &is_atoi_success);
@@ -78,17 +78,17 @@ static int	process_line_by_col(const char *line, \
 
 	if (file_col == 0 && !is_same_str(line, "P3"))
 	{
-		printf("PPM error : col0\n");
+		printf("PPM invalid format : col 0 is not 'P3'\n");//debug
 		return (FAILURE);
 	}
 	if (file_col == 1 && !is_same_str(line, "# 8-bit ppm - RGB"))
 	{
-		printf("PPM error : col1\n");
+		printf("PPM invalid format : col 1 is not '# 8-bit ppm - RGB'\n");//debug
 		return (FAILURE);
 	}
 	if (file_col == 3 && !is_same_str(line, "255"))
 	{
-		printf("PPM error : col3\n");
+		printf("PPM invalid format : col 3 is not '255'\n");//debug
 		return (FAILURE);
 	}
 	if (file_col == 0 || file_col == 1 || file_col == 3)
@@ -123,7 +123,7 @@ t_parse_res	get_img(t_img *img, int fd)
 	res = PASS;
 	file_col = 0;
 	data_idx = 0;
-	printf("1: %s\n", parse_result_char(res));
+	printf("1: %s\n", parse_result_char(res));//debug
 	while (true)
 	{
 		line = get_next_line(fd, false);
@@ -131,19 +131,17 @@ t_parse_res	get_img(t_img *img, int fd)
 			break ;
 		if (res == PASS \
 		&& process_line_by_col(line, file_col, img, &data_idx) == FAILURE)
-		{
-			free(img->data);
-			img->data = NULL;
 			res = ERROR_FATAL;
-		}
 		free(line);
 		file_col++;
 	}
-	printf("2: %s\n", parse_result_char(res));
+	printf("2: %s\n", parse_result_char(res));//debug
 	printf("idx:%zu, size:%zu\n", data_idx, img->width * 3 * img->height);
-	if (data_idx != img->width * 3 * img->height)
+	if (res != PASS || data_idx != img->width * 3 * img->height)
 	{
-		printf("PPM error : size error\n");
+		free(img->data);
+		img->data = NULL;
+		printf("PPM error : size error\n");//debug
 		return (ERROR_INVALID_ARG);
 	}
 	return (res);
