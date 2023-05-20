@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/18 21:42:18 by user             ###   ########.fr       */
+/*   Updated: 2023/05/20 20:38:05 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
+#include "minirt.h"
 
 bool	SPOT_check(t_vec *dir_pos2lgt_n, t_light *lgt_inf)
 {

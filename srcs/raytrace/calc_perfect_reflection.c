@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:32:12 by user              #+#    #+#             */
-/*   Updated: 2023/05/19 08:03:43 by user             ###   ########.fr       */
+/*   Updated: 2023/05/20 20:38:18 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
+#include "minirt.h"
 
 static	bool	calc_refrectvec(t_intersection_point itsp, t_ray ray, t_vec *rev_vec)
 {

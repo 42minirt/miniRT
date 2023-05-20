@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/19 08:12:23 by user             ###   ########.fr       */
+/*   Updated: 2023/05/20 20:33:53 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void	destruct_info(t_all_info *info);
 /* mlx helper */
 void	put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);
 
-t_color	calc_diffuse_reflection(info, its_p, eye2screen);
-t_color	calc_specular_reflection(info, its_p, eye2screen);
-t_color	calc_perfect_reflection(info, its_p, eye2screen);
+t_color	calc_diffuse_reflection(t_all_info info, t_intersection_point its_p, t_ray eye2screen);
+t_color	calc_specular_reflection(t_all_info info, t_intersection_point its_p, t_ray eye2screen);
+t_color	calc_perfect_reflection(t_all_info info, t_intersection_point its_p, t_ray eye2screen);
 
 t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, size_t counter);
 

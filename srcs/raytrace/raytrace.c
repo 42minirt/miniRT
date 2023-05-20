@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/19 08:14:13 by user             ###   ########.fr       */
+/*   Updated: 2023/05/20 20:38:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
+#include "minirt.h"
 
 //色の計算はambient_reflection　diffuse_reflection　specular_reflection　perfect_reflection　で行う
 t_color	calc_color(t_scene_info *scene_info, t_ray eye2screen)
