@@ -12,10 +12,10 @@
 
 #include "minirt.h"
 
-static bool	is_camera_already_exists(t_camera_info *camera)
-{
-	return (camera->fov_deg >= 0);
-}
+//static bool	is_camera_already_exists(t_camera_info *camera)
+//{
+//	return (camera->fov_deg >= 0);
+//}
 
 // #Camera  viewpoint(xyz)  normalized_orientation_vec[-1,1]  FOV[0,180]
 t_parse_res	get_camera_setting(const char *line, t_camera_info *camera)

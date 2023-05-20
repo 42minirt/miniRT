@@ -177,9 +177,9 @@ union u_shape_data // sphere or plane
 // img.data=[R11,G11,B11, R12,G12,B12, ..., R21,G21,B21,..., Rhw,Ghw,Bhw]
 struct s_img
 {
-	int	height;
-	int	width;
-	int	*data;
+	size_t	height;
+	size_t	width;
+	int		*data;
 };
 
 // init: init_obj() in get_objects_setting.c

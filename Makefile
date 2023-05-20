@@ -166,7 +166,7 @@ $(NAME)			: $(OBJS)
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $$(dirname $@)
-	$(CC) $(INCLUDES) -o $@ -c $<
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
 clean			:
 	rm -rf $(OBJ_DIR)

@@ -27,6 +27,7 @@ double	select_t(double t, t_ray *ray, t_cylinder *cyl, int *i)
 	t_vec	eye2its;
 	t_vec	bottom2its;
 
+	(void)i;
 	t_mix_vec_all(&eye2its, 1, &ray->pos, t, &ray->unit_dir);
 	neg_vec(&bottom2its, &eye2its, &cyl->bottom_center);
 	if (0 <= dot_vec(&bottom2its, &cyl->axis) && dot_vec(&bottom2its, &cyl->axis) <= cyl->height)
