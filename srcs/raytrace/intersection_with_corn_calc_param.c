@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:26:03 by user              #+#    #+#             */
-/*   Updated: 2023/05/17 22:26:05 by user             ###   ########.fr       */
+/*   Updated: 2023/05/20 15:18:27 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ t_d_param	calc_d_param_of_corn(t_corn_param p)
 	t_d_param	d_param;
 
 	d_param.a = pow(p.vec_norm_de_x_n, 2) \
- - pow(p.ratio_r_h, 2) * pow(p.dot_de_n, 2);
+				- pow(p.ratio_r_h, 2) * pow(p.dot_de_n, 2);
 	d_param.b = 2.0 * dot(p.vec_cross_de_n, p.vec_cross_origin2pe_n) \
- - 2.0 * pow(p.ratio_r_h, 2) * p.dot_de_n * p.dot_origin2pe_n;
+				- 2.0 * pow(p.ratio_r_h, 2) * p.dot_de_n * p.dot_origin2pe_n;
 	d_param.c = pow(p.norm_cross_origin2pe_x_n, 2) \
- - pow(p.ratio_r_h, 2) * pow(p.dot_origin2pe_n, 2);
+				- pow(p.ratio_r_h, 2) * pow(p.dot_origin2pe_n, 2);
 	return (d_param);
 }
 

@@ -6,7 +6,7 @@
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/18 19:55:03 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/20 15:27:08 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,12 @@ int			parsing_color(const char *line, t_color *color, size_t *idx);
 void		update_scene_config(t_scene_info *scene);
 void		update_camera_config(t_camera_info *camera);
 
-
 // get_obj_detail
 t_parse_res	get_obj_detail(const char *line, int id_no, t_obj *obj);
 t_parse_res	get_bonus_detail(const char *line, t_obj *obj, size_t *idx);
 t_parse_res	get_image_texture(const char *line, \
 								t_img *obj_color, size_t *idx, bool *empty);
 t_parse_res	get_img(t_img *img, int fd);
-
 
 // validate
 bool		is_vec_in_normal_range(t_vec vec);
@@ -68,6 +66,5 @@ void		update_scene_sphere_info(t_sphere *sphere);
 void		update_scene_plane_info(t_plane *plane);
 void		update_scene_cylinder_info(t_cylinder *cylinder);
 void		update_scene_corn_info(t_corn *corn);
-
 
 #endif //CONSTRUCTOR_H

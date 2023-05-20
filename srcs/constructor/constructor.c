@@ -6,7 +6,7 @@
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/18 17:44:29 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/20 15:27:45 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	alloc_info_ptr(t_all_info *all_info)
 		return (FAILURE);
 	all_info->scene_info->lights = NULL;
 	all_info->scene_info->objs = NULL;
-	all_info->scene_info->brightness = -1.0; // check for duplicate id
-	all_info->camera_info->fov_deg = -1.0;   // check for duplicate id
+	all_info->scene_info->brightness = PARSING_YET;
+	all_info->camera_info->fov_deg = PARSING_YET;
 	return (SUCCESS);
 }
 
@@ -31,10 +31,13 @@ static int	init_mlx(t_mlx_info *mlx_info)
 	mlx_info->mlx = mlx_init();
 	if (!mlx_info->mlx)
 		return (FAILURE);
-	mlx_info->win = mlx_new_window(mlx_info->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
+	mlx_info->win = mlx_new_window(mlx_info->mlx, \
+									WINDOW_WIDTH, WINDOW_HEIGHT, \
+									WINDOW_TITLE);
 	if (!mlx_info->win)
 		return (FAILURE);
-	mlx_info->img = mlx_new_image(mlx_info->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx_info->img = mlx_new_image(mlx_info->mlx, \
+									WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!mlx_info->img)
 		return (FAILURE);
 	mlx_info->addr = mlx_get_data_addr(mlx_info->img, \
@@ -43,9 +46,11 @@ static int	init_mlx(t_mlx_info *mlx_info)
 }
 
 // parse scene & camera -> update config
-static t_parse_res	init_scene_and_camera(t_all_info *all_info, const char *rt_path)
+static t_parse_res	init_scene_and_camera(t_all_info *all_info, \
+											const char *rt_path)
 {
 	t_parse_res	result;
+
 	result = parsing_config(all_info, rt_path);
 	if (result != PASS)
 		return (result);
@@ -56,10 +61,8 @@ static t_parse_res	init_scene_and_camera(t_all_info *all_info, const char *rt_pa
 	if (result != PASS)
 		return (result);
 	debug_print_config(all_info);
-
 	update_scene_config(all_info->scene_info); // color = brightness * color,...
 	update_camera_config(all_info->camera_info);
-
 	printf("\n  vvvvv update vvvvv \n");
 	debug_print_config(all_info);
 	return (result);
@@ -68,6 +71,7 @@ static t_parse_res	init_scene_and_camera(t_all_info *all_info, const char *rt_pa
 int	construct_info(t_all_info *all_info, const char *rt_path)
 {
 	t_parse_res	result;
+
 	if (alloc_info_ptr(all_info) == FAILURE)
 	{
 		ft_dprintf(STDERR_FILENO, "[Error] : Failure in init memory allocate\n");
@@ -81,7 +85,8 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 	result = init_scene_and_camera(all_info, rt_path);
 	if (result != PASS)
 	{
-		ft_dprintf(STDERR_FILENO, "[Error] : Failure in parse ; %s\n", parse_result_char(result));
+		ft_dprintf(STDERR_FILENO, \
+		"[Error] : Failure in parse ; %s\n", parse_result_char(result));
 		return (FAILURE);
 	}
 	printf("[Parse config] : %s\n", parse_result_char(result));

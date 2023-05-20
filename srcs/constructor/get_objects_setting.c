@@ -6,7 +6,7 @@
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/17 23:19:51 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/20 15:29:04 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ t_obj	*init_obj(void)
 	obj->obj_color.kf = init_color(255, 255, 255); // tmp
 	obj->obj_color.ia = 0.01; // tmp 環境光の反射光の放射輝度Ra=ka*Ia, ka=ka*ia, Ia=given
 	obj->obj_color.id = 1.0; // tmp
-	obj->obj_color.is = 1.0; // tmp
 	return (obj);
 }
 
-// #Sphere     center_point(xyz)                           diameter            RGB[0,255]  <bonus_options>
-// #Plane      point(xyz)           normalized_vec[-1,1]                       RGB[0,255]  <bonus_options>
-// #Cylinder   bottom_center(xyz)   normalized_vec[-1,1]   diameter   height   RGB[0,255]  <bonus_options>
-// #Corn       bottom_center(xyz)   normalized_vec[-1,1]   diameter   height   RGB[0,255]  <bonus_options>
+// #Sphere     center_point(xyz)                     d       RGB[0,255]  <bonus>
+// #Plane      point(xyz)           norm_vec[-1,1]           RGB[0,255]  <bonus>
+// #Cylinder   bottom_center(xyz)   norm_vec[-1,1]   d   h   RGB[0,255]  <bonus>
+// #Corn       bottom_center(xyz)   norm_vec[-1,1]   d   h   RGB[0,255]  <bonus>
 
 // #bonus_options
 //    < bonus id >    < parameters >

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 23:16:19 by user              #+#    #+#             */
-/*   Updated: 2023/05/17 22:19:50 by user             ###   ########.fr       */
+/*   Updated: 2023/05/20 15:34:03 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	setvec(t_vec *tgt_vec, double x, double y, double z)
 void	inverse_vec(t_vec *inv_vec, t_vec *inved_vec)
 {
 	setvec(
-		inv_vec,
-		inved_vec->x * (-1),
-		inved_vec->y * (-1),
-		inved_vec->z * (-1)
+		inv_vec, \
+		inved_vec->x * (-1), \
+		inved_vec->y * (-1), \
+		inved_vec->z * (-1) \
 	);
 }
 
@@ -43,10 +43,10 @@ double	obtain_vecsize(t_vec *vec)
 void	times_vec(t_vec *tgt_vec, double t, t_vec *sub)
 {
 	setvec(
-		tgt_vec,
-		t * sub->x,
-		t * sub->y,
-		t * sub->z
+		tgt_vec, \
+		t * sub->x, \
+		t * sub->y, \
+		t * sub->z \
 	);
 }
 

@@ -6,7 +6,7 @@
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:18:34 by takira            #+#    #+#             */
-/*   Updated: 2023/05/18 19:54:35 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/20 15:15:06 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_matrix	transpose_matrix(t_matrix mat);
 
 bool		is_ev_equals_ey(t_basis_world world, t_basis_local local);
 bool		is_ev_equals_inv_ey(t_basis_world world, t_basis_local local);
-bool		is_ew_equals_ez(t_basis_world world, t_basis_local local);
-bool		is_ew_equals_inv_ez(t_basis_world world, t_basis_local local);
+bool		is_ev_equals_ez(t_basis_world world, t_basis_local local);
+bool		is_ev_equals_inv_ez(t_basis_world world, t_basis_local local);
 
 #endif //MATRIX_H

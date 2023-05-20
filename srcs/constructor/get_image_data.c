@@ -6,7 +6,7 @@
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/17 23:19:51 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/20 15:13:00 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int	get_ppm_size(char **split, t_img *img)
 	img->height = ft_atoi(split[1], &is_atoi_success);
 	if (!is_atoi_success)
 		return (FAILURE);
-//	printf("## width:%d, height:%d\n", img->width, img->height);
 	img->data = (int *)ft_calloc(sizeof(int), img->width * 3 * img->height);
 	if (!img->data)
 		return (FAILURE);
@@ -86,6 +85,7 @@ static int	process_line_by_col(const char *line, \
 //   col 3: <color_range>
 //   col 4: <r11> <g11> <b11> <r12> <g12> <b12> ...
 
+// gnl(fd, flag=false): not include `\n` at end of line
 t_parse_res	get_img(t_img *img, int fd)
 {
 	char	*line;
@@ -97,7 +97,7 @@ t_parse_res	get_img(t_img *img, int fd)
 	data_idx = 0;
 	while (true)
 	{
-		line = get_next_line(fd, false); // not include `\n` at end of line
+		line = get_next_line(fd, false);
 		if (!line)
 			break ;
 		if (process_line_by_col(line, file_col, img, &data_idx) == FAILURE)

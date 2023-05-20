@@ -27,6 +27,7 @@ void	update_scene_cylinder_info(t_cylinder *cylinder)
 	cylinder->radius = cylinder->diameter / 2.0;
 	cylinder->axis = norm_vec(cylinder->axis);
 }
+
 void	update_scene_corn_info(t_corn *corn)
 {
 	corn->radius = corn->diameter / 2.0;

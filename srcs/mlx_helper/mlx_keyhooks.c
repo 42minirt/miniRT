@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_keyhooks.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/20 14:34:24 by takira            #+#    #+#             */
+/*   Updated: 2023/05/20 15:16:45 by takira           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 // todo: tmp
@@ -31,7 +43,6 @@ static int	key_hook(int keycode, void *mlx)
 	{
 		printf("right\n");
 	}
-
 	return (0);
 }
 
@@ -40,6 +51,8 @@ void	mlx_hooks(t_mlx_info *mlx_info)
 	const int	mask_key_press = 1L << 0;
 	const int	mask_button_press = 1L << 17;
 
-	mlx_hook(mlx_info->win, EVENT_KEY_PRESS, mask_key_press, key_hook, mlx_info->mlx);
-	mlx_hook(mlx_info->win, EVENT_DESTROY, mask_button_press, close_window, mlx_info->mlx);
+	mlx_hook(mlx_info->win, EVENT_KEY_PRESS, \
+			mask_key_press, key_hook, mlx_info->mlx);
+	mlx_hook(mlx_info->win, EVENT_DESTROY, \
+			mask_button_press, close_window, mlx_info->mlx);
 }

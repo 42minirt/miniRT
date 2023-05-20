@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_scene_config.c                                     :+:      :+:    :+:   */
+/*   update_scene_config.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/17 23:19:51 by takira           ###   ########.fr       */
+/*   Created: 2023/05/20 14:45:55 by takira            #+#    #+#             */
+/*   Updated: 2023/05/20 15:12:10 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	update_config_lights(t_scene_info *scene)
 		light = node->content;
 		light->light_color = \
 		color_k1c1(light->brightness / 255.0, light->light_color);
-
 		if (light->type == LT_SPOT)
 			light->sl_angle_half = light->sl_angle / 2.0;
 		node = node->next;

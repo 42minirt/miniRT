@@ -37,7 +37,8 @@ void	print_sphere(t_obj *obj)
 	pos = obj->shape_data.sphere.center;
 	c = obj->obj_color.kd;
 	printf("  ● Sphere    : (%5.1f, % 5.1f, % 5.1f),"\
-	"                                    %5.1f,           (%5.1f, %5.1f, %5.1f)", \
+	"                                    %5.1f,"\
+	"           (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
 	obj->shape_data.sphere.diameter, \
 	c.r, c.g, c.b);

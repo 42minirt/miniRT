@@ -6,7 +6,7 @@
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/17 23:19:51 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/20 15:37:33 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	normalize(t_vec *normal_vec, t_vec *normarized_vec)
 		exit(1);
 	}
 	setvec(
-			normal_vec,
-			normarized_vec->x / vec_size,
-			normarized_vec->y / vec_size,
-			normarized_vec->z / vec_size
+			normal_vec, \
+			normarized_vec->x / vec_size, \
+			normarized_vec->y / vec_size, \
+			normarized_vec->z / vec_size \
 	);
 }
 
@@ -48,5 +48,5 @@ t_vec	k_vec(double k, t_vec v)
 
 double	norm(t_vec vec)
 {
-	return (sqrt(pow(vec.x,2) + pow(vec.y,2) + pow(vec.z,2)));
+	return (sqrt(pow(vec.x, 2) + pow(vec.y, 2) + pow(vec.z, 2)));
 }

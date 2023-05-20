@@ -6,7 +6,7 @@
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:39:36 by takira            #+#    #+#             */
-/*   Updated: 2023/05/18 19:44:06 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/20 15:31:45 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static t_color	get_itspos_checker_color(t_diffuse_param p)
 	if (!is_obj_checker(p.its_p.obj->obj_color))
 		return (init_color(0.0, 0.0, 0.0));
 	map = get_tangent_coordinate_map(&p.its_p);
-	pattern_a = (int)(floor(map.u * CHECKER_U_MAG) + floor(map.v * CHECKER_V_MAG)) % 2;
+	pattern_a = (int)(floor(map.u * CHECKER_U_MAG) \
+				+ floor(map.v * CHECKER_V_MAG)) % 2;
 	if (pattern_a)
 		return (p.its_p.obj->obj_color.checker_color);
 	return (p.its_p.obj->obj_color.kd);

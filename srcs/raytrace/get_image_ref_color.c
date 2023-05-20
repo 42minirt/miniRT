@@ -6,7 +6,7 @@
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:08:09 by takira            #+#    #+#             */
-/*   Updated: 2023/05/18 19:40:06 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/20 15:30:28 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ static t_map_idx	get_map_idx(t_tangetnt_map map, t_img img)
 
 	map.u *= (double)img.width * IMG_FREQUENCY;
 	map.v *= (double)img.height * IMG_FREQUENCY;
-	ret.row = ((int)map.u % img.width + img.width ) % img.width;
-	ret.col = ((int)map.v % img.height + img.height ) % img.height;
-	ret.idx = ((ret.col * img.width + ret.row) * PPM_RGB_UNIT) % (img.width * img.height * PPM_RGB_UNIT);
+	ret.row = ((int)map.u % img.width + img.width) % img.width;
+	ret.col = ((int)map.v % img.height + img.height) % img.height;
+	ret.idx = ((ret.col * img.width + ret.row) * PPM_RGB_UNIT) \
+				% (img.width * img.height * PPM_RGB_UNIT);
 	return (ret);
 }
 
@@ -46,13 +47,9 @@ t_color	get_itspos_image_texture_color(t_diffuse_param p)
 	ret_color = init_color(0.0, 0.0, 0.0);
 	if (!is_obj_image_texture(p.its_p.obj->obj_color))
 		return (ret_color);
-	img_color = get_its_pos_img_color(&p.its_p,
+	img_color = get_its_pos_img_color(&p.its_p, \
 									  p.its_p.obj->obj_color.texture_data);
-//	ret_color = color_k1c1_k2c2(1.0, img_color, \
-//								p.dot_n_pos2light, p.light->light_color);
-
 	ret_color = color_k1c1(1.0 / 255.0, img_color);
-
 	return (ret_color);
 }
 
@@ -73,8 +70,6 @@ t_vec	get_bump_normal(t_intersection_point *its_p)
 	bump_normal_local.x = (img_color.r - 0.5) / 0.5;
 	bump_normal_local.y = (img_color.g - 0.5) / 0.5;
 	bump_normal_local.z = (img_color.b - 0.5) / 0.5;
-
-	// its_p.normal = +v
 	trans_mat = get_transform_matrix_world2local_yup(its_p->normal);
 	bump_normal_world = mul_matrix_vec(trans_mat, bump_normal_local);
 	bump_normal_world = norm_vec(bump_normal_world);

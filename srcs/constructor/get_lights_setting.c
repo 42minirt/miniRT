@@ -6,7 +6,7 @@
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/17 23:19:51 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/20 15:13:48 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static t_light_type	get_light_type(t_identifier id)
 	return (LT_SPOT);
 }
 
-// #Light      point(xyz)         light_brightness_ratio[0,1]                  RGB[0,255]
-// #Spotlight  Light_point(xyz)   light_brightness_ratio[0,1]   angle[0-180]   RGB[0,255]
+// #Light      point(xyz)         ratio[0,1]                  RGB[0,255]
+// #Spotlight  Light_point(xyz)   ratio[0,1]   angle[0-180]   RGB[0,255]
 t_parse_res	get_light_detail(const char *line, int id_no, t_light *light)
 {
 	size_t	idx;

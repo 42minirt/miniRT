@@ -6,7 +6,7 @@
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/18 19:28:18 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/20 15:36:42 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,47 +16,42 @@
 # include "minirt.h"
 
 /********** typedef union **********/
-typedef union	u_shape_data			t_shape_data;
+typedef union u_shape_data				t_shape_data;
 
 /********** typedef enum **********/
-typedef enum	e_shape_type			t_shape_type;
-typedef enum	e_parse_result			t_parse_res;
-typedef enum	e_identifier			t_identifier;
-typedef enum	e_light_type			t_light_type;
+typedef enum e_shape_type				t_shape_type;
+typedef enum e_parse_result				t_parse_res;
+typedef enum e_identifier				t_identifier;
+typedef enum e_light_type				t_light_type;
 
 /********** typedef struct **********/
-typedef struct	s_all_info					t_all_info;
-typedef struct	s_mlx_info					t_mlx_info;
-typedef struct	s_scene_info				t_scene_info;
-typedef struct	s_camera_info				t_camera_info;
-typedef struct	s_color						t_color;
-typedef struct	s_img						t_img;
-typedef	struct	s_light						t_light;
-typedef struct	s_obj						t_obj;
-typedef struct	s_vec						t_vec;
-typedef struct	s_obj_color					t_obj_color;
-typedef struct	s_ray						t_ray;
-typedef struct	s_intersection_point		t_intersection_point;
-typedef struct	s_plane_shape				t_plane;
-typedef struct	s_sphere_shape				t_sphere;
-typedef struct	s_cylinder_shape			t_cylinder;
-typedef struct	s_corn_shape				t_corn;
-typedef struct	s_discriminant_param		t_d_param;
-typedef struct	s_ints_param_of_corn		t_corn_param;
-typedef struct	s_corn_ints					t_corn_ints;
-typedef struct	s_calc_diffuse_ref_param	t_diffuse_param;
-typedef struct	s_matrix					t_matrix;
-typedef struct	s_basis_vec_world			t_basis_world;
-typedef struct	s_basis_vec_local			t_basis_local;
-typedef struct	s_texture_map				t_tangetnt_map;
-typedef struct	s_map_idx					t_map_idx;
+typedef struct s_all_info				t_all_info;
+typedef struct s_mlx_info				t_mlx_info;
+typedef struct s_scene_info				t_scene_info;
+typedef struct s_camera_info			t_camera_info;
+typedef struct s_color					t_color;
+typedef struct s_img					t_img;
+typedef struct s_light					t_light;
+typedef struct s_obj					t_obj;
+typedef struct s_vec					t_vec;
+typedef struct s_obj_color				t_obj_color;
+typedef struct s_ray					t_ray;
+typedef struct s_intersection_point		t_intersection_point;
+typedef struct s_plane_shape			t_plane;
+typedef struct s_sphere_shape			t_sphere;
+typedef struct s_cylinder_shape			t_cylinder;
+typedef struct s_corn_shape				t_corn;
+typedef struct s_discriminant_param		t_d_param;
+typedef struct s_ints_param_of_corn		t_corn_param;
+typedef struct s_corn_ints				t_corn_ints;
+typedef struct s_calc_diffuse_ref_param	t_diffuse_param;
+typedef struct s_matrix					t_matrix;
+typedef struct s_basis_vec_world		t_basis_world;
+typedef struct s_basis_vec_local		t_basis_local;
+typedef struct s_texture_map			t_tangetnt_map;
+typedef struct s_map_idx				t_map_idx;
 
-// tmp
-typedef struct	t_vec						t_unit_vec;
-typedef double								t_deg;
-typedef double								t_rad;
-
-//////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 /********** enum **********/
 
@@ -98,22 +93,22 @@ enum	e_light_type
 	LT_SPOT = 31,
 };
 
-//////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 /********** struct & union **********/
 
 // create unit
 struct s_vec {
-	double  x;
-	double  y;
-	double  z;
+	double	x;
+	double	y;
+	double	z;
 };
 
 struct s_color
 {
-	double r;
-	double g;
-	double b;
+	double	r;
+	double	g;
+	double	b;
 };
 
 //---------------------------------------------
@@ -133,41 +128,39 @@ struct s_light
 
 //---------------------------------------------
 
-struct	s_sphere_shape
+struct s_sphere_shape
 {
 	t_vec	center;
 	double	radius;
 	double	diameter;
 };
 
-struct	s_plane_shape
+struct s_plane_shape
 {
 	t_vec	center;
-	t_vec	normal;	//todo:normalize
+	t_vec	normal;
 };
 
-struct	s_cylinder_shape
+struct s_cylinder_shape
 {
 	t_vec	bottom_center;
-	t_vec	axis;	//todo:normalize
-
-	double  radius;
+	t_vec	axis;
+	double	radius;
 	double	diameter;
-	double  height;
+	double	height;
 };
 
-struct	s_corn_shape
+struct s_corn_shape
 {
 	t_vec	bottom_center;
 	t_vec	origin;
-	t_vec	axis;	//todo:normalize
-
-	double  radius;
+	t_vec	axis;
+	double	radius;
 	double	diameter;
-	double  height;
+	double	height;
 };
 
-union	u_shape_data // sphere or plane
+union u_shape_data // sphere or plane
 {
 	t_plane		plane;
 	t_sphere	sphere;
@@ -177,37 +170,36 @@ union	u_shape_data // sphere or plane
 
 //---------------------------------------------
 
-struct    s_img
+// img.data=[R11,G11,B11, R12,G12,B12, ..., R21,G21,B21,..., Rhw,Ghw,Bhw]
+struct s_img
 {
 	int	height;
 	int	width;
-	int	*data;    // data=[R11,G11,B11, R12,G12,B12, ..., R21,G21,B21,..., Rhw,Ghw,Bhw]
+	int	*data;
 };
 
 // init: init_obj() in get_objects_setting.c
 struct s_obj_color
 {
-	t_color ka; // ambient ref	// fix(0.1, 0.1, 0.1)
-	t_color kd; // diffuse ref	// rf_file
-	t_color ks; // specular ref	// fix (1.0, 1.0, 1.0)
-
+	t_color	ka; // ambient ref	// fix(0.1, 0.1, 0.1)
+	t_color	kd; // diffuse ref	// rf_file
+	t_color	ks; // specular ref	// fix (1.0, 1.0, 1.0)
 	double	shininess;	// alpha, fix
-
-	// ia, id, is は light依存？
+	// todo: ia, id, is は light依存？
 	double	ia;	// fix
 	double	id;	// fix
 	double	is;	// fix
-
 // bonus
 	bool	is_perfect_ref;	// init:false
 	t_color	kf;				// kf kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
 
-	bool 	is_checker;		// init:false
+	bool	is_checker;		// init:false
 	t_color	checker_color;
 
-	bool 	is_texture;		// init:false
+	bool	is_texture;		// init:false
 	t_img	texture_data;	// init: texture_data.data=NULL
-	bool 	is_bump;		// init:false
+
+	bool	is_bump;		// init:false
 	t_img	bump_data; 		// init: bump_data.data=NULL
 };
 
@@ -223,8 +215,8 @@ struct s_obj
 // eye2screen
 struct s_ray
 {
-	t_vec pos;
-	t_vec unit_dir;
+	t_vec	pos;
+	t_vec	unit_dir;
 };
 
 //---------------------------------------------
@@ -235,7 +227,6 @@ struct s_mlx_info
 	void	*win;
 	void	*img;
 	char	*addr;
-
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -245,18 +236,15 @@ struct s_scene_info
 {
 	t_color	ambient_color;
 	double	brightness;
-
-	t_list	*lights;		 //content: light;
-	t_list	*objs;		//content : obj;
+	t_list	*lights; //content: light;
+	t_list	*objs; //content : obj;
 };
 
 struct s_camera_info
 {
 	t_vec	position;
 	t_vec	direction;
-	double 	fov_deg;	//init:-1
-
-
+	double	fov_deg;	//init:-1
 	t_ray	camera;	//vec or matrix
 };
 
@@ -293,12 +281,9 @@ struct	s_ints_param_of_corn
 	t_vec	vec_cross_de_n;
 	t_vec	vec_cross_origin2pe_n;
 	t_vec	vec_two_x_cross_de_n;
-
 	t_vec	vec_n;
-
 	double	ratio_r_h;
 	double	half_of_vertex_angle;
-
 	double	dot_de_n;
 	double	dot_origin2pe_n;
 	double	vec_norm_de_x_n;
@@ -310,9 +295,7 @@ struct	s_corn_ints
 	t_vec	vec_pos;
 	t_vec	vec_origin2pos;
 	t_vec	vec_norm_origin2pos;
-
 	t_vec	vec_normal;
-
 	double	h;
 };
 
@@ -321,9 +304,7 @@ struct	s_calc_diffuse_ref_param
 	t_vec					vec_normal;
 	t_vec					vec_pos2light;
 	t_vec					vec_light2pos;
-
 	double					dot_n_pos2light;
-
 	t_ray					ray;
 	t_intersection_point	its_p;
 	t_light					*light;
