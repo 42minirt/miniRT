@@ -79,3 +79,10 @@ Left hand
 * `texture_path`のみ, `bumpmap`を読み込まないときは、 `image "texture_path", ""` とする
 * `texture_path` & `bumpmap_path`いずれも`""`はNG   `image "",""`
 * 指定された`path`が有効な`ppm file`でなければNG
+* image fileは`P3`の`PPM`形式とし、先頭のヘッダーは以下のものを前提とする
+  ```
+  P3
+  # 8-bit ppm - RGB
+  witdh height
+  255
+  ```

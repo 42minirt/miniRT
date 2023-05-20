@@ -54,13 +54,13 @@ t_parse_res	get_image_texture(const char *line, \
 	char		*path;
 	int			fd;
 
-	res = ERROR_FATAL;
 	path = get_path(line, idx);
 	if (!path)
-		return (res);
+		return (ERROR_FATAL);
+	res = ERROR_INVALID_ARG;
 	if (is_filename_empty(path))
 		res = validate_continuous_empty_path(empty);
-	else
+	else if (validate_file(path, IMG_EXTENSION) == SUCCESS)
 	{
 		fd = open(path, O_RDONLY);
 		if (fd != OPEN_ERROR)

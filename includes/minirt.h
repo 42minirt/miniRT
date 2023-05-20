@@ -46,6 +46,7 @@
 # define OP_PERFECT_REF		"perfect_ref"
 # define OP_IMAGE_TEXTURE	"image"
 # define RT_EXTENSION		".rt"
+# define IMG_EXTENSION		".ppm"
 
 /********** value **********/
 # define MAX_RECURSION	8
@@ -82,6 +83,7 @@ t_color		backgroundcolor_init(void);
 
 /* destructor */
 void		destruct_info(t_all_info *info);
+void		free_objs(void *content);
 
 /* mlx helper */
 void		put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);

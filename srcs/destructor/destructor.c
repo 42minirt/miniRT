@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-static void	free_objs(void *content)
+void	free_objs(void *content)
 {
 	t_obj		*obj;
 

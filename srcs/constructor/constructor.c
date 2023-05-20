@@ -21,8 +21,6 @@ static int	alloc_info_ptr(t_all_info *all_info)
 		return (FAILURE);
 	all_info->scene_info->lights = NULL;
 	all_info->scene_info->objs = NULL;
-//	all_info->scene_info->brightness = PARSING_YET; // id_strでcountしているから不要？
-//	all_info->camera_info->fov_deg = PARSING_YET;
 	return (SUCCESS);
 }
 
@@ -68,30 +66,6 @@ static t_parse_res	init_scene_and_camera(t_all_info *all_info, \
 	return (result);
 }
 
-static int	validate_rt_path(const char *rt_path)
-{
-	const size_t	path_len = ft_strlen_ns(rt_path);
-	const size_t	extension_len = ft_strlen_ns(RT_EXTENSION);
-	int				fd;
-
-	if (path_len < extension_len)
-		return (FAILURE);
-	if (cnt_chr_in_str('.', rt_path) > 1)
-		return (FAILURE);
-	printf("same_str: s1[%s], s2[%s]\n", &rt_path[path_len - extension_len], RT_EXTENSION);
-	if (!is_same_str(&rt_path[path_len - extension_len], RT_EXTENSION))
-		return (FAILURE);
-	fd = open(rt_path, O_RDONLY);
-	if (fd == OPEN_ERROR)
-		return (FAILURE);
-	if (close(fd) == CLOSE_ERROR)
-	{
-		perror("close");
-		return (PROCESS_ERROR);
-	}
-	return (SUCCESS);
-}
-
 int	construct_info(t_all_info *all_info, const char *rt_path)
 {
 	t_parse_res	result;
@@ -106,7 +80,7 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 		ft_dprintf(STDERR_FILENO, "[Error] : Failure in init mlx\n");
 		return (FAILURE);
 	}
-	if (validate_rt_path(rt_path) != SUCCESS)
+	if (validate_file(rt_path, RT_EXTENSION) != SUCCESS)
 	{
 		ft_dprintf(STDERR_FILENO, "[Error] : rt file invalid\n");
 		return (FAILURE);
