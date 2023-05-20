@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-t_obj	*init_obj(void)
+static t_obj	*init_obj(void)
 {
 	t_obj	*obj;
 
