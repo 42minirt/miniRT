@@ -52,8 +52,8 @@ int	get_identifier_no(const char *id_str)
 {
 	size_t		idx;
 	const char	*ids[] = {\
-	"C", "A", "L", "sl", \
-	"sp", "pl", "cy", "co", NULL};
+	ID_CAMERA, ID_AMBIENT, ID_LIGHT, ID_SPOTLIGHT, \
+	ID_SPHERE, ID_PLANE, ID_CYLINDER, ID_CORN, NULL};
 
 	idx = 0;
 	while (ids[idx])

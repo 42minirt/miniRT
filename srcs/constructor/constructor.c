@@ -52,15 +52,12 @@ static t_parse_res	init_scene_and_camera(t_all_info *all_info, \
 	t_parse_res	result;
 
 	result = parsing_config(all_info, rt_path);
-	printf("1 (%s) res=%s\n", __func__, parse_result_char(result));
 	if (result != PASS)
 		return (result);
 	result = validate_scene(all_info->scene_info);
-	printf("2 (%s) res=%s\n", __func__, parse_result_char(result));
 	if (result != PASS)
 		return (result);
 	result = validate_camera(all_info->camera_info);
-	printf("3 (%s) res=%s\n", __func__, parse_result_char(result));
 	if (result != PASS)
 		return (result);
 	debug_print_config(all_info);

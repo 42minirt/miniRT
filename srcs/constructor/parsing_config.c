@@ -26,7 +26,7 @@ static t_parse_res	get_config_controller(t_identifier id_no, \
 	else if (id_no == id_point_light || id_no == id_spot_light)
 		result = get_lights_setting(line, all->scene_info, id_no);
 	else if (id_no == id_plane || id_no == id_sphere \
-	|| id_no == id_cylinder || id_no == id_corn)
+		|| id_no == id_cylinder || id_no == id_corn)
 		result = get_objects_setting(line, all->scene_info, id_no);
 	return (result);
 }
@@ -37,7 +37,7 @@ static bool	is_comment_line(char c)
 }
 
 // spaces <id> spaces <num1> spaces <num2> ... <numN>
-static t_parse_res	parse_line(t_all_info *all, const char *line)
+static t_parse_res	parse_line(t_all_info *all, const char *line, t_id_cnt *cnt)
 {
 	size_t		idx;
 	char		*id_str;
@@ -53,6 +53,7 @@ static t_parse_res	parse_line(t_all_info *all, const char *line)
 		return (ERROR_FATAL);
 	increment_idx_to_next_format(line, &idx, id_str);
 	id_no = get_identifier_no(id_str);
+	increment_id_cnt(id_str, cnt);
 	free(id_str);
 	if (id_no == ERROR_INVALID_TYPE)
 		return (ERROR_INVALID_TYPE);
@@ -63,7 +64,8 @@ static t_parse_res	parse_line(t_all_info *all, const char *line)
 	return (result);
 }
 
-static t_parse_res	parse_config_line_by_line(t_all_info *all, int fd)
+// errorがあればparseせずgnlを空にする
+static t_parse_res	parse_config_line_by_line(t_all_info *all, int fd, t_id_cnt *cnt)
 {
 	char		*line;
 	t_parse_res	parse_result;
@@ -75,7 +77,8 @@ static t_parse_res	parse_config_line_by_line(t_all_info *all, int fd)
 		line = get_next_line(fd, false);
 		if (!line)
 			break ;
-		parse_result = parse_line(all, line);
+		if (ret_res == PASS)
+			parse_result = parse_line(all, line, cnt);
 		if (parse_result != PASS)
 			ret_res = parse_result;
 		free(line);
@@ -87,6 +90,7 @@ t_parse_res	parsing_config(t_all_info *all, const char *rt_path)
 {
 	int			fd;
 	t_parse_res	result;
+	t_id_cnt	cnt;
 
 	errno = 0;
 	fd = open(rt_path, O_RDONLY);
@@ -95,12 +99,17 @@ t_parse_res	parsing_config(t_all_info *all, const char *rt_path)
 		perror("open");
 		return (ERROR_FATAL);
 	}
-	result = parse_config_line_by_line(all, fd);
+	result = ERROR_FATAL;
+	cnt = init_id_cnt();
+	result = parse_config_line_by_line(all, fd, &cnt);
 	errno = 0;
 	if (close(fd) == CLOSE_ERROR)
 	{
 		perror("close");
 		return (ERROR_FATAL);
 	}
+	if (result == PASS)
+		result = validate_id_cnt(cnt);
 	return (result);
 }
+

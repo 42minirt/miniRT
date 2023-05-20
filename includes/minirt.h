@@ -45,6 +45,7 @@
 # define OP_CHECKER_TEXTURE	"checker"
 # define OP_PERFECT_REF		"perfect_ref"
 # define OP_IMAGE_TEXTURE	"image"
+# define RT_EXTENSION		".rt"
 
 /********** value **********/
 # define MAX_RECURSION	8
@@ -55,6 +56,16 @@
 # define PARSING_YET	(-1.0)
 //#define EPSILON		(1.0 / 512.0)
 # define EPSILON		(1.0 / 256.0)
+
+/********** rt_id **********/
+# define ID_AMBIENT		"A"
+# define ID_CAMERA		"C"
+# define ID_LIGHT		"L"
+# define ID_SPOTLIGHT	"sl"
+# define ID_SPHERE		"sp"
+# define ID_PLANE		"pl"
+# define ID_CYLINDER	"cy"
+# define ID_CORN		"co"
 
 /********** key hook **********/
 # define EVENT_DESTROY		33

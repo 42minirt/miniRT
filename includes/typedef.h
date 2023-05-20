@@ -50,6 +50,8 @@ typedef struct s_basis_vec_world		t_basis_world;
 typedef struct s_basis_vec_local		t_basis_local;
 typedef struct s_texture_map			t_tangetnt_map;
 typedef struct s_map_idx				t_map_idx;
+typedef struct s_id_cnt					t_id_cnt;
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -77,6 +79,7 @@ enum	e_parse_result
 	ERROR_INVALID_ARG = 15,
 	ERROR_OUT_OF_RANGE = 16,
 	ERROR_MULTIPLE_ID = 17,
+	ERROR_MISSING_ID = 18,
 };
 
 enum	e_shape_type
@@ -257,7 +260,7 @@ struct s_all_info
 
 //---------------------------------------------
 
-struct	s_intersection_point
+struct s_intersection_point
 {
 	double	distance;	// 交点から目までの距離　tの値　元となるベクトルが単位ベクトルがtはサイズと重なる
 	t_vec	position;	// 交点の位置ベクトル
@@ -265,7 +268,7 @@ struct	s_intersection_point
 	t_obj	*obj;
 };
 
-struct	s_discriminant_param
+struct s_discriminant_param
 {
 	double	a;
 	double	b;
@@ -275,7 +278,7 @@ struct	s_discriminant_param
 	double	t2;
 };
 
-struct	s_ints_param_of_corn
+struct s_ints_param_of_corn
 {
 	t_vec	vec_origin2pe;
 	t_vec	vec_cross_de_n;
@@ -290,7 +293,7 @@ struct	s_ints_param_of_corn
 	double	norm_cross_origin2pe_x_n;
 };
 
-struct	s_corn_ints
+struct s_corn_ints
 {
 	t_vec	vec_pos;
 	t_vec	vec_origin2pos;
@@ -299,7 +302,7 @@ struct	s_corn_ints
 	double	h;
 };
 
-struct	s_calc_diffuse_ref_param
+struct s_calc_diffuse_ref_param
 {
 	t_vec					vec_normal;
 	t_vec					vec_pos2light;
@@ -316,11 +319,23 @@ struct	s_texture_map
 	double	v;
 };
 
-struct	s_map_idx
+struct s_map_idx
 {
 	size_t	row;
 	size_t	col;
 	size_t	idx;
+};
+
+struct s_id_cnt
+{
+	int	camera_cnt;
+	int	ambient_cnt;
+	int	point_light_cnt;
+	int	spot_light_cnt;
+	int	sphere_cnt;
+	int	plane_cnt;
+	int	cylinder_cnt;
+	int	corn_cnt;
 };
 
 #endif //TYPEDEF_H

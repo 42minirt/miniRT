@@ -96,5 +96,9 @@ const char	*parse_result_char(t_parse_res res)
 		return ("\x1b[31mERROR_INVALID_ARG\x1b[0m");
 	if (res == ERROR_OUT_OF_RANGE)
 		return ("\x1b[31mERROR_OUT_OF_RANGE\x1b[0m");
-	return ("\x1b[31mERROR_MULTIPLE_ID\x1b[0m");
+	if (res == ERROR_MULTIPLE_ID)
+		return ("\x1b[31mERROR_MULTIPLE_ID\x1b[0m");
+	if (res == ERROR_MISSING_ID)
+		return ("\x1b[31mERROR_MISSING_ID\x1b[0m");
+	return ("\x1b[31mERROR\x1b[0m");
 }
