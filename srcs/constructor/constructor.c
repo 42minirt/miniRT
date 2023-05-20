@@ -21,8 +21,8 @@ static int	alloc_info_ptr(t_all_info *all_info)
 		return (FAILURE);
 	all_info->scene_info->lights = NULL;
 	all_info->scene_info->objs = NULL;
-	all_info->scene_info->brightness = PARSING_YET;
-	all_info->camera_info->fov_deg = PARSING_YET;
+//	all_info->scene_info->brightness = PARSING_YET; // id_strでcountしているから不要？
+//	all_info->camera_info->fov_deg = PARSING_YET;
 	return (SUCCESS);
 }
 

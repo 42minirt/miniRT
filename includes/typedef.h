@@ -21,7 +21,7 @@ typedef union u_shape_data				t_shape_data;
 /********** typedef enum **********/
 typedef enum e_shape_type				t_shape_type;
 typedef enum e_parse_result				t_parse_res;
-typedef enum e_identifier				t_identifier;
+typedef enum e_identifier				t_id;
 typedef enum e_light_type				t_light_type;
 
 /********** typedef struct **********/
@@ -67,6 +67,7 @@ enum	e_identifier
 	id_plane = 5,
 	id_cylinder = 6,
 	id_corn = 7,
+	id_invalid,
 };
 
 enum	e_parse_result

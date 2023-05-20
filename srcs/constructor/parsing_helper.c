@@ -48,7 +48,7 @@ char	*get_identifier_str(const char *line, size_t idx)
 	return (id_str);
 }
 
-int	get_identifier_no(const char *id_str)
+t_id	get_identifier_no(const char *id_str)
 {
 	size_t		idx;
 	const char	*ids[] = {\
@@ -62,5 +62,5 @@ int	get_identifier_no(const char *id_str)
 			return ((int)idx);
 		idx++;
 	}
-	return (ERROR_INVALID_TYPE);
+	return (id_invalid);
 }

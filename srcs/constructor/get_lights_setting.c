@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-static t_light_type	get_light_type(t_identifier id)
+static t_light_type	get_light_type(t_id id)
 {
 	if (id == id_point_light)
 		return (LT_POINT);

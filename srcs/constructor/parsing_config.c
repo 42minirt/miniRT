@@ -13,7 +13,7 @@
 #include "minirt.h"
 #include <fcntl.h>
 
-static t_parse_res	get_config_controller(t_identifier id_no, \
+static t_parse_res	get_config_controller(t_id id_no, \
 										const char *line, t_all_info *all)
 {
 	t_parse_res	result;
@@ -42,7 +42,7 @@ static t_parse_res	parse_line(t_all_info *all, const char *line, t_id_cnt *cnt)
 	size_t		idx;
 	char		*id_str;
 	t_parse_res	result;
-	int			id_no;
+	t_id		id_no;
 
 	idx = 0;
 	skip_spece(line, &idx);
@@ -53,14 +53,15 @@ static t_parse_res	parse_line(t_all_info *all, const char *line, t_id_cnt *cnt)
 		return (ERROR_FATAL);
 	increment_idx_to_next_format(line, &idx, id_str);
 	id_no = get_identifier_no(id_str);
-	increment_id_cnt(id_str, cnt);
 	free(id_str);
-	if (id_no == ERROR_INVALID_TYPE)
+	if (id_no == id_invalid)
 		return (ERROR_INVALID_TYPE);
 	skip_spece(line, &idx);
 	if (!line[idx])
 		return (ERROR_LACK_INFO);
 	result = get_config_controller(id_no, &line[idx], all);
+	if (result == PASS)
+		increment_id_cnt(id_no, cnt);
 	return (result);
 }
 

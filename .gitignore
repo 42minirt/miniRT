@@ -15,6 +15,7 @@
 !srcs/*/*/
 
 !rt_file
+!rt_file/**
 !img/
 !libs
 !libs/**

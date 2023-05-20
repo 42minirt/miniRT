@@ -22,8 +22,8 @@ t_parse_res	get_ambient_setting(const char *line, t_scene_info *scene)
 {
 	size_t	idx;
 
-	if (is_ambient_already_exists(scene))
-		return (ERROR_MULTIPLE_ID);
+//	if (is_ambient_already_exists(scene))
+//		return (ERROR_MULTIPLE_ID);
 	idx = 0;
 	if (parse_double(line, &scene->brightness, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);

@@ -22,8 +22,8 @@ t_parse_res	get_camera_setting(const char *line, t_camera_info *camera)
 {
 	size_t	idx;
 
-	if (is_camera_already_exists(camera))
-		return (ERROR_MULTIPLE_ID);
+//	if (is_camera_already_exists(camera))
+//		return (ERROR_MULTIPLE_ID);
 	idx = 0;
 	if (parse_vec(line, &camera->position, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
