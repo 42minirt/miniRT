@@ -40,7 +40,7 @@ int			ft_tolower(int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strncmp_ns(const char *s1, const char *s2, size_t n);
 int			ft_strcmp_ns(const char *s1, const char *s2);
-bool		is_same_str(const char *str1, const char *str2);
+bool		is_equal_strings(const char *str1, const char *str2);
 
 size_t		ft_strlen(const char *s);
 size_t		ft_strlen_ns(const char *s);

@@ -76,17 +76,17 @@ static int	process_line_by_col(const char *line, \
 	char	**split;
 	int		res;
 
-	if (file_col == 0 && !is_same_str(line, "P3"))
+	if (file_col == 0 && !is_equal_strings(line, "P3"))
 	{
 		printf("PPM invalid format : col 0 is not 'P3'\n");//debug
 		return (FAILURE);
 	}
-	if (file_col == 1 && !is_same_str(line, "# 8-bit ppm - RGB"))
+	if (file_col == 1 && !is_equal_strings(line, "# 8-bit ppm - RGB"))
 	{
 		printf("PPM invalid format : col 1 is not '# 8-bit ppm - RGB'\n");//debug
 		return (FAILURE);
 	}
-	if (file_col == 3 && !is_same_str(line, "255"))
+	if (file_col == 3 && !is_equal_strings(line, "255"))
 	{
 		printf("PPM invalid format : col 3 is not '255'\n");//debug
 		return (FAILURE);

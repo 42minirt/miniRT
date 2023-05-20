@@ -12,18 +12,31 @@
 
 #include "minirt.h"
 
+static const char	*get_filename(const char *path)
+{
+	char	*ptr;
+
+	ptr = ft_strrchr(path, '/');
+	if (!ptr)
+		return (path);
+	ptr += 1;
+	return (ptr);
+}
+
 int	validate_file(const char *path, const char *extension)
 {
-	const size_t	path_len = ft_strlen_ns(path);
+	const char		*filename = get_filename(path);
+	const size_t	filename_len = ft_strlen_ns(filename);
 	const size_t	extension_len = ft_strlen_ns(extension);
 	int				fd;
 
-	if (path_len < extension_len)
-		return (FAILURE);
+	printf(" DEBUG(validate_file): path:[%s] -> filename:[%s]\n", path, filename);
 	if (cnt_chr_in_str('.', path) > 1)
 		return (FAILURE);
-	printf("same_str: s1[%s], s2[%s]\n", &path[path_len - extension_len], extension);
-	if (!is_same_str(&path[path_len - extension_len], extension))
+	if (filename_len <= extension_len)
+		return (FAILURE);
+	printf(" DEBUG(validate_file) extension: file[%s]\n", &filename[filename_len - extension_len]);
+	if (!is_equal_strings(&filename[filename_len - extension_len], extension))
 		return (FAILURE);
 	fd = open(path, O_RDONLY);
 	if (fd == OPEN_ERROR)

@@ -58,7 +58,7 @@ t_id	get_identifier_no(const char *id_str)
 	idx = 0;
 	while (ids[idx])
 	{
-		if (is_same_str(id_str, ids[idx]))
+		if (is_equal_strings(id_str, ids[idx]))
 			return ((int)idx);
 		idx++;
 	}

@@ -12,7 +12,7 @@
 
 #include "../../../include/ft_string.h"
 
-bool	is_same_str(const char *str1, const char *str2)
+bool	is_equal_strings(const char *str1, const char *str2)
 {
 	const size_t	str1_len = ft_strlen_ns(str1);
 	const size_t	str2_len = ft_strlen_ns(str2);

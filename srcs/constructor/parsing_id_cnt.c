@@ -65,21 +65,21 @@ void	increment_id_cnt(id_t id_no, t_id_cnt *cnt)
 
 t_parse_res	validate_id(const char *id_str)
 {
-	if (is_same_str(id_str, ID_AMBIENT))
+	if (is_equal_strings(id_str, ID_AMBIENT))
 		return (PASS);
-	if (is_same_str(id_str, ID_CAMERA))
+	if (is_equal_strings(id_str, ID_CAMERA))
 		return (PASS);
-	if (is_same_str(id_str, ID_LIGHT))
+	if (is_equal_strings(id_str, ID_LIGHT))
 		return (PASS);
-	if (is_same_str(id_str, ID_SPOTLIGHT))
+	if (is_equal_strings(id_str, ID_SPOTLIGHT))
 		return (PASS);
-	if (is_same_str(id_str, ID_SPHERE))
+	if (is_equal_strings(id_str, ID_SPHERE))
 		return (PASS);
-	if (is_same_str(id_str, ID_PLANE))
+	if (is_equal_strings(id_str, ID_PLANE))
 		return (PASS);
-	if (is_same_str(id_str, ID_CYLINDER))
+	if (is_equal_strings(id_str, ID_CYLINDER))
 		return (PASS);
-	if (is_same_str(id_str, ID_CORN))
+	if (is_equal_strings(id_str, ID_CORN))
 		return (PASS);
 	return (ERROR_INVALID_TYPE);
 }
