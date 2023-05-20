@@ -12,12 +12,9 @@
 
 #include "minirt.h"
 
-// 円錐面はorigin(先端)から上下に広がる。
-// 先端が上向き（下方向に伸びる円錐面）の有効範囲は、cornの高さをHとすると -H <= h <= 0
-// corn->axisを底面から先端方向に定義
 static bool	is_in_range_corn_height(double t, double intp_h, double corn_h)
 {
-	if (0.0 < t && 0.0 <= intp_h && intp_h <= corn_h)
+	if (0.0 < t && 0 <= intp_h && intp_h <= corn_h)
 		return (true);
 	return (false);
 }
@@ -38,10 +35,7 @@ static t_intersection_point	calc_intp_info_of_corn(t_corn *corn, t_ray ray, \
 	const t_corn_ints		ints_t2 = calc_ints(corn, ray, p, d.t2);
 
 	if (is_in_range_corn_height(d.t1, ints_t1.h, corn->height))
-	{
 		assign_intp_info(&ret_intp, ints_t1, d.t1);
-//		ret_intp.normal = inverse(ret_intp.normal);
-	}
 	else if (is_in_range_corn_height(d.t2, ints_t2.h, corn->height))
 	{
 		assign_intp_info(&ret_intp, ints_t2, d.t2);

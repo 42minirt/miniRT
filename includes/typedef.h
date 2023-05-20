@@ -290,19 +290,19 @@ struct	s_discriminant_param
 struct	s_ints_param_of_corn
 {
 	t_vec	vec_origin2pe;
-	t_vec	vec_cross_de_axis;
-	t_vec	vec_cross_origin2pe_axis;
+	t_vec	vec_cross_de_n;
+	t_vec	vec_cross_origin2pe_n;
 	t_vec	vec_two_x_cross_de_n;
 
-	t_vec	vec_inv_axis;
+	t_vec	vec_n;
 
 	double	ratio_r_h;
 	double	half_of_vertex_angle;
 
-	double	dot_de_axit;
-	double	dot_origin2pe_axis;
-	double	vec_norm_de_x_axis;
-	double	norm_cross_origin2pe_x_axis;
+	double	dot_de_n;
+	double	dot_origin2pe_n;
+	double	vec_norm_de_x_n;
+	double	norm_cross_origin2pe_x_n;
 };
 
 struct	s_corn_ints
