@@ -80,7 +80,7 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 		ft_dprintf(STDERR_FILENO, "[Error] : Failure in init mlx\n");
 		return (FAILURE);
 	}
-	if (validate_file(rt_path, RT_EXTENSION) != SUCCESS)
+	if (validate_filename(rt_path, RT_EXTENSION) != SUCCESS)
 	{
 		ft_dprintf(STDERR_FILENO, "[Error] : rt file invalid\n");
 		return (FAILURE);

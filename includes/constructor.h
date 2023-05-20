@@ -74,7 +74,7 @@ void		increment_id_cnt(id_t id_no, t_id_cnt *cnt);
 t_parse_res	validate_id(const char *id_str);
 
 // validate file
-int			validate_file(const char *path, const char *extension);
+int			validate_filename(const char *path, const char *extension);
 
 
 #endif //CONSTRUCTOR_H
