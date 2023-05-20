@@ -52,12 +52,15 @@ static t_parse_res	init_scene_and_camera(t_all_info *all_info, \
 	t_parse_res	result;
 
 	result = parsing_config(all_info, rt_path);
+	printf("1 (%s) res=%s\n", __func__, parse_result_char(result));
 	if (result != PASS)
 		return (result);
 	result = validate_scene(all_info->scene_info);
+	printf("2 (%s) res=%s\n", __func__, parse_result_char(result));
 	if (result != PASS)
 		return (result);
 	result = validate_camera(all_info->camera_info);
+	printf("3 (%s) res=%s\n", __func__, parse_result_char(result));
 	if (result != PASS)
 		return (result);
 	debug_print_config(all_info);
@@ -66,6 +69,30 @@ static t_parse_res	init_scene_and_camera(t_all_info *all_info, \
 	printf("\n  vvvvv update vvvvv \n");
 	debug_print_config(all_info);
 	return (result);
+}
+
+static int	validate_rt_path(const char *rt_path)
+{
+	const size_t	path_len = ft_strlen_ns(rt_path);
+	const size_t	extension_len = ft_strlen_ns(RT_EXTENSION);
+	int				fd;
+
+	if (path_len < extension_len)
+		return (FAILURE);
+	if (cnt_chr_in_str('.', rt_path) > 1)
+		return (FAILURE);
+	printf("same_str: s1[%s], s2[%s]\n", &rt_path[path_len - extension_len], RT_EXTENSION);
+	if (!is_same_str(&rt_path[path_len - extension_len], RT_EXTENSION))
+		return (FAILURE);
+	fd = open(rt_path, O_RDONLY);
+	if (fd == OPEN_ERROR)
+		return (FAILURE);
+	if (close(fd) == CLOSE_ERROR)
+	{
+		perror("close");
+		return (PROCESS_ERROR);
+	}
+	return (SUCCESS);
 }
 
 int	construct_info(t_all_info *all_info, const char *rt_path)
@@ -80,6 +107,11 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 	if (init_mlx(all_info->mlx_info) == FAILURE)
 	{
 		ft_dprintf(STDERR_FILENO, "[Error] : Failure in init mlx\n");
+		return (FAILURE);
+	}
+	if (validate_rt_path(rt_path) != SUCCESS)
+	{
+		ft_dprintf(STDERR_FILENO, "[Error] : rt file invalid\n");
 		return (FAILURE);
 	}
 	result = init_scene_and_camera(all_info, rt_path);
