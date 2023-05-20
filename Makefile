@@ -49,7 +49,7 @@ CONSTRUCTOR_SRC	= constructor.c \
 				  validate_config_color.c \
 				  validate_config_shape.c \
 				  validate_config_light.c \
-				  is_range.c
+				  validate_is_range.c
 
 SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
