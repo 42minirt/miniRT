@@ -6,10 +6,9 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 18:33:31 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 20:23:04 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -50,7 +49,7 @@
 # define MAX_RECURSION		8
 
 /********** epsiron **********/
-# define EPSIRON 			1 / 512
+# define EPSIRON 			0.002
 
 # define MT_PERFECT_REFLECTION 666
 
@@ -67,7 +66,7 @@
 # define CHECKER_V_MAG	10
 # define PARSING_YET	(-1.0)
 //#define EPSILON		(1.0 / 512.0)
-# define EPSILON		(1.0 / 256.0)
+# define EPSILON		0.004
 # define TO_RADIANS		(2.0 * M_PI / 180.0)
 # define TO_DEGREES		(1.0 / TO_RADIANS)
 
