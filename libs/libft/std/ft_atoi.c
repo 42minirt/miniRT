@@ -17,16 +17,8 @@ static bool	is_under_long(long long before_x10_val, long long add_val, int sign)
 	long long	ov_div;
 	long long	ov_mod;
 
-	if (sign == 1)
-	{
-		ov_div = LONG_MAX / 10;
-		ov_mod = LONG_MAX % 10;
-	}
-	else
-	{
-		ov_div = ((unsigned long)-LONG_MIN) / 10;
-		ov_mod = ((unsigned long)-LONG_MIN) % 10;
-	}
+	ov_div = LONG_MAX / 10;
+	ov_mod = LONG_MAX % 10 + (sign == -1);
 	if (before_x10_val > ov_div)
 		return (false);
 	if (before_x10_val == ov_div && add_val >= ov_mod)

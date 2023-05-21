@@ -17,16 +17,8 @@ static bool	is_less_than_ll(long long before_x10, long long add, long long sign)
 	long long	ov_div;
 	long long	ov_mod;
 
-	if (sign == 1)
-	{
-		ov_div = LONG_LONG_MAX / 10;
-		ov_mod = LONG_LONG_MAX % 10;
-	}
-	else
-	{
-		ov_div = ((unsigned long)-LONG_LONG_MIN) / 10;
-		ov_mod = ((unsigned long)-LONG_LONG_MIN) % 10;
-	}
+	ov_div = LLONG_MAX / 10;
+	ov_mod = LLONG_MAX % 10 + (sign == -1);
 	if (before_x10 > ov_div)
 		return (false);
 	if (before_x10 == ov_div && add > ov_mod)
@@ -50,9 +42,9 @@ static int	get_sign_and_increment_ptr(char *num, size_t *idx)
 
 static long long	ret_over_flow(long long sign)
 {
-	if (sign > 0)
-		return (LONG_LONG_MAX);
-	return (LONG_LONG_MIN);
+	if (sign == 1)
+		return (LLONG_MAX);
+	return (LLONG_MIN);
 }
 
 long long	ft_strtoll(char *num, bool *is_success)
