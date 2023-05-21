@@ -70,6 +70,6 @@ t_parse_res	get_image_texture(const char *line, \
 				res = ERROR_FATAL;
 		}
 	}
-	free(path);
+	x_free_1d_alloc((void **)&path);
 	return (res);
 }

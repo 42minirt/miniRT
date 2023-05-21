@@ -75,7 +75,7 @@ t_parse_res	get_bonus_detail(const char *line, t_obj *obj, size_t *idx)
 		res = get_image_texture_info(line, &obj->obj_color, idx);
 	else
 		printf("[DEBUG]invalid bonus option:[%s]\n", option_id);
-	free(option_id);
+	x_free_1d_alloc((void **)&option_id);
 	if (line[*idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (res);

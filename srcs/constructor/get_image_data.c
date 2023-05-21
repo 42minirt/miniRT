@@ -140,7 +140,7 @@ t_parse_res	get_img(t_img *img, int fd)
 	printf("idx:%zu, size:%zu\n", data_idx, img->width * 3 * img->height);
 	if (res != PASS || data_idx != img->width * 3 * img->height)
 	{
-		free(img->data);
+		x_free_1d_alloc((void **)&img->data);
 		img->data = NULL;
 		printf("PPM error : size error\n");//debug
 		return (ERROR_INVALID_ARG);
