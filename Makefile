@@ -1,5 +1,6 @@
 #####################################################
-# COMPILE
+# COMPILE ###########################################
+#####################################################
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror -MMD -MP
 
@@ -13,19 +14,22 @@ endif
 
 
 #####################################################
-# PROGRAM NAME
+### PROGRAM NAME ####################################
+#####################################################
 NAME			= miniRT
 
 
 #####################################################
-# SRC FILE
+# SRC FILE ##########################################
+#####################################################
 VPATH			= $(SRC_DIR) $(INCLUDE_DIR)
 
 SRC_DIR			= srcs
 SRC				= main.c
 SRCS			= $(addprefix $(SRC_DIR)/, $(SRC))
 
-#-------------------------------------------------------------------------
+#----------------------------------------------------
+# CONSTRUCTOR
 CONSTRUCTOR_DIR	= constructor
 CONSTRUCTOR_SRC	= constructor.c \
 				  ft_strtod.c \
@@ -54,20 +58,23 @@ CONSTRUCTOR_SRC	= constructor.c \
 
 SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
-#-------------------------------------------------------------------------
+#----------------------------------------------------
+# DESTRUCTOR
 DESTRUCTOR_DIR	= destructor
 DESTRUCTOR_SRC	= destructor.c
 
 SRC				+= $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_SRC))
 
-#-------------------------------------------------------------------------
+#----------------------------------------------------
+# MLX_HELPER
 MLX_HELPER		= mlx_helper
 MLX_HELPER_SRS	= mlx_pixcel_put.c \
 				  mlx_keyhooks.c
 
 SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 
-#-------------------------------------------------------------------------
+#----------------------------------------------------
+# RAYTRACE
 RAYTRACE_DIR	= raytrace
 RAYTRACE_SRC	= calc_ambient_reflection.c \
 				  calc_diffuse_reflection.c \
@@ -85,14 +92,16 @@ RAYTRACE_SRC	= calc_ambient_reflection.c \
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 
-#-------------------------------------------------------------------------
+#----------------------------------------------------
+# COLOR
 COLOR_DIR		= calc_color
 COLOR_SRC		= calc_color.c \
 				  color_handling.c
 
 SRC				+= $(addprefix $(COLOR_DIR)/, $(COLOR_SRC))
 
-#-------------------------------------------------------------------------
+#----------------------------------------------------
+# VECTOR
 VECTOR_DIR		= calc_vector
 VECTOR_SRC		= arithmetic.c \
 				  arithmetic_ret_vec.c \
@@ -101,7 +110,8 @@ VECTOR_SRC		= arithmetic.c \
 
 SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
 
-#-------------------------------------------------------------------------
+#----------------------------------------------------
+# MATRIX
 MATRIX_DIR		= matrix
 MATRIX_SRC		= calc_matrix.c \
 				  is_basis_equals.c \
@@ -109,14 +119,16 @@ MATRIX_SRC		= calc_matrix.c \
 
 SRC				+= $(addprefix $(MATRIX_DIR)/, $(MATRIX_SRC))
 
-#-------------------------------------------------------------------------
+#----------------------------------------------------
+# DEBUG
 DEBUG_DIR		= debug
 DEBUG_SRC		= print_config.c \
 				  print_config_helper.c
 
 SRC				+= $(addprefix $(DEBUG_DIR)/, $(DEBUG_SRC))
 
-#-------------------------------------------------------------------------
+#----------------------------------------------------
+# SYS
 SYS_DIR			= sys
 SYS_SRC			= x_free.c \
 				  x_open.c \
@@ -126,7 +138,8 @@ SRC				+= $(addprefix $(SYS_DIR)/, $(SYS_SRC))
 
 
 #####################################################
-# OBJECT FILE
+# OBJECT FILE #######################################
+#####################################################
 OBJ_DIR			= objs
 OBJ				= $(SRC:%.c=%.o)
 OBJS			= $(addprefix $(OBJ_DIR)/, $(OBJ))
@@ -135,7 +148,9 @@ DEPS			= $(SRCS:%.c=%:d)
 
 
 #####################################################
-# INCLUDE and LIBRARY FILE
+# INCLUDE and LIBRARY FILE ##########################
+#####################################################
+
 INCLUDE_DIR		= includes
 X11_INCLUDE		= /usr/X11/include
 INCLUDE_DIRS	= $(INCLUDE_DIR) $(X11_INCLUDE)
@@ -153,7 +168,8 @@ LIBS 			= -lft -lmlx -lX11 -lXext
 
 
 #####################################################
-# OS Check
+# OS Check ##########################################
+#####################################################
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
 	LIBS_DIR 	+= /usr/X11R6/lib
@@ -164,7 +180,8 @@ endif
 
 
 #####################################################
-# RULES
+# RULES #############################################
+#####################################################
 all				: $(NAME)
 
 $(NAME)			: $(OBJS)
