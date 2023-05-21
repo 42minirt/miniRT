@@ -85,10 +85,10 @@ static char	*read_file_and_save(int fd, char *save)
 char	*get_next_line(int fd, bool is_include_nl)
 {
 	char		*gnl_line;
-	static char	*save_buf[OPEN_MAX];
+	static char	*save_buf[FOPEN_MAX];
 
 	errno = 0;
-	if (fd < 0 || OPEN_MAX < fd || BUFFER_SIZE <= 0 || INT_MAX < BUFFER_SIZE)
+	if (fd < 0 || FOPEN_MAX < fd || BUFFER_SIZE <= 0 || INT_MAX < BUFFER_SIZE)
 		return (NULL);
 	if (cnt_chr_in_str('\n', save_buf[fd]) == 0)
 	{

@@ -67,7 +67,7 @@ static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	// 交点判定
 	is_intersect = check_intersection(info->scene_info, eye2screen, &its_p);
     if (is_intersect == false)
-        return (false);
+		return (false);
 
 	// 色の計算（background or obj color
 	color_set(&color, 0.0, 0.0, 0.0);

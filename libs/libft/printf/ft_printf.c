@@ -34,7 +34,7 @@ int	ft_dprintf(int fd, const char *fmt, ...)
 	ssize_t			sum_print_bytes;
 	va_list			arg;
 
-	if (!fmt || fd < 0 || OPEN_MAX < fd)
+	if (!fmt || fd < 0 || FOPEN_MAX < fd)
 		return (-1);
 	info = init_info(fd);
 	if (!info)

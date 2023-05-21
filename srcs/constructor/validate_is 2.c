@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_helper.c                                   :+:      :+:    :+:   */
+/*   is_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,40 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "minirt.h"
 
-void	skip_spece(const char *line, size_t *idx)
+bool	is_vec_in_normal_range(t_vec vec)
 {
-	while (line[*idx] && ft_isspace(line[*idx]))
-		*idx += 1;
+	const double	x = vec.x;
+	const double	y = vec.y;
+	const double	z = vec.z;
+
+	return ((-1.0 <= x && x <= 1.0) \
+	&& (-1.0 <= y && y <= 1.0) \
+	&& (-1.0 <= z && z <= 1.0));
 }
 
-void	skip_delimiter(const char *line, size_t *idx)
+bool	is_color_in_range(t_color color)
 {
-	skip_spece(line, idx);
-	if (line[*idx] == ',')
-		*idx += 1;
-	skip_spece(line, idx);
+	const double	r = color.r;
+	const double	g = color.g;
+	const double	b = color.b;
+
+	return ((0.0 <= r && r <= 255.0) \
+	&& (0.0 <= g && g <= 255.0) \
+	&& (0.0 <= b && b <= 255.0));
 }
 
-void	increment_idx_to_next_format(const char *line, \
-									size_t *idx, char *prev_str)
+bool	is_ratio_in_range(double ratio)
 {
-	*idx += ft_strlen_ns(prev_str);
-	skip_spece(line, idx);
+	return (0.0 <= ratio && ratio <= 1.0);
 }
 
-char	*get_identifier_str(const char *line, size_t idx)
+bool	is_angle_in_range(double angle)
 {
-	char	*id_str;
-	size_t	str_len;
+	return (0.0 <= angle && angle <= 180.0);
+}
 
-	str_len = 0;
-	skip_spece(line, &idx);
-	while (line[idx + str_len] && !ft_isspace(line[idx + str_len]))
-		str_len++;
-	id_str = ft_substr(line, idx, str_len);
-	if (!id_str)
-		return (NULL);
-	return (id_str);
+bool	is_comment_line(char c)
+{
+	return (c == '#');
 }

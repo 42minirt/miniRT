@@ -20,7 +20,6 @@
 # include <errno.h>
 # include <limits.h>
 # include <fcntl.h>
-# include <sys/syslimits.h>
 
 # define BUFFER_SIZE 256
 
