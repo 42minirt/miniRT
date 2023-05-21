@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:39:36 by takira            #+#    #+#             */
-/*   Updated: 2023/05/20 15:26:53 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 20:34:58 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_color			calc_diffuse_reflection(t_scene_info *scene, \
 t_color			calc_specular_reflection(t_all_info *info, \
 							t_intersection_point *its_p, t_ray eye2screen);
 t_color			calc_perfect_reflection(t_all_info *info, \
-							t_intersection_point *its_p, t_ray eye2screen);
+							t_intersection_point *its_p, t_ray eye2screen, size_t counter);
 t_vec			get_bump_normal(t_intersection_point *its_p);
 
 /* calc_diffuse_color */

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:32:12 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 20:33:51 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static	void	set_rayset(t_ray *ref_ray, t_intersection_point its_p, t_vec rev_vec
 	ref_ray->unit_dir = rev_vec;
 }
 
-t_color	calc_perfect_reflection(t_all_info info, t_intersection_point its_p, t_ray eye2screen, size_t counter)
+t_color	calc_perfect_reflection(t_all_info *info, t_intersection_point *its_p, t_ray eye2screen, size_t counter)
 {
 	t_color	color;
 	t_vec	reverse_vec;

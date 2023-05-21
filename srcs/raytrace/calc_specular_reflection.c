@@ -6,11 +6,12 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 20:42:38 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+#include <stdbool.h>
 
 bool	SPOT_check(t_vec *dir_pos2lgt_n, t_light *lgt_inf)
 {
@@ -79,16 +80,16 @@ t_color	calc_specular_reflection(t_all_info *info, t_intersection_point	its_p, t
 	t_color	color;
 
 	color_set(&color, 0.0, 0.0, 0.0);
-	if (its_p.obj->type == MT_PERFECT_REFLECTION)
+	if (its_p.obj->obj_color.is_perfect_ref == true)
 		return (color);
 	obj = its_p.obj;
-	if (its_p.obj->type == BALL)
+	if (is_equal_strings(obj->id_str, ID_SPHERE))
 		its_p.obj = (t_sphere *)obj;
-	else if (its_p.obj->type == PLANE)
+	else if (is_equal_strings(obj->id_str, ID_PLANE))
 		its_p.obj = (t_plane *)obj;
-	else if (its_p.obj->type == CORN)
+	else if (is_equal_strings(obj->id_str, ID_CORN))
 		its_p.obj = (t_corn *)obj;
-	else if (its_p.obj->type == CYLINDER)
+	else if (is_equal_strings(obj->id_str, ID_CYLINDER))
 		its_p.obj = (t_cylinder *)obj;
 	return (calc_specref(info, its_p, eye2screen, color));
 }

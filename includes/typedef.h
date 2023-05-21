@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 18:31:58 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 20:43:48 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,10 +244,8 @@ struct s_obj_color
 	t_color	kf;
 	bool	is_checker;
 	t_color	checker_color;
-
 	bool	is_texture;
 	t_img	texture_data;
-
 	bool	is_bump;
 	t_img	bump_data;
 };

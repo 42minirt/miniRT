@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:02:34 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:15:02 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 20:27:03 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../includes/minirt.h"
 
 static t_color	get_gradation_background_color(double height_ratio)
 {
