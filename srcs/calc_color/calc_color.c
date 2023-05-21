@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:34:21 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:34:22 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 17:41:04 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,6 @@ t_color	color_add(const t_color c1, t_color c2)
 	color.r = c1.r + c2.r;
 	color.g = c1.g + c2.g;
 	color.b = c1.b + c2.b;
-	return (color);
-}
-
-t_color	init_color(double r, double g, double b)
-{
-	t_color	color;
-
-	color.r = r;
-	color.g = g;
-	color.b = b;
 	return (color);
 }
 

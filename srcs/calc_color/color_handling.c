@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 23:35:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:36:12 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 17:41:09 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,15 @@ void	color_add_pointer(t_color *tgt, t_color *t1, t_color *t2)
 		t1->r + t2->r,
 		t1->g + t2->g,
 		t1->b + t2->b
-	);
+		);
+}
+
+t_color	init_color(double r, double g, double b)
+{
+	t_color	color;
+
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	return (color);
 }
