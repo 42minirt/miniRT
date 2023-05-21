@@ -56,8 +56,7 @@ SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
 #-------------------------------------------------------------------------
 DESTRUCTOR_DIR	= destructor
-DESTRUCTOR_SRC	= destructor.c \
-				  x_free.c
+DESTRUCTOR_SRC	= destructor.c
 
 SRC				+= $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_SRC))
 
@@ -117,6 +116,13 @@ DEBUG_SRC		= print_config.c \
 
 SRC				+= $(addprefix $(DEBUG_DIR)/, $(DEBUG_SRC))
 
+#-------------------------------------------------------------------------
+SYS_DIR			= sys
+SYS_SRC			= x_free.c \
+				  x_open.c \
+				  x_close.c
+
+SRC				+= $(addprefix $(SYS_DIR)/, $(SYS_SRC))
 
 
 #####################################################

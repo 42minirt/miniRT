@@ -40,13 +40,10 @@ int	validate_filename(const char *path, const char *extension)
 	&filename[filename_len - extension_len]);
 	if (!is_equal_strings(&filename[filename_len - extension_len], extension))
 		return (FAILURE);
-	fd = open(path, O_RDONLY);
+	fd = open(path, O_RDONLY); // open try
 	if (fd == OPEN_ERROR)
 		return (FAILURE);
-	if (close(fd) == CLOSE_ERROR)
-	{
-		perror("close");
+	if (x_close(fd) == CLOSE_ERROR)
 		return (PROCESS_ERROR);
-	}
 	return (SUCCESS);
 }

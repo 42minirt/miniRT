@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destructor.c                                       :+:      :+:    :+:   */
+/*   x_close.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,26 +12,13 @@
 
 #include "minirt.h"
 
-void	x_free_1d_alloc(void **alloc)
+int	x_close(int fd)
 {
-	if (!alloc)
-		return ;
-	free(*alloc);
-	*alloc = NULL;
-}
+	int	ret;
 
-void	x_free_2d_alloc(void ***alloc)
-{
-	size_t	i;
-
-	if (!alloc)
-		return ;
-	i = 0;
-	while (*alloc && (*alloc)[i])
-	{
-		free((*alloc)[i]);
-		i++;
-	}
-	free(*alloc);
-	*alloc = NULL;
+	errno = 0;
+	ret = close(fd);
+	if (ret == CLOSE_ERROR)
+		perror("close");
+	return (ret);
 }
