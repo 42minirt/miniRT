@@ -44,11 +44,11 @@ static t_parse_res	get_image_texture_info(const char *line, \
 	obj_color->bump_data.data = NULL;
 	res = get_image_texture(line, &obj_color->texture_data, idx, &is_empty);
 	if (res != PASS)
-		return (ERROR_FATAL);
+		return (res);
 	skip_delimiter(line, idx);
 	res = get_image_texture(line, &obj_color->bump_data, idx, &is_empty);
 	if (res != PASS)
-		return (ERROR_FATAL);
+		return (res);
 	skip_spece(line, idx);
 	if (obj_color->texture_data.data)
 		obj_color->is_texture = true;
@@ -78,7 +78,7 @@ t_parse_res	get_bonus_config_of_obj(const char *line, t_obj *obj, size_t *idx)
 		printf("[DEBUG]invalid bonus option:[%s]\n", option_id);
 	}
 	x_free_1d_alloc((void **)&option_id);
-	if (line[*idx])
+	if (res == PASS && line[*idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (res);
 }

@@ -89,9 +89,9 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 	if (result != PASS)
 	{
 		ft_dprintf(STDERR_FILENO, \
-		"[Error] : Failure in parse ; %s\n", parse_result_char(result));
+		"[Error] : Failure in parse ; %s\n", get_parse_result_char(result));
 		return (FAILURE);
 	}
-	printf("[Parse config] : %s\n", parse_result_char(result));
+	printf("[Parse config] : %s\n", get_parse_result_char(result));
 	return (SUCCESS);
 }

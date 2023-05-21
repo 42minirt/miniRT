@@ -80,7 +80,7 @@ void	debug_print_config(t_all_info *info)
 	"====================================================\n");
 }
 
-const char	*parse_result_char(t_parse_res res)
+const char	*get_parse_result_char(t_parse_res res)
 {
 	if (res == PASS)
 		return ("\x1b[32mPASS\x1b[0m");
@@ -100,5 +100,7 @@ const char	*parse_result_char(t_parse_res res)
 		return ("\x1b[31mERROR_MULTIPLE_ID\x1b[0m");
 	if (res == ERROR_MISSING_ID)
 		return ("\x1b[31mERROR_MISSING_ID\x1b[0m");
+	if (res == ERROR_INVALID_PPM_FORMAT)
+		return ("\x1b[31mERROR_INVALID_PPM_FORMAT\x1b[0m");
 	return ("\x1b[31mERROR\x1b[0m");
 }

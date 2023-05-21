@@ -81,7 +81,7 @@ enum	e_parse_result
 	ERROR_OUT_OF_RANGE = 16,
 	ERROR_MULTIPLE_ID = 17,
 	ERROR_MISSING_ID = 18,
-	ERROR_PPM_FORMAT = 19,
+	ERROR_INVALID_PPM_FORMAT = 19,
 };
 
 //enum	e_shape_type

@@ -83,5 +83,6 @@ int			validate_filename(const char *path, const char *extension);
 t_parse_res	get_config(const char *id_str, \
 										const char *line, t_all_info *all);
 
+t_parse_res	ret_res_and_free(t_parse_res ret, void **ptr);
 
 #endif //CONSTRUCTOR_H

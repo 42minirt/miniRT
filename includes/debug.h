@@ -16,7 +16,7 @@
 # include "minirt.h"
 
 void		debug_print_config(t_all_info *info);
-const char	*parse_result_char(t_parse_res res);
+const char	*get_parse_result_char(t_parse_res res);
 void		print_sphere(t_obj *obj);
 void		print_plane(t_obj *obj);
 void		print_cylinder(t_obj *obj);

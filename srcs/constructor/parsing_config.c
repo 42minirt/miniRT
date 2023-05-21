@@ -27,9 +27,9 @@ static bool	is_free_needed(char *id_str, t_parse_res result)
 	return (false);
 }
 
-static t_parse_res	ret_res_and_free(t_parse_res ret, char *id_str)
+t_parse_res	ret_res_and_free(t_parse_res ret, void **ptr)
 {
-	x_free_1d_alloc((void **)&id_str);
+	x_free_1d_alloc(ptr);
 	return (ret);
 }
 
@@ -50,9 +50,9 @@ static t_parse_res	parse_line(t_all_info *all, const char *line, t_id_cnt *cnt)
 	increment_idx_to_next_format(line, &idx, id_str);
 	skip_spece(line, &idx);
 	if (validate_id(id_str) != PASS)
-		return (ret_res_and_free(ERROR_INVALID_TYPE, id_str));
+		return (ret_res_and_free(ERROR_INVALID_TYPE, (void **)&id_str));
 	if (!line[idx])
-		return (ret_res_and_free(ERROR_LACK_INFO, id_str));
+		return (ret_res_and_free(ERROR_LACK_INFO, (void **)&id_str));
 	result = get_config(id_str, &line[idx], all);
 	if (result == PASS)
 		increment_id_cnt(id_str, cnt);

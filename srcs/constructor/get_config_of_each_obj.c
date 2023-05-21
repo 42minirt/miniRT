@@ -16,6 +16,7 @@
 static t_parse_res	get_sphere_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
+	t_parse_res	res;
 
 //	obj->type = BALL; //TODO: delete
 	idx = 0;
@@ -27,8 +28,9 @@ static t_parse_res	get_sphere_config(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_config_of_obj(line, obj, &idx) != PASS)
-		return (ERROR_INVALID_ARG);
+	res = get_bonus_config_of_obj(line, obj, &idx);
+	if (res != PASS)
+		return (res);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);
@@ -38,6 +40,7 @@ static t_parse_res	get_sphere_config(const char *line, t_obj *obj)
 static t_parse_res	get_plane_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
+	t_parse_res	res;
 
 //	obj->type = PLANE; //TODO: delete
 	idx = 0;
@@ -49,8 +52,9 @@ static t_parse_res	get_plane_config(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_config_of_obj(line, obj, &idx) != PASS)
-		return (ERROR_INVALID_ARG);
+	res = get_bonus_config_of_obj(line, obj, &idx);
+	if (res != PASS)
+		return (res);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);
@@ -60,6 +64,7 @@ static t_parse_res	get_plane_config(const char *line, t_obj *obj)
 static t_parse_res	get_cylinder_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
+	t_parse_res	res;
 
 //	obj->type = CYLINDER; //TODO: delete
 	idx = 0;
@@ -74,10 +79,9 @@ static t_parse_res	get_cylinder_config(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (parsing_color(line, &obj->obj_color.kd, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
-	if (!line[idx])
-		return (PASS);
-	if (get_bonus_config_of_obj(line, obj, &idx) != PASS)
-		return (ERROR_INVALID_ARG);
+	res = get_bonus_config_of_obj(line, obj, &idx);
+	if (res != PASS)
+		return (res);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);
@@ -87,6 +91,7 @@ static t_parse_res	get_cylinder_config(const char *line, t_obj *obj)
 static t_parse_res	get_corn_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
+	t_parse_res	res;
 
 //	obj->type = CORN; //TODO: delete
 	idx = 0;
@@ -102,8 +107,9 @@ static t_parse_res	get_corn_config(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_config_of_obj(line, obj, &idx) != PASS)
-		return (ERROR_INVALID_ARG);
+	res = get_bonus_config_of_obj(line, obj, &idx);
+	if (res != PASS)
+		return (res);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);
