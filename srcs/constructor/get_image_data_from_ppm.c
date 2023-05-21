@@ -30,6 +30,8 @@ static t_parse_res	get_ppm_size(char **split, t_img *img)
 	return (PASS);
 }
 
+size_t	data_cnt = 0; // debug
+
 static t_parse_res	get_ppm_data(char **split, t_img *img, size_t *data_idx)
 {
 	size_t	row;
@@ -37,15 +39,16 @@ static t_parse_res	get_ppm_data(char **split, t_img *img, size_t *data_idx)
 
 	if (get_arr_size(split) == 0)
 	{
-		printf("PPM error : arrsize=0\n");//debug
+		printf("[#DEBUG] PPM error : arrsize=0\n");//debug
 		return (ERROR_INVALID_PPM_FORMAT);
 	}
 	row = 0;
+	data_cnt += get_arr_size(split); // debug
 	while (split[row])
 	{
 		if (*data_idx >= img->width * 3 * img->height)
 		{
-			printf("PPM error : index out of range\n");//debug
+			printf("[#DEBUG] PPM error : index out of range\n");//debug
 			return (ERROR_INVALID_PPM_FORMAT);
 		}
 		img->data[*data_idx] = ft_atoi(split[row], &is_atoi_success);
@@ -65,17 +68,17 @@ static t_parse_res	process_line_by_col(const char *line, \
 
 	if (file_col == 0 && !is_equal_strings(line, "P3"))
 	{
-		printf("PPM invalid format : col 0 is not 'P3'\n");//debug
+		printf("[#DEBUG] PPM invalid format : col 0 is not 'P3'\n");//debug
 		return (ERROR_INVALID_PPM_FORMAT);
 	}
 	if (file_col == 1 && !is_equal_strings(line, "# 8-bit ppm - RGB"))
 	{
-		printf("PPM invalid format : col 1 is not '# 8-bit ppm - RGB'\n");//debug
+		printf("[#DEBUG] PPM invalid format : col 1 is not '# 8-bit ppm - RGB'\n");//debug
 		return (ERROR_INVALID_PPM_FORMAT);
 	}
 	if (file_col == 3 && !is_equal_strings(line, "255"))
 	{
-		printf("PPM invalid format : col 3 is not '255'\n");//debug
+		printf("[#DEBUG] PPM invalid format : col 3 is not '255'\n");//debug
 		return (ERROR_INVALID_PPM_FORMAT);
 	}
 	if (file_col == 0 || file_col == 1 || file_col == 3)
@@ -113,16 +116,15 @@ t_parse_res	get_img_data(t_img *img, int fd)
 		line = get_next_line(fd, false);
 		if (!line)
 			break ;
-		if (res == PASS \
-		&& process_line_by_col(line, file_col, img, &data_idx) == FAILURE)
-			res = ERROR_FATAL;
+		if (res == PASS)
+			res = process_line_by_col(line, file_col, img, &data_idx);
 		x_free_1d_alloc((void **)&line);
 		file_col++;
 	}
 	if (data_idx != img->width * 3 * img->height)
 		res = ERROR_INVALID_PPM_FORMAT;
-	printf("get_img_data result:%s, idx:%zu, size:%zu\n", \
-		get_parse_result_char(res), data_idx, img->width * 3 * img->height);//debug
+	printf("[#DEBUG] get_img_data result:%s, idx:%zu, size:%zu, data_cnt:%zu\n", \
+		get_parse_result_char(res), data_idx, img->width * 3 * img->height, data_cnt);//debug
 	if (res != PASS)
 		return (ret_res_and_free(res, (void **)&img->data));
 	return (res);
