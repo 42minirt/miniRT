@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_std.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:57:14 by takira            #+#    #+#             */
-/*   Updated: 2023/01/26 18:31:47 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 23:49:55 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdbool.h>
 # include <limits.h>
 
+# include "libft.h"
 # include "ft_string.h"
 
 /* itoa atoi */

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:32:12 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:33:51 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 22:13:12 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_color	calc_perfect_reflection(t_all_info *info, t_intersection_point *its_p, t
 	t_ray	refrect_ray;
 
 	color_set(&color, 0.0, 0.0, 0.0);
-	if (false == calc_refrectvec(its_p, eye2screen, &reverse_vec))
+	if (false == calc_refrectvec(*its_p, eye2screen, &reverse_vec))
 		return (color);
-	set_raystart(&refrect_ray, its_p, reverse_vec);
-	return (recursive_raytrace(&info, refrect_ray, counter));
+	set_rayset(&refrect_ray, *its_p, reverse_vec);
+	return (recursive_raytrace(info, refrect_ray, counter));
 }

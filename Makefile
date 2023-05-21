@@ -26,7 +26,7 @@ SRC				= main.c
 SRCS			= $(addprefix $(SRC_DIR)/, $(SRC))
 
 #-------------------------------------------------------------------------
-CONSTRUCTOR_DIR	= constructor
+CONSTRUCTOR_DIR	= srcs/constructor
 CONSTRUCTOR_SRC	= constructor.c \
 				  ft_strtod.c \
 				  get_config.c \
@@ -55,24 +55,26 @@ CONSTRUCTOR_SRC	= constructor.c \
 SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
 #-------------------------------------------------------------------------
-DESTRUCTOR_DIR	= destructor
+DESTRUCTOR_DIR	= srcs/destructor
 DESTRUCTOR_SRC	= destructor.c \
 				  x_free.c
 
 SRC				+= $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_SRC))
 
 #-------------------------------------------------------------------------
-MLX_HELPER		= mlx_helper
+MLX_HELPER		= srcs/mlx_helper
 MLX_HELPER_SRS	= mlx_pixcel_put.c \
 				  mlx_keyhooks.c
 
 SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 
 #-------------------------------------------------------------------------
-RAYTRACE_DIR	= raytrace
+RAYTRACE_DIR	= srcs/raytrace
 RAYTRACE_SRC	= calc_ambient_reflection.c \
 				  calc_diffuse_reflection.c \
 				  calc_diffuse_reflection_param.c \
+				  calc_perfect_reflection.c \
+				  calc_specular_reflection.c \
 				  get_image_ref_color.c \
 				  get_tangent_coordinate_map.c \
 				  intersection_helper.c \
@@ -87,14 +89,14 @@ RAYTRACE_SRC	= calc_ambient_reflection.c \
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 
 #-------------------------------------------------------------------------
-COLOR_DIR		= calc_color
+COLOR_DIR		= srcs/calc_color
 COLOR_SRC		= calc_color.c \
 				  color_handling.c
 
 SRC				+= $(addprefix $(COLOR_DIR)/, $(COLOR_SRC))
 
 #-------------------------------------------------------------------------
-VECTOR_DIR		= calc_vector
+VECTOR_DIR		= srcs/calc_vector
 VECTOR_SRC		= arithmetic.c \
 				  arithmetic_ret_vec.c \
 				  calc_vec.c \
@@ -103,7 +105,7 @@ VECTOR_SRC		= arithmetic.c \
 SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
 
 #-------------------------------------------------------------------------
-MATRIX_DIR		= matrix
+MATRIX_DIR		= srcs/matrix
 MATRIX_SRC		= calc_matrix.c \
 				  is_basis_equals.c \
 				  matrix.c
@@ -111,7 +113,7 @@ MATRIX_SRC		= calc_matrix.c \
 SRC				+= $(addprefix $(MATRIX_DIR)/, $(MATRIX_SRC))
 
 #-------------------------------------------------------------------------
-DEBUG_DIR		= debug
+DEBUG_DIR		= srcs/debug
 DEBUG_SRC		= print_config.c \
 				  print_config_helper.c
 

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:42:38 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 23:40:59 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,12 @@ double	calc_v_r(double n_l, t_intersection_point *its_p, t_vec dir_pos2lgt, t_ra
 void	calc_spec_color(t_color *color, double v_r, t_light *light_info, t_obj_color obj_color)
 {
 	double	v_r_alpha;
-	t_color	Rs;
 
 	v_r_alpha = pow(v_r, obj_color.shininess);
-	Rs = v_r_alpha * light_info->brightness * obj_color.ks;
-	//ここがちょっと微妙、各変数が何か聞きたい
+	color_k1c1_pointer(color, v_r_alpha * light_info->brightness, obj_color.ks);
 }
 
-t_color	calc_specref(t_all_info *info, t_intersection_point	its_p, t_ray eye2screen, t_color color)
+t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2screen, t_color color)
 {
 	t_list	*light;
 	t_light	*light_info;
@@ -61,35 +59,26 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	its_p, t_ray eye2scr
 	while (light != NULL)
 	{
 		light_info = info->scene_info->lights->content;
-		neg_vec(&dir_pos2lgt, &light_info->point, &its_p.position);
+		neg_vec(&dir_pos2lgt, &light_info->point, &its_p->position);
 		dir_pos2lgt_n = norm_vec(dir_pos2lgt);
 		if (light_info->sl_angle == LT_SPOT && SPOT_check(&dir_pos2lgt_n, light_info) == true)
 			continue;
-		v_r = calc_v_r(dot(its_p.normal, dir_pos2lgt), &its_p, dir_pos2lgt, &eye2screen);
+		v_r = calc_v_r(dot(its_p->normal, dir_pos2lgt), its_p, dir_pos2lgt, &eye2screen);
 		if (v_r <= 0.0)
 			continue;
-		calc_spec_color(&color, v_r, light_info, its_p.obj->obj_color);
+		calc_spec_color(&color, v_r, light_info, its_p->obj->obj_color);
 		light = light->next;
 	}
 	return (color);
 }
 
-t_color	calc_specular_reflection(t_all_info *info, t_intersection_point	its_p, t_ray eye2screen)
+t_color	calc_specular_reflection(t_all_info *info, t_intersection_point	*its_p, t_ray eye2screen)
 {
-	t_obj	*obj;
 	t_color	color;
 
 	color_set(&color, 0.0, 0.0, 0.0);
-	if (its_p.obj->obj_color.is_perfect_ref == true)
+	if (its_p->obj->obj_color.is_perfect_ref == true)
 		return (color);
-	obj = its_p.obj;
-	if (is_equal_strings(obj->id_str, ID_SPHERE))
-		its_p.obj = (t_sphere *)obj;
-	else if (is_equal_strings(obj->id_str, ID_PLANE))
-		its_p.obj = (t_plane *)obj;
-	else if (is_equal_strings(obj->id_str, ID_CORN))
-		its_p.obj = (t_corn *)obj;
-	else if (is_equal_strings(obj->id_str, ID_CYLINDER))
-		its_p.obj = (t_cylinder *)obj;
+	color_add(color, calc_specref(info, its_p, eye2screen, color));
 	return (calc_specref(info, its_p, eye2screen, color));
 }

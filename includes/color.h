@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 21:29:00 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 22:27:36 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 t_color	color_k1c1k2c2(double k1, t_color c1, \
 double k2, t_color c2);
 t_color	color_k1c1(double k1, t_color c1);
+void	color_k1c1_pointer(t_color *col, double k1, t_color c1);
 t_color	color_add(t_color c1, t_color c2);
 t_color	init_color(double r, double g, double b);
 void	color_set(t_color *tgt, double R, double G, double B);

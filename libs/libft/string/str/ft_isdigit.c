@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 10:33:40 by takira            #+#    #+#             */
-/*   Updated: 2023/01/20 16:43:27 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 23:55:49 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../../include/ft_string.h"
 
 int	ft_isdigit(int c)
 {

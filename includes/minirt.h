@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 21:31:42 by user             ###   ########.fr       */
+/*   Updated: 2023/05/22 00:02:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 
 # include "../minilibx-linux/mlx.h"
 # include "../libs/include/libft.h"
+# include "../libs/include/ft_gnl.h"
+# include "../libs/include/ft_math.h"
+# include "../libs/include/ft_printf.h"
+# include "../libs/include/ft_put.h"
+# include "../libs/include/ft_std.h"
+# include "../libs/include/ft_string.h"
 
 # include "typedef.h"
 

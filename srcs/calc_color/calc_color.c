@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:34:21 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 21:11:41 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 22:25:11 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ t_color	color_k1c1(double k1, t_color c1)
 	color.g = k1 * c1.g;
 	color.b = k1 * c1.b;
 	return (color);
+}
+
+void	color_k1c1_pointer(t_color *col, double k1, t_color c1)
+{
+	col->r = k1 * c1.r;
+	col->g = k1 * c1.g;
+	col->b = k1 * c1.b;
 }
 
 t_color	color_add(const t_color c1, t_color c2)
