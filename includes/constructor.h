@@ -20,12 +20,12 @@ int			construct_info(t_all_info *all_info, const char *rt_path);
 t_parse_res	parsing_config(t_all_info *all_info, const char *rt_path);
 t_parse_res	validate_scene(t_scene_info *scene_info);
 t_parse_res	validate_camera(t_camera_info *camera_info);
-t_parse_res	get_ambient_setting(const char *line, t_scene_info *scene);
-t_parse_res	get_lights_setting(const char *line, \
+t_parse_res	get_config_of_ambient(const char *line, t_scene_info *scene);
+t_parse_res	get_config_of_lights(const char *line, \
 								t_scene_info *scene, const char *id_str);
-t_parse_res	get_objects_setting(const char *line, \
+t_parse_res	get_config_of_objects(const char *line, \
 								t_scene_info *scene, const char *id_str);
-t_parse_res	get_camera_setting(const char *line, t_camera_info *camera);
+t_parse_res	get_congfig_of_camera(const char *line, t_camera_info *camera);
 
 // parsing helper
 void		skip_spece(const char *line, size_t *idx);
@@ -44,12 +44,12 @@ int			parsing_color(const char *line, t_color *color, size_t *idx);
 void		update_scene_config(t_scene_info *scene);
 void		update_camera_config(t_camera_info *camera);
 
-// get_obj_detail
-t_parse_res	get_obj_detail(const char *line, t_obj *obj);
-t_parse_res	get_bonus_detail(const char *line, t_obj *obj, size_t *idx);
+// get_config_of_each_obj
+t_parse_res	get_config_of_each_obj(const char *line, t_obj *obj);
+t_parse_res	get_bonus_config_of_obj(const char *line, t_obj *obj, size_t *idx);
 t_parse_res	get_image_texture(const char *line, \
 								t_img *obj_color, size_t *idx, bool *empty);
-t_parse_res	get_img(t_img *img, int fd);
+t_parse_res	get_img_data(t_img *img, int fd);
 
 // validate_is
 bool		is_vec_in_normal_range(t_vec vec);
@@ -78,6 +78,10 @@ t_parse_res	validate_id(const char *id_str);
 
 // validate file
 int			validate_filename(const char *path, const char *extension);
+
+// get_config
+t_parse_res	get_config(const char *id_str, \
+										const char *line, t_all_info *all);
 
 
 #endif //CONSTRUCTOR_H

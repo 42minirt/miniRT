@@ -41,12 +41,10 @@
 //# define WINDOW_WIDTH		960
 # define WINDOW_TITLE		"miniRT"
 
-/********** string **********/
-# define OP_CHECKER_TEXTURE	"checker"
-# define OP_PERFECT_REF		"perfect_ref"
-# define OP_IMAGE_TEXTURE	"image"
-# define RT_EXTENSION		".rt"
-# define IMG_EXTENSION		".ppm"
+/********** key hook **********/
+# define EVENT_DESTROY		33
+# define EVENT_KEY_PRESS	2
+# define KEY_ESC			0xff1b
 
 /********** value **********/
 # define MAX_RECURSION	8
@@ -68,10 +66,15 @@
 # define ID_CYLINDER	"cy"
 # define ID_CORN		"co"
 
-/********** key hook **********/
-# define EVENT_DESTROY		33
-# define EVENT_KEY_PRESS	2
-# define KEY_ESC			0xff1b
+/********** rt_string **********/
+# define OP_CHECKER_TEXTURE	"checker"
+# define OP_PERFECT_REF		"perfect_ref"
+# define OP_IMAGE_TEXTURE	"image"
+
+/********** file extension **********/
+# define RT_EXTENSION		".rt"
+# define IMG_EXTENSION		".ppm"
+
 
 //単位ベクトル以外の情報に下記のように記載するのかどうか
 //1 unit_vec

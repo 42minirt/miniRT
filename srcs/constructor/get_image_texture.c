@@ -65,7 +65,7 @@ t_parse_res	get_image_texture(const char *line, \
 		fd = open(path, O_RDONLY);
 		if (fd != OPEN_ERROR)
 		{
-			res = get_img(img, fd);
+			res = get_img_data(img, fd);
 			if (close(fd) == CLOSE_ERROR)
 				res = ERROR_FATAL;
 		}

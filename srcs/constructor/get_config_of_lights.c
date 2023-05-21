@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_lights_setting.c                               :+:      :+:    :+:   */
+/*   get_config_of_lights.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -44,7 +44,7 @@ static t_light	*init_light(const char *id_str)
 	return (light);
 }
 
-t_parse_res	get_lights_setting(const char *line, t_scene_info *scene, const char *id_str)
+t_parse_res	get_config_of_lights(const char *line, t_scene_info *scene, const char *id_str)
 {
 	t_list			*new_list;
 	t_light			*light;

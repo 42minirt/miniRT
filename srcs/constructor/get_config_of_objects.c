@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_objects_setting.c                              :+:      :+:    :+:   */
+/*   get_config_of_objects.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -46,7 +46,7 @@ static t_obj	*init_obj(const char *id_str)
 //    checker         RGB[0,255]
 //    image           "image_texture_path",   "bumpmap_path"
 
-t_parse_res	get_objects_setting(const char *line, \
+t_parse_res	get_config_of_objects(const char *line, \
 								t_scene_info *scene, const char *id_str)
 {
 	t_parse_res	parse_result;
@@ -56,7 +56,7 @@ t_parse_res	get_objects_setting(const char *line, \
 	obj = init_obj(id_str);
 	if (!obj)
 		return (ERROR_FATAL);
-	parse_result = get_obj_detail(line, obj);
+	parse_result = get_config_of_each_obj(line, obj);
 	if (parse_result != PASS)
 	{
 		x_free_1d_alloc((void **)&obj);

@@ -185,7 +185,7 @@ struct s_img
 	int		*data;
 };
 
-// init: init_obj() in get_objects_setting.c
+// init: init_obj() in get_config_of_objects.c
 struct s_obj_color
 {
 	t_color	ka; // ambient ref	// fix(0.1, 0.1, 0.1)

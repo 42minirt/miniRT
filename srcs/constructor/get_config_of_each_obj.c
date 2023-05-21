@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_obj_detail.c                                   :+:      :+:    :+:   */
+/*   get_config_of_each_obj.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "minirt.h"
 
 // sp   XYZ                    diameter            RGB[0,255]   <OPTION>
-static t_parse_res	get_sphere_detail(const char *line, t_obj *obj)
+static t_parse_res	get_sphere_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
@@ -27,7 +27,7 @@ static t_parse_res	get_sphere_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) != PASS)
+	if (get_bonus_config_of_obj(line, obj, &idx) != PASS)
 		return (ERROR_INVALID_ARG);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
@@ -35,7 +35,7 @@ static t_parse_res	get_sphere_detail(const char *line, t_obj *obj)
 }
 
 // pl   XYZ   norm_vec[-1,1]                       RGB[0,255]   <OPTION>
-static t_parse_res	get_plane_detail(const char *line, t_obj *obj)
+static t_parse_res	get_plane_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
@@ -49,7 +49,7 @@ static t_parse_res	get_plane_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) != PASS)
+	if (get_bonus_config_of_obj(line, obj, &idx) != PASS)
 		return (ERROR_INVALID_ARG);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
@@ -57,7 +57,7 @@ static t_parse_res	get_plane_detail(const char *line, t_obj *obj)
 }
 
 // cy   XYZ   norm_vec[-1,1]   diameter   height   RGB[0,255]   <OPTION>
-static t_parse_res	get_cylinder_detail(const char *line, t_obj *obj)
+static t_parse_res	get_cylinder_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
@@ -76,7 +76,7 @@ static t_parse_res	get_cylinder_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) != PASS)
+	if (get_bonus_config_of_obj(line, obj, &idx) != PASS)
 		return (ERROR_INVALID_ARG);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
@@ -84,7 +84,7 @@ static t_parse_res	get_cylinder_detail(const char *line, t_obj *obj)
 }
 
 // co   XYZ   norm_vec[-1,1]   diameter   height   RGB[0,255]   <OPTION>
-static t_parse_res	get_corn_detail(const char *line, t_obj *obj)
+static t_parse_res	get_corn_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
@@ -102,25 +102,25 @@ static t_parse_res	get_corn_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) != PASS)
+	if (get_bonus_config_of_obj(line, obj, &idx) != PASS)
 		return (ERROR_INVALID_ARG);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);
 }
 
-t_parse_res	get_obj_detail(const char *line, t_obj *obj)
+t_parse_res	get_config_of_each_obj(const char *line, t_obj *obj)
 {
 	t_parse_res	res;
 
 	res = ERROR_FATAL;
 	if (is_equal_strings(obj->id_str, ID_SPHERE))
-		res = get_sphere_detail(line, obj);
+		res = get_sphere_config(line, obj);
 	else if (is_equal_strings(obj->id_str, ID_PLANE))
-		res = get_plane_detail(line, obj);
+		res = get_plane_config(line, obj);
 	else if (is_equal_strings(obj->id_str, ID_CYLINDER))
-		res = get_cylinder_detail(line, obj);
+		res = get_cylinder_config(line, obj);
 	else if (is_equal_strings(obj->id_str, ID_CORN))
-		res = get_corn_detail(line, obj);
+		res = get_corn_config(line, obj);
 	return (res);
 }

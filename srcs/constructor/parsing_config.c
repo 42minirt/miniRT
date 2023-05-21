@@ -13,27 +13,6 @@
 #include "minirt.h"
 #include <fcntl.h>
 
-static t_parse_res	get_config_controller(const char *id_str, \
-										const char *line, t_all_info *all)
-{
-	t_parse_res	result;
-
-	result = ERROR_FATAL;
-	if (is_equal_strings(id_str, ID_CAMERA))
-		result = get_camera_setting(line, all->camera_info);
-	else if (is_equal_strings(id_str, ID_AMBIENT))
-		result = get_ambient_setting(line, all->scene_info);
-	else if (is_equal_strings(id_str, ID_LIGHT) \
-			|| is_equal_strings(id_str, ID_SPOTLIGHT))
-		result = get_lights_setting(line, all->scene_info, id_str);
-	else if (is_equal_strings(id_str, ID_PLANE) \
-			|| is_equal_strings(id_str, ID_SPHERE) \
-			|| is_equal_strings(id_str, ID_CYLINDER) \
-			|| is_equal_strings(id_str, ID_CORN))
-		result = get_objects_setting(line, all->scene_info, id_str);
-	return (result);
-}
-
 // camera, ambient は free
 // listに追加できなかったlight, objもこの段階でfree
 // listに格納されているlight, objは list_clearでfreeされる
@@ -46,6 +25,12 @@ static bool	is_free_needed(char *id_str, t_parse_res result)
 	if (result != PASS)
 		return (true);
 	return (false);
+}
+
+static t_parse_res	ret_res_and_free(t_parse_res ret, char *id_str)
+{
+	x_free_1d_alloc((void **)&id_str);
+	return (ret);
 }
 
 // spaces <id> spaces <num1> spaces <num2> ... <numN>
@@ -64,12 +49,11 @@ static t_parse_res	parse_line(t_all_info *all, const char *line, t_id_cnt *cnt)
 		return (ERROR_FATAL);
 	increment_idx_to_next_format(line, &idx, id_str);
 	skip_spece(line, &idx);
-	if (validate_id(id_str) != PASS || !line[idx])
-	{
-		x_free_1d_alloc((void **)&id_str);
-		return (ERROR_INVALID_ARG);
-	}
-	result = get_config_controller(id_str, &line[idx], all);
+	if (validate_id(id_str) != PASS)
+		return (ret_res_and_free(ERROR_INVALID_TYPE, id_str));
+	if (!line[idx])
+		return (ret_res_and_free(ERROR_LACK_INFO, id_str));
+	result = get_config(id_str, &line[idx], all);
 	if (result == PASS)
 		increment_id_cnt(id_str, cnt);
 	if (is_free_needed(id_str, result))

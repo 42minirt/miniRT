@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_camera_setting.c                               :+:      :+:    :+:   */
+/*   get_congfig_of_camera.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "minirt.h"
 
 // #Camera  viewpoint(xyz)  normalized_orientation_vec[-1,1]  FOV[0,180]
-t_parse_res	get_camera_setting(const char *line, t_camera_info *camera)
+t_parse_res	get_congfig_of_camera(const char *line, t_camera_info *camera)
 {
 	size_t	idx;
 

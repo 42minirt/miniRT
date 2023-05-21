@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_ambient_setting.c                              :+:      :+:    :+:   */
+/*   get_config_of_ambient.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "minirt.h"
 
 // #Ambient  lightning_ratio[0,1]  RGB[0,255]
-t_parse_res	get_ambient_setting(const char *line, t_scene_info *scene)
+t_parse_res	get_config_of_ambient(const char *line, t_scene_info *scene)
 {
 	size_t	idx;
 

@@ -29,14 +29,15 @@ SRCS			= $(addprefix $(SRC_DIR)/, $(SRC))
 CONSTRUCTOR_DIR	= constructor
 CONSTRUCTOR_SRC	= constructor.c \
 				  ft_strtod.c \
-				  get_ambient_setting.c \
-				  get_camera_setting.c \
-				  get_image_data.c \
-				  get_lights_setting.c \
-				  get_obj_detail.c \
-				  get_objects_bonus_image.c \
-				  get_objects_bonus_info.c \
-				  get_objects_setting.c \
+				  get_config.c \
+				  get_config_of_ambient.c \
+				  get_config_of_camera.c \
+				  get_config_of_each_obj.c \
+				  get_config_of_lights.c \
+				  get_config_of_objects.c \
+				  get_image_data_from_ppm.c \
+				  get_image_texture.c \
+				  get_bonus_config_of_obj.c \
 				  parsing_config.c \
 				  parsing_digits.c \
 				  parsing_id_cnt.c \

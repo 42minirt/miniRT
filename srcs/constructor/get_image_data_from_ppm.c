@@ -113,7 +113,7 @@ static int	process_line_by_col(const char *line, \
 //   col 3: <color_range>
 //   col 4: <r11> <g11> <b11> <r12> <g12> <b12> ...
 
-t_parse_res	get_img(t_img *img, int fd)
+t_parse_res	get_img_data(t_img *img, int fd)
 {
 	char		*line;
 	size_t		file_col;
@@ -135,7 +135,7 @@ t_parse_res	get_img(t_img *img, int fd)
 		x_free_1d_alloc((void **)&line);
 		file_col++;
 	}
-	printf("get_img result:%s, idx:%zu, size:%zu\n", \
+	printf("get_img_data result:%s, idx:%zu, size:%zu\n", \
 		parse_result_char(res), data_idx, img->width * 3 * img->height);//debug
 	if (res != PASS || data_idx != img->width * 3 * img->height)
 	{
