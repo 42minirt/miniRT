@@ -23,7 +23,7 @@ void	free_objs(void *content)
 		free(obj->obj_color.bump_data.data);
 		free((char *)obj->id_str);
 	}
-	free(obj);
+	x_free_1d_alloc((void **)&obj);
 }
 
 void	free_lights(void *content)
@@ -35,14 +35,17 @@ void	free_lights(void *content)
 	{
 		free((char *)light->id_str);
 	}
-	free(light);
+	x_free_1d_alloc((void **)&light);
 }
 
 static void	free_scene(t_scene_info *scene)
 {
 	ft_lstclear(&scene->lights, free_lights);
 	ft_lstclear(&scene->objs, free_objs);
-	free(scene);
+	scene->lights = NULL;
+	scene->objs= NULL;
+	x_free_1d_alloc((void **)&scene);
+//	free(scene);
 }
 
 static void	free_mlx(t_mlx_info *mlx)

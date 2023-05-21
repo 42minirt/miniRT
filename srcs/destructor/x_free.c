@@ -30,8 +30,8 @@ void	x_free_2d_alloc(void ***alloc)
 	while (*alloc && (*alloc)[i])
 	{
 		free((*alloc)[i]);
-		(*alloc)[i] = NULL;
 		i++;
 	}
 	free(*alloc);
+	*alloc = NULL;
 }
