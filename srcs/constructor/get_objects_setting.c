@@ -59,13 +59,15 @@ t_parse_res	get_objects_setting(const char *line, \
 	parse_result = get_obj_detail(line, obj);
 	if (parse_result != PASS)
 	{
-		free(obj);
+		x_free_1d_alloc((void **)&obj);
+//		free(obj);
 		return (parse_result);
 	}
 	new_list = ft_lstnew(obj);
 	if (!new_list)
 	{
-		free(obj);
+		x_free_1d_alloc((void **)&obj);
+//		free(obj);
 		return (ERROR_FATAL);
 	}
 	ft_lstadd_back(&scene->objs, new_list);

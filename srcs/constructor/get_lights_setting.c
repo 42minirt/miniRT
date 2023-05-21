@@ -56,13 +56,15 @@ t_parse_res	get_lights_setting(const char *line, t_scene_info *scene, const char
 	parse_result = get_light_detail(line, light);
 	if (parse_result != PASS)
 	{
-		free(light);
+		x_free_1d_alloc((void **)&light);
+//		free(light);
 		return (parse_result);
 	}
 	new_list = ft_lstnew(light);
 	if (!new_list)
 	{
-		free(light);
+		x_free_1d_alloc((void **)&light);
+//		free(light);
 		return (ERROR_FATAL);
 	}
 	ft_lstadd_back(&scene->lights, new_list);

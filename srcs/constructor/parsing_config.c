@@ -94,7 +94,7 @@ static t_parse_res	parse_config_line_by_line(t_all_info *all, int fd, t_id_cnt *
 			parse_result = parse_line(all, line, cnt);
 		if (parse_result != PASS)
 			ret_res = parse_result;
-		free(line);
+		x_free_1d_alloc((void **)&line);
 	}
 	return (ret_res);
 }

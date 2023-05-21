@@ -12,18 +12,18 @@
 
 #include "minirt.h"
 
-static void	free_split_array(char **split)
-{
-	size_t	idx;
-
-	idx = 0;
-	while (split && split[idx])
-	{
-		free(split[idx]);
-		idx++;
-	}
-	free(split);
-}
+//static void	free_split_array(char **split)
+//{
+//	size_t	idx;
+//
+//	idx = 0;
+//	while (split && split[idx])
+//	{
+//		free(split[idx]);
+//		idx++;
+//	}
+//	free(split);
+//}
 
 static int	get_ppm_size(char **split, t_img *img)
 {
@@ -101,7 +101,8 @@ static int	process_line_by_col(const char *line, \
 		res = get_ppm_size(split, img);
 	else
 		res = get_ppm_data(split, img, data_idx);
-	free_split_array(split);
+//	free_split_array(split);
+	x_free_2d_alloc((void ***)&split);
 	return (res);
 }
 
@@ -132,7 +133,7 @@ t_parse_res	get_img(t_img *img, int fd)
 		if (res == PASS \
 		&& process_line_by_col(line, file_col, img, &data_idx) == FAILURE)
 			res = ERROR_FATAL;
-		free(line);
+		x_free_1d_alloc((void **)&line);
 		file_col++;
 	}
 	printf("2: %s\n", parse_result_char(res));//debug
