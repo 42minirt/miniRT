@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:39:36 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:49:56 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 21:26:24 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ t_d_param		calc_d_param_of_corn(t_corn_param p);
 t_corn_ints		calc_ints(t_corn *corn, t_ray ray, t_corn_param p, double t);
 
 /* raytracing */
-bool			raytrace(t_all_info *info, t_ray eye2screen, t_color *color);
+t_color			raytrace(t_all_info *info, t_ray eye2screen);
+t_color			recursive_raytrace(t_all_info *info, \
+t_ray eye2screen, size_t counter);
 t_color			calc_ambient_reflection(t_scene_info *scene, \
 										t_intersection_point its_p);
 t_color			calc_diffuse_reflection(t_scene_info *scene, \

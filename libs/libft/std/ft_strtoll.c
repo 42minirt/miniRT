@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtoll.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:11:40 by takira            #+#    #+#             */
-/*   Updated: 2023/02/08 14:36:57 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 21:41:11 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static bool	is_less_than_ll(long long before_x10, long long add, long long sign)
 
 	if (sign == 1)
 	{
-		ov_div = LONG_LONG_MAX / 10;
-		ov_mod = LONG_LONG_MAX % 10;
+		ov_div = __LONG_LONG_MAX__ / 10;
+		ov_mod = __LONG_LONG_MAX__ % 10;
 	}
-	else
-	{
-		ov_div = ((unsigned long)-LONG_LONG_MIN) / 10;
-		ov_mod = ((unsigned long)-LONG_LONG_MIN) % 10;
-	}
+	// else
+	// {
+	// 	ov_div = ((unsigned long)-__LONG_LONG_MIN__) / 10;
+	// 	ov_mod = ((unsigned long)-__LONG_LONG_MIN__) % 10;
+	// }
 	if (before_x10 > ov_div)
 		return (false);
 	if (before_x10 == ov_div && add > ov_mod)
@@ -50,9 +50,10 @@ static int	get_sign_and_increment_ptr(char *num, size_t *idx)
 
 static long long	ret_over_flow(long long sign)
 {
-	if (sign > 0)
-		return (LONG_LONG_MAX);
-	return (LONG_LONG_MIN);
+	// if (sign > 0)
+	(void)sign;
+	return (__LONG_LONG_MAX__);
+	// return (__LONG_LONG_MIN__);
 }
 
 long long	ft_strtoll(char *num, bool *is_success)

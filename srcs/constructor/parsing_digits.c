@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 21:06:30 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 //
 //	skip_spece(line, idx);
 //	len = 0;
-//	while (line[*idx + len] \
+//	while (line[*idx + len]
 //	&& !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
 //		len++;
 //	num_str = ft_substr(line, *idx, len);

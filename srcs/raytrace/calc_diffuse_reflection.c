@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:39:36 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:08:31 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 21:30:49 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
 	if (is_equal_strings(p.light->id_type, ID_SPOTLIGHT) \
 	&& !is_in_range_spotlight(p))
 		return (init_color(0.0, 0.0, 0.0));
-	ret_color = color_k1c1_k2c2(p.its_p.obj->obj_color.id, kd, \
+	ret_color = color_k1c1k2c2(p.its_p.obj->obj_color.id, kd, \
 							p.dot_n_pos2light, p.light->light_color);
 	return (ret_color);
 }

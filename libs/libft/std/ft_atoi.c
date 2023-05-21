@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 10:31:53 by takira            #+#    #+#             */
-/*   Updated: 2023/02/03 22:03:48 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 21:37:02 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static bool	is_under_long(long long before_x10_val, long long add_val, int sign)
 		ov_div = LONG_MAX / 10;
 		ov_mod = LONG_MAX % 10;
 	}
-	else
-	{
-		ov_div = ((unsigned long)-LONG_MIN) / 10;
-		ov_mod = ((unsigned long)-LONG_MIN) % 10;
-	}
+	// else
+	// {
+	// 	ov_div = (-(long long)LONG_MIN) / 10;
+	// 	ov_mod = (-(long long)LONG_MIN) % 10;
+	// }
 	if (before_x10_val > ov_div)
 		return (false);
 	if (before_x10_val == ov_div && add_val >= ov_mod)

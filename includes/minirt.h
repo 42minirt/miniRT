@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:49:42 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 21:31:42 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <sys/errno.h>
 # include <math.h>
 
-# include "./../minilibx-linux/mlx.h"
-# include "./../libs/include/libft.h"
+# include "../minilibx-linux/mlx.h"
+# include "../libs/include/libft.h"
 
 # include "typedef.h"
 
@@ -103,10 +103,10 @@ void			color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
 
 /* intersection */
 
-double			calc_planeratio(t_obj *obj, \
-t_all_info *info, t_ray *ray, t_intersection_point *itsp);
-double			calc_cylinderratio(t_obj \
-*obj, t_all_info *info, t_ray *eye2scr, t_intersection_point *tmp_itsp);
+// double			calc_planeratio(t_obj *obj,
+// t_all_info *info, t_ray *ray, t_intersection_point *itsp);
+// double			calc_cylinderratio(t_obj
+// *obj, t_all_info *info, t_ray *eye2scr, t_intersection_point *tmp_itsp);
 double			set_itsp(t_plane *plane, \
 double t, t_ray *ray, t_intersection_point *itsp);
 
@@ -134,13 +134,11 @@ void			put_pixel(t_mlx_info \
 *mlx_info, size_t x, size_t y, t_color color);
 void			mlx_hooks(t_mlx_info *mlx_info);
 
-t_color			calc_diffuse_reflection(t_all_info info, \
-t_intersection_point its_p, t_ray eye2screen);
-t_color			calc_specular_reflection(t_all_info info, \
-t_intersection_point its_p, t_ray eye2screen);
-t_color			calc_perfect_reflection(t_all_info info, \
-t_intersection_point its_p, t_ray eye2screen);
-t_color			recursive_raytrace(t_all_info *info, \
-t_ray eye2screen, size_t counter);
+// t_color			calc_diffuse_reflection(t_all_info info,
+// t_intersection_point its_p, t_ray eye2screen);
+// t_color			calc_specular_reflection(t_all_info info,
+// t_intersection_point its_p, t_ray eye2screen);
+// t_color			calc_perfect_reflection(t_all_info info,
+// t_intersection_point its_p, t_ray eye2screen);
 
 #endif

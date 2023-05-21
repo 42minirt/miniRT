@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parsing_helper.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     *
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/17 23:19:51 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 21:07:58 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ char	*get_identifier_str(const char *line, size_t idx)
 //t_id	get_identifier_no(const char *id_type)
 //{
 //	size_t		idx;
-//	const char	*ids[] = {\
-//	ID_CAMERA, ID_AMBIENT, ID_LIGHT, ID_SPOTLIGHT, \
+//	const char	*ids[] = {
+//	ID_CAMERA, ID_AMBIENT, ID_LIGHT, ID_SPOTLIGHT,
 //	ID_SPHERE, ID_PLANE, ID_CYLINDER, ID_CORN, NULL};
 //
 //	idx = 0;
