@@ -62,7 +62,8 @@ static t_parse_res	parse_line(t_all_info *all, const char *line, t_id_cnt *cnt)
 }
 
 // errorがあればparseせずgnlを空にする
-static t_parse_res	parse_config_line_by_line(t_all_info *all, int fd, t_id_cnt *cnt)
+static t_parse_res	parse_config_line_by_line(t_all_info *all, \
+												int fd, t_id_cnt *cnt)
 {
 	char		*line;
 	t_parse_res	parse_result;
@@ -96,7 +97,6 @@ t_parse_res	parsing_config(t_all_info *all, const char *rt_path)
 		perror("open");
 		return (ERROR_FATAL);
 	}
-	result = ERROR_FATAL;
 	cnt = init_id_cnt();
 	result = parse_config_line_by_line(all, fd, &cnt);
 	errno = 0;
@@ -109,4 +109,3 @@ t_parse_res	parsing_config(t_all_info *all, const char *rt_path)
 		result = validate_id_cnt(cnt);
 	return (result);
 }
-

@@ -18,8 +18,10 @@ static t_map_idx	get_map_idx(t_tangetnt_map map, t_img img)
 
 	map.u *= (double)img.width * IMG_FREQUENCY;
 	map.v *= (double)img.height * IMG_FREQUENCY;
-	ret.row = ((int)map.u % (int)img.width + (int)img.width) % (int)img.width;
-	ret.col = ((int)map.v % (int)img.height + (int)img.height) % (int)img.height;
+	ret.row \
+	= ((int)map.u % (int)img.width + (int)img.width) % (int)img.width;
+	ret.col \
+	= ((int)map.v % (int)img.height + (int)img.height) % (int)img.height;
 	ret.idx = ((ret.col * (int)img.width + ret.row) * PPM_RGB_UNIT) \
 				% ((int)img.width * (int)img.height * PPM_RGB_UNIT);
 	return (ret);
@@ -47,8 +49,8 @@ t_color	get_itspos_image_texture_color(t_diffuse_param p)
 	ret_color = init_color(0.0, 0.0, 0.0);
 	if (!is_obj_image_texture(p.its_p.obj->obj_color))
 		return (ret_color);
-	img_color = get_its_pos_img_color(&p.its_p, \
-									  p.its_p.obj->obj_color.texture_data);
+	img_color \
+	= get_its_pos_img_color(&p.its_p, p.its_p.obj->obj_color.texture_data);
 	ret_color = color_k1c1(1.0 / 255.0, img_color);
 	return (ret_color);
 }
@@ -73,7 +75,8 @@ t_vec	get_bump_normal(t_intersection_point *its_p)
 	bump_normal_local.z = (img_color.b - 0.5) / 0.5;
 	trans_mat_world2local = get_transform_matrix_world2local_yup(its_p->normal);
 	trans_mat_local2world = transpose_matrix(trans_mat_world2local);
-	bump_normal_world = mul_matrix_vec(trans_mat_local2world, bump_normal_local);
+	bump_normal_world \
+	= mul_matrix_vec(trans_mat_local2world, bump_normal_local);
 	bump_normal_world = norm_vec(bump_normal_world);
 	return (bump_normal_world);
 }

@@ -30,12 +30,14 @@ int	validate_filename(const char *path, const char *extension)
 	const size_t	extension_len = ft_strlen_ns(extension);
 	int				fd;
 
-	printf(" DEBUG(validate_filename): path:[%s] -> filename:[%s]\n", path, filename);
+	printf(" DEBUG(validate_filename): path:[%s] -> filename:[%s]\n", \
+	path, filename);
 	if (cnt_chr_in_str('.', path) > 1)
 		return (FAILURE);
 	if (filename_len <= extension_len)
 		return (FAILURE);
-	printf(" DEBUG(validate_filename) extension: file[%s]\n", &filename[filename_len - extension_len]);
+	printf(" DEBUG(validate_filename) extension: file[%s]\n", \
+	&filename[filename_len - extension_len]);
 	if (!is_equal_strings(&filename[filename_len - extension_len], extension))
 		return (FAILURE);
 	fd = open(path, O_RDONLY);

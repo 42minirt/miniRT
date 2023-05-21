@@ -35,7 +35,7 @@ t_parse_res	validate_lights_info(t_scene_info *scene)
 		if (!is_color_in_range(light->light_color))
 			return (ERROR_OUT_OF_RANGE);
 		if (is_equal_strings(light->id_type, ID_SPOTLIGHT) \
- && !is_angle_in_range(light->sl_angle))
+		&& !is_angle_in_range(light->sl_angle))
 			return (ERROR_OUT_OF_RANGE);
 		node = node->next;
 	}

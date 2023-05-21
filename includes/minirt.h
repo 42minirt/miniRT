@@ -55,7 +55,7 @@
 # define PARSING_YET	(-1.0)
 //#define EPSILON		(1.0 / 512.0)
 # define EPSILON		(1.0 / 256.0)
-# define TO_RADIANS		((2.0 * M_PI) / 180.0)
+# define TO_RADIANS		(2.0 * M_PI / 180.0)
 # define TO_DEGREES		(1.0 / TO_RADIANS)
 
 /********** rt_id **********/
@@ -76,7 +76,6 @@
 /********** file extension **********/
 # define RT_EXTENSION		".rt"
 # define IMG_EXTENSION		".ppm"
-
 
 //単位ベクトル以外の情報に下記のように記載するのかどうか
 //1 unit_vec

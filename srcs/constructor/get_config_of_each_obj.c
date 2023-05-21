@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_config_of_each_obj.c                                   :+:      :+:    :+:   */
+/*   get_config_of_each_obj.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -18,7 +18,6 @@ static t_parse_res	get_sphere_config(const char *line, t_obj *obj)
 	size_t		idx;
 	t_parse_res	res;
 
-//	obj->type = BALL; //TODO: delete
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.sphere.center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
@@ -42,7 +41,6 @@ static t_parse_res	get_plane_config(const char *line, t_obj *obj)
 	size_t		idx;
 	t_parse_res	res;
 
-//	obj->type = PLANE; //TODO: delete
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.plane.center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
@@ -66,7 +64,6 @@ static t_parse_res	get_cylinder_config(const char *line, t_obj *obj)
 	size_t		idx;
 	t_parse_res	res;
 
-//	obj->type = CYLINDER; //TODO: delete
 	idx = 0;
 	if (\
 	parse_vec(line, &obj->shape_data.cylinder.bottom_center, &idx) == FAILURE)
@@ -93,7 +90,6 @@ static t_parse_res	get_corn_config(const char *line, t_obj *obj)
 	size_t		idx;
 	t_parse_res	res;
 
-//	obj->type = CORN; //TODO: delete
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.corn.bottom_center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);

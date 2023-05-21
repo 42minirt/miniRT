@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_config_of_lights.c                               :+:      :+:    :+:   */
+/*   get_config_of_lights.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -57,14 +57,12 @@ t_parse_res	get_config_of_lights(const char *line, t_scene_info *scene, const ch
 	if (parse_result != PASS)
 	{
 		x_free_1d_alloc((void **)&light);
-//		free(light);
 		return (parse_result);
 	}
 	new_list = ft_lstnew(light);
 	if (!new_list)
 	{
 		x_free_1d_alloc((void **)&light);
-//		free(light);
 		return (ERROR_FATAL);
 	}
 	ft_lstadd_back(&scene->lights, new_list);

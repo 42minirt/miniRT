@@ -12,19 +12,6 @@
 
 #include "minirt.h"
 
-//static void	free_split_array(char **split)
-//{
-//	size_t	idx;
-//
-//	idx = 0;
-//	while (split && split[idx])
-//	{
-//		free(split[idx]);
-//		idx++;
-//	}
-//	free(split);
-//}
-
 static t_parse_res	get_ppm_size(char **split, t_img *img)
 {
 	bool		is_atoi_success;
@@ -100,7 +87,6 @@ static t_parse_res	process_line_by_col(const char *line, \
 		res = get_ppm_size(split, img);
 	else
 		res = get_ppm_data(split, img, data_idx);
-//	free_split_array(split);
 	x_free_2d_alloc((void ***)&split);
 	return (res);
 }
@@ -136,7 +122,7 @@ t_parse_res	get_img_data(t_img *img, int fd)
 	if (data_idx != img->width * 3 * img->height)
 		res = ERROR_INVALID_PPM_FORMAT;
 	printf("get_img_data result:%s, idx:%zu, size:%zu\n", \
-        get_parse_result_char(res), data_idx, img->width * 3 * img->height);//debug
+		get_parse_result_char(res), data_idx, img->width * 3 * img->height);//debug
 	if (res != PASS)
 		return (ret_res_and_free(res, (void **)&img->data));
 	return (res);

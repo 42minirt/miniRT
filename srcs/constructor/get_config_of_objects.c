@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_config_of_objects.c                              :+:      :+:    :+:   */
+/*   get_config_of_objects.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -60,14 +60,12 @@ t_parse_res	get_config_of_objects(const char *line, \
 	if (parse_result != PASS)
 	{
 		x_free_1d_alloc((void **)&obj);
-//		free(obj);
 		return (parse_result);
 	}
 	new_list = ft_lstnew(obj);
 	if (!new_list)
 	{
 		x_free_1d_alloc((void **)&obj);
-//		free(obj);
 		return (ERROR_FATAL);
 	}
 	ft_lstadd_back(&scene->objs, new_list);

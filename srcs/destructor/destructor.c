@@ -42,10 +42,7 @@ static void	free_scene(t_scene_info *scene)
 {
 	ft_lstclear(&scene->lights, free_lights);
 	ft_lstclear(&scene->objs, free_objs);
-	scene->lights = NULL;
-	scene->objs= NULL;
 	x_free_1d_alloc((void **)&scene);
-//	free(scene);
 }
 
 static void	free_mlx(t_mlx_info *mlx)
