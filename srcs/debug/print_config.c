@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_config.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/17 23:19:51 by takira           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 static void	print_lights(t_scene_info *scene)
@@ -13,15 +25,15 @@ static void	print_lights(t_scene_info *scene)
 		light = node->content;
 		v = light->point;
 		c = light->light_color;
-		if (light->type == LT_POINT)
+		if (is_equal_strings(light->id_type, ID_SPOTLIGHT))
 			printf("  Point Light : (%5.1f, %5.1f, %5.1f), " \
-			"                                %5.1f," \
-			"          (%5.1f, %5.1f, %5.1f)\n", \
+			"                                   %5.1f," \
+			"           (%5.1f, %5.1f, %5.1f)\n", \
 			v.x, v.y, v.z, light->brightness, c.r, c.g, c.b);
 		else
 			printf("  Spot Light  : (%5.1f, %5.1f, %5.1f), " \
-			"                               %5.1f,   %5.1f," \
-			"   (%5.1f, %5.1f, %5.1f)\n", \
+			"                                   %5.1f,   %5.1f," \
+			"           (%5.1f, %5.1f, %5.1f)\n", \
 			v.x, v.y, v.z, light->brightness, light->sl_angle, c.r, c.g, c.b);
 		node = node->next;
 	}
@@ -36,11 +48,11 @@ static void	print_objects(t_scene_info *scene)
 	while (node)
 	{
 		obj = node->content;
-		if (obj->type == BALL)
+		if (is_equal_strings(obj->id_str, ID_SPHERE))
 			print_sphere(obj);
-		else if (obj->type == PLANE)
+		else if (is_equal_strings(obj->id_str, ID_PLANE))
 			print_plane(obj);
-		else if (obj->type == CYLINDER)
+		else if (is_equal_strings(obj->id_str, ID_CYLINDER))
 			print_cylinder(obj);
 		else
 			print_corn(obj);
@@ -57,8 +69,8 @@ void	debug_print_config(t_all_info *info)
 	c = info->scene_info->ambient_color;
 	printf("Ambient       : %5.1f, "\
 	"                                  "\
-	"                             (%5.1f, %5.1f, %5.1f)\n", \
-	info->scene_info->brightness, c.r, c.b, c.g);
+	"                                  (%5.1f, %5.1f, %5.1f)\n", \
+	info->scene_info->brightness, c.r, c.g, c.b);
 	printf("Camera        : \n");
 	printf("Lights\n");
 	print_lights(info->scene_info);
@@ -68,7 +80,7 @@ void	debug_print_config(t_all_info *info)
 	"====================================================\n");
 }
 
-const char	*parse_result_char(t_parse_res res)
+const char	*get_parse_result_char(t_parse_res res)
 {
 	if (res == PASS)
 		return ("\x1b[32mPASS\x1b[0m");
@@ -84,5 +96,11 @@ const char	*parse_result_char(t_parse_res res)
 		return ("\x1b[31mERROR_INVALID_ARG\x1b[0m");
 	if (res == ERROR_OUT_OF_RANGE)
 		return ("\x1b[31mERROR_OUT_OF_RANGE\x1b[0m");
-	return ("\x1b[31mERROR_MULTIPLE_ID\x1b[0m");
+	if (res == ERROR_MULTIPLE_ID)
+		return ("\x1b[31mERROR_MULTIPLE_ID\x1b[0m");
+	if (res == ERROR_MISSING_ID)
+		return ("\x1b[31mERROR_MISSING_ID\x1b[0m");
+	if (res == ERROR_INVALID_PPM_FORMAT)
+		return ("\x1b[31mERROR_INVALID_PPM_FORMAT\x1b[0m");
+	return ("\x1b[31mERROR\x1b[0m");
 }

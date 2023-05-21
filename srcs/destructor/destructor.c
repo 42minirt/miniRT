@@ -5,31 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 20:37:22 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:37:24 by user             ###   ########.fr       */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/21 18:04:28 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	free_objs(void *content)
+void	free_objs(void *content)
 {
-	t_obj		*obj;
+	t_obj	*obj;
 
 	obj = content;
 	if (obj)
 	{
-		free(obj->obj_color.texture_data.data);
-		free(obj->obj_color.bump_data.data);
+		x_free_1d_alloc((void **)&obj->obj_color.texture_data.data);
+		x_free_1d_alloc((void **)&obj->obj_color.bump_data.data);
+		x_free_1d_alloc((void **)&obj->id_str);
 	}
-	free(obj);
+	x_free_1d_alloc((void **)&obj);
+}
+
+void	free_lights(void *content)
+{
+	t_light	*light;
+
+	light = content;
+	if (light)
+	{
+		x_free_1d_alloc((void **)&light->id_type);
+	}
+	x_free_1d_alloc((void **)&light);
 }
 
 static void	free_scene(t_scene_info *scene)
 {
-	ft_lstclear(&scene->lights, free);
+	ft_lstclear(&scene->lights, free_lights);
 	ft_lstclear(&scene->objs, free_objs);
-	free(scene);
+	x_free_1d_alloc((void **)&scene);
 }
 
 static void	free_mlx(t_mlx_info *mlx)
@@ -39,13 +52,13 @@ static void	free_mlx(t_mlx_info *mlx)
 	mlx_destroy_image(mlx->mlx, mlx->img);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	mlx_destroy_display(mlx->mlx);
-	free(mlx->mlx);
-	free(mlx);
+	x_free_1d_alloc((void **)&mlx->mlx);
+	x_free_1d_alloc((void **)&mlx);
 }
 
 void	destruct_info(t_all_info *info)
 {
 	free_mlx(info->mlx_info);
 	free_scene(info->scene_info);
-	free(info->camera_info);
+	x_free_1d_alloc((void **)&info->camera_info);
 }

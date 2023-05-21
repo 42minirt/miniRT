@@ -5,37 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 20:36:56 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:36:58 by user             ###   ########.fr       */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/21 19:21:51 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	parse_int(const char *line, int *int_num, size_t *idx)
-{
-	size_t	len;
-	char	*num_str;
-	bool	is_success;
-
-	skip_spece(line, idx);
-	len = 0;
-	while (line[*idx + len] \
-	&& !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
-		len++;
-	num_str = ft_substr(line, *idx, len);
-	if (!num_str)
-	{
-		perror("malloc");
-		return (FAILURE);
-	}
-	*idx += len;
-	*int_num = ft_atoi(num_str, &is_success);
-	free(num_str);
-	if (!is_success)
-		return (FAILURE);
-	return (SUCCESS);
-}
+//int	parse_int(const char *line, int *int_num, size_t *idx)
+//{
+//	size_t	len;
+//	char	*num_str;
+//	bool	is_success;
+//
+//	skip_spece(line, idx);
+//	len = 0;
+//	while (line[*idx + len] \
+//	&& !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
+//		len++;
+//	num_str = ft_substr(line, *idx, len);
+//	if (!num_str)
+//	{
+//		perror("malloc");
+//		return (FAILURE);
+//	}
+//	*idx += len;
+//	*int_num = ft_atoi(num_str, &is_success);
+//	free(num_str);
+//	if (!is_success)
+//		return (FAILURE);
+//	return (SUCCESS);
+//}
 
 int	parse_double(const char *line, double *double_num, size_t *idx)
 {
@@ -56,7 +56,7 @@ int	parse_double(const char *line, double *double_num, size_t *idx)
 	}
 	*idx += len;
 	*double_num = ft_strtod(num_str, &is_success, NULL);
-	free(num_str);
+	x_free_1d_alloc((void **)&num_str);
 	if (!is_success)
 		return (FAILURE);
 	return (SUCCESS);
@@ -77,23 +77,17 @@ int	parse_vec(const char *line, t_vec *vec, size_t *idx)
 	return (SUCCESS);
 }
 
-// int_num1, int_num2, int_num3
 int	parsing_color(const char *line, t_color *color, size_t *idx)
 {
-	int	int_r;
-	int	int_g;
-	int	int_b;
-
 	skip_spece(line, idx);
-	if (parse_int(line, &int_r, idx) == FAILURE)
+	if (parse_double(line, &color->r, idx) == FAILURE)
 		return (FAILURE);
 	skip_delimiter(line, idx);
-	if (parse_int(line, &int_g, idx) == FAILURE)
+	if (parse_double(line, &color->g, idx) == FAILURE)
 		return (FAILURE);
 	skip_delimiter(line, idx);
-	if (parse_int(line, &int_b, idx) == FAILURE)
+	if (parse_double(line, &color->b, idx) == FAILURE)
 		return (FAILURE);
 	skip_spece(line, idx);
-	*color = init_color((double)int_r, (double)int_g, (double)int_b);
 	return (SUCCESS);
 }

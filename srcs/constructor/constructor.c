@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 20:36:19 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:36:21 by user             ###   ########.fr       */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/21 18:52:21 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static int	alloc_info_ptr(t_all_info *all_info)
 		return (FAILURE);
 	all_info->scene_info->lights = NULL;
 	all_info->scene_info->objs = NULL;
-	all_info->scene_info->brightness = -1.0;
 	return (SUCCESS);
 }
 
@@ -31,11 +30,12 @@ static int	init_mlx(t_mlx_info *mlx_info)
 	if (!mlx_info->mlx)
 		return (FAILURE);
 	mlx_info->win = mlx_new_window(mlx_info->mlx, \
-	WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
+									WINDOW_WIDTH, WINDOW_HEIGHT, \
+									WINDOW_TITLE);
 	if (!mlx_info->win)
 		return (FAILURE);
 	mlx_info->img = mlx_new_image(mlx_info->mlx, \
-	WINDOW_WIDTH, WINDOW_HEIGHT);
+									WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!mlx_info->img)
 		return (FAILURE);
 	mlx_info->addr = mlx_get_data_addr(mlx_info->img, \
@@ -43,27 +43,55 @@ static int	init_mlx(t_mlx_info *mlx_info)
 	return (SUCCESS);
 }
 
-// 順番不明のため、scene, cameraを同時に初期化する
-static int	init_scene_and_camera(t_all_info *all_info, const char *rt_path)
+// parse scene & camera -> update config
+static t_parse_res	init_scene_and_camera(t_all_info *all_info, \
+											const char *rt_path)
 {
-	if (parsing_config(all_info, rt_path) == FAILURE)
-		return (FAILURE);
-	if (validate_scene(all_info->scene_info) == FAILURE)
-		return (FAILURE);
-	if (validate_camera(all_info->camera_info) == FAILURE)
-		return (FAILURE);
-	return (SUCCESS);
+	t_parse_res	result;
+
+	result = parsing_config(all_info, rt_path);
+	if (result != PASS)
+		return (result);
+	result = validate_scene(all_info->scene_info);
+	if (result != PASS)
+		return (result);
+	result = validate_camera(all_info->camera_info);
+	if (result != PASS)
+		return (result);
+	debug_print_config(all_info);
+	update_scene_config(all_info->scene_info); // color = brightness * color,...
+	update_camera_config(all_info->camera_info);
+	printf("\n  vvvvv update vvvvv \n");
+	debug_print_config(all_info);
+	return (result);
 }
 
 int	construct_info(t_all_info *all_info, const char *rt_path)
 {
+	t_parse_res	result;
+
 	if (alloc_info_ptr(all_info) == FAILURE)
+	{
+		ft_dprintf(STDERR_FILENO, "Error\n : Failure in init memory allocate\n");
 		return (FAILURE);
+	}
 	if (init_mlx(all_info->mlx_info) == FAILURE)
+	{
+		ft_dprintf(STDERR_FILENO, "Error\n : Failure in init mlx\n");
 		return (FAILURE);
-	if (init_scene_and_camera(all_info, rt_path) == FAILURE)
+	}
+	if (validate_filename(rt_path, RT_EXTENSION) != SUCCESS)
+	{
+		ft_dprintf(STDERR_FILENO, "Error\n : rt file invalid\n");
 		return (FAILURE);
-	debug_print_config(all_info);
-	update_scene(all_info->scene_info); // color = brightness * color,...
+	}
+	result = init_scene_and_camera(all_info, rt_path);
+	if (result != PASS)
+	{
+		ft_dprintf(STDERR_FILENO, \
+		"Error\n : Failure in parsing config file [%s]\n", get_parse_result_char(result));
+		return (FAILURE);
+	}
+	printf("[Parsing config] : %s\n", get_parse_result_char(result));
 	return (SUCCESS);
 }

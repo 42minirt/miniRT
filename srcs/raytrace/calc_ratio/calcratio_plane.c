@@ -20,14 +20,13 @@ double	set_itsp(t_plane *plane, double t, t_ray *ray, t_intersection_point *itsp
 	{
 		itsp->distance = t;
 		itsp->normal = plane->center;
-		itsp->obj = (t_shape_data *)plane;
 		times_vec(&eye2its, t, &ray->unit_dir);
 		add_vec(&itsp->position, &ray->pos, &eye2its);
 	}
 	return (t);
 }
 
-double	calc_planeratio(t_obj *obj, t_all_info *info, t_ray *ray, t_intersection_point *itsp)
+double	calc_planeratio(t_obj *obj, t_ray *ray, t_intersection_point *itsp)
 {
 	t_plane	*plane;
 	t_vec	pos2center;
@@ -35,6 +34,7 @@ double	calc_planeratio(t_obj *obj, t_all_info *info, t_ray *ray, t_intersection_
 	double	dis_n;
 
 	plane = (t_plane *)obj;
+	itsp->obj = obj;
 	neg_vec(&pos2center, &plane->center, &ray->pos);
 	n_pos2center = dot(plane->normal, pos2center);
 	dis_n = dot(ray->unit_dir, plane->normal);

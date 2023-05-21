@@ -21,9 +21,10 @@
 # include "ft_string.h"
 # include "ft_list.h"
 
-# define FAILURE	0
-# define SUCCESS	1
-# define CONTINUE	-2
-# define BREAK		-3
+# define FAILURE		0
+# define SUCCESS		1
+# define PROCESS_ERROR	(-1)
+# define CONTINUE		(-2)
+# define BREAK			(-3)
 
 #endif

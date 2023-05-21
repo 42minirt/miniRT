@@ -15,6 +15,7 @@
 !srcs/*/*/
 
 !rt_file
+!rt_file/**
 !img/
 !libs
 !libs/**
@@ -24,4 +25,4 @@
 
 .idea/
 objs/
-
+libs/libft.a

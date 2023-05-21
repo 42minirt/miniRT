@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 20:32:47 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:41:41 by user             ###   ########.fr       */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/21 18:33:18 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ t_color	color_add(t_color c1, t_color c2);
 t_color	init_color(double r, double g, double b);
 void	color_set(t_color *tgt, double R, double G, double B);
 void	color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
+void	colort_init_pointer(t_color *color);
 
 #endif //COLOR_H

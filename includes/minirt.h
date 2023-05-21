@@ -6,9 +6,10 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:47:21 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 18:33:31 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -27,6 +28,8 @@
 # include "color.h"
 # include "constructor.h"
 # include "debug.h"
+# include "matrix.h"
+# include "raytrace.h"
 # include "vector.h"
 
 /********** return value **********/
@@ -50,6 +53,42 @@
 # define EPSIRON 			1 / 512
 
 # define MT_PERFECT_REFLECTION 666
+
+/********** key hook **********/
+# define EVENT_DESTROY		33
+# define EVENT_KEY_PRESS	2
+# define KEY_ESC			0xff1b
+
+/********** value **********/
+# define MAX_RECURSION	8
+# define IMG_FREQUENCY	1
+# define PPM_RGB_UNIT	3
+# define CHECKER_U_MAG	10
+# define CHECKER_V_MAG	10
+# define PARSING_YET	(-1.0)
+//#define EPSILON		(1.0 / 512.0)
+# define EPSILON		(1.0 / 256.0)
+# define TO_RADIANS		(2.0 * M_PI / 180.0)
+# define TO_DEGREES		(1.0 / TO_RADIANS)
+
+/********** rt_id **********/
+# define ID_AMBIENT		"A"
+# define ID_CAMERA		"C"
+# define ID_LIGHT		"L"
+# define ID_SPOTLIGHT	"sl"
+# define ID_SPHERE		"sp"
+# define ID_PLANE		"pl"
+# define ID_CYLINDER	"cy"
+# define ID_CORN		"co"
+
+/********** rt_string **********/
+# define OP_CHECKER_TEXTURE	"checker"
+# define OP_PERFECT_REF		"perfect_ref"
+# define OP_IMAGE_TEXTURE	"image"
+
+/********** file extension **********/
+# define RT_EXTENSION		".rt"
+# define IMG_EXTENSION		".ppm"
 
 //単位ベクトル以外の情報に下記のように記載するのかどうか
 //1 unit_vec
@@ -85,11 +124,16 @@ t_d_param		calc_d_param_of_corn(t_corn_param p);
 /* destructor */
 
 void			destruct_info(t_all_info *info);
+void			free_objs(void *content);
+void			free_lights(void *content);
+void			x_free_1d_alloc(void **alloc);
+void			x_free_2d_alloc(void ***alloc);
 
 /* mlx helper */
 
 void			put_pixel(t_mlx_info \
 *mlx_info, size_t x, size_t y, t_color color);
+void			mlx_hooks(t_mlx_info *mlx_info);
 
 t_color			calc_diffuse_reflection(t_all_info info, \
 t_intersection_point its_p, t_ray eye2screen);

@@ -6,13 +6,17 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 22:46:04 by user              #+#    #+#             */
-/*   Updated: 2023/05/16 22:46:24 by user             ###   ########.fr       */
+/*   Updated: 2023/05/20 15:38:18 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+//todo:  後回し
 t_ray get_screen_vector(t_all_info info)
 {
-	//todo:  後回し
+	t_ray	ret;
+
+	(void)info;
+	return (ret);
 }

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_obj_detail.c                                   :+:      :+:    :+:   */
+/*   get_config_of_each_obj.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 20:36:38 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:36:40 by user             ###   ########.fr       */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/21 18:57:24 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 // sp   XYZ                    diameter            RGB[0,255]   <OPTION>
-static t_parse_res	get_sphere_detail(const char *line, t_obj *obj)
+static t_parse_res	get_sphere_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
+	t_parse_res	res;
 
-	obj->type = BALL;
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.sphere.center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
@@ -27,19 +27,20 @@ static t_parse_res	get_sphere_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) != PASS)
-		return (ERROR_INVALID_ARG);
+	res = get_bonus_config_of_obj(line, obj, &idx);
+	if (res != PASS)
+		return (res);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);
 }
 
 // pl   XYZ   norm_vec[-1,1]                       RGB[0,255]   <OPTION>
-static t_parse_res	get_plane_detail(const char *line, t_obj *obj)
+static t_parse_res	get_plane_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
+	t_parse_res	res;
 
-	obj->type = PLANE;
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.plane.center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
@@ -49,19 +50,20 @@ static t_parse_res	get_plane_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) != PASS)
-		return (ERROR_INVALID_ARG);
+	res = get_bonus_config_of_obj(line, obj, &idx);
+	if (res != PASS)
+		return (res);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);
 }
 
 // cy   XYZ   norm_vec[-1,1]   diameter   height   RGB[0,255]   <OPTION>
-static t_parse_res	get_cylinder_detail(const char *line, t_obj *obj)
+static t_parse_res	get_cylinder_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
+	t_parse_res	res;
 
-	obj->type = CYLINDER;
 	idx = 0;
 	if (\
 	parse_vec(line, &obj->shape_data.cylinder.bottom_center, &idx) == FAILURE)
@@ -74,21 +76,20 @@ static t_parse_res	get_cylinder_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (parsing_color(line, &obj->obj_color.kd, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
-	if (!line[idx])
-		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) != PASS)
-		return (ERROR_INVALID_ARG);
+	res = get_bonus_config_of_obj(line, obj, &idx);
+	if (res != PASS)
+		return (res);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);
 }
 
 // co   XYZ   norm_vec[-1,1]   diameter   height   RGB[0,255]   <OPTION>
-static t_parse_res	get_corn_detail(const char *line, t_obj *obj)
+static t_parse_res	get_corn_config(const char *line, t_obj *obj)
 {
 	size_t		idx;
+	t_parse_res	res;
 
-	obj->type = CORN;
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.corn.bottom_center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
@@ -102,25 +103,26 @@ static t_parse_res	get_corn_detail(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (!line[idx])
 		return (PASS);
-	if (get_bonus_detail(line, obj, &idx) != PASS)
-		return (ERROR_INVALID_ARG);
+	res = get_bonus_config_of_obj(line, obj, &idx);
+	if (res != PASS)
+		return (res);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);
 }
 
-t_parse_res	get_obj_detail(const char *line, int id_no, t_obj *obj)
+t_parse_res	get_config_of_each_obj(const char *line, t_obj *obj)
 {
 	t_parse_res	res;
 
 	res = ERROR_FATAL;
-	if (id_no == id_sphere)
-		res = get_sphere_detail(line, obj);
-	else if (id_no == id_plane)
-		res = get_plane_detail(line, obj);
-	else if (id_no == id_cylinder)
-		res = get_cylinder_detail(line, obj);
-	else if (id_no == id_corn)
-		res = get_corn_detail(line, obj);
+	if (is_equal_strings(obj->id_str, ID_SPHERE))
+		res = get_sphere_config(line, obj);
+	else if (is_equal_strings(obj->id_str, ID_PLANE))
+		res = get_plane_config(line, obj);
+	else if (is_equal_strings(obj->id_str, ID_CYLINDER))
+		res = get_cylinder_config(line, obj);
+	else if (is_equal_strings(obj->id_str, ID_CORN))
+		res = get_corn_config(line, obj);
 	return (res);
 }

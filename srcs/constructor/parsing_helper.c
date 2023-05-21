@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parsing_helper.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                    +:+ +:+         +:+     *
+/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 20:36:59 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:37:01 by user             ###   ########.fr       */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/17 23:19:51 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,19 @@ char	*get_identifier_str(const char *line, size_t idx)
 	return (id_str);
 }
 
-int	get_identifier_no(const char *id_str)
-{
-	size_t		idx;
-	const char	*ids[] = {\
-	"C", "A", "L", "sl", \
-	"sp", "pl", "cy", "co", NULL};
-
-	idx = 0;
-	while (ids[idx])
-	{
-		if (is_same_str(id_str, ids[idx]))
-			return ((int)idx);
-		idx++;
-	}
-	return (ERROR_INVALID_TYPE);
-}
+//t_id	get_identifier_no(const char *id_type)
+//{
+//	size_t		idx;
+//	const char	*ids[] = {\
+//	ID_CAMERA, ID_AMBIENT, ID_LIGHT, ID_SPOTLIGHT, \
+//	ID_SPHERE, ID_PLANE, ID_CYLINDER, ID_CORN, NULL};
+//
+//	idx = 0;
+//	while (ids[idx])
+//	{
+//		if (is_equal_strings(id_type, ids[idx]))
+//			return ((int)idx);
+//		idx++;
+//	}
+//	return (id_invalid);
+//}

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 20:35:22 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 17:50:58 by user             ###   ########.fr       */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/21 18:50:20 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	normalize(t_vec *normal_vec, t_vec *normarized_vec)
 		+ pow(normarized_vec->z, 2));
 	if (vec_size == 0.0)
 	{
-		printf("this size 0 ! So exit");
+		printf("[Error] division by zero in normalize.\n");
 		exit(1);
 	}
 	setvec(normal_vec, \

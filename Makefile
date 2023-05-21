@@ -17,7 +17,6 @@ endif
 NAME			= miniRT
 
 
-
 #####################################################
 # SRC FILE
 VPATH			= $(SRC_DIR) $(INCLUDE_DIR)
@@ -30,66 +29,86 @@ SRCS			= $(addprefix $(SRC_DIR)/, $(SRC))
 CONSTRUCTOR_DIR	= constructor
 CONSTRUCTOR_SRC	= constructor.c \
 				  ft_strtod.c \
-				  get_ambient_setting.c \
-				  get_camera_setting.c \
-				  get_image_data.c \
-				  get_lights_setting.c \
-				  get_obj_detail.c \
-				  get_objects_bonus_image.c \
-				  get_objects_bonus_info.c \
-				  get_objects_setting.c \
+				  get_config.c \
+				  get_config_of_ambient.c \
+				  get_config_of_camera.c \
+				  get_config_of_each_obj.c \
+				  get_config_of_lights.c \
+				  get_config_of_objects.c \
+				  get_image_data_from_ppm.c \
+				  get_image_texture.c \
+				  get_bonus_config_of_obj.c \
 				  parsing_config.c \
 				  parsing_digits.c \
+				  parsing_id_cnt.c \
 				  parsing_helper.c \
-				  update_scene.c \
-				  update_scene_each_obj.c \
+				  update_camera_config.c \
+				  update_scene_config.c \
+				  update_scene_config_each_obj.c \
 				  validate_config.c \
 				  validate_config_color.c \
 				  validate_config_shape.c \
 				  validate_config_light.c \
-				  is_range.c
-
+				  validate_filename.c \
+				  validate_is.c
 
 SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
 #-------------------------------------------------------------------------
 DESTRUCTOR_DIR	= destructor
-DESTRUCTOR_SRC	= destructor.c
+DESTRUCTOR_SRC	= destructor.c \
+				  x_free.c
 
 SRC				+= $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_SRC))
 
-
 #-------------------------------------------------------------------------
 MLX_HELPER		= mlx_helper
-MLX_HELPER_SRS	= mlx_pixcel_put.c
+MLX_HELPER_SRS	= mlx_pixcel_put.c \
+				  mlx_keyhooks.c
 
 SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 
 #-------------------------------------------------------------------------
 RAYTRACE_DIR	= raytrace
-RAYTRACE_SRC	= raytrace.c \
+RAYTRACE_SRC	= calc_ambient_reflection.c \
+				  calc_diffuse_reflection.c \
+				  calc_diffuse_reflection_param.c \
+				  get_image_ref_color.c \
+				  get_tangent_coordinate_map.c \
 				  intersection_helper.c \
-				  intersection_with_sphere.c \
 				  intersection_with_corn.c \
-				  intersection_with_corn_calc_param.c
+				  intersection_with_corn_calc_param.c \
+				  intersection_with_sphere.c \
+				  is_condition.c \
+				  raytrace.c \
+				  calc_ratio/calcratio_cylinder.c \
+				  calc_ratio/calcratio_plane.c
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 
-
 #-------------------------------------------------------------------------
 COLOR_DIR		= calc_color
-COLOR_SRC		= calc_color.c
+COLOR_SRC		= calc_color.c \
+				  color_handling.c
 
 SRC				+= $(addprefix $(COLOR_DIR)/, $(COLOR_SRC))
 
 #-------------------------------------------------------------------------
 VECTOR_DIR		= calc_vector
 VECTOR_SRC		= arithmetic.c \
-				  organize_vec.c \
 				  arithmetic_ret_vec.c \
-				  calc_vec.c
+				  calc_vec.c \
+				  organize_vec.c
 
 SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
+
+#-------------------------------------------------------------------------
+MATRIX_DIR		= matrix
+MATRIX_SRC		= calc_matrix.c \
+				  is_basis_equals.c \
+				  matrix.c
+
+SRC				+= $(addprefix $(MATRIX_DIR)/, $(MATRIX_SRC))
 
 #-------------------------------------------------------------------------
 DEBUG_DIR		= debug
@@ -97,7 +116,6 @@ DEBUG_SRC		= print_config.c \
 				  print_config_helper.c
 
 SRC				+= $(addprefix $(DEBUG_DIR)/, $(DEBUG_SRC))
-
 
 
 
@@ -150,7 +168,7 @@ $(NAME)			: $(OBJS)
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $$(dirname $@)
-	$(CC) $(INCLUDES) -o $@ -c $<
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
 clean			:
 	rm -rf $(OBJ_DIR)
@@ -167,10 +185,10 @@ re				: fclean all
 bonus			: all
 
 leaks			:
-	make all WITH_LEAKS=1
+	make re WITH_LEAKS=1
 
 sani			:
-	make all WITH_SANITIZE=1
+	make re WITH_SANITIZE=1
 
 norm			:
 	@norminette --version

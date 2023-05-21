@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 20:34:00 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 17:38:41 by user             ###   ########.fr       */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/21 18:32:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ double	norm(t_vec vec);
 
 // organize_vec
 void	setvec(t_vec *tgt_vec, double x, double y, double z);
+t_vec	set(double x, double y, double z);
+
 void	inverse_vec(t_vec *inv_vec, t_vec *inved_vec);
 t_vec	inverse(t_vec vec);
+t_vec	inv_norm(t_vec vec);
 void	times_vec(t_vec *tgt_vec, double t, t_vec *sub);
 double	obtain_vecsize(t_vec *vec);
 
