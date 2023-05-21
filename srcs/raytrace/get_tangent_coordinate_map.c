@@ -78,7 +78,6 @@ static t_tangetnt_map	get_conical_map(t_intersection_point *its_p)
 		= sub(its_p->position, its_p->obj->shape_data.corn.bottom_center); // todo: bottom or origin
 	tarns_mat_world2tangent \
 		= get_transform_matrix_world2local_zup(its_p->obj->shape_data.corn.axis);
-	tarns_mat_world2tangent = transpose_matrix(tarns_mat_world2tangent);
 	pos_uv = mul_matrix_vec(tarns_mat_world2tangent, pos_local);
 	azimuth_angle_phi = atan2(pos_uv.z, pos_uv.x);
 	map.u = (azimuth_angle_phi) / (2.0 * M_PI); // 	map.u = (azimuth_angle_phi + M_PI) / (2.0 * M_PI);
