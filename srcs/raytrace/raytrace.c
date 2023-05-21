@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:01:18 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 //intersectionが存在するかとともに、存在していればintersectionの情報を格納する
 
@@ -68,11 +68,11 @@ static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	// 交点判定
 	is_intersect = check_intersection(info->scene_info, eye2screen, &its_p);
     if (is_intersect == false)
-        return (backgroundcolor_init());
-	*ret_color = color_add(*ret_color, calc_diffuse_reflection(info, its_p, eye2screen));
-	*ret_color = color_add(*ret_color, calc_specular_reflection(info, its_p, eye2screen));
+        return (false);
+	*ret_color = color_add(*ret_color, calc_diffuse_reflection(*info, its_p, eye2screen));
+	*ret_color = color_add(*ret_color, calc_specular_reflection(*info, its_p, eye2screen));
 	if (its_p.obj->obj_color.is_perfect_ref == true)
-		*ret_color = color_add(*ret_color, calc_perfect_reflection(info, its_p, eye2screen, counter));
+		*ret_color = color_add(*ret_color, calc_perfect_reflection(*info, its_p, eye2screen, counter));
     return (true);
 }
 

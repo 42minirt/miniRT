@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   calc_diffuse_reflection_param.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:13:19 by takira            #+#    #+#             */
-/*   Updated: 2023/05/20 15:31:16 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 20:08:45 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 static t_vec	get_normal(t_intersection_point *its_p)
 {

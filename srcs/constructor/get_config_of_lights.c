@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_config_of_lights.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/20 15:13:48 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 // #Light      point(xyz)         ratio[0,1]                  RGB[0,255]
 // #Spotlight  Light_point(xyz)   ratio[0,1]   angle[0-180]   RGB[0,255]

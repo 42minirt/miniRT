@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   calc_diffuse_reflection.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:39:36 by takira            #+#    #+#             */
-/*   Updated: 2023/05/20 15:31:45 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 20:08:31 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 static t_color	get_itspos_checker_color(t_diffuse_param p)
 {

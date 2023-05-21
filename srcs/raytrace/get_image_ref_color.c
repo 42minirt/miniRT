@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_image_ref_color.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:08:09 by takira            #+#    #+#             */
-/*   Updated: 2023/05/20 15:30:28 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 static t_map_idx	get_map_idx(t_tangetnt_map map, t_img img)
 {

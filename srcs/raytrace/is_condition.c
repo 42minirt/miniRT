@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_condition.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 17:34:45 by takira            #+#    #+#             */
-/*   Updated: 2023/05/20 15:32:44 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 // todo:tmp
 bool	is_obj_exists_between_itspos_and_light(t_scene_info *scene, t_diffuse_param p)
