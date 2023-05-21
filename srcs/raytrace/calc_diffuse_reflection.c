@@ -35,7 +35,7 @@ static bool	is_in_range_spotlight(t_diffuse_param p)
 							p.light->sl_dir)) * 180.0 / (2.0 * M_PI);
 	if (angle_pos2light < 0)
 		angle_pos2light *= -1.0; //todo: check
-	return (angle_pos2light <= p.light->sl_angle);
+	return (angle_pos2light <= p.light->sl_angle_half);
 }
 
 static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
@@ -45,7 +45,7 @@ static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
 	if (p.dot_n_pos2light <= 0.0)
 		return (init_color(0.0, 0.0, 0.0));
 	if (is_equal_strings(p.light->id_type, ID_SPOTLIGHT) \
- && !is_in_range_spotlight(p))
+	&& !is_in_range_spotlight(p))
 		return (init_color(0.0, 0.0, 0.0));
 	ret_color = color_k1c1_k2c2(p.its_p.obj->obj_color.id, kd, \
 							p.dot_n_pos2light, p.light->light_color);
@@ -67,7 +67,7 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 	kd = p.its_p.obj->obj_color.kd;
 	if (is_obj_checker(its_p.obj->obj_color))
 		kd = get_itspos_checker_color(p);
-	if (is_obj_image_texture(its_p.obj->obj_color))
+	else if (is_obj_image_texture(its_p.obj->obj_color))
 		kd = get_itspos_image_texture_color(p);
 	ret_color = get_diffuse_ref_color(p, kd);
 	return (ret_color);
