@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../../includes/minirt.h"
 
 double	set_itsp(t_plane *plane, double t, t_ray *ray, t_intersection_point *itsp)
 {

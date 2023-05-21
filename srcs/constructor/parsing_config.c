@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include <fcntl.h>
+#include "../../includes/minirt.h"
+
 
 // camera, ambient は free
 // listに追加できなかったlight, objもこの段階でfree

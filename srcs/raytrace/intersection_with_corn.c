@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 static bool	is_in_range_corn_height(double t, double intp_h, double corn_h)
 {

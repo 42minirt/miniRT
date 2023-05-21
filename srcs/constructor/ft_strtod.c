@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 static void	handle_before_num(const char *str, \
 								double *sign, size_t *idx, size_t *i)

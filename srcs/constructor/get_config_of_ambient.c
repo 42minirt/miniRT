@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 // #Ambient  lightning_ratio[0,1]  RGB[0,255]
 t_parse_res	get_config_of_ambient(const char *line, t_scene_info *scene)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 static t_d_param	calc_d_param_of_sphere(t_sphere *sphere, t_ray ray)
 {

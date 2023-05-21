@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 t_color	calc_ambient_reflection(t_scene_info *scene, t_intersection_point its_p)
 {

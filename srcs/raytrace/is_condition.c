@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 // todo:tmp
 bool	is_obj_exists_between_itspos_and_light(t_scene_info *scene, t_diffuse_param p)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 // #Camera  viewpoint(xyz)  normalized_orientation_vec[-1,1]  FOV[0,180]
 t_parse_res	get_congfig_of_camera(const char *line, t_camera_info *camera)

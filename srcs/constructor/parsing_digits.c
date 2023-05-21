@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 //int	parse_int(const char *line, int *int_num, size_t *idx)
 //{

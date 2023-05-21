@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 static t_parse_res	get_checker_info(const char *line, \
 									t_obj_color *obj_color, size_t *idx)

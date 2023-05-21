@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix.h"
+#include "../../includes/minirt.h"
 
 t_matrix	transpose_matrix(t_matrix mat)
 {

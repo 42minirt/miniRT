@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 // sp   XYZ                    diameter            RGB[0,255]   <OPTION>
 static t_parse_res	get_sphere_config(const char *line, t_obj *obj)

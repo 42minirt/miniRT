@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../../includes/minirt.h"
 
 double	calc_discreminant(double A, double B, double C)
 {
