@@ -29,7 +29,7 @@ static void	update_config_lights(t_scene_info *scene)
 		light = node->content;
 		light->light_color = \
 		color_k1c1(light->brightness / 255.0, light->light_color);
-		if (light->type == LT_SPOT)
+		if (is_equal_strings(light->id_type, ID_SPOTLIGHT))
 			light->sl_angle_half = light->sl_angle / 2.0;
 		node = node->next;
 	}
@@ -37,13 +37,13 @@ static void	update_config_lights(t_scene_info *scene)
 
 static void	update_scene_each_obj(t_obj *obj)
 {
-	if (obj->type == BALL)
+	if (is_equal_strings(obj->id_str, ID_SPHERE))
 		update_scene_sphere_info(&obj->shape_data.sphere);
-	else if (obj->type == PLANE)
+	else if (is_equal_strings(obj->id_str, ID_PLANE))
 		update_scene_plane_info(&obj->shape_data.plane);
-	else if (obj->type == CYLINDER)
+	else if (is_equal_strings(obj->id_str, ID_CYLINDER))
 		update_scene_cylinder_info(&obj->shape_data.cylinder);
-	else if (obj->type == CORN)
+	else if (is_equal_strings(obj->id_str, ID_CORN))
 		update_scene_corn_info(&obj->shape_data.corn);
 }
 

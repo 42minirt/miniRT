@@ -16,13 +16,15 @@
 
 static double	calc_intersection(t_obj *obj, t_ray eye2screen, t_intersection_point *tmp_itsp)
 {
-	if (obj->type == BALL)
+	if (is_equal_strings(obj->id_str, ID_SPHERE))
 		return (calc_intersect_with_sphere(obj, eye2screen, tmp_itsp));
-	else if (obj->type == PLANE)
+	else if (is_equal_strings(obj->id_str, ID_PLANE))
 		return (calc_planeratio(obj, &eye2screen, tmp_itsp));
-	else if (obj->type == CYLINDER)
+	else if (is_equal_strings(obj->id_str, ID_CYLINDER))
 		return (calc_cylinderratio(obj, &eye2screen, tmp_itsp));
-	return (calc_intersect_with_corn(obj, eye2screen, tmp_itsp));
+	else if (is_equal_strings(obj->id_str, ID_CORN))
+		return (calc_intersect_with_corn(obj, eye2screen, tmp_itsp));
+	return (-1.0);
 }
 
 bool	check_intersection(t_scene_info *scene, t_ray eye2screen, t_intersection_point *its_p)

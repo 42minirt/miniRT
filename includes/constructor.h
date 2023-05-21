@@ -33,7 +33,7 @@ void		skip_delimiter(const char *line, size_t *idx);
 void		increment_idx_to_next_format(const char *line, \
 											size_t *idx, char *prev_str);
 char		*get_identifier_str(const char *line, size_t idx);
-t_id		get_identifier_no(const char *id_str);
+//t_id		get_identifier_no(const char *id_str);
 double		ft_strtod(const char *str, bool *is_success, char **err);
 
 // parsing digits

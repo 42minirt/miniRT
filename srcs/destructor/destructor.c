@@ -33,7 +33,7 @@ void	free_lights(void *content)
 	light = content;
 	if (light)
 	{
-		x_free_1d_alloc((void **)&light->id_str);
+		x_free_1d_alloc((void **)&light->id_type);
 	}
 	x_free_1d_alloc((void **)&light);
 }

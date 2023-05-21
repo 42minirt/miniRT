@@ -19,10 +19,10 @@
 typedef union u_shape_data				t_shape_data;
 
 /********** typedef enum **********/
-typedef enum e_shape_type				t_shape_type;
+//typedef enum e_shape_type				t_shape_type;
 typedef enum e_parse_result				t_parse_res;
-typedef enum e_identifier				t_id;
-typedef enum e_light_type				t_light_type;
+//typedef enum e_identifier				t_id;
+//typedef enum e_light_type				t_light_type;
 
 /********** typedef struct **********/
 typedef struct s_all_info				t_all_info;
@@ -57,18 +57,18 @@ typedef struct s_id_cnt					t_id_cnt;
 
 /********** enum **********/
 
-enum	e_identifier
-{
-	id_camera = 0,
-	id_ambient = 1,
-	id_point_light = 2,
-	id_spot_light = 3,
-	id_sphere = 4,
-	id_plane = 5,
-	id_cylinder = 6,
-	id_corn = 7,
-	id_invalid,
-};
+//enum	e_identifier
+//{
+//	id_camera = 0,
+//	id_ambient = 1,
+//	id_point_light = 2,
+//	id_spot_light = 3,
+//	id_sphere = 4,
+//	id_plane = 5,
+//	id_cylinder = 6,
+//	id_corn = 7,
+//	id_invalid,
+//};
 
 enum	e_parse_result
 {
@@ -84,19 +84,19 @@ enum	e_parse_result
 	ERROR_PPM_FORMAT = 19,
 };
 
-enum	e_shape_type
-{
-	BALL = 20,
-	PLANE = 21,
-	CORN = 22,
-	CYLINDER = 23,
-};
-
-enum	e_light_type
-{
-	LT_POINT = 30,
-	LT_SPOT = 31,
-};
+//enum	e_shape_type
+//{
+//	BALL = 20,
+//	PLANE = 21,
+//	CORN = 22,
+//	CYLINDER = 23,
+//};
+//
+//enum	e_light_type
+//{
+//	LT_POINT = 30,
+//	LT_SPOT = 31,
+//};
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -120,9 +120,9 @@ struct s_color
 
 struct s_light
 {
-	const char		*id_str;
+	const char		*id_type;
 
-	t_light_type	type;
+//	t_light_type	type;
 	t_vec			point;
 	double			brightness;
 
@@ -213,7 +213,7 @@ struct s_obj_color
 struct s_obj
 {
 	const char		*id_str;
-	t_shape_type	type; //shere or ...
+//	t_shape_type	type; //shere or ...
 	t_shape_data	shape_data;
 	t_obj_color		obj_color;
 };

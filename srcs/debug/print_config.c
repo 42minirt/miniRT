@@ -25,7 +25,7 @@ static void	print_lights(t_scene_info *scene)
 		light = node->content;
 		v = light->point;
 		c = light->light_color;
-		if (light->type == LT_POINT)
+		if (is_equal_strings(light->id_type, ID_SPOTLIGHT))
 			printf("  Point Light : (%5.1f, %5.1f, %5.1f), " \
 			"                                   %5.1f," \
 			"           (%5.1f, %5.1f, %5.1f)\n", \
@@ -48,11 +48,11 @@ static void	print_objects(t_scene_info *scene)
 	while (node)
 	{
 		obj = node->content;
-		if (obj->type == BALL)
+		if (is_equal_strings(obj->id_str, ID_SPHERE))
 			print_sphere(obj);
-		else if (obj->type == PLANE)
+		else if (is_equal_strings(obj->id_str, ID_PLANE))
 			print_plane(obj);
-		else if (obj->type == CYLINDER)
+		else if (is_equal_strings(obj->id_str, ID_CYLINDER))
 			print_cylinder(obj);
 		else
 			print_corn(obj);

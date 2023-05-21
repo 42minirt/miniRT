@@ -25,7 +25,7 @@ t_parse_res	get_light_detail(const char *line, t_light *light)
 		return (ERROR_INVALID_ARG);
 	if (parsing_color(line, &light->light_color, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
-	if (is_equal_strings(light->id_str, ID_SPOTLIGHT))
+	if (is_equal_strings(light->id_type, ID_SPOTLIGHT))
 		if (parse_double(line, &light->sl_angle, &idx) == FAILURE)
 			return (ERROR_INVALID_ARG);
 	if (line[idx])
@@ -40,7 +40,7 @@ static t_light	*init_light(const char *id_str)
 	light = (t_light *)ft_calloc(sizeof(t_light), 1);
 	if (!light)
 		return (NULL);
-	light->id_str = id_str;
+	light->id_type = id_str;
 	return (light);
 }
 

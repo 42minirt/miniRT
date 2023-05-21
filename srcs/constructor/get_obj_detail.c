@@ -17,7 +17,7 @@ static t_parse_res	get_sphere_detail(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
-	obj->type = BALL; //TODO: delete
+//	obj->type = BALL; //TODO: delete
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.sphere.center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
@@ -39,7 +39,7 @@ static t_parse_res	get_plane_detail(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
-	obj->type = PLANE; //TODO: delete
+//	obj->type = PLANE; //TODO: delete
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.plane.center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
@@ -61,7 +61,7 @@ static t_parse_res	get_cylinder_detail(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
-	obj->type = CYLINDER; //TODO: delete
+//	obj->type = CYLINDER; //TODO: delete
 	idx = 0;
 	if (\
 	parse_vec(line, &obj->shape_data.cylinder.bottom_center, &idx) == FAILURE)
@@ -88,7 +88,7 @@ static t_parse_res	get_corn_detail(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
-	obj->type = CORN; //TODO: delete
+//	obj->type = CORN; //TODO: delete
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.corn.bottom_center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
