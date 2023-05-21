@@ -17,7 +17,7 @@ static t_parse_res	get_sphere_detail(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
-	obj->type = BALL;
+	obj->type = BALL; //TODO: delete
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.sphere.center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
@@ -39,7 +39,7 @@ static t_parse_res	get_plane_detail(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
-	obj->type = PLANE;
+	obj->type = PLANE; //TODO: delete
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.plane.center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
@@ -61,7 +61,7 @@ static t_parse_res	get_cylinder_detail(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
-	obj->type = CYLINDER;
+	obj->type = CYLINDER; //TODO: delete
 	idx = 0;
 	if (\
 	parse_vec(line, &obj->shape_data.cylinder.bottom_center, &idx) == FAILURE)
@@ -88,7 +88,7 @@ static t_parse_res	get_corn_detail(const char *line, t_obj *obj)
 {
 	size_t		idx;
 
-	obj->type = CORN;
+	obj->type = CORN; //TODO: delete
 	idx = 0;
 	if (parse_vec(line, &obj->shape_data.corn.bottom_center, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
@@ -109,18 +109,18 @@ static t_parse_res	get_corn_detail(const char *line, t_obj *obj)
 	return (PASS);
 }
 
-t_parse_res	get_obj_detail(const char *line, int id_no, t_obj *obj)
+t_parse_res	get_obj_detail(const char *line, t_obj *obj)
 {
 	t_parse_res	res;
 
 	res = ERROR_FATAL;
-	if (id_no == id_sphere)
+	if (is_equal_strings(obj->id_str, ID_SPHERE))
 		res = get_sphere_detail(line, obj);
-	else if (id_no == id_plane)
+	else if (is_equal_strings(obj->id_str, ID_PLANE))
 		res = get_plane_detail(line, obj);
-	else if (id_no == id_cylinder)
+	else if (is_equal_strings(obj->id_str, ID_CYLINDER))
 		res = get_cylinder_detail(line, obj);
-	else if (id_no == id_corn)
+	else if (is_equal_strings(obj->id_str, ID_CORN))
 		res = get_corn_detail(line, obj);
 	return (res);
 }

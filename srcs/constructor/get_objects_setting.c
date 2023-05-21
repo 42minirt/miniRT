@@ -12,13 +12,14 @@
 
 #include "minirt.h"
 
-static t_obj	*init_obj(void)
+static t_obj	*init_obj(const char *id_str)
 {
 	t_obj	*obj;
 
 	obj = (t_obj *)ft_calloc(sizeof(t_obj), 1);
 	if (!obj)
 		return (FAILURE);
+	obj->id_str = id_str;
 	obj->obj_color.is_perfect_ref = false;
 	obj->obj_color.is_checker = false;
 	obj->obj_color.is_texture = false;
@@ -46,26 +47,24 @@ static t_obj	*init_obj(void)
 //    image           "image_texture_path",   "bumpmap_path"
 
 t_parse_res	get_objects_setting(const char *line, \
-								t_scene_info *scene, int id_no)
+								t_scene_info *scene, const char *id_str)
 {
 	t_parse_res	parse_result;
 	t_obj		*obj;
 	t_list		*new_list;
 
-	obj = init_obj();
+	obj = init_obj(id_str);
 	if (!obj)
 		return (ERROR_FATAL);
-	parse_result = get_obj_detail(line, id_no, obj);
+	parse_result = get_obj_detail(line, obj);
 	if (parse_result != PASS)
 	{
-//		free_objs(obj);
 		free(obj);
 		return (parse_result);
 	}
 	new_list = ft_lstnew(obj);
 	if (!new_list)
 	{
-//		free_objs(obj);
 		free(obj);
 		return (ERROR_FATAL);
 	}

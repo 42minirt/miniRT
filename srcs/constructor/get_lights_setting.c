@@ -12,20 +12,12 @@
 
 #include "minirt.h"
 
-static t_light_type	get_light_type(t_id id)
-{
-	if (id == id_point_light)
-		return (LT_POINT);
-	return (LT_SPOT);
-}
-
 // #Light      point(xyz)         ratio[0,1]                  RGB[0,255]
 // #Spotlight  Light_point(xyz)   ratio[0,1]   angle[0-180]   RGB[0,255]
-t_parse_res	get_light_detail(const char *line, int id_no, t_light *light)
+t_parse_res	get_light_detail(const char *line, t_light *light)
 {
 	size_t	idx;
 
-	light->type = get_light_type(id_no);
 	idx = 0;
 	if (parse_vec(line, &light->point, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
@@ -33,7 +25,7 @@ t_parse_res	get_light_detail(const char *line, int id_no, t_light *light)
 		return (ERROR_INVALID_ARG);
 	if (parsing_color(line, &light->light_color, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
-	if (light->type == LT_SPOT)
+	if (is_equal_strings(light->id_str, ID_SPOTLIGHT))
 		if (parse_double(line, &light->sl_angle, &idx) == FAILURE)
 			return (ERROR_INVALID_ARG);
 	if (line[idx])
@@ -41,16 +33,27 @@ t_parse_res	get_light_detail(const char *line, int id_no, t_light *light)
 	return (PASS);
 }
 
-t_parse_res	get_lights_setting(const char *line, t_scene_info *scene, int id_no)
+static t_light	*init_light(const char *id_str)
+{
+	t_light	*light;
+
+	light = (t_light *)ft_calloc(sizeof(t_light), 1);
+	if (!light)
+		return (NULL);
+	light->id_str = id_str;
+	return (light);
+}
+
+t_parse_res	get_lights_setting(const char *line, t_scene_info *scene, const char *id_str)
 {
 	t_list			*new_list;
 	t_light			*light;
 	t_parse_res		parse_result;
 
-	light = (t_light *)ft_calloc(sizeof(t_light), 1);
+	light = init_light(id_str);
 	if (!light)
 		return (ERROR_FATAL);
-	parse_result = get_light_detail(line, id_no, light);
+	parse_result = get_light_detail(line, light);
 	if (parse_result != PASS)
 	{
 		free(light);

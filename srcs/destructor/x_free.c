@@ -12,53 +12,26 @@
 
 #include "minirt.h"
 
-void	free_objs(void *content)
+void	x_free_1d_alloc(void **alloc)
 {
-	t_obj	*obj;
-
-	obj = content;
-	if (obj)
-	{
-		free(obj->obj_color.texture_data.data);
-		free(obj->obj_color.bump_data.data);
-		free((char *)obj->id_str);
-	}
-	free(obj);
-}
-
-void	free_lights(void *content)
-{
-	t_light	*light;
-
-	light = content;
-	if (light)
-	{
-		free((char *)light->id_str);
-	}
-	free(light);
-}
-
-static void	free_scene(t_scene_info *scene)
-{
-	ft_lstclear(&scene->lights, free_lights);
-	ft_lstclear(&scene->objs, free_objs);
-	free(scene);
-}
-
-static void	free_mlx(t_mlx_info *mlx)
-{
-	if (!mlx)
+	if (!alloc)
 		return ;
-	mlx_destroy_image(mlx->mlx, mlx->img);
-	mlx_destroy_window(mlx->mlx, mlx->win);
-	mlx_destroy_display(mlx->mlx);
-	free(mlx->mlx);
-	free(mlx);
+	free(*alloc);
+	*alloc = NULL;
 }
 
-void	destruct_info(t_all_info *info)
+void	x_free_2d_alloc(void ***alloc)
 {
-	free_mlx(info->mlx_info);
-	free_scene(info->scene_info);
-	free(info->camera_info);
+	size_t	i;
+
+	if (!alloc)
+		return ;
+	i = 0;
+	while (*alloc && (*alloc)[i])
+	{
+		free((*alloc)[i]);
+		(*alloc)[i] = NULL;
+		i++;
+	}
+	free(*alloc);
 }

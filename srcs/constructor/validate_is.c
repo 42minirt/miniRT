@@ -39,7 +39,12 @@ bool	is_ratio_in_range(double ratio)
 	return (0.0 <= ratio && ratio <= 1.0);
 }
 
-bool	is_angle_in_range(double ratio)
+bool	is_angle_in_range(double angle)
 {
-	return (0.0 <= ratio && ratio <= 180.0);
+	return (0.0 <= angle && angle <= 180.0);
+}
+
+bool	is_comment_line(char c)
+{
+	return (c == '#');
 }

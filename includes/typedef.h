@@ -81,6 +81,7 @@ enum	e_parse_result
 	ERROR_OUT_OF_RANGE = 16,
 	ERROR_MULTIPLE_ID = 17,
 	ERROR_MISSING_ID = 18,
+	ERROR_PPM_FORMAT = 19,
 };
 
 enum	e_shape_type
@@ -119,6 +120,8 @@ struct s_color
 
 struct s_light
 {
+	const char		*id_str;
+
 	t_light_type	type;
 	t_vec			point;
 	double			brightness;
@@ -209,6 +212,7 @@ struct s_obj_color
 
 struct s_obj
 {
+	const char		*id_str;
 	t_shape_type	type; //shere or ...
 	t_shape_data	shape_data;
 	t_obj_color		obj_color;

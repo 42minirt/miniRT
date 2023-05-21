@@ -43,23 +43,23 @@ t_parse_res	validate_id_cnt(t_id_cnt cnt)
 	return (ERROR_FATAL);
 }
 
-void	increment_id_cnt(id_t id_no, t_id_cnt *cnt)
+void	increment_id_cnt(const char *id_str, t_id_cnt *cnt)
 {
-	if (id_no == id_ambient)
+	if (is_equal_strings(id_str, ID_AMBIENT))
 		cnt->ambient_cnt++;
-	else if (id_no == id_camera)
+	else if (is_equal_strings(id_str, ID_CAMERA))
 		cnt->camera_cnt++;
-	else if (id_no == id_point_light)
-		cnt->point_light_cnt++;
-	else if (id_no == id_spot_light)
+	else if (is_equal_strings(id_str, ID_LIGHT))
 		cnt->spot_light_cnt++;
-	else if (id_no == id_sphere)
+	else if (is_equal_strings(id_str, ID_SPOTLIGHT))
+		cnt->point_light_cnt++;
+	else if (is_equal_strings(id_str, ID_SPHERE))
 		cnt->sphere_cnt++;
-	else if (id_no == id_plane)
+	else if (is_equal_strings(id_str, ID_PLANE))
 		cnt->plane_cnt++;
-	else if (id_no == id_cylinder)
+	else if (is_equal_strings(id_str, ID_CYLINDER))
 		cnt->cylinder_cnt++;
-	else if (id_no == id_corn)
+	else if (is_equal_strings(id_str, ID_CORN))
 		cnt->corn_cnt++;
 }
 

@@ -49,13 +49,14 @@ CONSTRUCTOR_SRC	= constructor.c \
 				  validate_config_shape.c \
 				  validate_config_light.c \
 				  validate_filename.c \
-				  validate_is_range.c
+				  validate_is.c
 
 SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
 #-------------------------------------------------------------------------
 DESTRUCTOR_DIR	= destructor
-DESTRUCTOR_SRC	= destructor.c
+DESTRUCTOR_SRC	= destructor.c \
+				  x_free.c
 
 SRC				+= $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_SRC))
 

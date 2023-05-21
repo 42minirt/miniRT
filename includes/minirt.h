@@ -84,6 +84,9 @@ t_color		backgroundcolor_init(void);
 /* destructor */
 void		destruct_info(t_all_info *info);
 void		free_objs(void *content);
+void		free_lights(void *content);
+void		x_free_1d_alloc(void **alloc);
+void		x_free_2d_alloc(void ***alloc);
 
 /* mlx helper */
 void		put_pixel(t_mlx_info *mlx_info, size_t x, size_t y, t_color color);
