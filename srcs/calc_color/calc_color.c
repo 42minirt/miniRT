@@ -6,16 +6,15 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:34:21 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 17:41:04 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 17:44:40 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 // c + k1c1 * k2c2
-t_color	color_mul_k1c1k2c2(t_color *c, \
-						double k1, t_color *c1, \
-						double k2, t_color *c2)
+
+t_color	color_mul_k1c1k2c2(t_color *c, double k1, t_color *c1, double k2, t_color *c2)
 {
 	t_color	color;
 

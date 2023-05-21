@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:35:22 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:35:30 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 17:50:58 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,10 @@ void	normalize(t_vec *normal_vec, t_vec *normarized_vec)
 		printf("this size 0 ! So exit");
 		exit(1);
 	}
-	setvec(
-			normal_vec,
-			normarized_vec->x / vec_size,
-			normarized_vec->y / vec_size,
-			normarized_vec->z / vec_size
-	);
+	setvec(normal_vec, \
+	normarized_vec->x / vec_size, \
+	normarized_vec->y / vec_size, \
+	normarized_vec->z / vec_size);
 }
 
 void	vector_scalar_product(t_vec *tgt_vec, double k, t_vec *v)
@@ -48,5 +46,13 @@ t_vec	k_vec(double k, t_vec v)
 
 double	norm(t_vec vec)
 {
-	return (sqrt(pow(vec.x,2) + pow(vec.y,2) + pow(vec.z,2)));
+	return (sqrt(pow(vec.x, 2) + pow(vec.y, 2) + pow(vec.z, 2)));
+}
+
+t_vec	norm_vec(t_vec v)
+{
+	t_vec	ret;
+
+	normalize(&ret, &v);
+	return (ret);
 }
