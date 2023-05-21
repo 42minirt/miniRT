@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:43:48 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 20:53:29 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,44 +16,41 @@
 # include "minirt.h"
 
 /********** typedef union **********/
-typedef union u_shape_data			t_shape_data;
+// typedef union u_shape_data			t_shape_data;
 
 /********** typedef enum **********/
-typedef enum e_shape_type			t_shape_type;
-typedef enum e_parse_result			t_parse_res;
-typedef enum e_identifier			t_identifier;
-typedef enum e_light_type			t_light_type;
+// typedef enum e_shape_type			t_shape_type;
+// typedef enum e_parse_result			t_parse_res;
+// typedef enum e_identifier			t_identifier;
+// typedef enum e_light_type			t_light_type;
 
 /********** typedef struct **********/
-typedef struct s_all_info			t_all_info;
-typedef struct s_mlx_info			t_mlx_info;
-typedef struct s_scene_info			t_scene_info;
-typedef struct s_camera_info		t_camera_info;
-typedef struct s_color				t_color;
-typedef struct s_img				t_img;
-typedef struct s_light				t_light;
-typedef struct s_obj				t_obj;
-typedef struct s_vec				t_vec;
-typedef struct s_obj_color			t_obj_color;
-typedef struct s_ray				t_ray;
-typedef struct s_intersection_point	t_intersection_point;
-typedef struct s_plane_shape		t_plane;
-typedef struct s_ball_shape			t_ball;
-typedef struct s_sphere_shape		t_sphere;
-typedef struct s_cylinder_shape		t_cylinder;
-typedef struct s_corn_shape			t_corn;
-typedef struct s_discriminant_param	t_d_param;
-typedef struct s_intp_param_of_corn	t_corn_param;
-typedef struct s_corn_ints			t_corn_ints;
+// typedef struct s_all_info			t_all_info;
+// typedef struct s_mlx_info			t_mlx_info;
+// typedef struct s_scene_info			t_scene_info;
+// typedef struct s_camera_info		t_camera_info;
+// typedef struct s_color				t_color;
+// typedef struct s_img				t_img;
+// typedef struct s_light				t_light;
+// typedef struct s_obj				t_obj;
+// typedef struct s_vec				t_vec;
+// typedef struct s_obj_color			t_obj_color;
+// typedef struct s_ray				t_ray;
+// typedef struct s_intersection_point	t_intersection_point;
+// typedef struct s_plane_shape		t_plane;
+// typedef struct s_ball_shape			t_ball;
+// typedef struct s_sphere_shape		t_sphere;
+// typedef struct s_cylinder_shape		t_cylinder;
+// typedef struct s_corn_shape			t_corn;
+// typedef struct s_discriminant_param	t_d_param;
+// typedef struct s_intp_param_of_corn	t_corn_param;
+// typedef struct s_corn_ints			t_corn_ints;
 
 ////////////////////////////////////////////////////////
 typedef union u_shape_data				t_shape_data;
 
 /********** typedef enum **********/
-//typedef enum e_shape_type				t_shape_type;
 typedef enum e_parse_result				t_parse_res;
-//typedef enum e_identifier				t_id;
-//typedef enum e_light_type				t_light_type;
 
 /********** typedef struct **********/
 typedef struct s_all_info				t_all_info;
@@ -69,6 +66,7 @@ typedef struct s_obj_color				t_obj_color;
 typedef struct s_ray					t_ray;
 typedef struct s_intersection_point		t_intersection_point;
 typedef struct s_plane_shape			t_plane;
+typedef struct s_ball_shape				t_ball;
 typedef struct s_sphere_shape			t_sphere;
 typedef struct s_cylinder_shape			t_cylinder;
 typedef struct s_corn_shape				t_corn;

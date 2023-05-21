@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:23:04 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 20:49:42 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_color			backgroundcolor_init(void);
 void			colort_init_pointer(t_color *color);
 t_color			calc_color(t_scene_info *scene_info, t_ray eye2screen);
 void			color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
-t_color			raytrace(t_all_info *info, t_ray eye2screen_xy);
+// t_color			raytrace(t_all_info *info, t_ray eye2screen_xy);
 
 /* intersection */
 
