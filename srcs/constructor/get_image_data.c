@@ -124,7 +124,6 @@ t_parse_res	get_img(t_img *img, int fd)
 	res = PASS;
 	file_col = 0;
 	data_idx = 0;
-	printf("1: %s\n", parse_result_char(res));//debug
 	while (true)
 	{
 		line = get_next_line(fd, false);
@@ -136,8 +135,8 @@ t_parse_res	get_img(t_img *img, int fd)
 		x_free_1d_alloc((void **)&line);
 		file_col++;
 	}
-	printf("2: %s\n", parse_result_char(res));//debug
-	printf("idx:%zu, size:%zu\n", data_idx, img->width * 3 * img->height);
+	printf("get_img result:%s, idx:%zu, size:%zu\n", \
+		parse_result_char(res), data_idx, img->width * 3 * img->height);//debug
 	if (res != PASS || data_idx != img->width * 3 * img->height)
 	{
 		x_free_1d_alloc((void **)&img->data);
