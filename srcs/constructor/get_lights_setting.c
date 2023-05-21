@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:36:35 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:36:37 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 17:58:05 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static t_light_type	get_light_type(t_identifier id)
 
 // L   XYZ   brightness_ratio[0,1]   RGB[0,255]
 // sl  XYZ   brightness_ratio[0,1]   RGB[0,255]   angle[0,180]
+
 t_parse_res	get_light_detail(const char *line, int id_no, t_light *light)
 {
 	size_t	idx;

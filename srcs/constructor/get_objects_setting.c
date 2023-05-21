@@ -6,11 +6,13 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:36:48 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:36:49 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 17:59:39 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+//shinnessは10でfix?
 
 t_obj	*init_obj(void)
 {
@@ -23,7 +25,7 @@ t_obj	*init_obj(void)
 	obj->obj_color.is_checker = false;
 	obj->obj_color.texture_data.data = NULL;
 	obj->obj_color.bump_data.data = NULL;
-	obj->obj_color.shininess = 10.0; // fix ?
+	obj->obj_color.shininess = 10.0;
 	obj->obj_color.ks = init_color(1.0, 1.0, 1.0);
 	return (obj);
 }

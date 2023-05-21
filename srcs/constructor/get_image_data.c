@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:36:32 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:36:33 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 17:57:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ static int	get_ppm_size(char **split, t_img *img)
 	img->height = ft_atoi(split[1], &is_atoi_success);
 	if (!is_atoi_success)
 		return (FAILURE);
-//	printf("## width:%d, height:%d\n", img->width, img->height);
 	img->data = (int *)ft_calloc(sizeof(int), img->width * 3 * img->height);
 	if (!img->data)
 		return (FAILURE);
 	return (SUCCESS);
 }
+
+//	printf("## width:%d, height:%d\n", img->width, img->height);
 
 static int	get_ppm_data(char **split, t_img *img, size_t *data_idx)
 {
@@ -97,7 +98,7 @@ t_parse_res	get_img(t_img *img, int fd)
 	data_idx = 0;
 	while (true)
 	{
-		line = get_next_line(fd, false); // not include `\n` at end of line
+		line = get_next_line(fd, false);
 		if (!line)
 			break ;
 		if (process_line_by_col(line, file_col, img, &data_idx) == FAILURE)
@@ -112,3 +113,5 @@ t_parse_res	get_img(t_img *img, int fd)
 	}
 	return (PASS);
 }
+
+//getnextlineは最後に開業を含まない

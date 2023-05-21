@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:37:02 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 20:37:04 by user             ###   ########.fr       */
+/*   Updated: 2023/05/21 18:00:42 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	update_scene_cylinder_info(t_cylinder *cylinder)
 	cylinder->radius = cylinder->diameter / 2.0;
 	cylinder->axis = norm_vec(cylinder->axis);
 }
+
 void	update_scene_corn_info(t_corn *corn)
 {
 	corn->radius = corn->diameter / 2.0;
