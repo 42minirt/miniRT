@@ -72,26 +72,26 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 
 	if (alloc_info_ptr(all_info) == FAILURE)
 	{
-		ft_dprintf(STDERR_FILENO, "[Error] : Failure in init memory allocate\n");
+		ft_dprintf(STDERR_FILENO, "Error\n : Failure in init memory allocate\n");
 		return (FAILURE);
 	}
 	if (init_mlx(all_info->mlx_info) == FAILURE)
 	{
-		ft_dprintf(STDERR_FILENO, "[Error] : Failure in init mlx\n");
+		ft_dprintf(STDERR_FILENO, "Error\n : Failure in init mlx\n");
 		return (FAILURE);
 	}
 	if (validate_filename(rt_path, RT_EXTENSION) != SUCCESS)
 	{
-		ft_dprintf(STDERR_FILENO, "[Error] : rt file invalid\n");
+		ft_dprintf(STDERR_FILENO, "Error\n : rt file invalid\n");
 		return (FAILURE);
 	}
 	result = init_scene_and_camera(all_info, rt_path);
 	if (result != PASS)
 	{
 		ft_dprintf(STDERR_FILENO, \
-		"[Error] : Failure in parse ; %s\n", get_parse_result_char(result));
+		"Error\n : Failure in parsing config file [%s]\n", get_parse_result_char(result));
 		return (FAILURE);
 	}
-	printf("[Parse config] : %s\n", get_parse_result_char(result));
+	printf("[Parsing config] : %s\n", get_parse_result_char(result));
 	return (SUCCESS);
 }

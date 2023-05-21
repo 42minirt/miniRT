@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 	{
 		// todo: error msg
-		ft_dprintf(STDERR_FILENO, "Error : rt_file required :(\n");
+		ft_dprintf(STDERR_FILENO, "Error\n : rt_file required :(\n");
 		return (EXIT_FAILURE);
 	}
 	if (construct_info(&info, argv[1]) == FAILURE)
