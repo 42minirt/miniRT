@@ -31,8 +31,7 @@ static bool	is_in_range_spotlight(t_diffuse_param p)
 {
 	double	angle_pos2light;
 
-	angle_pos2light = acos(dot(p.vec_light2pos, \
-							p.light->sl_dir)) * 180.0 / (2.0 * M_PI);
+	angle_pos2light = acos(dot(p.vec_light2pos, p.light->sl_dir)) * TO_DEGREES;
 	if (angle_pos2light < 0)
 		angle_pos2light *= -1.0; //todo: check
 	return (angle_pos2light <= p.light->sl_angle_half);
