@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:02:34 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 19:01:29 by user             ###   ########.fr       */
+/*   Updated: 2023/05/22 19:10:18 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int main(int argc, char **argv)
 	mlx_loop(info.mlx_info->mlx);
 
 	destruct_info(&info);
+	printf("ch\n");
     return (0);
 }
 
