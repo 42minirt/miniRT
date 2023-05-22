@@ -60,14 +60,8 @@ SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
 #----------------------------------------------------
 # DESTRUCTOR
-<<<<<<< HEAD
 DESTRUCTOR_DIR	= srcs/destructor
-DESTRUCTOR_SRC	= destructor.c \
-					x_free.c
-=======
-DESTRUCTOR_DIR	= destructor
 DESTRUCTOR_SRC	= destructor.c
->>>>>>> origin/takira
 
 SRC				+= $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_SRC))
 
@@ -83,6 +77,8 @@ SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 # RAYTRACE
 RAYTRACE_DIR	= srcs/raytrace
 RAYTRACE_SRC	= calc_ambient_reflection.c \
+				  calc_specular_reflection.c \
+				  calc_perfect_reflection.c \
 				  calc_diffuse_reflection.c \
 				  calc_diffuse_reflection_param.c \
 				  get_image_ref_color.c \
@@ -210,7 +206,7 @@ all				: $(NAME)
 $(NAME)			: $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) $(MLX) -Lmlx_linux -lXext -lX11 -lm -lz
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) $(MLX) -Lmlx_linux -lXext -lX11 -lm
 
 
 $(OBJ_DIR)/%.o : %.c
