@@ -19,7 +19,7 @@ void	update_scene_sphere_info(t_sphere *sphere)
 
 void	update_scene_plane_info(t_plane *plane)
 {
-	norm_vec(plane->normal);
+	plane->normal = norm_vec(plane->normal);
 }
 
 void	update_scene_cylinder_info(t_cylinder *cylinder)
