@@ -147,56 +147,64 @@ DEPS			= $(SRCS:%.c=%:d)
 
 
 
+
+#####################################################
+# OS Check ##########################################
+#####################################################
+#UNAME := $(shell uname)
+#ifeq ($(UNAME), Darwin)
+#	LIBS_DIR 	+= /usr/X11R6/lib
+#	LIBS 		+= -lmlx_Darwin -framework OpenGL -framework AppKit
+#else
+#	LIBS 		+= -lmlx_Linux
+#endif
+
+
 #####################################################
 # INCLUDE and LIBRARY FILE ##########################
 #####################################################
 
 INCLUDE_DIR		= includes
-X11_INCLUDE		= /usr/X11/include
-INCLUDE_DIRS	= $(INCLUDE_DIR) $(X11_INCLUDE)
+#X11_INCLUDE		= /usr/X11/include
+#INCLUDE_DIRS	= $(INCLUDE_DIR) $(X11_INCLUDE) $(LIBFT_INCLUDE)
+INCLUDE_DIRS	= $(INCLUDE_DIR) $(LIBFT_INCLUDE) $(MLX_DIR)
 INCLUDES		= $(addprefix -I, $(INCLUDE_DIRS))
 
 LIBFT_DIR		= libs
+LIBFT			= $(LIBFT_DIR)/libft.a
+LIBFT_INCLUDE	= $(LIBFT_DIR)/include
+
 MLX_DIR			= minilibx-linux
-X11_DIR			= /usr/X11
-X11_LIB			= /usr/X11/lib
+MLX				= $(MLX_DIR)/libmlx_Linux.a
+#X11_DIR			= /usr/X11
+#X11_LIB			= /usr/X11/lib
 
-LIBS_DIR 		= $(LIBFT_DIR) $(MLX_DIR) $(X11_DIR) $(X11_LIB)
-LFLAGS			= $(addprefix -L, $(LIBS_DIR))
-LIBS 			= -lft -lmlx -lX11 -lXext
-
-
-
-#####################################################
-# OS Check ##########################################
-#####################################################
-UNAME := $(shell uname)
-ifeq ($(UNAME), Darwin)
-	LIBS_DIR 	+= /usr/X11R6/lib
-	LIBS 		+= -lmlx_Darwin -framework OpenGL -framework AppKit
-else
-	LIBS 		+= -lmlx_Linux
-endif
-
+#LIBS_DIR 		= $(LIBFT_DIR)
+#LIBS_DIR 		= $(LIBFT_DIR) $(MLX_DIR) $(X11_DIR) $(X11_LIB)
+#LFLAGS			= $(addprefix -L, $(LIBS_DIR))
+#LIBS 			= -lft -lmlx -lX11 -lXext
 
 #####################################################
 # RULES #############################################
 #####################################################
 all				: $(NAME)
 
+
 $(NAME)			: $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $(LFLAGS) $(LIBS) $^
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) $(MLX) -Lmlx_linux -lXext -lX11 -lm -lz
+
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $$(dirname $@)
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
 
 clean			:
 	rm -rf $(OBJ_DIR)
 	@make clean -C $(LIBFT_DIR)
-	@#make clean -C $(MLX_DIR)
+	@make clean -C $(MLX_DIR)
 
 fclean			: clean
 	rm -f $(NAME)
