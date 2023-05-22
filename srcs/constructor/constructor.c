@@ -14,9 +14,9 @@
 
 static int	alloc_info_ptr(t_all_info *all_info)
 {
-	all_info->mlx_info = ft_calloc(sizeof(t_mlx_info), 1);
-	all_info->scene_info = ft_calloc(sizeof(t_scene_info), 1);
-	all_info->camera_info = ft_calloc(sizeof(t_camera_info), 1);
+	all_info->mlx_info = ft_calloc(1, sizeof(t_mlx_info));
+	all_info->scene_info = ft_calloc(1, sizeof(t_scene_info));
+	all_info->camera_info = ft_calloc(1, sizeof(t_camera_info));
 	if (!all_info->mlx_info || !all_info->scene_info || !all_info->camera_info)
 		return (FAILURE);
 	all_info->scene_info->lights = NULL;
