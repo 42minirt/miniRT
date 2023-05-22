@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_filename.c                                :+:      :+:    :+:   */
+/*   filecheck.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/05/20 15:27:45 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "minirt.h"
 
 static const char	*get_filename(const char *path)
 {

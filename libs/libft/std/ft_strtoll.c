@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:11:40 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 21:41:11 by user             ###   ########.fr       */
+/*   Updated: 2023/05/22 10:28:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,8 @@ static bool	is_less_than_ll(long long before_x10, long long add, long long sign)
 	long long	ov_div;
 	long long	ov_mod;
 
-	if (sign == 1)
-	{
-		ov_div = __LONG_LONG_MAX__ / 10;
-		ov_mod = __LONG_LONG_MAX__ % 10;
-	}
-	// else
-	// {
-	// 	ov_div = ((unsigned long)-__LONG_LONG_MIN__) / 10;
-	// 	ov_mod = ((unsigned long)-__LONG_LONG_MIN__) % 10;
-	// }
+	ov_div = LLONG_MAX / 10;
+	ov_mod = LLONG_MAX % 10 + (sign == -1);
 	if (before_x10 > ov_div)
 		return (false);
 	if (before_x10 == ov_div && add > ov_mod)
@@ -50,10 +42,9 @@ static int	get_sign_and_increment_ptr(char *num, size_t *idx)
 
 static long long	ret_over_flow(long long sign)
 {
-	// if (sign > 0)
-	(void)sign;
-	return (__LONG_LONG_MAX__);
-	// return (__LONG_LONG_MIN__);
+	if (sign == 1)
+		return (LLONG_MAX);
+	return (LLONG_MIN);
 }
 
 long long	ft_strtoll(char *num, bool *is_success)

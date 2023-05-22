@@ -21,6 +21,7 @@
 # include <stdarg.h>
 # include <errno.h>
 # include <limits.h>
+# include <stdint.h>
 
 # include "ft_math.h"
 # include "libft.h"

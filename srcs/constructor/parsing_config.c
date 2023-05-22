@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+<<<<<<< HEAD
 #include "../../includes/minirt.h"
+=======
+>>>>>>> origin/takira
 #include <fcntl.h>
+#include "../../includes/minirt.h"
+
 
 // camera, ambient は free
 // listに追加できなかったlight, objもこの段階でfree
@@ -91,20 +96,14 @@ t_parse_res	parsing_config(t_all_info *all, const char *rt_path)
 	t_id_cnt	cnt;
 
 	errno = 0;
-	fd = open(rt_path, O_RDONLY);
+	fd = x_open(rt_path, O_RDONLY);
 	if (fd == OPEN_ERROR)
-	{
-		perror("open");
 		return (ERROR_FATAL);
-	}
 	cnt = init_id_cnt();
 	result = parse_config_line_by_line(all, fd, &cnt);
 	errno = 0;
-	if (close(fd) == CLOSE_ERROR)
-	{
-		perror("close");
+	if (x_close(fd) == CLOSE_ERROR)
 		return (ERROR_FATAL);
-	}
 	if (result == PASS)
 		result = validate_id_cnt(cnt);
 	return (result);

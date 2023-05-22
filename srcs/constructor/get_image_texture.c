@@ -62,11 +62,11 @@ t_parse_res	get_image_texture(const char *line, \
 		res = validate_continuous_empty_path(empty);
 	else if (validate_filename(path, IMG_EXTENSION) == SUCCESS)
 	{
-		fd = open(path, O_RDONLY);
+		fd = x_open(path, O_RDONLY);
 		if (fd != OPEN_ERROR)
 		{
 			res = get_img_data(img, fd);
-			if (close(fd) == CLOSE_ERROR)
+			if (x_close(fd) == CLOSE_ERROR)
 				res = ERROR_FATAL;
 		}
 	}

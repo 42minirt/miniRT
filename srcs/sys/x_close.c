@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getscreen_vec.c                                    :+:      :+:    :+:   */
+/*   x_close.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 22:46:04 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 10:27:40 by user             ###   ########.fr       */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/17 23:19:51 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
-//todo:  後回し
-t_ray get_screen_vector(t_all_info info)
+int	x_close(int fd)
 {
-	t_ray	ret;
+	int	ret;
 
-	(void)info;
+	errno = 0;
+	ret = close(fd);
+	if (ret == CLOSE_ERROR)
+		perror("close");
 	return (ret);
 }

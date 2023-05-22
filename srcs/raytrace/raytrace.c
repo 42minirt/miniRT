@@ -68,6 +68,7 @@ t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	// 交点判定
 	is_intersect = check_intersection(info->scene_info, eye2screen, &its_p);
     if (is_intersect == false)
+<<<<<<< HEAD
 	{
         return (ret_color);
 	}
@@ -76,6 +77,19 @@ t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	if (its_p.obj->obj_color.is_perfect_ref == true)
 		ret_color = color_add(ret_color, calc_perfect_reflection(info, &its_p, eye2screen, counter));
     return (ret_color);
+=======
+		return (false);
+
+	// 色の計算（background or obj color
+	color_set(&color, 0.0, 0.0, 0.0);
+//	color_set(&color, 1, 0.0, 0.0);
+	color = color_add(color, calc_ambient_reflection(info->scene_info, its_p));
+	color = color_add(color, calc_diffuse_reflection(info->scene_info, its_p, eye2screen));
+//	color = color_add(color, calc_specular_reflection(info, &its_p, eye2screen));
+//	color = color_add(color, calc_perfect_reflection(info, &its_p, eye2screen));
+	*ret_color = color;
+    return (true);
+>>>>>>> origin/takira
 }
 
 t_color	raytrace(t_all_info *info, t_ray eye2screen)

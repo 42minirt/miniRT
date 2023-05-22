@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 00:02:25 by user             ###   ########.fr       */
+/*   Updated: 2023/05/22 10:29:07 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # include "matrix.h"
 # include "raytrace.h"
 # include "vector.h"
+# include "sys.h"
 
 /********** return value **********/
 # define OPEN_ERROR		(-1)
@@ -127,12 +128,9 @@ t_corn_param	calc_inpt_param_of_corn(t_corn *c, t_ray ray);
 t_d_param		calc_d_param_of_corn(t_corn_param p);
 
 /* destructor */
-
-void			destruct_info(t_all_info *info);
-void			free_objs(void *content);
-void			free_lights(void *content);
-void			x_free_1d_alloc(void **alloc);
-void			x_free_2d_alloc(void ***alloc);
+void		destruct_info(t_all_info *info);
+void		free_objs(void *content);
+void		free_lights(void *content);
 
 /* mlx helper */
 

@@ -60,9 +60,14 @@ SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
 #----------------------------------------------------
 # DESTRUCTOR
+<<<<<<< HEAD
 DESTRUCTOR_DIR	= srcs/destructor
 DESTRUCTOR_SRC	= destructor.c \
 					x_free.c
+=======
+DESTRUCTOR_DIR	= destructor
+DESTRUCTOR_SRC	= destructor.c
+>>>>>>> origin/takira
 
 SRC				+= $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_SRC))
 
@@ -186,6 +191,17 @@ MLX				= $(MLX_DIR)/libmlx_Linux.a
 #LIBS 			= -lft -lmlx -lX11 -lXext
 
 #####################################################
+# OS Check ##########################################
+#####################################################
+UNAME := $(shell uname)
+ifeq ($(UNAME), Darwin)
+	LIBS_DIR 	+= /usr/X11R6/lib
+	LIBS 		+= -lmlx_Darwin -framework OpenGL -framework AppKit
+else
+	LIBS 		+= -lmlx_Linux
+endif
+
+#####################################################
 # RULES #############################################
 #####################################################
 all				: $(NAME)
@@ -199,8 +215,7 @@ $(NAME)			: $(OBJS)
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $$(dirname $@)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean			:
 	rm -rf $(OBJ_DIR)

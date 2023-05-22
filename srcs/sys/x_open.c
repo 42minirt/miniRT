@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getscreen_vec.c                                    :+:      :+:    :+:   */
+/*   x_open.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 22:46:04 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 10:27:40 by user             ###   ########.fr       */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/17 23:19:51 by takira           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
-//todo:  後回し
-t_ray get_screen_vector(t_all_info info)
+int	x_open(const char *path, int oflag)
 {
-	t_ray	ret;
+	int	ret;
 
-	(void)info;
+	errno = 0;
+	ret = open(path, oflag);
+	if (ret == OPEN_ERROR)
+		perror("open");
 	return (ret);
 }

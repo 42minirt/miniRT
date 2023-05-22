@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 10:31:53 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 21:37:02 by user             ###   ########.fr       */
+/*   Updated: 2023/05/22 10:28:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,8 @@ static bool	is_under_long(long long before_x10_val, long long add_val, int sign)
 	long long	ov_div;
 	long long	ov_mod;
 
-	if (sign == 1)
-	{
-		ov_div = LONG_MAX / 10;
-		ov_mod = LONG_MAX % 10;
-	}
-	// else
-	// {
-	// 	ov_div = (-(long long)LONG_MIN) / 10;
-	// 	ov_mod = (-(long long)LONG_MIN) % 10;
-	// }
+	ov_div = LONG_MAX / 10;
+	ov_mod = LONG_MAX % 10 + (sign == -1);
 	if (before_x10_val > ov_div)
 		return (false);
 	if (before_x10_val == ov_div && add_val >= ov_mod)
