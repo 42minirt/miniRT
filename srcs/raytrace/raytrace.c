@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 11:43:42 by user             ###   ########.fr       */
+/*   Updated: 2023/05/22 11:56:20 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
         return (ret_color);
 	}
 	ret_color = color_add(ret_color, calc_diffuse_reflection(info->scene_info, its_p, eye2screen));
+	printf("r %f g %f b %f\n", ret_color.r, ret_color.g, ret_color.b);
 	// ret_color = color_add(ret_color, calc_specular_reflection(info, &its_p, eye2screen));
 	// if (its_p.obj->obj_color.is_perfect_ref == true)
 	// 	ret_color = color_add(ret_color, calc_perfect_reflection(info, &its_p, eye2screen, counter));

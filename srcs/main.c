@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:02:34 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 21:23:40 by user             ###   ########.fr       */
+/*   Updated: 2023/05/22 11:53:35 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	draw(t_all_info info)
 			eye2screen_xy = get_screen_vector(info, x, y);
 			color = color_add(color, raytrace(&info, eye2screen_xy));
 			put_pixel(info.mlx_info, x, y, color);
-            x++;
+			x++;
         }
         y++;
 		height_ratio = 1.0 - (double)y / WINDOW_HEIGHT;
