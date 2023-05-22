@@ -184,19 +184,20 @@ X11_INCLUDE		= /usr/X11/include
 # ---------------------------------------------------
 # LIBS, LIBS_DIR ####################################
 LIBS_DIR 		= $(LIBFT_DIR) $(MLX_DIR) $(X11_DIR) $(X11_LIB)
+
 ifeq ($(UNAME), Darwin)
 	LIBS_DIR 	+= /usr/X11R6/lib
 endif
 
 LFLAGS			= $(addprefix -L, $(LIBS_DIR))
 
-LIBS 			=  -lft -lXext -lX11 -lm -lz
+#LIBS 			=  -lft -lXext -lX11 -lm -lz
 #LIBS 			=  -lft $(MLX) -lXext -lX11 -lm -lz
 #LIBS 			=  $(LIBFT) -Lmlx_linux -lXext -lX11 -lm -lz
 ifeq ($(UNAME), Darwin)
-	LIBS 		+= -lmlx_Darwin -framework OpenGL -framework AppKit
+	LIBS 		= -lft -lmlx_Darwin -lXext -lX11 -lm -framework OpenGL -framework AppKit
 else
-	LIBS		+= -lmlx
+	LIBS		= -lft -lmlx -lXext -lX11 -lm
 endif
 
 
