@@ -147,7 +147,6 @@ DEPS			= $(SRCS:%.c=%:d)
 
 
 
-
 #####################################################
 # OS Check ##########################################
 #####################################################
@@ -168,11 +167,7 @@ LIBFT_INCLUDE	= $(LIBFT_DIR)/include
 # ---------------------------------------------------
 # MLX
 MLX_DIR			= minilibx-linux
-#ifeq ($(UNAME), Darwin)
-#	MLX			= $(MLX_DIR)/libmlx_Darwin.a
-#else
-#	MLX			= $(MLX_DIR)/libmlx_Linux.a
-#endif
+
 
 # ---------------------------------------------------
 # X11
@@ -191,9 +186,7 @@ endif
 
 LFLAGS			= $(addprefix -L, $(LIBS_DIR))
 
-#LIBS 			=  -lft -lXext -lX11 -lm -lz
-#LIBS 			=  -lft $(MLX) -lXext -lX11 -lm -lz
-#LIBS 			=  $(LIBFT) -Lmlx_linux -lXext -lX11 -lm -lz
+
 ifeq ($(UNAME), Darwin)
 	LIBS 		= -lft -lmlx_Darwin -lXext -lX11 -lm -framework OpenGL -framework AppKit
 else
