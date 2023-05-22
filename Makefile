@@ -151,38 +151,62 @@ DEPS			= $(SRCS:%.c=%:d)
 #####################################################
 # OS Check ##########################################
 #####################################################
-#UNAME := $(shell uname)
-#ifeq ($(UNAME), Darwin)
-#	LIBS_DIR 	+= /usr/X11R6/lib
-#	LIBS 		+= -lmlx_Darwin -framework OpenGL -framework AppKit
-#else
-#	LIBS 		+= -lmlx_Linux
-#endif
+UNAME			= $(shell uname)
 
 
 #####################################################
 # INCLUDE and LIBRARY FILE ##########################
 #####################################################
 
-INCLUDE_DIR		= includes
-#X11_INCLUDE		= /usr/X11/include
-#INCLUDE_DIRS	= $(INCLUDE_DIR) $(X11_INCLUDE) $(LIBFT_INCLUDE)
-INCLUDE_DIRS	= $(INCLUDE_DIR) $(LIBFT_INCLUDE) $(MLX_DIR)
-INCLUDES		= $(addprefix -I, $(INCLUDE_DIRS))
-
+# ---------------------------------------------------
+# LIBFT
 LIBFT_DIR		= libs
 LIBFT			= $(LIBFT_DIR)/libft.a
 LIBFT_INCLUDE	= $(LIBFT_DIR)/include
 
-MLX_DIR			= minilibx-linux
-MLX				= $(MLX_DIR)/libmlx_Linux.a
-#X11_DIR			= /usr/X11
-#X11_LIB			= /usr/X11/lib
 
-#LIBS_DIR 		= $(LIBFT_DIR)
-#LIBS_DIR 		= $(LIBFT_DIR) $(MLX_DIR) $(X11_DIR) $(X11_LIB)
-#LFLAGS			= $(addprefix -L, $(LIBS_DIR))
-#LIBS 			= -lft -lmlx -lX11 -lXext
+# ---------------------------------------------------
+# MLX
+MLX_DIR			= minilibx-linux
+#ifeq ($(UNAME), Darwin)
+#	MLX			= $(MLX_DIR)/libmlx_Darwin.a
+#else
+#	MLX			= $(MLX_DIR)/libmlx_Linux.a
+#endif
+
+# ---------------------------------------------------
+# X11
+X11_DIR			= /usr/X11
+X11_LIB			= /usr/X11/lib
+X11_INCLUDE		= /usr/X11/include
+
+
+# ---------------------------------------------------
+# LIBS, LIBS_DIR ####################################
+LIBS_DIR 		= $(LIBFT_DIR) $(MLX_DIR) $(X11_DIR) $(X11_LIB)
+ifeq ($(UNAME), Darwin)
+	LIBS_DIR 	+= /usr/X11R6/lib
+endif
+
+LFLAGS			= $(addprefix -L, $(LIBS_DIR))
+
+LIBS 			=  -lft -lXext -lX11 -lm -lz
+#LIBS 			=  -lft $(MLX) -lXext -lX11 -lm -lz
+#LIBS 			=  $(LIBFT) -Lmlx_linux -lXext -lX11 -lm -lz
+ifeq ($(UNAME), Darwin)
+	LIBS 		+= -lmlx_Darwin -framework OpenGL -framework AppKit
+else
+	LIBS		+= -lmlx
+endif
+
+
+# ---------------------------------------------------
+# INCLUDES ##########################################
+MINIRT_INCLUDE	= includes
+INCLUDE_DIRS	= $(MINIRT_INCLUDE) $(LIBFT_INCLUDE) $(MLX_DIR) $(X11_INCLUDE)
+IFLAGS			= $(addprefix -I, $(INCLUDE_DIRS))
+
+
 
 #####################################################
 # RULES #############################################
@@ -193,12 +217,12 @@ all				: $(NAME)
 $(NAME)			: $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) $(MLX) -Lmlx_linux -lXext -lX11 -lm -lz
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBS) $(LFLAGS)
 
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $$(dirname $@)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 
 clean			:
