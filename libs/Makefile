@@ -6,7 +6,7 @@
 #    By: user <user@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 09:32:11 by takira            #+#    #+#              #
-#    Updated: 2023/05/22 00:10:10 by user             ###   ########.fr        #
+#    Updated: 2023/05/22 09:00:23 by user             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ LIBFT_DIR	= libft
 GNL_DIR		= libft/gnl
 PRINTF_DIR	= libft/printf
 OBJ_DIR		= objs
+OBJ_DIR2	= ../objs
 
 # SRCS
 LIBFT_SRC	= string/str/ft_strlen.c \
@@ -107,6 +108,7 @@ SRCS		= $(addprefix $(LIBFT_DIR)/, $(LIBFT_SRC)) \
 # OBJS
 OBJ			= $(SRCS:%.c=%.o)
 OBJS		= $(addprefix $(OBJ_DIR)/, $(OBJ))
+OBJS2		= $(addprefix $(OBJ_DIR2)/, $(OBJ))
 
 # DEPS
 DEPS		= $(SRCS:%.c=%.d)
@@ -122,6 +124,10 @@ $(NAME)	: $(OBJS)
 	#$(CC) $(CFLAGS) $(IFAGS) $(OBJS) -o $@
 
 $(OBJ_DIR)/%.o	:%.c
+	@mkdir -p $$(dirname $@)
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+
+$(OBJ_DIR2)/%.o	:%.c
 	@mkdir -p $$(dirname $@)
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
