@@ -12,6 +12,24 @@
 
 #include "../includes/minirt.h"
 
+static int	validate_argv(int argc, char **argv)
+{
+	const char	*rt_path;
+
+	if (argc != 2)
+	{
+		ft_dprintf(STDERR_FILENO, "Error\n : rt_file required :(\n");
+		return (FAILURE);
+	}
+	rt_path = argv[1];
+	if (validate_filename(rt_path, RT_EXTENSION) != SUCCESS)
+	{
+		ft_dprintf(STDERR_FILENO, "Error\n : rt file invalid xo\n");
+		return (FAILURE);
+	}
+	return (SUCCESS);
+}
+
 static t_color	get_gradation_background_color(double height_ratio)
 {
 	t_color	color;
@@ -72,19 +90,14 @@ int main(int argc, char **argv)
 {
 	t_all_info	info;
 
-	if (argc != 2)
-	{
-		// todo: error msg
-		ft_dprintf(STDERR_FILENO, "Error\n : rt_file required :(\n");
+	if (validate_argv(argc, argv) == FAILURE)
 		return (EXIT_FAILURE);
-	}
 	if (construct_info(&info, argv[1]) == FAILURE)
 	{
 		// todo: error msg
 		destruct_info(&info);
 		return (EXIT_FAILURE);
 	}
-
 	draw(info);
 
 	mlx_put_image_to_window(info.mlx_info->mlx, info.mlx_info->win, info.mlx_info->img, 0, 0);

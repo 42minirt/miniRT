@@ -80,11 +80,6 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 		ft_dprintf(STDERR_FILENO, "Error\n : Failure in init mlx\n");
 		return (FAILURE);
 	}
-	if (validate_filename(rt_path, RT_EXTENSION) != SUCCESS)
-	{
-		ft_dprintf(STDERR_FILENO, "Error\n : rt file invalid\n");
-		return (FAILURE);
-	}
 	result = init_scene_and_camera(all_info, rt_path);
 	if (result != PASS)
 	{
