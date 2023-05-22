@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 23:40:59 by user             ###   ########.fr       */
+/*   Updated: 2023/05/22 12:20:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2sc
 		light_info = info->scene_info->lights->content;
 		neg_vec(&dir_pos2lgt, &light_info->point, &its_p->position);
 		dir_pos2lgt_n = norm_vec(dir_pos2lgt);
-		if (light_info->sl_angle == LT_SPOT && SPOT_check(&dir_pos2lgt_n, light_info) == true)
-			continue;
-		v_r = calc_v_r(dot(its_p->normal, dir_pos2lgt), its_p, dir_pos2lgt, &eye2screen);
-		if (v_r <= 0.0)
-			continue;
-		calc_spec_color(&color, v_r, light_info, its_p->obj->obj_color);
+		if (light_info->sl_angle == LT_SPOT && SPOT_check(&dir_pos2lgt_n, light_info) == false)
+		{
+			v_r = calc_v_r(dot(its_p->normal, dir_pos2lgt), its_p, dir_pos2lgt, &eye2screen);
+			if (v_r > 0.0)
+				calc_spec_color(&color, v_r, light_info, its_p->obj->obj_color);
+		}
 		light = light->next;
 	}
 	return (color);

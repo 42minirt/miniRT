@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 10:29:07 by user             ###   ########.fr       */
+/*   Updated: 2023/05/22 14:35:36 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 
 /********** window **********/
 # define WINDOW_HEIGHT		540
-# define WINDOW_WIDTH		960
+# define WINDOW_WIDTH		540
 # define WINDOW_TITLE		"miniRT"
 
 /********** string **********/

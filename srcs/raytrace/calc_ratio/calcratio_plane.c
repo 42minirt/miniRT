@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 20:24:08 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:18:40 by user             ###   ########.fr       */
+/*   Updated: 2023/05/22 18:53:01 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double	set_itsp(t_plane *plane, double t, t_ray *ray, t_intersection_point *itsp
 	if (t >= 0)
 	{
 		itsp->distance = t;
-		itsp->normal = plane->center;
+		itsp->normal = plane->normal;
 		times_vec(&eye2its, t, &ray->unit_dir);
 		add_vec(&itsp->position, &ray->pos, &eye2its);
 	}
