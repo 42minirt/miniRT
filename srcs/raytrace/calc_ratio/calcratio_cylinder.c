@@ -134,13 +134,14 @@ double	calc_cylinderratio(t_obj *obj, t_ray *eye2scr, t_intersection_point *itsp
 	t = check_intersection_t1(&d_n, &ac_n, cylinder, eye2scr);
 	if (t >= 0.0)
 	{
-		set_intersection_t1(itsp, t, cylinder, eye2scr);
+		set_intersection_t1(itsp, t, cylinder, eye2scr);#t2からでは？
+		#inverse_vec(&itsp->normal, &itsp->normal);t2ならこっちを使用する
 		return (t);
 	}
 	t = check_intersection_t2(&d_n, &ac_n, cylinder, eye2scr);
 	if (t >= 0.0)
 	{
-		set_intersection_t2(itsp, t, cylinder, eye2scr);
+		set_intersection_t2(itsp, t, cylinder, eye2scr);#t1はこっちでは？
 		inverse_vec(&itsp->normal, &itsp->normal);
 		return (t);
 	}
