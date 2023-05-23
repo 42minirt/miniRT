@@ -76,6 +76,8 @@ static t_parse_res	get_cylinder_config(const char *line, t_obj *obj)
 		return (ERROR_INVALID_ARG);
 	if (parsing_color(line, &obj->obj_color.kd, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
+	if (!line[idx])
+		return (PASS);
 	res = get_bonus_config_of_obj(line, obj, &idx);
 	if (res != PASS)
 		return (res);
