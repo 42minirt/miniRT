@@ -25,7 +25,7 @@ static void	print_lights(t_scene_info *scene)
 		light = node->content;
 		v = light->point;
 		c = light->light_color;
-		if (is_equal_strings(light->id_type, ID_SPOTLIGHT))
+		if (is_equal_strings(light->id_type, ID_LIGHT))
 			printf("  Point Light : (%5.1f, %5.1f, %5.1f), " \
 			"                                   %5.1f," \
 			"           (%5.1f, %5.1f, %5.1f)\n", \
