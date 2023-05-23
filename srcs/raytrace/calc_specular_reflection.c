@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/23 22:23:18 by user             ###   ########.fr       */
+/*   Updated: 2023/05/23 22:24:48 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2sc
 		dir_pos2lgt_n = norm_vec(dir_pos2lgt);
 		if ((SPOT_check(&dir_pos2lgt_n, light_info) == true && is_equal_strings(light_info->id_type, ID_SPOTLIGHT)) || is_equal_strings(light_info->id_type, ID_LIGHT))
 		{
-			v_r = calc_v_r(dot(its_p->normal, dir_pos2lgt_n), its_p, dir_pos2lgt, &eye2screen);
+			v_r = calc_v_r(dot(its_p->normal, dir_pos2lgt_n), its_p, dir_pos2lgt_n, &eye2screen);
 			if (v_r > 0.0)
 				calc_spec_color(&color, v_r, light_info, its_p->obj->obj_color);
 		}
