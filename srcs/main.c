@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:02:34 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 19:10:18 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 01:29:31 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,14 @@ void	draw(t_all_info info)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			//color = get_gradation_background_color(height_ratio);
-			color_set(&color, 0.0, 0.0, 0.0);
-			eye2screen_xy = get_screen_vector(info, x, y);
-			color = color_add(color, raytrace(&info, eye2screen_xy));
-			put_pixel(info.mlx_info, x, y, color);
+			//if ((x >= 150 && y >= 150) && (x <= 350 && y <= 350))
+			//{
+				//color = get_gradation_background_color(height_ratio);
+				color_set(&color, 0.0, 0.0, 0.0);
+				eye2screen_xy = get_screen_vector(info, x, y);
+				color = color_add(color, raytrace(&info, eye2screen_xy));
+				put_pixel(info.mlx_info, x, y, color);
+			//}
 			x++;
         }
         y++;

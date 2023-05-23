@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/23 22:24:48 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 01:10:13 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ double	calc_v_r(double n_l, t_intersection_point *its_p, t_vec dir_pos2lgt, t_ra
 
 	if (n_l < 0.0)
 		return (-1.0);
-	if (n_l > 1.0)
-		n_l = 1.0;
 	ref_dir = vec_k1v1_k2v2(2.0 * n_l, its_p->normal, -1.0, dir_pos2lgt);
 	normalize(&ref_dir_n, &ref_dir);
 	inverse_vec(&reverse_eyedir_vec, &eye2screen->unit_dir);
