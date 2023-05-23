@@ -129,7 +129,7 @@ double	calc_cylinderratio(t_obj *obj, t_ray *eye2scr, t_intersection_point *itsp
 
 	itsp = NULL;
 	cylinder = (t_cylinder *)obj;#ここが違う
-	itsp->obj = obj;
+	itsp->obj = obj;#ここでは格納しない
 	outerproduct_ready(&d_n, &ac_n, eye2scr, cylinder);
 	t = check_intersection_t1(&d_n, &ac_n, cylinder, eye2scr);
 	if (t >= 0.0)
