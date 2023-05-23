@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 21:28:22 by user             ###   ########.fr       */
+/*   Updated: 2023/05/23 20:35:55 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,17 @@ double	calc_v_r(double n_l, t_intersection_point *its_p, t_vec dir_pos2lgt, t_ra
 	t_vec	ref_dir;
 	t_vec	ref_dir_n;
 	t_vec	reverse_eyedir_vec;
+	t_vec	reverse_eyedir_vec_n;
 
 	if (n_l < 0.0)
 		return (-1.0);
+	if (n_l > 1.0)
+		n_l = 1.0;
 	ref_dir = vec_k1v1_k2v2(2.0 * n_l, its_p->normal, -1.0, dir_pos2lgt);
 	normalize(&ref_dir_n, &ref_dir);
 	inverse_vec(&reverse_eyedir_vec, &eye2screen->unit_dir);
-	return (dot_vec(&reverse_eyedir_vec, &ref_dir));
+	normalize(&reverse_eyedir_vec_n, &reverse_eyedir_vec);
+	return (dot_vec(&reverse_eyedir_vec_n, &ref_dir));
 }
 
 void	calc_spec_color(t_color *color, double v_r, t_light *light_info, t_obj_color obj_color)
@@ -61,7 +65,7 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2sc
 		light_info = info->scene_info->lights->content;
 		neg_vec(&dir_pos2lgt, &light_info->point, &its_p->position);
 		dir_pos2lgt_n = norm_vec(dir_pos2lgt);
-		if ((SPOT_check(&dir_pos2lgt_n, light_info) == false && is_equal_strings(light_info->id_type, ID_SPOTLIGHT)) || is_equal_strings(light_info->id_type, ID_LIGHT))
+		if ((SPOT_check(&dir_pos2lgt_n, light_info) == true && is_equal_strings(light_info->id_type, ID_SPOTLIGHT)) || is_equal_strings(light_info->id_type, ID_LIGHT))
 		{
 			v_r = calc_v_r(dot(its_p->normal, dir_pos2lgt), its_p, dir_pos2lgt, &eye2screen);
 			if (v_r > 0.0)
@@ -79,6 +83,6 @@ t_color	calc_specular_reflection(t_all_info *info, t_intersection_point	*its_p, 
 	color_set(&color, 0.0, 0.0, 0.0);
 	if (its_p->obj->obj_color.is_perfect_ref == true)
 		return (color);
-	color_add(color, calc_specref(info, its_p, eye2screen, color));
+	//color_add(color, calc_specref(info, its_p, eye2screen, color));
 	return (calc_specref(info, its_p, eye2screen, color));
 }

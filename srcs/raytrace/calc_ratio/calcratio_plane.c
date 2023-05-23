@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 20:24:08 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 21:43:48 by user             ###   ########.fr       */
+/*   Updated: 2023/05/23 19:50:19 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ double	calc_planeratio(t_obj *obj, t_ray *ray, t_intersection_point *itsp)
 	double	t;
 
 	plane = obj->shape_data.plane;
-	neg_vec(&pos2center, &ray->pos, &plane.center);
+	neg_vec(&pos2center, &plane.center, &ray->pos);
 	n_pos2center = dot(plane.normal, pos2center);
 	dis_n = dot(ray->unit_dir, plane.normal);
+	if (dis_n == 0.0)
+		return (-1.0);
 	t = set_itsp(&plane, n_pos2center / dis_n, ray, itsp);
 	if (t < 0)
 		return (-1.0);

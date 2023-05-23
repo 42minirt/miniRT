@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 19:02:48 by user             ###   ########.fr       */
+/*   Updated: 2023/05/23 19:39:51 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	check_intersection(t_scene_info *scene, t_ray eye2screen, t_intersection_po
 	while (obj_node != NULL)
 	{
 		tmp_t = calc_intersection(obj_node->content, eye2screen, &tmp_itsp);
-		if ( 0 < tmp_t && tmp_t < ret_t)
+		if (0 < tmp_t && tmp_t < ret_t)
 		{
 			ret_t = tmp_t;
 			nearest_itsp = tmp_itsp;

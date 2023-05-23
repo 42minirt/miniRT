@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/05/22 22:48:39 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	update_scene_sphere_info(t_sphere *sphere)
 
 void	update_scene_plane_info(t_plane *plane)
 {
-	norm_vec(plane->normal);
+	plane->normal = norm_vec(plane->normal);
 }
 
 void	update_scene_cylinder_info(t_cylinder *cylinder)
