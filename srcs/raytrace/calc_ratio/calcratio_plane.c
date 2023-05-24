@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 20:24:08 by user              #+#    #+#             */
-/*   Updated: 2023/05/24 01:33:19 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 09:48:34 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ double	calc_planeratio(t_obj *obj, t_ray *ray, t_intersection_point *itsp)
 	if (dis_n == 0.0)
 		return (-1.0);
 	t = (p_n - e_n) / dis_n;
-	if (t < 0)
+	if (t < 0.0)
 		return (-1.0);
 	else
 	{

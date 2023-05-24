@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/24 01:10:13 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 08:59:16 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ double	calc_v_r(double n_l, t_intersection_point *its_p, t_vec dir_pos2lgt, t_ra
 	normalize(&ref_dir_n, &ref_dir);
 	inverse_vec(&reverse_eyedir_vec, &eye2screen->unit_dir);
 	normalize(&reverse_eyedir_vec_n, &reverse_eyedir_vec);
-	return (dot_vec(&reverse_eyedir_vec_n, &ref_dir));
+	return (dot_vec(&reverse_eyedir_vec_n, &ref_dir_n));
 }
 
 void	calc_spec_color(t_color *color, double v_r, t_light *light_info, t_obj_color obj_color)
