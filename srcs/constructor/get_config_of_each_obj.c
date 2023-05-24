@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 10:29:42 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ static t_parse_res	get_cylinder_config(const char *line, t_obj *obj)
 	if (parsing_color(line, &obj->obj_color.kd, &idx) == FAILURE)
 		return (ERROR_INVALID_ARG);
 	res = get_bonus_config_of_obj(line, obj, &idx);
+	if (!line[idx])
+        return (PASS);
 	if (res != PASS)
 		return (res);
 	if (line[idx])

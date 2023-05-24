@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 20:23:55 by user              #+#    #+#             */
-/*   Updated: 2023/05/23 20:47:28 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 13:09:33 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,6 @@ double	calc_discreminant(double A, double B, double C)
 	return (D);
 }
 
-double	select_t(double t, t_ray *ray, t_cylinder *cyl, int *i)
-{
-	t_vec	eye2its;
-	t_vec	bottom2its;
-
-	(void)i;
-	t_mix_vec_all(&eye2its, 1, &ray->pos, t, &ray->unit_dir);
-	neg_vec(&bottom2its, &eye2its, &cyl->bottom_center);
-	if (0 <= dot_vec(&bottom2its, &cyl->axis) && dot_vec(&bottom2its, &cyl->axis) <= cyl->height)
-		return (t);
-	return (-1);
-}
-
 void	set_intersection_t2(t_intersection_point *itp, double t, t_cylinder *cyl, t_ray *ray)
 {
 	t_vec	center2its;
@@ -45,7 +32,7 @@ void	set_intersection_t2(t_intersection_point *itp, double t, t_cylinder *cyl, t
 	t_mix_vec_all(&itp->position, 1, &ray->pos, t, &ray->unit_dir);
 	neg_vec(&center2its, &itp->position, &cyl->bottom_center);
 	times_vec(&axis_size_vec, dot_vec(&center2its, &cyl->axis), &cyl->axis);
-	neg_vec(&normal_timessize, &axis_size_vec, &center2its);
+	neg_vec(&normal_timessize, &center2its, &axis_size_vec);
 	normalize(&itp->normal, &normal_timessize);
 }
 
@@ -122,30 +109,28 @@ void	outerproduct_ready(t_vec *d_n_oupro, t_vec *ac_n_oupro, t_ray *eye2scr, t_c
 
 double	calc_cylinderratio(t_obj *obj, t_ray *eye2scr, t_intersection_point *itsp)
 {
-	t_cylinder	*cylinder;
+	t_cylinder	cylinder;
 	t_vec		d_n;
 	t_vec		ac_n;
 	double		t;
 
-	itsp = NULL;
-	cylinder = (t_cylinder *)obj;//ここが違う
-	itsp->obj = obj;//#ここでは格納しない
-	outerproduct_ready(&d_n, &ac_n, eye2scr, cylinder);
-	t = check_intersection_t1(&d_n, &ac_n, cylinder, eye2scr);
+	cylinder = obj->shape_data.cylinder;
+	itsp->obj = obj;
+	itsp->obj->obj_color = obj->obj_color;
+	outerproduct_ready(&d_n, &ac_n, eye2scr, &cylinder);
+	t = check_intersection_t2(&d_n, &ac_n, &cylinder, eye2scr);
 	if (t >= 0.0)
 	{
-		set_intersection_t1(itsp, t, cylinder, eye2scr);//t2からでは？
-		//inverse_vec(&itsp->normal, &itsp->normal);t2ならこっちを使用する
+		set_intersection_t2(itsp, t, &cylinder, eye2scr);//t2からでは？
+		inverse_vec(&itsp->normal, &itsp->normal);//t2ならこっちを使用する
 		return (t);
 	}
-	t = check_intersection_t2(&d_n, &ac_n, cylinder, eye2scr);
+	t = check_intersection_t1(&d_n, &ac_n, &cylinder, eye2scr);
 	if (t >= 0.0)
 	{
-		set_intersection_t2(itsp, t, cylinder, eye2scr);//#t1はこっちでは？
+		set_intersection_t1(itsp, t, &cylinder, eye2scr);//#t1はこっちでは？
 		inverse_vec(&itsp->normal, &itsp->normal);
 		return (t);
 	}
-	if (t >= 0.0)
-		return (t);
 	return (-1.0);
 }
