@@ -19,12 +19,15 @@ static t_parse_res	get_sphere_config(const char *line, t_obj *obj)
 	t_parse_res	res;
 
 	idx = 0;
-	if (parse_vec(line, &obj->shape_data.sphere.center, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parse_double(line, &obj->shape_data.sphere.diameter, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parsing_color(line, &obj->obj_color.kd, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
+	res = parse_vec(line, &obj->shape_data.sphere.center, &idx);
+	if (res != PASS)
+		return (res);
+	res = parse_double(line, &obj->shape_data.sphere.diameter, &idx);
+	if (res != PASS)
+		return (res);
+	res = parsing_color(line, &obj->obj_color.kd, &idx);
+	if (res != PASS)
+		return (res);
 	if (!line[idx])
 		return (PASS);
 	res = get_bonus_config_of_obj(line, obj, &idx);
@@ -42,12 +45,15 @@ static t_parse_res	get_plane_config(const char *line, t_obj *obj)
 	t_parse_res	res;
 
 	idx = 0;
-	if (parse_vec(line, &obj->shape_data.plane.center, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parse_vec(line, &obj->shape_data.plane.normal, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parsing_color(line, &obj->obj_color.kd, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
+	res = parse_vec(line, &obj->shape_data.plane.center, &idx);
+	if (res != PASS)
+		return (res);
+	res = parse_vec(line, &obj->shape_data.plane.normal, &idx);
+	if (res != PASS)
+		return (res);
+	res = parsing_color(line, &obj->obj_color.kd, &idx);
+	if (res != PASS)
+		return (res);
 	if (!line[idx])
 		return (PASS);
 	res = get_bonus_config_of_obj(line, obj, &idx);
@@ -65,17 +71,21 @@ static t_parse_res	get_cylinder_config(const char *line, t_obj *obj)
 	t_parse_res	res;
 
 	idx = 0;
-	if (\
-	parse_vec(line, &obj->shape_data.cylinder.bottom_center, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parse_vec(line, &obj->shape_data.cylinder.axis, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parse_double(line, &obj->shape_data.cylinder.diameter, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parse_double(line, &obj->shape_data.cylinder.height, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parsing_color(line, &obj->obj_color.kd, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
+	res = parse_vec(line, &obj->shape_data.cylinder.bottom_center, &idx);
+	if (res != PASS)
+		return (res);
+	res = parse_vec(line, &obj->shape_data.cylinder.axis, &idx);
+	if (res != PASS)
+		return (res);
+	res = parse_double(line, &obj->shape_data.cylinder.diameter, &idx);
+	if (res != PASS)
+		return (res);
+	res = parse_double(line, &obj->shape_data.cylinder.height, &idx);
+	if (res != PASS)
+		return (res);
+	res = parsing_color(line, &obj->obj_color.kd, &idx);
+	if (res != PASS)
+		return (res);
 	if (!line[idx])
 		return (PASS);
 	res = get_bonus_config_of_obj(line, obj, &idx);
@@ -93,16 +103,21 @@ static t_parse_res	get_corn_config(const char *line, t_obj *obj)
 	t_parse_res	res;
 
 	idx = 0;
-	if (parse_vec(line, &obj->shape_data.corn.bottom_center, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parse_vec(line, &obj->shape_data.corn.axis, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parse_double(line, &obj->shape_data.corn.diameter, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parse_double(line, &obj->shape_data.corn.height, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parsing_color(line, &obj->obj_color.kd, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
+	res = parse_vec(line, &obj->shape_data.corn.bottom_center, &idx);
+	if (res != PASS)
+		return (res);
+	res = parse_vec(line, &obj->shape_data.corn.axis, &idx);
+	if (res != PASS)
+		return (res);
+	res = parse_double(line, &obj->shape_data.corn.diameter, &idx);
+	if (res != PASS)
+		return (res);
+	res = parse_double(line, &obj->shape_data.corn.height, &idx);
+	if (res != PASS)
+		return (res);
+	res = parsing_color(line, &obj->obj_color.kd, &idx);
+	if (res != PASS)
+		return (res);
 	if (!line[idx])
 		return (PASS);
 	res = get_bonus_config_of_obj(line, obj, &idx);

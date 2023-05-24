@@ -16,18 +16,25 @@
 // #Spotlight  Light_point(xyz)   ratio[0,1]   angle[0-180]   RGB[0,255]
 t_parse_res	get_light_detail(const char *line, t_light *light)
 {
-	size_t	idx;
+	size_t		idx;
+	t_parse_res	res;
 
 	idx = 0;
-	if (parse_vec(line, &light->point, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parse_double(line, &light->brightness, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parsing_color(line, &light->light_color, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
+	res = parse_vec(line, &light->point, &idx);
+	if (res != PASS)
+		return (res);
+	res = parse_double(line, &light->brightness, &idx);
+	if (res != PASS)
+		return (res);
+	res = parsing_color(line, &light->light_color, &idx);
+	if (res != PASS)
+		return (res);
 	if (is_equal_strings(light->id_type, ID_SPOTLIGHT))
-		if (parse_double(line, &light->sl_angle, &idx) == FAILURE)
-			return (ERROR_INVALID_ARG);
+	{
+		res = parse_double(line, &light->sl_angle, &idx);
+		if (res != PASS)
+			return (res);
+	}
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);

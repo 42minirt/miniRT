@@ -26,6 +26,19 @@ void	skip_delimiter(const char *line, size_t *idx)
 	skip_spece(line, idx);
 }
 
+// return comma count
+void	skip_delimiter_and_cnt_comma(const char *line, size_t *idx, size_t *cnt)
+{
+	*cnt = 0;
+	skip_spece(line, idx);
+	if (line[*idx] == ',')
+	{
+		*idx += 1;
+		*cnt += 1;
+	}
+	skip_spece(line, idx);
+}
+
 void	increment_idx_to_next_format(const char *line, \
 									size_t *idx, char *prev_str)
 {

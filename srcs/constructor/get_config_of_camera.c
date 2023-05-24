@@ -15,15 +15,19 @@
 // #Camera  viewpoint(xyz)  normalized_orientation_vec[-1,1]  FOV[0,180]
 t_parse_res	get_congfig_of_camera(const char *line, t_camera_info *camera)
 {
-	size_t	idx;
+	size_t		idx;
+	t_parse_res	res;
 
 	idx = 0;
-	if (parse_vec(line, &camera->position, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parse_vec(line, &camera->direction, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parse_double(line, &camera->fov_deg, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
+	res = parse_vec(line, &camera->position, &idx);
+	if (res != PASS)
+		return (res);
+	res = parse_vec(line, &camera->direction, &idx);
+	if (res != PASS)
+		return (res);
+	res = parse_double(line, &camera->fov_deg, &idx);
+	if (res != PASS)
+		return (res);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);

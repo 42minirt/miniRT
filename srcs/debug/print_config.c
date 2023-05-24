@@ -102,5 +102,7 @@ const char	*get_parse_result_char(t_parse_res res)
 		return ("\x1b[31mERROR_MISSING_ID\x1b[0m");
 	if (res == ERROR_INVALID_PPM_FORMAT)
 		return ("\x1b[31mERROR_INVALID_PPM_FORMAT\x1b[0m");
+	if (res == ERROR_INVALID_DELIMITER)
+		return ("\x1b[31mERROR_INVALID_DELIMITER\x1b[0m");
 	return ("\x1b[31mERROR\x1b[0m");
 }

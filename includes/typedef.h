@@ -111,6 +111,7 @@ enum	e_parse_result
 	ERROR_MULTIPLE_ID = 17,
 	ERROR_MISSING_ID = 18,
 	ERROR_INVALID_PPM_FORMAT = 19,
+	ERROR_INVALID_DELIMITER = 20,
 };
 
 enum	e_shape_type

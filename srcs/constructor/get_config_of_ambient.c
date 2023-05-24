@@ -15,13 +15,16 @@
 // #Ambient  lightning_ratio[0,1]  RGB[0,255]
 t_parse_res	get_config_of_ambient(const char *line, t_scene_info *scene)
 {
-	size_t	idx;
+	size_t		idx;
+	t_parse_res	res;
 
 	idx = 0;
-	if (parse_double(line, &scene->brightness, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
-	if (parsing_color(line, &scene->ambient_color, &idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
+	res = parse_double(line, &scene->brightness, &idx);
+	if (res != PASS)
+		return (res);
+	res = parsing_color(line, &scene->ambient_color, &idx);
+	if (res != PASS)
+		return (res);
 	if (line[idx])
 		return (ERROR_TOO_MANY_INFO);
 	return (PASS);

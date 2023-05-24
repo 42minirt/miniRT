@@ -15,11 +15,14 @@
 static t_parse_res	get_checker_info(const char *line, \
 									t_obj_color *obj_color, size_t *idx)
 {
+	t_parse_res	res;
+
 	obj_color->is_checker = true;
 	if (!ft_isdigit(line[*idx]))
 		return (ERROR_INVALID_ARG);
-	if (parsing_color(line, &obj_color->checker_color, idx) == FAILURE)
-		return (ERROR_INVALID_ARG);
+	res = parsing_color(line, &obj_color->checker_color, idx);
+	if (res != PASS)
+		return (res);
 	skip_spece(line, idx);
 	return (PASS);
 }
@@ -38,6 +41,7 @@ static t_parse_res	get_image_texture_info(const char *line, \
 {
 	t_parse_res	res;
 	bool		is_empty;
+	size_t		comma_cnt;
 
 	is_empty = false;
 	obj_color->texture_data.data = NULL;
@@ -45,7 +49,9 @@ static t_parse_res	get_image_texture_info(const char *line, \
 	res = get_image_texture(line, &obj_color->texture_data, idx, &is_empty);
 	if (res != PASS)
 		return (res);
-	skip_delimiter(line, idx);
+	skip_delimiter_and_cnt_comma(line, idx, &comma_cnt);
+	if (comma_cnt != 1)
+		return (ERROR_INVALID_DELIMITER);
 	res = get_image_texture(line, &obj_color->bump_data, idx, &is_empty);
 	if (res != PASS)
 		return (res);
