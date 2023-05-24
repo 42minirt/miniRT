@@ -395,8 +395,8 @@ struct s_calc_diffuse_ref_param
 	t_vec					vec_normal;
 	t_vec					vec_pos2light;
     t_vec					unit_pos2light;
-	t_vec					vec_light2pos;
-	double					dot_n_pos2light;
+	t_vec					unit_light2pos;
+	double					dot_n_unit_pos2light;
 	t_ray					ray;
 	t_intersection_point	its_p;
 	t_light					*light;

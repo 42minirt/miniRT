@@ -31,7 +31,7 @@ static bool	is_in_range_spotlight(t_diffuse_param p)
 {
 	double	angle_pos2light;
 
-	angle_pos2light = acos(dot(p.vec_light2pos, p.light->sl_dir)) * TO_DEGREES;
+	angle_pos2light = acos(dot(p.unit_light2pos, p.light->sl_dir)) * TO_DEGREES;
 	if (angle_pos2light < 0)
 		angle_pos2light *= -1.0; //todo: check
 	return (angle_pos2light <= p.light->sl_angle_half);
@@ -41,13 +41,13 @@ static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
 {
 	t_color	ret_color;
 
-	if (p.dot_n_pos2light <= 0.0)
+	if (p.dot_n_unit_pos2light <= 0.0)
 		return (init_color(0.0, 0.0, 0.0));
 	if (is_equal_strings(p.light->id_type, ID_SPOTLIGHT) \
 	&& !is_in_range_spotlight(p))
 		return (init_color(0.0, 0.0, 0.0));
 	ret_color = color_k1c1k2c2(p.its_p.obj->obj_color.id, kd, \
-							p.dot_n_pos2light, p.light->light_color);
+							p.dot_n_unit_pos2light, p.light->light_color);
 	return (ret_color);
 }
 
