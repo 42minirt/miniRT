@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 20:23:55 by user              #+#    #+#             */
-/*   Updated: 2023/05/24 17:55:52 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 21:26:06 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ double	calc_cylinderratio(t_obj *obj, t_ray *eye2scr, t_intersection_point *itsp
 		inverse_vec(&itsp->normal, &itsp->normal);//t2ならこっちを使用する
 	}
 	t1 = check_intersection_t1(&d_n, &ac_n, &cylinder, eye2scr);
-	if (t1 >= 0.0 && t1 < t2)
+	if (t1 >= 0.0 && t1 <= t2)
 	{
 		set_intersection_t1(itsp, t1, &cylinder, eye2scr);//#t1はこっちでは？
 		return (t1);

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/24 10:29:42 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 21:38:03 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static t_parse_res	get_cylinder_config(const char *line, \
 {
 	t_parse_res	res;
 
-<<<<<<< HEAD
 	res = parse_vec(line, &obj->shape_data.cylinder.bottom_center, idx);
 	if (res != PASS)
 		return (res);
