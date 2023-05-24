@@ -34,8 +34,8 @@ sl   -40,50,00       0.6        60.0            10, 0, 255
     < bonus id >    < parameters >
     perfect_ref
     checker         RGB
-    image           "image_texture_path",   "bumpmap_path"
-                    ""                  ,   "bumpmap_path"
+    image           "image_texture_path" "bumpmap_path"
+                    ""                   "bumpmap_path"
                     
 # comment line
 

@@ -263,7 +263,6 @@ struct s_obj_color
 // is_checker;		// init:false
 
 
-
 struct s_obj
 {
 	const char		*id_str;

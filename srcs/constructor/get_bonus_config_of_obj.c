@@ -50,7 +50,7 @@ static t_parse_res	get_image_texture_info(const char *line, \
 	if (res != PASS)
 		return (res);
 	skip_delimiter_and_cnt_comma(line, idx, &comma_cnt);
-	if (comma_cnt != 1)
+	if (comma_cnt != 0)
 		return (ERROR_INVALID_DELIMITER);
 	res = get_image_texture(line, &obj_color->bump_data, idx, &is_empty);
 	if (res != PASS)
