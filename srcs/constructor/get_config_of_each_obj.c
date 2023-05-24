@@ -52,7 +52,6 @@ static t_parse_res	get_cylinder_config(const char *line, \
 {
 	t_parse_res	res;
 
-<<<<<<< HEAD
 	res = parse_vec(line, &obj->shape_data.cylinder.bottom_center, idx);
 	if (res != PASS)
 		return (res);
