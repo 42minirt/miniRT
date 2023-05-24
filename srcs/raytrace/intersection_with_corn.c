@@ -14,7 +14,7 @@
 
 static bool	is_in_range_corn_height(double t, double intp_h, double corn_h)
 {
-	if (0.0 < t && 0 <= intp_h && intp_h <= corn_h)
+	if (0.0 < t && 0.0 <= intp_h && intp_h <= corn_h)
 		return (true);
 	return (false);
 }
@@ -61,7 +61,7 @@ double	calc_intersect_with_corn(t_obj *obj, t_ray ray, \
 	if (d_param.a == 0.0 || d_param.d < 0.0)
 		return (-1.0);
 	solve_quadratic_equation(&d_param);
-	if ((d_param.t1 <= 0.0 && d_param.t2 <= 0))
+	if (d_param.t1 <= 0.0 && d_param.t2 <= 0)
 		return (-1.0);
 	tmp_its_p = calc_intp_info_of_corn(corn, ray, intp_param, d_param);
 	tmp_its_p.obj = obj;
