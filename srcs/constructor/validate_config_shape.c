@@ -1,4 +1,16 @@
-#include "minirt.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_config_shape.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/minirt.h"
 
 static t_parse_res	validate_sphere(t_sphere *sphere)
 {
@@ -38,13 +50,13 @@ static t_parse_res	validate_corn(t_corn *corn)
 
 t_parse_res	validate_obj_shape(t_obj *obj)
 {
-	if (obj->type == BALL)
+	if (is_equal_strings(obj->id_str, ID_SPHERE))
 		return (validate_sphere(&obj->shape_data.sphere));
-	if (obj->type == PLANE)
+	if (is_equal_strings(obj->id_str, ID_PLANE))
 		return (validate_plane(&obj->shape_data.plane));
-	if (obj->type == CYLINDER)
+	if (is_equal_strings(obj->id_str, ID_CYLINDER))
 		return (validate_cylinder(&obj->shape_data.cylinder));
-	if (obj->type == CORN)
+	if (is_equal_strings(obj->id_str, ID_CORN))
 		return (validate_corn(&obj->shape_data.corn));
 	return (ERROR_INVALID_TYPE);
 }

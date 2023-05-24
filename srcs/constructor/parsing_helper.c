@@ -1,4 +1,16 @@
-#include "minirt.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_helper.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/22 10:27:54 by user             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/minirt.h"
 
 void	skip_spece(const char *line, size_t *idx)
 {
@@ -11,6 +23,19 @@ void	skip_delimiter(const char *line, size_t *idx)
 	skip_spece(line, idx);
 	if (line[*idx] == ',')
 		*idx += 1;
+	skip_spece(line, idx);
+}
+
+// return comma count
+void	skip_delimiter_and_cnt_comma(const char *line, size_t *idx, size_t *cnt)
+{
+	*cnt = 0;
+	skip_spece(line, idx);
+	if (line[*idx] == ',')
+	{
+		*idx += 1;
+		*cnt += 1;
+	}
 	skip_spece(line, idx);
 }
 
@@ -36,19 +61,19 @@ char	*get_identifier_str(const char *line, size_t idx)
 	return (id_str);
 }
 
-int	get_identifier_no(const char *id_str)
-{
-	size_t		idx;
-	const char	*ids[] = {\
-	"C", "A", "L", "sl", \
-	"sp", "pl", "cy", "co", NULL};
-
-	idx = 0;
-	while (ids[idx])
-	{
-		if (is_same_str(id_str, ids[idx]))
-			return ((int)idx);
-		idx++;
-	}
-	return (ERROR_INVALID_TYPE);
-}
+//t_id	get_identifier_no(const char *id_type)
+//{
+//	size_t		idx;
+//	const char	*ids[] = {
+//	ID_CAMERA, ID_AMBIENT, ID_LIGHT, ID_SPOTLIGHT,
+//	ID_SPHERE, ID_PLANE, ID_CYLINDER, ID_CORN, NULL};
+//
+//	idx = 0;
+//	while (ids[idx])
+//	{
+//		if (is_equal_strings(id_type, ids[idx]))
+//			return ((int)idx);
+//		idx++;
+//	}
+//	return (id_invalid);
+//}

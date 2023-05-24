@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 19:09:17 by takira            #+#    #+#             */
-/*   Updated: 2023/04/11 21:42:39 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 21:42:29 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ static char	*read_file_and_save(int fd, char *save)
 char	*get_next_line(int fd, bool is_include_nl)
 {
 	char		*gnl_line;
-	static char	*save_buf[OPEN_MAX];
+	static char	*save_buf[FOPEN_MAX];
 
 	errno = 0;
-	if (fd < 0 || OPEN_MAX < fd || BUFFER_SIZE <= 0 || INT_MAX < BUFFER_SIZE)
+	if (fd < 0 || FOPEN_MAX < fd || BUFFER_SIZE <= 0 || INT_MAX < BUFFER_SIZE)
 		return (NULL);
 	if (cnt_chr_in_str('\n', save_buf[fd]) == 0)
 	{
@@ -102,3 +102,4 @@ char	*get_next_line(int fd, bool is_include_nl)
 		return (ft_free_gnl(&save_buf[fd], &gnl_line));
 	return (gnl_line);
 }
+

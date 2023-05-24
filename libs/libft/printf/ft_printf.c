@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 18:18:38 by takira            #+#    #+#             */
-/*   Updated: 2023/01/16 12:38:03 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 21:43:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_dprintf(int fd, const char *fmt, ...)
 	ssize_t			sum_print_bytes;
 	va_list			arg;
 
-	if (!fmt || fd < 0 || OPEN_MAX < fd)
+	if (!fmt || fd < 0 || FOPEN_MAX < fd)
 		return (-1);
 	info = init_info(fd);
 	if (!info)

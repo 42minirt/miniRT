@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   printf_controller.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:52:04 by takira            #+#    #+#             */
-/*   Updated: 2023/01/26 18:18:55 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 21:44:24 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static ssize_t	pass_to_printfunc(const char c, t_printf_info info, va_list *p)
 		return (print_c(va_arg(*p, int), info));
 	if (c == 's')
 		return (print_s(va_arg(*p, char *), info));
-	if (c == 'p')
-		return (print_hex(va_arg(*p, uintptr_t), &info, false));
+	// if (c == 'p')
+	// 	return (print_hex(va_arg(*p, uintptr_t), &info, false));
 	if (c == 'd' || c == 'i')
 		return (print_signed(va_arg(*p, int), &info));
 	if (c == 'u')

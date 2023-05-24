@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_gnl.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:57:14 by takira            #+#    #+#             */
-/*   Updated: 2023/02/05 15:49:20 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 23:50:47 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <errno.h>
 # include <limits.h>
 # include <fcntl.h>
+
+# include "libft.h"
 
 # define BUFFER_SIZE 256
 

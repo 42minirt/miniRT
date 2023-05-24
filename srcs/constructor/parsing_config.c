@@ -1,95 +1,105 @@
-#include "minirt.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_config.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/22 10:30:47 by user             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <fcntl.h>
+#include "../../includes/minirt.h"
 
-static t_parse_res	get_config_controller(t_identifier id_no, \
-										const char *line, t_all_info *all)
+// camera, ambient は free
+// listに追加できなかったlight, objもこの段階でfree
+// listに格納されているlight, objは list_clearでfreeされる
+static bool	is_free_needed(char *id_str, t_parse_res result)
 {
-	t_parse_res	result;
-
-	result = ERROR_FATAL;
-	if (id_no == id_camera)
-		result = get_camera_setting(line, all->camera_info);
-	else if (id_no == id_ambient)
-		result = get_ambient_setting(line, all->scene_info);
-	else if (id_no == id_point_light || id_no == id_spot_light)
-		result = get_lights_setting(line, all->scene_info, id_no);
-	else if (id_no == id_plane || id_no == id_sphere \
-	|| id_no == id_cylinder || id_no == id_corn)
-		result = get_objects_setting(line, all->scene_info, id_no);
-	return (result);
+	if (is_equal_strings(id_str, ID_CAMERA))
+		return (true);
+	if (is_equal_strings(id_str, ID_AMBIENT))
+		return (true);
+	if (result != PASS)
+		return (true);
+	return (false);
 }
 
-// <space> <id> <space> <num1> <space> <num2> ... <numN>
-static t_parse_res	parse_line(t_all_info *all, const char *line)
+t_parse_res	ret_res_and_free(t_parse_res ret, void **ptr)
+{
+	x_free_1d_alloc(ptr);
+	return (ret);
+}
+
+// spaces <id> spaces <num1> spaces <num2> ... <numN>
+static t_parse_res	parse_line(t_all_info *all, const char *line, t_id_cnt *cnt)
 {
 	size_t		idx;
 	char		*id_str;
 	t_parse_res	result;
-	int			id_no;
 
 	idx = 0;
 	skip_spece(line, &idx);
-	if (!line[idx])
+	if (!line[idx] || is_comment_line(line[idx]))
 		return (PASS);
 	id_str = get_identifier_str(line, idx);
 	if (!id_str)
 		return (ERROR_FATAL);
 	increment_idx_to_next_format(line, &idx, id_str);
-	id_no = get_identifier_no(id_str);
-	free(id_str);
-	if (id_no == ERROR_INVALID_TYPE)
-		return (ERROR_INVALID_TYPE);
 	skip_spece(line, &idx);
+	if (validate_id(id_str) != PASS)
+		return (ret_res_and_free(ERROR_INVALID_TYPE, (void **)&id_str));
 	if (!line[idx])
-		return (ERROR_LACK_INFO);
-	result = get_config_controller(id_no, &line[idx], all);
+		return (ret_res_and_free(ERROR_LACK_INFO, (void **)&id_str));
+	result = get_config(id_str, &line[idx], all);
+	if (result == PASS)
+		increment_id_cnt(id_str, cnt);
+	if (is_free_needed(id_str, result))
+		x_free_1d_alloc((void **)&id_str);
 	return (result);
 }
 
-static int	parse_config_line_by_line(t_all_info *all, int fd)
+// errorがあればparseせずgnlを空にする
+static t_parse_res	parse_config_line_by_line(t_all_info *all, \
+												int fd, t_id_cnt *cnt)
 {
 	char		*line;
-	int			result;
 	t_parse_res	parse_result;
+	t_parse_res	ret_res;
 
-	result = SUCCESS;
+	ret_res = PASS;
 	while (true)
 	{
 		line = get_next_line(fd, false);
 		if (!line)
 			break ;
-		parse_result = parse_line(all, line);
+		if (ret_res == PASS)
+			parse_result = parse_line(all, line, cnt);
 		if (parse_result != PASS)
-		{
-			printf("[Error] parse_config_line: %s\n", \
-			parse_result_char(parse_result));
-			result = FAILURE;
-		}
-		free(line);
+			ret_res = parse_result;
+		x_free_1d_alloc((void **)&line);
 	}
-	if (result == SUCCESS)
-		printf("parse_config_line:%s\n", parse_result_char(PASS));
-	return (result);
+	return (ret_res);
 }
 
-int	parsing_config(t_all_info *all, const char *rt_path)
+t_parse_res	parsing_config(t_all_info *all, const char *rt_path)
 {
-	int	fd;
-	int	result;
+	int			fd;
+	t_parse_res	result;
+	t_id_cnt	cnt;
 
 	errno = 0;
-	fd = open(rt_path, O_RDONLY);
+	fd = x_open(rt_path, O_RDONLY);
 	if (fd == OPEN_ERROR)
-	{
-		perror("open");
-		return (FAILURE);
-	}
-	result = parse_config_line_by_line(all, fd);
+		return (ERROR_FATAL);
+	cnt = init_id_cnt();
+	result = parse_config_line_by_line(all, fd, &cnt);
 	errno = 0;
-	if (close(fd) == CLOSE_ERROR)
-	{
-		perror("close");
-		return (FAILURE);
-	}
+	if (x_close(fd) == CLOSE_ERROR)
+		return (ERROR_FATAL);
+	if (result == PASS)
+		result = validate_id_cnt(cnt);
 	return (result);
 }

@@ -1,4 +1,16 @@
-#include "minirt.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_config_helper.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/minirt.h"
 
 static void	print_bonus(t_obj_color o)
 {
@@ -25,7 +37,8 @@ void	print_sphere(t_obj *obj)
 	pos = obj->shape_data.sphere.center;
 	c = obj->obj_color.kd;
 	printf("  ● Sphere    : (%5.1f, % 5.1f, % 5.1f),"\
-	"                                    %5.1f,        (%5.1f, %5.1f, %5.1f)", \
+	"                                    %5.1f,"\
+	"           (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
 	obj->shape_data.sphere.diameter, \
 	c.r, c.g, c.b);
@@ -43,7 +56,7 @@ void	print_plane(t_obj *obj)
 	nor = obj->shape_data.plane.normal;
 	c = obj->obj_color.kd;
 	printf("  ■ Plane     : (%5.1f, %5.1f, %5.1f),    (%5.1f, %5.1f, %5.1f),"\
-	"                      (%5.1f, %5.1f, %5.1f)", \
+	"                           (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
 	nor.x, nor.y, nor.z, \
 	c.r, c.g, c.b);
@@ -61,7 +74,7 @@ void	print_cylinder(t_obj *obj)
 	nor = obj->shape_data.cylinder.axis;
 	c = obj->obj_color.kd;
 	printf("  ○ Cylinder  : (%5.1f, %5.1f, %5.1f),    (%5.1f, %5.1f, %5.1f),"\
-	"       %5.1f,   %5.1f,   (%5.1f, %5.1f, %5.1f)", \
+	"          %5.1f,  %5.1f,   (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
 	nor.x, nor.y, nor.z, \
 	obj->shape_data.cylinder.diameter, \
@@ -75,13 +88,15 @@ void	print_corn(t_obj *obj)
 {
 	t_vec	pos;
 	t_vec	nor;
+	t_vec	ori;
 	t_color	c;
 
 	pos = obj->shape_data.corn.bottom_center;
 	nor = obj->shape_data.corn.axis;
+	ori = obj->shape_data.corn.origin;
 	c = obj->obj_color.kd;
 	printf("  △ Corn      : (%5.1f, %5.1f, %5.1f),    (%5.1f, %5.1f, %5.1f),"\
-	"       %5.1f,   %5.1f,   (%5.1f, %5.1f, %5.1f)", \
+	"          %5.1f,  %5.1f,   (%5.1f, %5.1f, %5.1f)", \
 	pos.x, pos.y, pos.z, \
 	nor.x, nor.y, nor.z, \
 	obj->shape_data.corn.diameter, \
@@ -89,4 +104,5 @@ void	print_corn(t_obj *obj)
 	c.r, c.g, c.b);
 	print_bonus(obj->obj_color);
 	printf("\n");
+	printf("       origin   (%5.1f, %5.1f, %5.1f)\n", ori.x, ori.y, ori.z);
 }
