@@ -12,32 +12,6 @@
 
 #include "../../includes/minirt.h"
 
-//int	parse_int(const char *line, int *int_num, size_t *idx)
-//{
-//	size_t	len;
-//	char	*num_str;
-//	bool	is_success;
-//
-//	skip_spece(line, idx);
-//	len = 0;
-//	while (line[*idx + len]
-//	&& !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
-//		len++;
-//	num_str = ft_substr(line, *idx, len);
-//	if (!num_str)
-//	{
-//		perror("malloc");
-//		return (FAILURE);
-//	}
-//	*idx += len;
-//	*int_num = ft_atoi(num_str, &is_success);
-//	free(num_str);
-//	if (!is_success)
-//		return (FAILURE);
-//	return (SUCCESS);
-//}
-
-// todo int->parse_res
 t_parse_res	parse_double(const char *line, double *double_num, size_t *idx)
 {
 	size_t	len;
@@ -63,7 +37,6 @@ t_parse_res	parse_double(const char *line, double *double_num, size_t *idx)
 	return (PASS);
 }
 
-// todo int->parse_res
 t_parse_res	parse_vec(const char *line, t_vec *vec, size_t *idx)
 {
 	size_t		comma_cnt;
@@ -89,9 +62,7 @@ t_parse_res	parse_vec(const char *line, t_vec *vec, size_t *idx)
 	return (PASS);
 }
 
-// todo int->parse_res
-
-t_parse_res	parsing_color(const char *line, t_color *color, size_t *idx)
+t_parse_res	parse_color(const char *line, t_color *color, size_t *idx)
 {
 	size_t		comma_cnt;
 	t_parse_res	res;

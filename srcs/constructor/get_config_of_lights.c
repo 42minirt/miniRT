@@ -26,7 +26,7 @@ t_parse_res	get_light_detail(const char *line, t_light *light)
 	res = parse_double(line, &light->brightness, &idx);
 	if (res != PASS)
 		return (res);
-	res = parsing_color(line, &light->light_color, &idx);
+	res = parse_color(line, &light->light_color, &idx);
 	if (res != PASS)
 		return (res);
 	if (is_equal_strings(light->id_type, ID_SPOTLIGHT))
@@ -51,7 +51,8 @@ static t_light	*init_light(const char *id_str)
 	return (light);
 }
 
-t_parse_res	get_config_of_lights(const char *line, t_scene_info *scene, const char *id_str)
+t_parse_res	get_config_of_lights(const char *line, \
+								t_scene_info *scene, const char *id_str)
 {
 	t_list			*new_list;
 	t_light			*light;

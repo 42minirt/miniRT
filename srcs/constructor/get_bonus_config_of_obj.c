@@ -20,7 +20,7 @@ static t_parse_res	get_checker_info(const char *line, \
 	obj_color->is_checker = true;
 	if (!ft_isdigit(line[*idx]))
 		return (ERROR_INVALID_ARG);
-	res = parsing_color(line, &obj_color->checker_color, idx);
+	res = parse_color(line, &obj_color->checker_color, idx);
 	if (res != PASS)
 		return (res);
 	skip_spece(line, idx);
@@ -36,6 +36,7 @@ static t_parse_res	get_perfect_ref_info(const char *line, \
 	return (PASS);
 }
 
+//todo: cnt != 1 ?
 static t_parse_res	get_image_texture_info(const char *line, \
 										t_obj_color *obj_color, size_t *idx)
 {

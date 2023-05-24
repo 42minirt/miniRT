@@ -30,7 +30,7 @@ static t_parse_res	get_ppm_size(char **split, t_img *img)
 	return (PASS);
 }
 
-size_t	data_cnt = 0; // debug
+size_t	debug_data_cnt = 0; // debug
 
 static t_parse_res	get_ppm_data(char **split, t_img *img, size_t *data_idx)
 {
@@ -43,7 +43,7 @@ static t_parse_res	get_ppm_data(char **split, t_img *img, size_t *data_idx)
 		return (ERROR_INVALID_PPM_FORMAT);
 	}
 	row = 0;
-	data_cnt += get_arr_size(split); // debug
+	debug_data_cnt += get_arr_size(split); // debug
 	while (split[row])
 	{
 		if (*data_idx >= img->width * 3 * img->height)
@@ -123,8 +123,8 @@ t_parse_res	get_img_data(t_img *img, int fd)
 	}
 	if (data_idx != img->width * 3 * img->height)
 		res = ERROR_INVALID_PPM_FORMAT;
-	printf("[#DEBUG] get_img_data result:%s, idx:%zu, size:%zu, data_cnt:%zu\n", \
-		get_parse_result_char(res), data_idx, img->width * 3 * img->height, data_cnt);//debug
+	printf("[#DEBUG] get_img_data result:%s, idx:%zu, size:%zu, debug_data_cnt:%zu\n", \
+		get_parse_result_char(res), data_idx, img->width * 3 * img->height, debug_data_cnt);//debug
 	if (res != PASS)
 		return (ret_res_and_free(res, (void **)&img->data));
 	return (res);

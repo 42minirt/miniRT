@@ -42,7 +42,7 @@ double		ft_strtod(const char *str, bool *is_success, char **err);
 int			parse_int(const char *line, int *int_num, size_t *idx);
 t_parse_res	parse_double(const char *line, double *double_num, size_t *idx);
 t_parse_res	parse_vec(const char *line, t_vec *vec, size_t *idx);
-t_parse_res	parsing_color(const char *line, t_color *color, size_t *idx);
+t_parse_res	parse_color(const char *line, t_color *color, size_t *idx);
 void		update_scene_config(t_scene_info *scene);
 void		update_camera_config(t_camera_info *camera);
 

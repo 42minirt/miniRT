@@ -84,7 +84,8 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 	if (result != PASS)
 	{
 		ft_dprintf(STDERR_FILENO, \
-		"Error\n : Failure in parsing config file [%s]\n", get_parse_result_char(result));
+		"Error\n : Failure in parsing config file [%s]\n", \
+		get_parse_result_char(result));
 		return (FAILURE);
 	}
 	printf("[Parsing config] : %s\n", get_parse_result_char(result));

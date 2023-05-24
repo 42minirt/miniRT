@@ -23,12 +23,24 @@ static const char	*get_filename(const char *path)
 	return (ptr);
 }
 
+static int	try_open(const char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd == OPEN_ERROR)
+		return (FAILURE);
+	if (x_close(fd) == CLOSE_ERROR)
+		return (PROCESS_ERROR);
+	return (SUCCESS);
+}
+
 int	validate_filename(const char *path, const char *extension)
 {
 	const char		*filename = get_filename(path);
 	const size_t	filename_len = ft_strlen_ns(filename);
 	const size_t	extension_len = ft_strlen_ns(extension);
-	int				fd;
+	int				try_open_res;
 
 	printf(" DEBUG(validate_filename): path:[%s] -> filename:[%s]\n", \
 	path, filename);
@@ -40,10 +52,6 @@ int	validate_filename(const char *path, const char *extension)
 	&filename[filename_len - extension_len]);
 	if (!is_equal_strings(&filename[filename_len - extension_len], extension))
 		return (FAILURE);
-	fd = open(path, O_RDONLY); // open try
-	if (fd == OPEN_ERROR)
-		return (FAILURE);
-	if (x_close(fd) == CLOSE_ERROR)
-		return (PROCESS_ERROR);
-	return (SUCCESS);
+	try_open_res = try_open(path);
+	return (try_open_res);
 }

@@ -74,10 +74,11 @@ Left hand
 * `atoi`, `atof`失敗はNG : `++1`,  `0..001`など
 * パラメータ間は任意数の`space`, `horizontal tab`が使用可能
 
+// todo: add comma "path", "path"
 ## bonus(image)
 * `image_path`が`""`であれば画像の使用なしと判定
-* `texture_path`のみ, `bumpmap`を読み込まないときは、 `image "texture_path", ""` とする
-* `texture_path` & `bumpmap_path`いずれも`""`はNG   `image "",""`
+* `texture_path`のみ, `bumpmap`を読み込まないときは、 `image "texture_path" ""` とする
+* `texture_path` & `bumpmap_path`いずれも`""`はNG   `image "" ""`
 * 指定された`path`が有効な`ppm file`でなければNG
 * image fileは`P3`の`PPM`形式とし、先頭のヘッダーは以下のものを前提とする
   ```

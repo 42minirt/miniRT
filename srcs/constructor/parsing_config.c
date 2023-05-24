@@ -13,7 +13,6 @@
 #include <fcntl.h>
 #include "../../includes/minirt.h"
 
-
 // camera, ambient は free
 // listに追加できなかったlight, objもこの段階でfree
 // listに格納されているlight, objは list_clearでfreeされる

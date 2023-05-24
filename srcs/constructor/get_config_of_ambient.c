@@ -22,7 +22,7 @@ t_parse_res	get_config_of_ambient(const char *line, t_scene_info *scene)
 	res = parse_double(line, &scene->brightness, &idx);
 	if (res != PASS)
 		return (res);
-	res = parsing_color(line, &scene->ambient_color, &idx);
+	res = parse_color(line, &scene->ambient_color, &idx);
 	if (res != PASS)
 		return (res);
 	if (line[idx])
