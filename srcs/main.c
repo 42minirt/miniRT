@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:02:34 by user              #+#    #+#             */
-/*   Updated: 2023/05/24 01:29:31 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 10:21:44 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,14 @@
 // camera_dir(0,0,1)
 t_ray get_screen_vector(t_all_info info, size_t x, size_t y)
 {
-	t_vec	camera_pos_for_test = set(0.0, 0.0, -5.0);
+	t_vec	camera_pos_for_test;// = set(0.0, 0.0, -5.0);
 	t_vec	screen_pos;
 	t_ray	eye2screen;
 
 	(void)info;
+	camera_pos_for_test.x = 0.0;
+	camera_pos_for_test.y = 0.0;
+	camera_pos_for_test.z = -5.0;
 	screen_pos.x = 2.0 * (double)x / (WINDOW_WIDTH - 1.0) - 1.0;
 	screen_pos.y = -2.0 * (double)y / (WINDOW_HEIGHT - 1.0) + 1.0;
 //	screen_pos.x = (double)x - (WINDOW_WIDTH / 2.0);
