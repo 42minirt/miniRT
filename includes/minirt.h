@@ -69,13 +69,13 @@
 # define MAX_RECURSION	8
 # define IMG_FREQUENCY	1
 # define PPM_RGB_UNIT	3
-# define CHECKER_U_MAG	10
-# define CHECKER_V_MAG	10
+# define CHECKER_U_FREQ	10
+# define CHECKER_V_FREQ	10
 # define PARSING_YET	(-1.0)
 //#define EPSILON		(1.0 / 512.0)
-# define EPSILON		0.004
-# define TO_RADIANS		(2.0 * M_PI / 180.0)
-# define TO_DEGREES		(1.0 / TO_RADIANS)
+//# define EPSILON		0.004
+//# define TO_RADIANS		(2.0 * M_PI / 180.0)
+//# define TO_DEGREES		(1.0 / TO_RADIANS)
 
 /********** rt_id **********/
 # define ID_AMBIENT		"A"

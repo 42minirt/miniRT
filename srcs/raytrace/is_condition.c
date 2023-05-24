@@ -20,9 +20,9 @@ bool	is_obj_exists_between_itspos_and_light(t_scene_info *scene, t_diffuse_param
 	bool					is_obj_exists;
 	double					search_distance;
 
-	shadow_ray.pos = vec_k1v1_k2v2(1.0, p.its_p.position, EPSILON, p.unit_pos2light);
+	shadow_ray.pos = vec_k1v1_k2v2(1.0, p.its_p.position, 1.0 / 512.0, p.unit_pos2light);
 	shadow_ray.unit_dir = p.unit_pos2light;
-	search_distance = norm(p.vec_pos2light) - EPSILON;
+	search_distance = norm(p.vec_pos2light) - (1.0 / 512.0);
 	is_obj_exists = check_intersection(scene, shadow_ray, &tmp_its_p);
 	if (is_obj_exists && tmp_its_p.distance <= search_distance)
 		return (true);
