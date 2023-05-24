@@ -81,6 +81,7 @@ RAYTRACE_SRC	= calc_ambient_reflection.c \
 				  calc_perfect_reflection.c \
 				  calc_diffuse_reflection.c \
 				  calc_diffuse_reflection_param.c \
+				  get_checker_ref_color.c \
 				  get_image_ref_color.c \
 				  get_tangent_coordinate_map.c \
 				  intersection_helper.c \

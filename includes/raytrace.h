@@ -56,6 +56,7 @@ t_vec			get_bump_normal(t_intersection_point *its_p);
 
 /* calc_diffuse_color */
 t_color			get_itspos_image_texture_color(t_diffuse_param p);
+t_color			get_itspos_checker_color(t_diffuse_param p);
 t_diffuse_param	calc_diffuse_param(t_intersection_point *its_p, \
 									t_ray *ray, t_light *light);
 
