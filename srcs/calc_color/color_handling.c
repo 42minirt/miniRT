@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 23:35:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/20 15:33:12 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,19 @@ void	color_set(t_color *tgt, double R, double G, double B)
 void	color_add_pointer(t_color *tgt, t_color *t1, t_color *t2)
 {
 	color_set(
-		tgt, \
-		t1->r + t2->r, \
-		t1->g + t2->g, \
-		t1->b + t2->b \
-	);
+		tgt,
+		t1->r + t2->r,
+		t1->g + t2->g,
+		t1->b + t2->b
+		);
+}
+
+t_color	init_color(double r, double g, double b)
+{
+	t_color	color;
+
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	return (color);
 }

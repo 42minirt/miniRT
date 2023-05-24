@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constructor.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/20 15:27:08 by takira           ###   ########.fr       */
+/*   Created: 2023/05/20 20:32:51 by user              #+#    #+#             */
+/*   Updated: 2023/05/21 18:32:48 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ bool		is_ratio_in_range(double ratio);
 bool		is_angle_in_range(double angle);
 bool		is_comment_line(char c);
 
-// validate
 t_parse_res	validate_obj_shape(t_obj *obj);
 t_parse_res	validate_obj_color(t_obj *obj);
 t_parse_res	validate_lights_info(t_scene_info *scene);

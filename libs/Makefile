@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+         #
+#    By: user <user@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 09:32:11 by takira            #+#    #+#              #
-#    Updated: 2023/01/29 01:24:13 by takira           ###   ########.fr        #
+#    Updated: 2023/05/22 09:00:23 by user             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,11 @@ CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -MMD -MP
 
 # DIRS
-LIBFT_DIR	= ./libft
-GNL_DIR		= ./libft/gnl
-PRINTF_DIR	= ./libft/printf
-OBJ_DIR		= ./objs
+LIBFT_DIR	= libft
+GNL_DIR		= libft/gnl
+PRINTF_DIR	= libft/printf
+OBJ_DIR		= objs
+OBJ_DIR2	= ../objs
 
 # SRCS
 LIBFT_SRC	= string/str/ft_strlen.c \
@@ -107,12 +108,13 @@ SRCS		= $(addprefix $(LIBFT_DIR)/, $(LIBFT_SRC)) \
 # OBJS
 OBJ			= $(SRCS:%.c=%.o)
 OBJS		= $(addprefix $(OBJ_DIR)/, $(OBJ))
+OBJS2		= $(addprefix $(OBJ_DIR2)/, $(OBJ))
 
 # DEPS
 DEPS		= $(SRCS:%.c=%.d)
 
 # INCLUDES
-INCLUDE_DIR	= ./include
+INCLUDE_DIR	= include
 IFLAGS		= $(addprefix -I, $(INCLUDE_DIR))
 
 
@@ -122,6 +124,10 @@ $(NAME)	: $(OBJS)
 	#$(CC) $(CFLAGS) $(IFAGS) $(OBJS) -o $@
 
 $(OBJ_DIR)/%.o	:%.c
+	@mkdir -p $$(dirname $@)
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+
+$(OBJ_DIR2)/%.o	:%.c
 	@mkdir -p $$(dirname $@)
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 

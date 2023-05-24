@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:02:34 by user              #+#    #+#             */
-/*   Updated: 2023/05/17 22:24:26 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 01:29:31 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ static int	validate_argv(int argc, char **argv)
 	return (SUCCESS);
 }
 
-static t_color	get_gradation_background_color(double height_ratio)
-{
-	t_color	color;
+// static t_color	get_gradation_background_color(double height_ratio)
+// {
+// 	t_color	color;
 
-	color.r = 1.0 - height_ratio + height_ratio * 0.5;
-	color.g = 1.0 - height_ratio + height_ratio * 0.7;
-	color.b = 1.0 - height_ratio + height_ratio * 1.0;
-	return (color);
-}
+// 	color.r = 1.0 - height_ratio + height_ratio * 0.5;
+// 	color.g = 1.0 - height_ratio + height_ratio * 0.7;
+// 	color.b = 1.0 - height_ratio + height_ratio * 1.0;
+// 	return (color);
+// }
 
 // screen_z = 0
 // camera_pos(0,0,-5)
@@ -67,7 +67,7 @@ void	draw(t_all_info info)
 	t_color	color;
     size_t	y;
     size_t	x;
-	double	height_ratio = 1.0f;
+	//double	height_ratio = 1.0f;
 
 	y = 0;
 	while (y < WINDOW_HEIGHT)
@@ -75,14 +75,18 @@ void	draw(t_all_info info)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			color = get_gradation_background_color(height_ratio);
-			eye2screen_xy = get_screen_vector(info, x, y);
-			raytrace(&info, eye2screen_xy, &color);
-			put_pixel(info.mlx_info, x, y, color);
-            x++;
+			//if ((x >= 150 && y >= 150) && (x <= 350 && y <= 350))
+			//{
+				//color = get_gradation_background_color(height_ratio);
+				color_set(&color, 0.0, 0.0, 0.0);
+				eye2screen_xy = get_screen_vector(info, x, y);
+				color = color_add(color, raytrace(&info, eye2screen_xy));
+				put_pixel(info.mlx_info, x, y, color);
+			//}
+			x++;
         }
         y++;
-		height_ratio = 1.0 - (double)y / WINDOW_HEIGHT;
+		//height_ratio = 1.0 - (double)y / WINDOW_HEIGHT;
 	}
 }
 
@@ -105,6 +109,7 @@ int main(int argc, char **argv)
 	mlx_loop(info.mlx_info->mlx);
 
 	destruct_info(&info);
+	printf("ch\n");
     return (0);
 }
 

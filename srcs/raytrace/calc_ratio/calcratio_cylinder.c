@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 20:23:55 by user              #+#    #+#             */
-/*   Updated: 2023/05/17 21:32:02 by user             ###   ########.fr       */
+/*   Updated: 2023/05/23 20:47:28 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,19 +128,20 @@ double	calc_cylinderratio(t_obj *obj, t_ray *eye2scr, t_intersection_point *itsp
 	double		t;
 
 	itsp = NULL;
-	cylinder = (t_cylinder *)obj;
-	itsp->obj = obj;
+	cylinder = (t_cylinder *)obj;//ここが違う
+	itsp->obj = obj;//#ここでは格納しない
 	outerproduct_ready(&d_n, &ac_n, eye2scr, cylinder);
 	t = check_intersection_t1(&d_n, &ac_n, cylinder, eye2scr);
 	if (t >= 0.0)
 	{
-		set_intersection_t1(itsp, t, cylinder, eye2scr);
+		set_intersection_t1(itsp, t, cylinder, eye2scr);//t2からでは？
+		//inverse_vec(&itsp->normal, &itsp->normal);t2ならこっちを使用する
 		return (t);
 	}
 	t = check_intersection_t2(&d_n, &ac_n, cylinder, eye2scr);
 	if (t >= 0.0)
 	{
-		set_intersection_t2(itsp, t, cylinder, eye2scr);
+		set_intersection_t2(itsp, t, cylinder, eye2scr);//#t1はこっちでは？
 		inverse_vec(&itsp->normal, &itsp->normal);
 		return (t);
 	}

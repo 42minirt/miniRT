@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ispunct.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:03:02 by takira            #+#    #+#             */
-/*   Updated: 2023/01/26 12:28:33 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 23:56:15 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../../include/ft_string.h"
 
 int	ft_ispunct(int c)
 {

@@ -30,7 +30,7 @@ SRCS			= $(addprefix $(SRC_DIR)/, $(SRC))
 
 #----------------------------------------------------
 # CONSTRUCTOR
-CONSTRUCTOR_DIR	= constructor
+CONSTRUCTOR_DIR	= srcs/constructor
 CONSTRUCTOR_SRC	= constructor.c \
 				  ft_strtod.c \
 				  get_config.c \
@@ -60,14 +60,14 @@ SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
 #----------------------------------------------------
 # DESTRUCTOR
-DESTRUCTOR_DIR	= destructor
+DESTRUCTOR_DIR	= srcs/destructor
 DESTRUCTOR_SRC	= destructor.c
 
 SRC				+= $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_SRC))
 
 #----------------------------------------------------
 # MLX_HELPER
-MLX_HELPER		= mlx_helper
+MLX_HELPER		= srcs/mlx_helper
 MLX_HELPER_SRS	= mlx_pixcel_put.c \
 				  mlx_keyhooks.c
 
@@ -75,8 +75,10 @@ SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 
 #----------------------------------------------------
 # RAYTRACE
-RAYTRACE_DIR	= raytrace
+RAYTRACE_DIR	= srcs/raytrace
 RAYTRACE_SRC	= calc_ambient_reflection.c \
+				  calc_specular_reflection.c \
+				  calc_perfect_reflection.c \
 				  calc_diffuse_reflection.c \
 				  calc_diffuse_reflection_param.c \
 				  get_image_ref_color.c \
@@ -94,7 +96,7 @@ SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 
 #----------------------------------------------------
 # COLOR
-COLOR_DIR		= calc_color
+COLOR_DIR		= srcs/calc_color
 COLOR_SRC		= calc_color.c \
 				  color_handling.c
 
@@ -102,7 +104,7 @@ SRC				+= $(addprefix $(COLOR_DIR)/, $(COLOR_SRC))
 
 #----------------------------------------------------
 # VECTOR
-VECTOR_DIR		= calc_vector
+VECTOR_DIR		= srcs/calc_vector
 VECTOR_SRC		= arithmetic.c \
 				  arithmetic_ret_vec.c \
 				  calc_vec.c \
@@ -112,7 +114,7 @@ SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
 
 #----------------------------------------------------
 # MATRIX
-MATRIX_DIR		= matrix
+MATRIX_DIR		= srcs/matrix
 MATRIX_SRC		= calc_matrix.c \
 				  is_basis_equals.c \
 				  matrix.c
@@ -121,7 +123,7 @@ SRC				+= $(addprefix $(MATRIX_DIR)/, $(MATRIX_SRC))
 
 #----------------------------------------------------
 # DEBUG
-DEBUG_DIR		= debug
+DEBUG_DIR		= srcs/debug
 DEBUG_SRC		= print_config.c \
 				  print_config_helper.c
 
@@ -129,7 +131,7 @@ SRC				+= $(addprefix $(DEBUG_DIR)/, $(DEBUG_SRC))
 
 #----------------------------------------------------
 # SYS
-SYS_DIR			= sys
+SYS_DIR			= srcs/sys
 SYS_SRC			= x_free.c \
 				  x_open.c \
 				  x_close.c
@@ -148,76 +150,46 @@ DEPS			= $(SRCS:%.c=%:d)
 
 
 #####################################################
-# OS Check ##########################################
-#####################################################
-UNAME			= $(shell uname)
+# INCLUDE and LIBRARY FILE
+INCLUDE_DIR		= includes
+X11_INCLUDE		= /usr/X11/include
+INCLUDE_DIRS	= $(INCLUDE_DIR) $(X11_INCLUDE)
+INCLUDES		= $(addprefix -I, $(INCLUDE_DIRS))
 
-
-#####################################################
-# INCLUDE and LIBRARY FILE ##########################
-#####################################################
-
-# ---------------------------------------------------
-# LIBFT
 LIBFT_DIR		= libs
-LIBFT			= $(LIBFT_DIR)/libft.a
-LIBFT_INCLUDE	= $(LIBFT_DIR)/include
-
-
-# ---------------------------------------------------
-# MLX
 MLX_DIR			= minilibx-linux
-
-
-# ---------------------------------------------------
-# X11
 X11_DIR			= /usr/X11
 X11_LIB			= /usr/X11/lib
-X11_INCLUDE		= /usr/X11/include
 
-
-# ---------------------------------------------------
-# LIBS, LIBS_DIR ####################################
 LIBS_DIR 		= $(LIBFT_DIR) $(MLX_DIR) $(X11_DIR) $(X11_LIB)
+LFLAGS			= $(addprefix -L, $(LIBS_DIR))
+LIBS 			= -lft -lmlx -lX11 -lXext
 
+
+
+#####################################################
+# OS Check
+UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
 	LIBS_DIR 	+= /usr/X11R6/lib
-endif
-
-LFLAGS			= $(addprefix -L, $(LIBS_DIR))
-
-
-ifeq ($(UNAME), Darwin)
-	LIBS 		= -lft -lmlx_Darwin -lXext -lX11 -lm -framework OpenGL -framework AppKit
+	LIBS 		+= -lmlx_Darwin -framework OpenGL -framework AppKit
 else
-	LIBS		= -lft -lmlx -lXext -lX11 -lm
+	LIBS 		+= -lmlx_Linux
 endif
 
 
-# ---------------------------------------------------
-# INCLUDES ##########################################
-MINIRT_INCLUDE	= includes
-INCLUDE_DIRS	= $(MINIRT_INCLUDE) $(LIBFT_INCLUDE) $(MLX_DIR) $(X11_INCLUDE)
-IFLAGS			= $(addprefix -I, $(INCLUDE_DIRS))
-
-
-
 #####################################################
-# RULES #############################################
-#####################################################
+# RULES
 all				: $(NAME)
-
 
 $(NAME)			: $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBS) $(LFLAGS)
-
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $(LFLAGS) $(LIBS) $^
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $$(dirname $@)
-	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
-
+	$(CC) $(INCLUDES) -o $@ -c $<
 
 clean			:
 	rm -rf $(OBJ_DIR)

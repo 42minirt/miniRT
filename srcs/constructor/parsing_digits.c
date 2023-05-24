@@ -3,14 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_digits.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/17 23:19:51 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/22 10:28:05 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+//int	parse_int(const char *line, int *int_num, size_t *idx)
+//{
+//	size_t	len;
+//	char	*num_str;
+//	bool	is_success;
+//
+//	skip_spece(line, idx);
+//	len = 0;
+//	while (line[*idx + len]
+//	&& !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
+//		len++;
+//	num_str = ft_substr(line, *idx, len);
+//	if (!num_str)
+//	{
+//		perror("malloc");
+//		return (FAILURE);
+//	}
+//	*idx += len;
+//	*int_num = ft_atoi(num_str, &is_success);
+//	free(num_str);
+//	if (!is_success)
+//		return (FAILURE);
+//	return (SUCCESS);
+//}
 
 int	parse_double(const char *line, double *double_num, size_t *idx)
 {

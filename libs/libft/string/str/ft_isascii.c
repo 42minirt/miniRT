@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 10:33:31 by takira            #+#    #+#             */
-/*   Updated: 2023/01/20 16:43:22 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 23:55:53 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../../include/ft_string.h"
 
 int	ft_isascii(int c)
 {

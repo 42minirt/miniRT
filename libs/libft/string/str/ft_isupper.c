@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 21:31:51 by takira            #+#    #+#             */
-/*   Updated: 2023/01/20 16:44:01 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 23:56:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../../include/ft_string.h"
 
 int	ft_isupper(int c)
 {

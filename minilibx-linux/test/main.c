@@ -75,17 +75,17 @@ int	key_win3(int key,void *p)
 
 int	mouse_win1(int button,int x,int y, void *p)
 {
-  printf("Mouse in Win1, button %d at %next_x%d.\n",button,x,y);
+  printf("Mouse in Win1, button %d at %d next_x %d.\n",button,x,y);
 }
 
 int	mouse_win2(int button,int x,int y, void *p)
 {
-  printf("Mouse in Win2, button %d at %next_x%d.\n",button,x,y);
+  printf("Mouse in Win2, button %d at %d next_x%d.\n",button,x,y);
 }
 
 int	mouse_win3(int x,int y, void *p)
 {
-  printf("Mouse moving in Win3, at %next_x%d.\n",x,y);
+  printf("Mouse moving in Win3, at %d next_x%d.\n",x,y);
 }
 
 
@@ -109,7 +109,7 @@ int	main()
     }
   printf("OK (use_xshm %d pshm_format %d)\n",((t_xvar *)mlx)->use_xshm,((t_xvar *)mlx)->pshm_format);
 
-  printf(" => Window1 %next_x%d \"Title 1\" ...",WIN1_SX,WIN1_SY);
+  printf(" => Window1 %d next_x%d \"Title 1\" ...",WIN1_SX,WIN1_SY);
   if (!(win1 = mlx_new_window(mlx,WIN1_SX,WIN1_SY,"Title1")))
     {
       printf(" !! KO !!\n");
@@ -127,7 +127,7 @@ int	main()
   printf("OK\n");
   sleep(2);
 
-  printf(" => Image1 ZPixmap %next_x%d ...",IM1_SX,IM1_SY);
+  printf(" => Image1 ZPixmap %d next_x%d ...",IM1_SX,IM1_SY);
   if (!(im1 = mlx_new_image(mlx,IM1_SX,IM1_SY)))
     {
       printf(" !! KO !!\n");
@@ -151,7 +151,7 @@ int	main()
   printf("OK\n");
   sleep(2);
 
-  printf(" => Image3 ZPixmap %next_x%d ...",IM3_SX,IM3_SY);
+  printf(" => Image3 ZPixmap %d next_x%d ...",IM3_SX,IM3_SY);
   if (!(im3 = mlx_new_image(mlx,IM3_SX,IM3_SY)))
     {
       printf(" !! KO !!\n");
@@ -183,7 +183,7 @@ int	main()
       exit(1);
     }
   data2 = mlx_get_data_addr(im2,&bpp2,&sl2,&endian2);
-  printf("OK (xpm %next_x%d)(img bpp2: %d, sizeline2: %d endian: %d type: %d)\n",
+  printf("OK (xpm %d next_x%d)(img bpp2: %d, sizeline2: %d endian: %d type: %d)\n",
 	 xpm1_x,xpm1_y,bpp2,sl2,endian2,((t_img *)im2)->type);
   sleep(2);
 

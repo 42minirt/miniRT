@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_string.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takira <takira@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:57:14 by takira            #+#    #+#             */
-/*   Updated: 2023/02/08 13:31:26 by takira           ###   ########.fr       */
+/*   Updated: 2023/05/21 23:59:12 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # include "ft_math.h"
 # include "ft_std.h"
+# include "libft.h"
 
 /* is */
 int			ft_isupper(int c);
@@ -28,7 +29,7 @@ int			ft_isalnum(int c);
 int			ft_isascii(int c);
 int			ft_isprint(int c);
 int			ft_isspace(char c);
-int			ft_ispunct(char c);
+int			ft_ispunct(int c);
 
 bool		is_chr_in_str(char chr, const char *str);
 bool		is_str1chrs_in_str2(const char *str1, const char *str2);

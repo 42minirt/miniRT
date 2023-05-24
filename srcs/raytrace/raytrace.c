@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/17 23:28:59 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 01:45:52 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	check_intersection(t_scene_info *scene, t_ray eye2screen, t_intersection_po
 	while (obj_node != NULL)
 	{
 		tmp_t = calc_intersection(obj_node->content, eye2screen, &tmp_itsp);
-		if ( 0 < tmp_t && tmp_t < ret_t)
+		if (0 < tmp_t && tmp_t < ret_t)
 		{
 			ret_t = tmp_t;
 			nearest_itsp = tmp_itsp;
@@ -53,34 +53,46 @@ bool	check_intersection(t_scene_info *scene, t_ray eye2screen, t_intersection_po
 	return (true);
 }
 
-static bool	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
-									t_color *ret_color, size_t counter)
+t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
+									size_t counter)
 {
 	bool					is_intersect;
-	t_color					color;
+	t_color					ret_color;
 	t_intersection_point	its_p;
 
 	counter++;	// tmp
+	color_set(&ret_color, 0.0, 0.0, 0.0);
 	if (counter > MAX_RECURSION)
-		return (false);
+		return (ret_color);
 
 	// 交点判定
 	is_intersect = check_intersection(info->scene_info, eye2screen, &its_p);
     if (is_intersect == false)
-		return (false);
+// <<<<<<< HEAD
+	{
+        return (ret_color);
+	}
+	ret_color = color_add(ret_color, calc_diffuse_reflection(info->scene_info, its_p, eye2screen));
+	ret_color = color_add(ret_color, calc_specular_reflection(info, &its_p, eye2screen));
+	if (its_p.obj->obj_color.is_perfect_ref == true)
+		ret_color = color_add(ret_color, calc_perfect_reflection(info, &its_p, eye2screen, counter));
+	return (ret_color);
+// =======
+// 		return (false);
 
-	// 色の計算（background or obj color
-	color_set(&color, 0.0, 0.0, 0.0);
-//	color_set(&color, 1, 0.0, 0.0);
-	color = color_add(color, calc_ambient_reflection(info->scene_info, its_p));
-	color = color_add(color, calc_diffuse_reflection(info->scene_info, its_p, eye2screen));
-//	color = color_add(color, calc_specular_reflection(info, &its_p, eye2screen));
-//	color = color_add(color, calc_perfect_reflection(info, &its_p, eye2screen));
-	*ret_color = color;
-    return (true);
+// 	// 色の計算（background or obj color
+// 	color_set(&color, 0.0, 0.0, 0.0);
+// //	color_set(&color, 1, 0.0, 0.0);
+// 	color = color_add(color, calc_ambient_reflection(info->scene_info, its_p));
+// 	color = color_add(color, calc_diffuse_reflection(info->scene_info, its_p, eye2screen));
+// //	color = color_add(color, calc_specular_reflection(info, &its_p, eye2screen));
+// //	color = color_add(color, calc_perfect_reflection(info, &its_p, eye2screen));
+// 	*ret_color = color;
+//     return (true);
+// >>>>>>> origin/takira
 }
 
-bool	raytrace(t_all_info *info, t_ray eye2screen, t_color *color)
+t_color	raytrace(t_all_info *info, t_ray eye2screen)
 {
-	return (recursive_raytrace(info, eye2screen, color, 0));
+	return (recursive_raytrace(info, eye2screen, 0));
 }
