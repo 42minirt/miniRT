@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/24 08:59:16 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 23:41:54 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2sc
 	{
 		light_info = info->scene_info->lights->content;
 		neg_vec(&dir_pos2lgt, &light_info->point, &its_p->position);
+		//shadeの計算
 		dir_pos2lgt_n = norm_vec(dir_pos2lgt);
 		if ((SPOT_check(&dir_pos2lgt_n, light_info) == true && is_equal_strings(light_info->id_type, ID_SPOTLIGHT)) || is_equal_strings(light_info->id_type, ID_LIGHT))
 		{

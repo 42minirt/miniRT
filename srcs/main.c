@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:02:34 by user              #+#    #+#             */
-/*   Updated: 2023/05/24 12:52:46 by user             ###   ########.fr       */
+/*   Updated: 2023/05/24 23:32:29 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	draw(t_all_info info)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			//if ((x >= 150 && y >= 150) && (x <= 350 && y <= 350))
+			//if ((x >= 470 && y >= 300) && (x <= 500 && y <= 500))
 			//{
 				//color = get_gradation_background_color(height_ratio);
 				color_set(&color, 0.0, 0.0, 0.0);
