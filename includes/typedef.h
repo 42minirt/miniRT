@@ -16,37 +16,6 @@
 # include "minirt.h"
 
 /********** typedef union **********/
-// typedef union u_shape_data			t_shape_data;
-
-/********** typedef enum **********/
-// typedef enum e_shape_type			t_shape_type;
-// typedef enum e_parse_result			t_parse_res;
-// typedef enum e_identifier			t_identifier;
-// typedef enum e_light_type			t_light_type;
-
-/********** typedef struct **********/
-// typedef struct s_all_info			t_all_info;
-// typedef struct s_mlx_info			t_mlx_info;
-// typedef struct s_scene_info			t_scene_info;
-// typedef struct s_camera_info		t_camera_info;
-// typedef struct s_color				t_color;
-// typedef struct s_img				t_img;
-// typedef struct s_light				t_light;
-// typedef struct s_obj				t_obj;
-// typedef struct s_vec				t_vec;
-// typedef struct s_obj_color			t_obj_color;
-// typedef struct s_ray				t_ray;
-// typedef struct s_intersection_point	t_intersection_point;
-// typedef struct s_plane_shape		t_plane;
-// typedef struct s_ball_shape			t_ball;
-// typedef struct s_sphere_shape		t_sphere;
-// typedef struct s_cylinder_shape		t_cylinder;
-// typedef struct s_corn_shape			t_corn;
-// typedef struct s_discriminant_param	t_d_param;
-// typedef struct s_intp_param_of_corn	t_corn_param;
-// typedef struct s_corn_ints			t_corn_ints;
-
-////////////////////////////////////////////////////////
 typedef union u_shape_data				t_shape_data;
 
 /********** typedef enum **********/
@@ -85,20 +54,6 @@ typedef struct s_id_cnt					t_id_cnt;
 ///////////////////////////////////////////////////////////////////////////////
 
 /********** enum **********/
-
-//enum	e_identifier
-//{
-//	id_camera = 0,
-//	id_ambient = 1,
-//	id_point_light = 2,
-//	id_spot_light = 3,
-//	id_sphere = 4,
-//	id_plane = 5,
-//	id_cylinder = 6,
-//	id_corn = 7,
-//	id_invalid,
-//};
-
 enum	e_parse_result
 {
 	PASS = 10,
@@ -114,40 +69,10 @@ enum	e_parse_result
 	ERROR_INVALID_DELIMITER = 20,
 };
 
-enum	e_shape_type
-{
-	BALL = 20,
-	PLANE = 21,
-	CORN = 22,
-	CYLINDER = 23,
-};
-
-enum	e_light_type
-{
-	LT_POINT = 30,
-	LT_SPOT = 31,
-};
-
-/////////////////////////////////////////////////
-//enum	e_shape_type
-//{
-//	BALL = 20,
-//	PLANE = 21,
-//	CORN = 22,
-//	CYLINDER = 23,
-//};
-//
-//enum	e_light_type
-//{
-//	LT_POINT = 30,
-//	LT_SPOT = 31,
-//};
-
 //////////////////////////////////////////////////
 
 /********** struct & union **********/
 
-// create unit
 struct s_vec {
 	double	x;
 	double	y;
@@ -170,7 +95,7 @@ struct s_light
 //	t_light_type	type;
 	t_vec			point;
 	t_vec			direction;
-	double			brightness;
+	double			brightness; // do not use ??
 	t_color			light_color;// bonus
 	double			sl_angle;// bonus
 	double			sl_angle_half;// bonus
