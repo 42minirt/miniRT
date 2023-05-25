@@ -6,11 +6,16 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 00:42:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/26 01:02:44 by user             ###   ########.fr       */
+/*   Updated: 2023/05/26 01:31:00 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+double	caldc_eye2scrcen_distance(t_camera_info *s_camera_info)
+{
+	
+}
 
 t_ray	red_rayvec(t_camera_info *camera_info, double x, double y)
 {
