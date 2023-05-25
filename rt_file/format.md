@@ -21,14 +21,14 @@ sl   -40,50,00       0.6        60.0            10, 0, 255
 
 ```
  < id >         < paramters >
- A:  Ambient    lightning_ratio[0,1]                                                            RGB[0,255]
+ A:  Ambient    lightning_ratio[0,1]                                                                                  RGB[0,255]
  C:  Camera     viewpoint(xyz)         normalized_orientation_vec[-1,1]   FOV[0,180]
- L:  Light      point(xyz)             light_brightness_ratio[0,1]                              RGB[0,255]
- sl: Spotlight  Light_point(xyz)       light_brightness_ratio[0,1]        angle[0-90]           RGB[0,255]
- sp: Sphere     center_point(xyz)                                         diameter              RGB[0,255]   <bonus_options>
- pl: Plane      point(xyz)             normalized_vec[-1,1]                                     RGB[0,255]   <bonus_options>
- cy: Cylinder   bottom_center(xyz)     normalized_vec[-1,1]               diameter    height    RGB[0,255]   <bonus_options>
- co: Corn       bottom_center(xyz)     normalized_vec[-1,1]               diameter    height    RGB[0,255]   <bonus_options>
+ L:  Light      point(xyz)                                                light_brightness_ratio[0,1]                 RGB[0,255]
+ sl: Spotlight  Light_point(xyz)       normalized_orientation_vec[-1,1]   light_brightness_ratio[0,1]   angle[0-90]   RGB[0,255]
+ sp: Sphere     center_point(xyz)                                         diameter                                    RGB[0,255]   <bonus_options>
+ pl: Plane      point(xyz)             normalized_vec[-1,1]                                                           RGB[0,255]   <bonus_options>
+ cy: Cylinder   bottom_center(xyz)     normalized_vec[-1,1]               diameter    height                          RGB[0,255]   <bonus_options>
+ co: Corn       bottom_center(xyz)     normalized_vec[-1,1]               diameter    height                          RGB[0,255]   <bonus_options>
 
  bonus options
     < bonus id >    < parameters >
