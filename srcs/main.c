@@ -53,7 +53,8 @@ t_ray get_screen_vector(t_all_info info, size_t x, size_t y)
 	camera_pos_for_test.x = 0.0;
 	camera_pos_for_test.y = 0.0;
 	camera_pos_for_test.z = -5.0;
-	screen_pos.x = 2.0 * (double)x / (WINDOW_WIDTH - 1.0) - 1.0;
+//	screen_pos.x = 2.0 * (double)x / (WINDOW_WIDTH - 1.0) - 1.0;
+	screen_pos.x = 4.0 * (double)x / (WINDOW_WIDTH - 1.0) - 2.0;
 	screen_pos.y = -2.0 * (double)y / (WINDOW_HEIGHT - 1.0) + 1.0;
 //	screen_pos.x = (double)x - (WINDOW_WIDTH / 2.0);
 //	screen_pos.y = (WINDOW_HEIGHT / 2.0) - (double)y;
