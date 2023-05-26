@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 00:42:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/26 11:42:18 by user             ###   ########.fr       */
+/*   Updated: 2023/05/26 11:58:52 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,16 @@ double	calc_eye2scrcen_distance(t_camera_info *camera_info)
 
 void	ready_scr2world_ex(t_vec *scr2world_ex, t_camera_info *camera_info)
 {
-	
+	double	sx; //スクリーン状のex成分のx成分
+	double	sz; //スクリーン状のex成分のz成分
+	double	dirx2_dirz2;
+	t_vec	camera_dir;
+
+	dirx2_dirz2 = pow(camera_info->direction.x, 2) + pow(camera_info->direction.z, 2);
+	sx = camera_info->direction.z / (sqrt(dirx2_dirz2));
+	sz = (-1.0) * camera_info->direction.x / (sqrt(dirx2_dirz2));
+	camera_dir = camera_info->camera.unit_dir;
+	setvec(&camera_dir, sx, 0.0, sz);
 }
 
 t_ray	red_rayvec(t_camera_info *camera_info, double x, double y)
@@ -37,7 +46,8 @@ t_ray	red_rayvec(t_camera_info *camera_info, double x, double y)
 	//カメラの方向ベクトルを用いてスクリーンのx方向のベクトルを表現する
 	ready_scr2world_ex(&scr2world_ex, camera_info);
 	//スクリーンのy方向のベクトルをx方向のベクトルとカメラの方向ベクトルの外積で求める
-
+	calc_outerproduct(&scr2world_ey, &camera_info->direction, &scr2world_ex);
+	normalize(&scr2world_ey, &scr2world_ey);
 	//t_rayというベクトルを求める（カメラからスクリーン状のある点までのベクトル）
 
 	//t_rayをunit化して返す
