@@ -77,6 +77,7 @@ SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 # RAYTRACE
 RAYTRACE_DIR	= srcs/raytrace
 RAYTRACE_SRC	= calc_ambient_reflection.c \
+				  calc_rayvec.c \
 				  calc_specular_reflection.c \
 				  calc_perfect_reflection.c \
 				  calc_diffuse_reflection.c \
