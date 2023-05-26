@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 00:42:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/26 11:58:52 by user             ###   ########.fr       */
+/*   Updated: 2023/05/26 12:20:20 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_ray	red_rayvec(t_camera_info *camera_info, double x, double y)
 	t_vec	eye2scr;
 	t_vec	scr2world_ex;
 	t_vec	scr2world_ey;
-	t_vec	t_ray;
-	t_vec	t_rey_n;//ここはt_camera_infoの中の変数でいい気もする
+	t_vec	t_ray_vec;
+	t_vec	t_ray_n;//ここはt_camera_infoの中の変数でいい気もする
 
 	//視点からスクリーンまでの距離を求める
 	//calc_eye2scrcen_distance
@@ -49,8 +49,23 @@ t_ray	red_rayvec(t_camera_info *camera_info, double x, double y)
 	calc_outerproduct(&scr2world_ey, &camera_info->direction, &scr2world_ex);
 	normalize(&scr2world_ey, &scr2world_ey);
 	//t_rayというベクトルを求める（カメラからスクリーン状のある点までのベクトル）
-
+	t_ray_vec = vec_k1v1_k2v2(1, vec_k1v1_k2v2(\
+	1, \
+	eye2scr, x - (WINDOW_WIDTH / 2.0), scr2world_ex), \
+	(WINDOW_HEIGHT / 2.0) - y, \
+	scr2world_ey);
 	//t_rayをunit化して返す
+	normalize(&t_ray_n, &t_ray_vec);
+
+	//格納
+	camera_info->camera.unit_dir.x = t_ray_n.x;
+	camera_info->camera.unit_dir.y = t_ray_n.y;
+	camera_info->camera.unit_dir.z = t_ray_n.z;
+
+	camera_info->camera.pos = camera_info->position;
+
+	//返す
+	return (camera_info->camera);
 }
 
 /******************************^****************^******************************/
