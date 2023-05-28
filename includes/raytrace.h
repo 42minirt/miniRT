@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:39:36 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 21:26:24 by user             ###   ########.fr       */
+/*   Updated: 2023/05/26 12:27:36 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 bool			check_intersection(t_scene_info *scene, \
 									t_ray eye2screen, \
 									t_intersection_point *its_p);
+
+t_ray	red_rayvec(t_camera_info *camera_info, double x, double y);
 
 double			calc_planeratio(t_obj *obj, \
 								t_ray *ray, \
