@@ -14,7 +14,7 @@
 
 static t_parse_res	get_ppm_size(char **split, t_img *img)
 {
-	bool		is_atoi_success;
+	bool	is_atoi_success;
 
 	if (get_arr_size(split) != 2)
 		return (ERROR_INVALID_PPM_FORMAT);
