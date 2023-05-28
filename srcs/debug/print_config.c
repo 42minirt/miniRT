@@ -63,6 +63,8 @@ static void	print_objects(t_scene_info *scene)
 void	debug_print_config(t_all_info *info)
 {
 	t_color	c;
+	t_vec	d;
+	t_vec	p;
 
 	printf("======================================== "\
 	"[DEBUG PRINT CONFIG] ========================================\n");
@@ -71,7 +73,11 @@ void	debug_print_config(t_all_info *info)
 	"                                  "\
 	"                                  (%5.1f, %5.1f, %5.1f)\n", \
 	info->scene_info->brightness, c.r, c.g, c.b);
-	printf("Camera        : \n");
+	p = info->camera_info->position;
+	d = info->camera_info->direction;
+	printf("Camera        : (%5.1f, %5.1f, %5.1f),"\
+	"     (%5.1f, %5.1f, %5.1f),          %5.1f\n", \
+	p.x, p.y, p.z, d.x, d.y, d.z, info->camera_info->fov_deg);
 	printf("Lights\n");
 	print_lights(info->scene_info);
 	printf("Objects\n");

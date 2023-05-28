@@ -49,6 +49,7 @@ CONSTRUCTOR_SRC	= constructor.c \
 				  update_camera_config.c \
 				  update_scene_config.c \
 				  update_scene_config_each_obj.c \
+				  update_scene_config_light.c \
 				  validate_config.c \
 				  validate_config_color.c \
 				  validate_config_shape.c \

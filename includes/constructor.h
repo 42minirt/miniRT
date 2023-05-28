@@ -70,6 +70,7 @@ void		update_scene_sphere_info(t_sphere *sphere);
 void		update_scene_plane_info(t_plane *plane);
 void		update_scene_cylinder_info(t_cylinder *cylinder);
 void		update_scene_corn_info(t_corn *corn);
+void		update_config_lights(t_scene_info *scene);
 
 // id_cnt
 t_id_cnt	init_id_cnt(void);

@@ -12,7 +12,7 @@
 
 #include "../../includes/minirt.h"
 
-static t_obj	*init_obj(const char *id_str)
+static t_obj	*init_obj_ptr(const char *id_str)
 {
 	t_obj	*obj;
 
@@ -53,7 +53,7 @@ t_parse_res	get_config_of_objects(const char *line, \
 	t_obj		*obj;
 	t_list		*new_list;
 
-	obj = init_obj(id_str);
+	obj = init_obj_ptr(id_str);
 	if (!obj)
 		return (ERROR_FATAL);
 	parse_result = get_config_of_each_obj(line, obj);

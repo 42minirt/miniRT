@@ -42,9 +42,9 @@ int	validate_filename(const char *path, const char *extension)
 	const size_t	extension_len = ft_strlen_ns(extension);
 	int				try_open_res;
 
-	printf(" DEBUG(validate_filename): path:[%s] -> filename:[%s]\n", \
+	printf(" DEBUG(validate_filename)          : path:[%s] -> filename:[%s]\n", \
 	path, filename);
-	if (cnt_chr_in_str('.', path) > 1)
+	if (cnt_chr_in_str('.', filename) > 1)
 		return (FAILURE);
 	if (filename_len <= extension_len)
 		return (FAILURE);
