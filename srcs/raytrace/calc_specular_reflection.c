@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/28 14:34:38 by user             ###   ########.fr       */
+/*   Updated: 2023/05/28 14:47:18 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2sc
 	{
 		light_info = info->scene_info->lights->content;
 		neg_vec(&dir_pos2lgt, &light_info->point, &its_p->position);
-		// if (is_obj_exists_between_itspos_and_light(info->scene_info, calc_diffuse_param(its_p, &eye2screen, light_info)) == false)
-		// {
+		if (is_obj_exists_between_itspos_and_light(info->scene_info, calc_diffuse_param(its_p, &eye2screen, light_info)) == false)
+		{
 			dir_pos2lgt_n = norm_vec(dir_pos2lgt);
 			if ((SPOT_check(&dir_pos2lgt_n, light_info) == true && is_equal_strings(light_info->id_type, ID_SPOTLIGHT)) || is_equal_strings(light_info->id_type, ID_LIGHT))
 			{
@@ -71,7 +71,7 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2sc
 				if (v_r > 0.0)
 					calc_spec_color(&color, v_r, light_info, its_p->obj->obj_color);
 			}
-		// }
+		}
 		light = light->next;
 	}
 	return (color);
