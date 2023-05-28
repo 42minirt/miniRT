@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 00:42:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/28 14:43:00 by user             ###   ########.fr       */
+/*   Updated: 2023/05/28 15:25:43 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,16 @@ void	ready_scr2world_ex(t_vec *scr2world_ex, t_camera_info *camera_info)
 	double	dirx2_dirz2;
 
 	dirx2_dirz2 = pow(camera_info->direction.x, 2) + pow(camera_info->direction.z, 2);
-	sx = camera_info->direction.z / (sqrt(dirx2_dirz2));
-	sz = (-1.0) * camera_info->direction.x / (sqrt(dirx2_dirz2));
-	// printf("%f\n", sx);
-	// printf("%f\n", sz);
-	setvec(scr2world_ex, sx, 0.0, sz);
+	if (dirx2_dirz2 == 0)
+		setvec(scr2world_ex, -1.0, 0.0, 0);
+	else
+	{
+		sx = camera_info->direction.z / (sqrt(dirx2_dirz2));
+		sz = (-1.0) * camera_info->direction.x / (sqrt(dirx2_dirz2));
+		// printf("%f\n", sx);
+		// printf("%f\n", sz);
+		setvec(scr2world_ex, sx, 0.0, sz);
+	}
 }
 
 t_ray	red_rayvec(t_camera_info *camera_info, double x, double y)
