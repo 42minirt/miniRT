@@ -23,6 +23,7 @@ bool	is_normal_vec_in_range(t_vec vec)
 	&& (-1.0 <= z && z <= 1.0));
 }
 
+// todo: del print
 bool	is_vec_in_range(t_vec vec)
 {
 	const double	x = vec.x;
@@ -45,27 +46,6 @@ bool	is_vec_in_range(t_vec vec)
 		return (false);
 	}
 	return (true);
-//	if (!(DBL_MIN <= x && x <= DBL_MAX))
-//	{
-//		printf("x(%f) out of range\n", x);
-//		return (false);
-//	}
-//	if (!(DBL_MIN <= y && y <= DBL_MAX))
-//	{
-//		printf("y(%f) out of range\n", y);
-//		return (false);
-//	}
-//	if (!(DBL_MIN <= z && z <= DBL_MAX))
-//	{
-//		printf("z(%f) out of range\n", z);
-//		return (false);
-//	}
-//	return (true);
-
-
-//	return ((DBL_MIN <= x && x <= DBL_MAX) \
-//	&& (DBL_MIN <= y && y <= DBL_MAX) \
-//	&& (DBL_MIN <= z && z <= DBL_MAX));
 }
 
 bool	is_color_in_range(t_color color)
@@ -79,6 +59,7 @@ bool	is_color_in_range(t_color color)
 	&& (0.0 <= b && b <= 255.0));
 }
 
+// todo: del print
 bool	is_num_in_valid_range(double num)
 {
 	if (num <= 0)

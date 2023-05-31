@@ -58,6 +58,8 @@ t_color	get_itspos_image_texture_color(t_diffuse_param p)
 //   img.data:[ 0.0,  1.0]
 //   normal  :[-1.0, +1.0]
 
+// img(x,y,z) -> left(x,z,y)
+
 // 物体表面の法線ベクトルを変更し、凹凸を表現
 t_vec	get_bump_normal(t_intersection_point *its_p)
 {
@@ -69,8 +71,8 @@ t_vec	get_bump_normal(t_intersection_point *its_p)
 
 	img_color = get_its_pos_img_color(its_p, its_p->obj->obj_color.bump_data);
 	bump_normal_local.x = (img_color.r - 0.5) / 0.5;
-	bump_normal_local.y = (img_color.g - 0.5) / 0.5;
-	bump_normal_local.z = (img_color.b - 0.5) / 0.5;
+	bump_normal_local.y = (img_color.b - 0.5) / 0.5;
+	bump_normal_local.z = (img_color.g - 0.5) / 0.5;
 	trans_mat_world2local = get_transform_matrix_world2local_yup(its_p->normal);
 	trans_mat_local2world = transpose_matrix(trans_mat_world2local);
 	bump_normal_world \
