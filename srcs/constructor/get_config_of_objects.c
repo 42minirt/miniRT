@@ -30,7 +30,7 @@ static t_obj	*init_obj_ptr(const char *id_str)
 	obj->obj_color.ka = init_color(255, 255, 255); // tmp -> 255/255=1.0
 	obj->obj_color.ks = init_color(255, 255, 255); // tmp
 	obj->obj_color.kf = init_color(255, 255, 255); // tmp
-	obj->obj_color.ia = 0.01; // tmp 環境光の反射光の放射輝度Ra=ka*Ia, ka=ka*ia, Ia=given
+	obj->obj_color.ia = 0.1; // tmp 環境光の反射光の放射輝度Ra=ka*Ia, ka=ka*ia, Ia=given
 	obj->obj_color.id = 1.0; // tmp
 	return (obj);
 }

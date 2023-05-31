@@ -55,6 +55,7 @@ t_color			calc_specular_reflection(t_all_info *info, \
 t_color			calc_perfect_reflection(t_all_info *info, \
 							t_intersection_point *its_p, t_ray eye2screen, size_t counter);
 t_vec			get_bump_normal(t_intersection_point *its_p);
+t_vec			get_normal(t_intersection_point *its_p);
 
 /* calc_diffuse_color */
 t_color			get_itspos_image_texture_color(t_diffuse_param p);
