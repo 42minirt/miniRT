@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/05/31 21:43:33 by user             ###   ########.fr       */
+/*   Updated: 2023/06/01 00:23:30 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	calc_spec_color(t_color *color, double v_r, t_light *light_info, t_obj_colo
 	double	v_r_alpha;
 
 	v_r_alpha = pow(v_r, obj_color.shininess);
-	color_k1c1_pointer(color, v_r_alpha, light_info->light_color);
+	color_k1c1_pointer(color, v_r_alpha, light_info->light_color);//ここおかしいっす
 }
 
 double	ch_degrrralation(t_intersection_point *itsp, t_vec *pos2lgt, t_vec *eye)

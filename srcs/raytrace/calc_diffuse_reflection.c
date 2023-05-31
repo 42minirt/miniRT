@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:39:36 by takira            #+#    #+#             */
-/*   Updated: 2023/05/31 21:42:10 by user             ###   ########.fr       */
+/*   Updated: 2023/06/01 00:06:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
 	if (p.dot_n_unit_pos2light <= 0.0)
 	{
 		p.dot_n_unit_pos2light = ch_degrrralation(&p.its_p, &p.unit_pos2light, &p.ray.pos);
-		if (p.dot_n_unit_pos2light < 0.0)
+		if (p.dot_n_unit_pos2light - 0.0 < EPSIRON)
 			return (init_color(0.0, 0.0, 0.0));
 	}
 	if (is_equal_strings(p.light->id_type, ID_SPOTLIGHT) \
