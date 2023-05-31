@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 17:34:45 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/05/28 21:53:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ bool	is_obj_exists_between_itspos_and_light(t_scene_info *scene, \
 	double					search_distance;
 
 	shadow_ray.pos = vec_k1v1_k2v2(1.0, p.its_p.position, \
-									1.0 / 512.0, p.unit_pos2light);
+									1.0 / 512000.0, p.unit_pos2light);
 	shadow_ray.unit_dir = p.unit_pos2light;
-	search_distance = norm(p.vec_pos2light) - (1.0 / 512.0);
+	search_distance = norm(p.vec_pos2light) - (1.0 / 512000.0);//ここが問題かも
 	is_obj_exists = check_intersection(scene, shadow_ray, &tmp_its_p);
 	if (is_obj_exists && tmp_its_p.distance <= search_distance)
 		return (true);

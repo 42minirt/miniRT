@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 20:23:55 by user              #+#    #+#             */
-/*   Updated: 2023/05/24 23:31:53 by user             ###   ########.fr       */
+/*   Updated: 2023/05/28 21:35:11 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ double	check_intersection_t1(t_vec *d_n, t_vec *ac_n, t_cylinder *cyl, t_ray *ra
 	t_vec	bottom2its;
 	double	t;
 
-	if (obtain_vecsize(d_n) == 0.0) //ここはイプシロンを用いたチェックが必要かも
+	if (obtain_vecsize(d_n) - 0.0 < EPSIRON) //ここはイプシロンを用いたチェックが必要かも
 		return (-1.0);
 	//printf("%f\n", obtain_vecsize(d_n));
 	D = calc_discreminant(
@@ -89,7 +89,7 @@ double	check_intersection_t1(t_vec *d_n, t_vec *ac_n, t_cylinder *cyl, t_ray *ra
 		2.0 * dot_vec(d_n, ac_n), 
 		pow(obtain_vecsize(ac_n), 2) - pow(cyl->radius, 2)
 	);
-	if (D < 0.0)
+	if (D  - 0.0 < EPSIRON)
 		return (-1.0);
 	t = (-1.0 * 2.0 * dot_vec(d_n, ac_n) - sqrt(D)) / (2.0 * pow(obtain_vecsize(d_n), 2));
 	t_mix_vec_all(&eye2its, 1, &ray->pos, t, &ray->unit_dir);
@@ -154,10 +154,10 @@ double	calc_cylinderratio(t_obj *obj, t_ray *eye2scr, t_intersection_point *itsp
 	if (t2 >= 0.0)
 	{
 		set_intersection_t2(itsp, t2, &cylinder, eye2scr);//t2からでは？
-		inverse_vec(&itsp->normal, &itsp->normal);//t2ならこっちを使用する
+		//inverse_vec(&itsp->normal, &itsp->normal);//t2ならこっちを使用する
 	}
 	t1 = check_intersection_t1(&d_n, &ac_n, &cylinder, eye2scr);
-	if (t1 >= 0.0)
+	if (t1 - 0 >= EPSIRON)
 	{
 		set_intersection_t1(itsp, t1, &cylinder, eye2scr);//#t1はこっちでは？
 		return (t1);

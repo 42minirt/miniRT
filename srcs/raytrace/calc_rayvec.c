@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 00:42:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/28 15:37:49 by user             ###   ########.fr       */
+/*   Updated: 2023/05/28 20:12:47 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	calc_eye2scrcen_distance(t_camera_info *camera_info)
 {
-	return (WINDOW_WIDTH / (2.0 * tanf(camera_info->fov_deg / 2)));
+	return (WINDOW_WIDTH / (2.0 * tanf(camera_info->fov_deg / 2 * M_PI / 180.0)));
 }
 
 void	ready_scr2world_ex(t_vec *scr2world_ex, t_camera_info *camera_info)

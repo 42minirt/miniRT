@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 14:35:36 by user             ###   ########.fr       */
+/*   Updated: 2023/05/28 21:37:27 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 
 /********** window **********/
 # define WINDOW_HEIGHT		540
-//# define WINDOW_WIDTH		540
-# define WINDOW_WIDTH		1080
+# define WINDOW_WIDTH		540
+//# define WINDOW_WIDTH		1080
 # define WINDOW_TITLE		"miniRT"
 
 /********** string **********/
@@ -57,7 +57,7 @@
 # define MAX_RECURSION		8
 
 /********** epsiron **********/
-# define EPSIRON 			0.002
+# define EPSIRON 			0.0000002
 
 # define MT_PERFECT_REFLECTION 666
 
