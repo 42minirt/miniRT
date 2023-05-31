@@ -54,11 +54,13 @@ t_parse_res	get_image_texture(const char *line, \
 t_parse_res	get_img_data(t_img *img, int fd);
 
 // validate_is
-bool		is_vec_in_normal_range(t_vec vec);
+bool		is_normal_vec_in_range(t_vec vec);
+bool		is_vec_in_range(t_vec vec);
 bool		is_color_in_range(t_color color);
 bool		is_ratio_in_range(double ratio);
 bool		is_angle_in_range(double angle);
 bool		is_comment_line(char c);
+bool		is_num_in_valid_range(double num);
 
 t_parse_res	validate_obj_shape(t_obj *obj);
 t_parse_res	validate_obj_color(t_obj *obj);

@@ -27,7 +27,8 @@ static t_map_idx	get_map_idx(t_tangetnt_map map, t_img img)
 	return (ret);
 }
 
-// color = 0 <= color <= 1.0
+// img.data:[0.0, 255.0]
+// color   :[0.0,   1.0]
 static t_color	get_its_pos_img_color(t_intersection_point *its_p, t_img img)
 {
 	t_color				ret_color;
@@ -54,9 +55,8 @@ t_color	get_itspos_image_texture_color(t_diffuse_param p)
 }
 
 // img_color
-//   ppm     :[0, 255]
-//   img.data:[0, 1]
-//   normal  :[-0.5, +0.5]
+//   img.data:[ 0.0,  1.0]
+//   normal  :[-1.0, +1.0]
 
 // 物体表面の法線ベクトルを変更し、凹凸を表現
 t_vec	get_bump_normal(t_intersection_point *its_p)

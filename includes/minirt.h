@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <sys/errno.h>
 # include <math.h>
+#include <float.h>
 
 # include "../minilibx-linux/mlx.h"
 # include "../libs/include/libft.h"

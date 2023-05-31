@@ -23,9 +23,9 @@ static void	print_bonus(t_obj_color o)
 		c = o.checker_color;
 		printf(",   checker(%5.1f, %5.1f, %5.1f)", c.r, c.g, c.b);
 	}
-	if (o.texture_data.data)
+	if (o.is_texture)
 		printf(",   img_texture");
-	if (o.bump_data.data)
+	if (o.is_bump)
 		printf(",   img_bump");
 }
 
