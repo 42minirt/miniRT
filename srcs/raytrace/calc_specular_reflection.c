@@ -34,7 +34,7 @@ double	calc_v_r(double n_l, t_intersection_point *its_p, t_vec dir_pos2lgt, t_ra
 
 	if (n_l < 0.0)
 		return (-1.0);
-	ref_dir = vec_k1v1_k2v2(2.0 * n_l, its_p->normal, -1.0, dir_pos2lgt);
+	ref_dir = vec_k1v1_k2v2(2.0 * n_l, get_bump_normal(its_p), -1.0, dir_pos2lgt);
 	normalize(&ref_dir_n, &ref_dir);
 	inverse_vec(&reverse_eyedir_vec, &eye2screen->unit_dir);
 	normalize(&reverse_eyedir_vec_n, &reverse_eyedir_vec);
@@ -67,7 +67,7 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2sc
 			dir_pos2lgt_n = norm_vec(dir_pos2lgt);
 			if ((SPOT_check(&dir_pos2lgt_n, light_info) == true && is_equal_strings(light_info->id_type, ID_SPOTLIGHT)) || is_equal_strings(light_info->id_type, ID_LIGHT))
 			{
-				v_r = calc_v_r(dot(its_p->normal, dir_pos2lgt_n), its_p, dir_pos2lgt_n, &eye2screen);
+				v_r = calc_v_r(dot(get_bump_normal(its_p), dir_pos2lgt_n), its_p, dir_pos2lgt_n, &eye2screen);
 				if (v_r > 0.0)
 					calc_spec_color(&color, v_r, light_info, its_p->obj->obj_color);
 			}

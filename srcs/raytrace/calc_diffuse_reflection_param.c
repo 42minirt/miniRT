@@ -34,6 +34,7 @@ t_diffuse_param	calc_diffuse_param(t_intersection_point *its_p, \
 	p.unit_pos2light = norm_vec(p.vec_pos2light);
 	p.unit_light2pos = inverse(p.unit_pos2light);
 	normal_to_calc = get_normal(its_p);
+//	normal_to_calc = its_p->normal;
 	p.dot_n_unit_pos2light = dot(normal_to_calc, p.unit_pos2light);
 	return (p);
 }
