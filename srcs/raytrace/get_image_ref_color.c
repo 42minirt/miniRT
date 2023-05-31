@@ -27,6 +27,7 @@ static t_map_idx	get_map_idx(t_tangetnt_map map, t_img img)
 	return (ret);
 }
 
+// color = 0 <= color <= 1.0
 static t_color	get_its_pos_img_color(t_intersection_point *its_p, t_img img)
 {
 	t_color				ret_color;
@@ -35,24 +36,21 @@ static t_color	get_its_pos_img_color(t_intersection_point *its_p, t_img img)
 
 	map = get_tangent_coordinate_map(its_p);
 	i = get_map_idx(map, img);
-	ret_color.r = img.data[i.idx++];
-	ret_color.g = img.data[i.idx++];
-	ret_color.b = img.data[i.idx];
+	ret_color.r = img.data[i.idx++] / 255.0;
+	ret_color.g = img.data[i.idx++] / 255.0;
+	ret_color.b = img.data[i.idx] / 255.0;
 	return (ret_color);
 }
 
 t_color	get_itspos_image_texture_color(t_diffuse_param p)
 {
-	t_color	ret_color;
 	t_color	img_color;
 
-	ret_color = init_color(0.0, 0.0, 0.0);
 	if (!is_obj_image_texture(p.its_p.obj->obj_color))
-		return (ret_color);
+		return (init_color(0.0, 0.0, 0.0));
 	img_color \
 	= get_its_pos_img_color(&p.its_p, p.its_p.obj->obj_color.texture_data);
-	ret_color = color_k1c1(1.0 / 255.0, img_color);
-	return (ret_color);
+	return (img_color);
 }
 
 // img_color
