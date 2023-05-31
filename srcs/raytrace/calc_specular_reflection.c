@@ -20,7 +20,7 @@ bool	SPOT_check(t_vec *dir_pos2lgt_n, t_light *lgt_inf)
 
 	inverse_vec(&pos2lgt, dir_pos2lgt_n);
 	alpha = acos(dot_vec(&pos2lgt, &lgt_inf->direction));
-	if (alpha > lgt_inf->sl_angle / 2.0f * (double)M_PI / 180.0)
+	if (alpha > lgt_inf->sl_angle / 2.0f * M_PI / 180.0)
 		return (false);
 	return (true);
 }
