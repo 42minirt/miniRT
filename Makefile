@@ -195,6 +195,7 @@ LFLAGS			= $(addprefix -L, $(LIBS_DIR))
 
 ifeq ($(UNAME), Darwin)
 	LIBS 		= -lft -lmlx_Darwin -lXext -lX11 -lm -framework OpenGL -framework AppKit
+	CFLAGS 		+= -D LEAKS
 else
 	LIBS		= -lft -lmlx -lXext -lX11 -lm
 endif
