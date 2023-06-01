@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:32:12 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 22:13:12 by user             ###   ########.fr       */
+/*   Updated: 2023/05/31 22:41:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static	bool	calc_refrectvec(t_intersection_point itsp, t_ray ray, t_vec *rev_vec
 
 static	void	set_rayset(t_ray *ref_ray, t_intersection_point its_p, t_vec rev_vec)
 {
-	t_mix_vec_all(&ref_ray->unit_dir, 1.0, &its_p.position, EPSIRON, &rev_vec);
+	t_mix_vec_all(&ref_ray->pos, 1.0, &its_p.position, EPSIRON, &rev_vec);
 	ref_ray->unit_dir = rev_vec;
 }
 

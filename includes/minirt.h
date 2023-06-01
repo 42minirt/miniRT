@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 14:35:36 by user             ###   ########.fr       */
+/*   Updated: 2023/05/31 21:29:12 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
 
 /********** window **********/
 # define WINDOW_HEIGHT		540
-//# define WINDOW_WIDTH		540
-# define WINDOW_WIDTH		1080
+# define WINDOW_WIDTH		540
+//# define WINDOW_WIDTH		1080
 # define WINDOW_TITLE		"miniRT"
 
 /********** string **********/
@@ -58,7 +58,7 @@
 # define MAX_RECURSION		8
 
 /********** epsiron **********/
-# define EPSIRON 			0.002
+# define EPSIRON 			0.0000002
 
 # define MT_PERFECT_REFLECTION 666
 
@@ -139,6 +139,9 @@ void		free_lights(void *content);
 void			put_pixel(t_mlx_info \
 *mlx_info, size_t x, size_t y, t_color color);
 void			mlx_hooks(t_mlx_info *mlx_info);
+
+//一旦ここに置いとく
+double	ch_degrrralation(t_intersection_point *itsp, t_vec *pos2lgt, t_vec *eye);
 
 // t_color			calc_diffuse_reflection(t_all_info info,
 // t_intersection_point its_p, t_ray eye2screen);
