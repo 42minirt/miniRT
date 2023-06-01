@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/06/01 00:23:30 by user             ###   ########.fr       */
+/*   Updated: 2023/06/01 10:31:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ double	calc_v_r(double n_l, t_intersection_point *its_p, t_vec dir_pos2lgt, t_ra
 void	calc_spec_color(t_color *color, double v_r, t_light *light_info, t_obj_color obj_color)
 {
 	double	v_r_alpha;
+	t_color	added_color;
 
 	v_r_alpha = pow(v_r, obj_color.shininess);
-	color_k1c1_pointer(color, v_r_alpha, light_info->light_color);//ここおかしいっす
+	color_k1c1_pointer(&added_color, v_r_alpha, light_info->light_color);//ここおかしいっす
+	color_add_pointer(color, color, &added_color);
 }
 
 double	ch_degrrralation(t_intersection_point *itsp, t_vec *pos2lgt, t_vec *eye)
@@ -83,7 +85,8 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2sc
 	light = info->scene_info->lights;
 	while (light != NULL)
 	{
-		light_info = info->scene_info->lights->content;
+		//light_info = info->scene_info->lights->content;
+		light_info = light->content;
 		neg_vec(&dir_pos2lgt, &light_info->point, &its_p->position);
 		if (is_obj_exists_between_itspos_and_light(info->scene_info, calc_diffuse_param(its_p, &eye2screen, light_info)) == false)
 		{
