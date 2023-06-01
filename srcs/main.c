@@ -117,7 +117,7 @@ int main(int argc, char **argv)
     return (0);
 }
 
-//#ifdef LEAKS
+#ifdef LEAKS
 
 __attribute__((destructor))
 static void	destructor(void)
@@ -125,4 +125,4 @@ static void	destructor(void)
 	system("leaks -q miniRT");
 }
 
-//#endif
+#endif

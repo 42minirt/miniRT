@@ -93,7 +93,8 @@ RAYTRACE_SRC	= calc_ambient_reflection.c \
 				  is_condition.c \
 				  raytrace.c \
 				  calc_ratio/calcratio_cylinder.c \
-				  calc_ratio/calcratio_plane.c
+				  calc_ratio/calcratio_plane.c \
+				  calc_ratio/handle_plane_normal.c
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 
