@@ -69,11 +69,11 @@ t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	is_intersect = check_intersection(info->scene_info, eye2screen, &its_p);
     if (is_intersect == false)
 		return (ret_color);
-	its_p.normal = get_normal(&its_p); // use bump normal
+	its_p.normal = get_normal(&its_p); // use bump normal ※ここに入れたら perfect refで困るかも...
 	its_p.normal = get_pl_drawable_normal(its_p, eye2screen.unit_dir);//ADD: handle plane normal
 	ret_color = calc_ambient_reflection(info->scene_info, its_p);
 	ret_color = color_add(ret_color, calc_diffuse_reflection(info->scene_info, its_p, eye2screen));
-//	ret_color = color_add(ret_color, calc_specular_reflection(info, &its_p, eye2screen));
+	ret_color = color_add(ret_color, calc_specular_reflection(info, &its_p, eye2screen));
 	if (its_p.obj->obj_color.is_perfect_ref == true)
 		ret_color = color_add(ret_color, calc_perfect_reflection(info, &its_p, eye2screen, counter));
 	return (ret_color);
