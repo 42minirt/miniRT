@@ -29,6 +29,7 @@ static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
 
 	if (p.dot_n_unit_pos2light <= 0.0)
 	{
+		return (init_color(0.0, 0.0, 0.0));
 		p.dot_n_unit_pos2light = ch_degrrralation(&p.its_p, &p.unit_pos2light, &p.ray.pos);
 		if (p.dot_n_unit_pos2light - 0.0 < EPSIRON)
 			return (init_color(0.0, 0.0, 0.0));

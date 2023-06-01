@@ -56,7 +56,6 @@ t_color	get_itspos_image_texture_color(t_diffuse_param p)
 	return (img_color);
 }
 
-// img_color
 //   img.data:[ 0.0,  1.0]
 //   normal  :[-1.0, +1.0]
 
