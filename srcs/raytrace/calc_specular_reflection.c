@@ -54,24 +54,18 @@ void	calc_spec_color(t_color *color, double v_r, t_light *light_info, t_obj_colo
 double	ch_degrrralation(t_intersection_point *itsp, t_vec *pos2lgt, t_vec *eye)
 {
 	t_vec	plane2eye;
+	t_vec	normal_for_calc_ref;
 
-	if (is_equal_strings(itsp->obj->id_str, ID_PLANE))
-	{
-		neg_vec(&plane2eye, eye, &itsp->position);
-		if ((dot(itsp->normal, *pos2lgt) >= 0 && dot(itsp->normal, plane2eye) < 0) || (dot(itsp->normal, *pos2lgt) < 0 && dot(itsp->normal, plane2eye) >= 0))
-			return (-1.0);
-		if (dot(itsp->normal, *pos2lgt) >= 0)
-		{
-			return (dot(itsp->normal, *pos2lgt));
-		}
-		else
-		{
-			inverse_vec(&itsp->normal, &itsp->normal);
-			return (dot(itsp->normal, *pos2lgt));
-		}
-	}
-	else
-		return (dot(itsp->normal, *pos2lgt));
+	normal_for_calc_ref = get_normal(itsp);
+	if (!is_equal_strings(itsp->obj->id_str, ID_PLANE))
+		return (dot(normal_for_calc_ref, *pos2lgt));
+	neg_vec(&plane2eye, eye, &itsp->position);
+	if (dot(itsp->normal, *pos2lgt) * dot(itsp->normal, plane2eye) <= 0)
+		return (-1.0);
+	if (dot(normal_for_calc_ref, *pos2lgt) >= 0)
+		return (dot(normal_for_calc_ref, *pos2lgt));
+	inverse_vec(&normal_for_calc_ref, &normal_for_calc_ref);
+	return (dot(normal_for_calc_ref, *pos2lgt));
 }
 
 t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2screen, t_color color)
@@ -93,13 +87,8 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2sc
 			dir_pos2lgt_n = norm_vec(dir_pos2lgt);
 			if ((SPOT_check(&dir_pos2lgt_n, light_info) == true && is_equal_strings(light_info->id_type, ID_SPOTLIGHT)) || is_equal_strings(light_info->id_type, ID_LIGHT))
 			{
-//<<<<<<< HEAD
-//				v_r = calc_v_r(dot(get_bump_normal(its_p), dir_pos2lgt_n), its_p, dir_pos2lgt_n, &eye2screen);
-//				if (v_r > 0.0)
-//=======
 				v_r = calc_v_r(ch_degrrralation(its_p, &dir_pos2lgt_n, &info->camera_info->position), its_p, dir_pos2lgt_n, &eye2screen);
 				if (v_r - 0.0 > EPSIRON)
-//>>>>>>> satushi_branch
 					calc_spec_color(&color, v_r, light_info, its_p->obj->obj_color);
 			}
 		}
