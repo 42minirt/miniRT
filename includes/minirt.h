@@ -58,6 +58,23 @@
 # define INTENSITY_OF_AMBIENT	(0.1)
 # define INTENSITY_OF_DIFFUSE	(1.0)
 
+/********** value **********/
+# define FOV_DEG_MIN	(0.0)
+# define FOV_DEG_MAX	(180.0)
+# define ANGLE_DEG_MIN	(0.0)
+# define ANGLE_DEG_MAX	(180.0)
+# define RATIO_MIN		(0.0)
+# define RATIO_MAX		(1.0)
+# define NORMAL_MIN		(-1.0)
+# define NORMAL_MAX		(1.0)
+# define MAX_RECURSION	8
+# define IMG_FREQUENCY	1
+# define PPM_RGB_UNIT	3
+# define CHECKER_U_FREQ	10
+# define CHECKER_V_FREQ	10
+# define PARSING_YET	(-1.0)
+# define BUMP_TO_NORMAL	(0.5)
+
 /********** string **********/
 # define OP_CHECKER_TEXTURE	"checker"
 # define OP_PERFECT_REF		"perfect_ref"
@@ -67,21 +84,14 @@
 # define MAX_RECURSION		8
 
 /********** epsiron **********/
-# define EPSIRON 			0.0000002
+# define EPSIRON 			(0.0000002)
+# define EPSILON_DIVISOR	(51200.0)
 # define MT_PERFECT_REFLECTION 666
 
 /********** key hook **********/
 # define EVENT_DESTROY		33
 # define EVENT_KEY_PRESS	2
 # define KEY_ESC			0xff1b
-
-/********** value **********/
-# define MAX_RECURSION	8
-# define IMG_FREQUENCY	1
-# define PPM_RGB_UNIT	3
-# define CHECKER_U_FREQ	10
-# define CHECKER_V_FREQ	10
-# define PARSING_YET	(-1.0)
 
 /********** rt_id **********/
 # define ID_AMBIENT		"A"

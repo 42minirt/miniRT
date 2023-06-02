@@ -58,7 +58,8 @@ bool		is_normal_vec_in_range(t_vec vec);
 bool		is_vec_in_range(t_vec vec);
 bool		is_color_in_range(t_color color);
 bool		is_ratio_in_range(double ratio);
-bool		is_angle_in_range(double angle);
+bool		is_angle_in_range(double angle_degree);
+bool		is_fov_in_range(double fov_degree);
 bool		is_comment_line(char c);
 bool		is_num_in_valid_range(double num);
 

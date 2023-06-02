@@ -18,9 +18,9 @@ bool	is_normal_vec_in_range(t_vec vec)
 	const double	y = vec.y;
 	const double	z = vec.z;
 
-	return ((-1.0 <= x && x <= 1.0) \
-	&& (-1.0 <= y && y <= 1.0) \
-	&& (-1.0 <= z && z <= 1.0));
+	return ((NORMAL_MIN <= x && x <= NORMAL_MAX) \
+	&& (NORMAL_MIN <= y && y <= NORMAL_MAX) \
+	&& (NORMAL_MIN <= z && z <= NORMAL_MAX));
 }
 
 // todo: del print
@@ -82,12 +82,17 @@ bool	is_num_in_valid_range(double num)
 
 bool	is_ratio_in_range(double ratio)
 {
-	return (0.0 <= ratio && ratio <= 1.0);
+	return (RATIO_MIN <= ratio && ratio <= RATIO_MAX);
 }
 
-bool	is_angle_in_range(double angle)
+bool	is_fov_in_range(double fov_degree)
 {
-	return (0.0 <= angle && angle <= 180.0);
+	return (FOV_DEG_MIN <= fov_degree && fov_degree <= FOV_DEG_MAX);
+}
+
+bool	is_angle_in_range(double angle_degree)
+{
+	return (ANGLE_DEG_MIN <= angle_degree && angle_degree <= ANGLE_DEG_MAX);
 }
 
 bool	is_comment_line(char c)

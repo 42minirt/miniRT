@@ -36,7 +36,7 @@ static t_color	get_its_pos_img_color(t_intersection_point *its_p, t_img img)
 	t_map_idx			i;
 
 	if (!img.data)
-		return (init_color(0, 0, 0));
+		return (init_color(0.0, 0.0, 0.0));
 	map = get_tangent_coordinate_map(its_p);
 	i = get_map_idx(map, img);
 	ret_color.r = img.data[i.idx++] / 255.0;
@@ -76,9 +76,9 @@ t_vec	get_bump_normal(t_intersection_point *its_p)
 //	bump_normal_local.x = img_color.r;
 //	bump_normal_local.y = img_color.b;
 //	bump_normal_local.z = img_color.g;
-	bump_normal_local.x = (img_color.r - 0.5) / 0.5;
-	bump_normal_local.y = (img_color.b - 0.5) / 0.5;
-	bump_normal_local.z = (img_color.g - 0.5) / 0.5;
+	bump_normal_local.x = (img_color.r - BUMP_TO_NORMAL) / BUMP_TO_NORMAL;
+	bump_normal_local.y = (img_color.b - BUMP_TO_NORMAL) / BUMP_TO_NORMAL;
+	bump_normal_local.z = (img_color.g - BUMP_TO_NORMAL) / BUMP_TO_NORMAL;
 	trans_mat_world2local = get_transform_matrix_world2local_yup(its_p->normal);
 	trans_mat_local2world = transpose_matrix(trans_mat_world2local);
 	bump_normal_world \
