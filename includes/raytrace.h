@@ -20,7 +20,7 @@ bool			check_intersection(t_scene_info *scene, \
 									t_ray eye2screen, \
 									t_intersection_point *its_p);
 
-t_ray	red_rayvec(t_camera_info *camera_info, double x, double y);
+t_ray			red_rayvec(t_camera_info *camera_info, double x, double y);
 
 double			calc_planeratio(t_obj *obj, \
 								t_ray *ray, \
@@ -57,6 +57,7 @@ t_vec			get_bump_normal(t_intersection_point *its_p);
 t_vec			get_normal(t_intersection_point *its_p);
 
 t_vec			get_pl_drawable_normal(t_intersection_point itsp, t_vec ray_dir);
+double			calc_dot_n_l(t_intersection_point itsp, t_ray ray, t_vec unit_pos2light);
 
 
 /* calc_diffuse_color */
