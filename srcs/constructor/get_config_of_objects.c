@@ -26,12 +26,12 @@ static t_obj	*init_obj_ptr(const char *id_str)
 	obj->obj_color.is_bump = false;
 	obj->obj_color.texture_data.data = NULL;
 	obj->obj_color.bump_data.data = NULL;
-	obj->obj_color.shininess = 10.0; // tmp
-	obj->obj_color.ka = init_color(255, 255, 255); // tmp -> 255/255=1.0
-	obj->obj_color.ks = init_color(255, 255, 255); // tmp
-	obj->obj_color.kf = init_color(255, 255, 255); // tmp
-	obj->obj_color.ia = 0.1; // tmp 環境光の反射光の放射輝度Ra=ka*Ia, ka=ka*ia, Ia=given
-	obj->obj_color.id = 1.0; // tmp
+	obj->obj_color.shininess = SPECULAR_SHININESS;
+	obj->obj_color.ka = init_color(KA_COLOR, KA_COLOR, KA_COLOR); // tmp -> 255/255=1.0
+	obj->obj_color.ks = init_color(KS_COLOR, KS_COLOR, KS_COLOR); // tmp
+	obj->obj_color.kf = init_color(KF_COLOR, KF_COLOR, KF_COLOR); // tmp
+	obj->obj_color.ia = INTENSITY_OF_AMBIENT; // tmp 環境光の反射光の放射輝度Ra=ka*Ia, ka=ka*ia, Ia=given
+	obj->obj_color.id = INTENSITY_OF_DIFFUSE; // tmp
 	return (obj);
 }
 

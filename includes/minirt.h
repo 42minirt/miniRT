@@ -49,6 +49,15 @@
 # define WINDOW_WIDTH		1080
 # define WINDOW_TITLE		"miniRT"
 
+/********** Ray Trace Setting Const **********/
+// get_config_of_objects.c
+# define SPECULAR_SHININESS		(10.0) // tmp
+# define KA_COLOR				(255.0)
+# define KS_COLOR				(255.0)
+# define KF_COLOR				(255.0)
+# define INTENSITY_OF_AMBIENT	(0.1)
+# define INTENSITY_OF_DIFFUSE	(1.0)
+
 /********** string **********/
 # define OP_CHECKER_TEXTURE	"checker"
 # define OP_PERFECT_REF		"perfect_ref"
@@ -59,7 +68,6 @@
 
 /********** epsiron **********/
 # define EPSIRON 			0.0000002
-
 # define MT_PERFECT_REFLECTION 666
 
 /********** key hook **********/
@@ -74,10 +82,6 @@
 # define CHECKER_U_FREQ	10
 # define CHECKER_V_FREQ	10
 # define PARSING_YET	(-1.0)
-//#define EPSILON		(1.0 / 512.0)
-//# define EPSILON		0.004
-//# define TO_RADIANS		(2.0 * M_PI / 180.0)
-//# define TO_DEGREES		(1.0 / TO_RADIANS)
 
 /********** rt_id **********/
 # define ID_AMBIENT		"A"
