@@ -27,7 +27,7 @@ static t_tangetnt_map	get_planer_map(t_intersection_point *its_p)
 		= get_transform_matrix_world2local_yup(its_p->normal);
 	pos_uv = mul_matrix_vec(trans_mat_world2tangent, pos_local);
 	map.u = pos_uv.x;
-	map.v = pos_uv.z;
+	map.v = -1.0 * pos_uv.z;
 	return (map);
 }
 
