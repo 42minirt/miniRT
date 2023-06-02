@@ -45,8 +45,8 @@
 
 /********** window **********/
 # define WINDOW_HEIGHT		540
-# define WINDOW_WIDTH		540
-//# define WINDOW_WIDTH		1080
+//# define WINDOW_WIDTH		540
+# define WINDOW_WIDTH		1080
 # define WINDOW_TITLE		"miniRT"
 
 /********** string **********/

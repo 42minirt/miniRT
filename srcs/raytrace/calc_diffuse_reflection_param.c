@@ -33,8 +33,13 @@ t_diffuse_param	calc_diffuse_param(t_intersection_point *its_p, \
 	p.vec_pos2light = sub(light->point, its_p->position);
 	p.unit_pos2light = norm_vec(p.vec_pos2light);
 	p.unit_light2pos = inverse(p.unit_pos2light);
-//	normal_to_calc = get_normal(its_p);
-	normal_to_calc = its_p->normal;
+	normal_to_calc = get_normal(its_p);
+//	normal_to_calc = its_p->normal;
+
+	// Drawable: dot(n, l) when n is bump or normal > 0 && normal is drawable
 	p.dot_n_unit_pos2light = dot(normal_to_calc, p.unit_pos2light);
+	if (p.dot_n_unit_pos2light <= 0 ||
+	dot(p.vec_normal, inverse(ray->unit_dir)) * dot(p.vec_normal, p.unit_pos2light) <= 0)
+		p.dot_n_unit_pos2light = -1.0;
 	return (p);
 }

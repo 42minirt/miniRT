@@ -87,7 +87,8 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2sc
 			dir_pos2lgt_n = norm_vec(dir_pos2lgt);
 			if ((SPOT_check(&dir_pos2lgt_n, light_info) == true && is_equal_strings(light_info->id_type, ID_SPOTLIGHT)) || is_equal_strings(light_info->id_type, ID_LIGHT))
 			{
-				v_r = calc_v_r(dot(its_p->normal, dir_pos2lgt_n), its_p, dir_pos2lgt_n, &eye2screen);
+				v_r = calc_v_r(dot(get_normal(its_p), dir_pos2lgt_n), its_p, dir_pos2lgt_n, &eye2screen);
+//				v_r = calc_v_r(dot(its_p->normal, dir_pos2lgt_n), its_p, dir_pos2lgt_n, &eye2screen);
 //				v_r = calc_v_r(ch_degrrralation(its_p, &dir_pos2lgt_n, &eye2screen.unit_dir), its_p, dir_pos2lgt_n, &eye2screen);
 				if (v_r - 0.0 > EPSIRON)
 					calc_spec_color(&color, v_r, light_info, its_p->obj->obj_color);

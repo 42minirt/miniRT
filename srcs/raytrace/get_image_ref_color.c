@@ -73,6 +73,9 @@ t_vec	get_bump_normal(t_intersection_point *its_p)
 	if (!its_p->obj->obj_color.bump_data.data)
 		return (its_p->normal);
 	img_color = get_its_pos_img_color(its_p, its_p->obj->obj_color.bump_data);
+//	bump_normal_local.x = img_color.r;
+//	bump_normal_local.y = img_color.b;
+//	bump_normal_local.z = img_color.g;
 	bump_normal_local.x = (img_color.r - 0.5) / 0.5;
 	bump_normal_local.y = (img_color.b - 0.5) / 0.5;
 	bump_normal_local.z = (img_color.g - 0.5) / 0.5;
