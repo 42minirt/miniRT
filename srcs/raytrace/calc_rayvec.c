@@ -23,9 +23,14 @@ void	ready_scr2world_ex(t_vec *scr2world_ex, t_camera_info *camera_info)
 	double	sz; //スクリーン状のex成分のz成分
 	double	dirx2_dirz2;
 
+
 	dirx2_dirz2 = pow(camera_info->direction.x, 2) + pow(camera_info->direction.z, 2);
 	if (dirx2_dirz2 == 0)
-		setvec(scr2world_ex, -1.0, 0.0, 0);
+		setvec(scr2world_ex, 1.0, 0.0, 0);
+//	if (camera_info->direction.y == 1.0)
+//		setvec(scr2world_ex, 1.0, 0.0, 0);
+//	else if (camera_info->direction.y == -1.0)
+//		setvec(scr2world_ex, -1.0, 0.0, 0);
 	else
 	{
 		sx = camera_info->direction.z / (sqrt(dirx2_dirz2));
