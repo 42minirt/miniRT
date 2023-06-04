@@ -24,7 +24,7 @@ static int	key_hook(int keycode, void *mlx)
 {
 	if (keycode == KEY_ESC)
 	{
-//		printf("ESC pressed\n");
+		printf("ESC pressed\n");
 		return (close_window(mlx));
 	}
 	if (keycode == 'w')

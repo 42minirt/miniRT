@@ -15,10 +15,7 @@
 static t_parse_res	validate_sphere(t_sphere *sphere)
 {
 	if (!is_vec_in_range(sphere->center))
-	{
-		printf("sp vec out of range, (%f,%f,%f)\n", sphere->center.x, sphere->center.y, sphere->center.z);
 		return (ERROR_OUT_OF_RANGE);
-	}
 	if (!is_num_in_valid_range(sphere->diameter))
 		return (ERROR_OUT_OF_RANGE);
 	return (PASS);
@@ -27,10 +24,7 @@ static t_parse_res	validate_sphere(t_sphere *sphere)
 static t_parse_res	validate_plane(t_plane *plane)
 {
 	if (!is_vec_in_range(plane->center))
-	{
-		printf("pl vec out of range, (%f,%f,%f)\n", plane->center.x, plane->center.y, plane->center.z);
 		return (ERROR_OUT_OF_RANGE);
-	}
 	if (!is_normal_vec_in_range(plane->normal))
 		return (ERROR_OUT_OF_RANGE);
 	return (PASS);

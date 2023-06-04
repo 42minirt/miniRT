@@ -59,9 +59,9 @@ static t_parse_res	init_scene_and_camera(t_all_info *all_info, \
 	if (result != PASS)
 		return (result);
 	debug_print_config(all_info);
-	update_scene_config(all_info->scene_info); // color = brightness * color,...
+	update_scene_config(all_info->scene_info);
 	update_camera_config(all_info->camera_info);
-	printf("\n  vvvvv update vvvvv \n");
+	printf("\n  [DEBUG] vvvvv update vvvvv \n");
 	debug_print_config(all_info);
 	return (result);
 }

@@ -71,9 +71,9 @@ t_matrix	get_transform_matrix_world2local_yup(t_vec v_dir)
 		local.ew = inverse(world.ez);
 	}
 	transform_mat_w2l = set_vec_to_matrix(local);
-//	transform_mat_w2l = transpose_matrix(transform_mat_w2l);
 	return (transform_mat_w2l);
 }
+//	transform_mat_w2l = transpose_matrix(transform_mat_w2l);
 
 t_matrix	get_transform_matrix_world2local_zup(t_vec y_dir)
 {
@@ -96,6 +96,6 @@ t_matrix	get_transform_matrix_world2local_zup(t_vec y_dir)
 		local.ew = world.ey;
 	}
 	transform_mat_w2l = set_vec_to_matrix(local);
-//	transform_mat_w2l = transpose_matrix(transform_mat_w2l);
 	return (transform_mat_w2l);
 }
+//	transform_mat_w2l = transpose_matrix(transform_mat_w2l);

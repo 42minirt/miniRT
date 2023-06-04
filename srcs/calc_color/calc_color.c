@@ -14,7 +14,8 @@
 
 // c + k1c1 * k2c2
 
-// t_color	color_mul_k1c1k2c2(t_color *c, double k1, t_color c1, double k2, t_color c2)
+// t_color	color_mul_k1c1k2c2(t_color *c,
+// double k1, t_color c1, double k2, t_color c2)
 // {
 // 	t_color	color;
 
