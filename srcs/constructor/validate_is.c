@@ -87,7 +87,8 @@ bool	is_ratio_in_range(double ratio)
 
 bool	is_fov_in_range(double fov_degree)
 {
-	return (FOV_DEG_MIN <= fov_degree && fov_degree <= FOV_DEG_MAX);
+	return (FOV_DEG_MIN < fov_degree && fov_degree < FOV_DEG_MAX);
+//	return (FOV_DEG_MIN <= fov_degree && fov_degree <= FOV_DEG_MAX);
 }
 
 bool	is_angle_in_range(double angle_degree)

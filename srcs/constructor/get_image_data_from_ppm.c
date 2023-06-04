@@ -94,6 +94,42 @@ static t_parse_res	process_line_by_col(const char *line, \
 	return (res);
 }
 
+// validate_p3_format
+// get_width
+// get_height
+// get_color_range
+// get_color_data
+
+t_parse_res	validate_p3_format()
+{
+
+	return (PASS);
+}
+
+t_parse_res	get_image_width()
+{
+
+	return (PASS);
+}
+
+t_parse_res	get_image_height()
+{
+
+	return (PASS);
+}
+
+t_parse_res	get_color_range()
+{
+
+	return (PASS);
+}
+
+t_parse_res	get_color_data()
+{
+
+	return (PASS);
+}
+
 // ppm file format
 //   col 0: <file_format>
 //   col 1: <comment>
