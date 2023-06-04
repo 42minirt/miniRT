@@ -102,4 +102,3 @@ char	*get_next_line(int fd, bool is_include_nl)
 		return (ft_free_gnl(&save_buf[fd], &gnl_line));
 	return (gnl_line);
 }
-
