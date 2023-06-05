@@ -24,6 +24,8 @@ t_parse_res	parse_int(const char *line, size_t *idx, int *int_num)
 	*int_num = (int)long_num;
 	if (is_of || long_num < INT_MIN || INT_MAX < long_num)
 		return (ERROR_INVALID_ARG);
+	if (*endptr && (*endptr != COMMENT_FLAG && !ft_isspace(*endptr)))
+		return (ERROR_INVALID_ARG);
 	return (PASS);
 }
 

@@ -81,8 +81,6 @@ static t_parse_res	get_color_data(const char *line, \
 		return (PASS);
 	while (line[*idx] && line[*idx] != COMMENT_FLAG)
 	{
-		if (p->data_idx >= p->img_pixel * COLOR_DATA_KIND)
-			return (put_ppmerr_ret_res("too many data"));
 		result = parse_int(line, idx, &color_value);
 		if (result != PASS)
 			return (put_ppmerr_ret_res("color invalid arg"));
