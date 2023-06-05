@@ -25,7 +25,7 @@ static t_parse_res	get_p3_format(const char *line, t_ppm_param *p, size_t *idx)
 	*idx += 1;
 	result = parse_int(line, idx, &px);
 	if (result != PASS)
-		return (ERROR_INVALID_PPM_FORMAT);
+		return (put_ppmerr_ret_res("invalid value"));
 	if (px != PPM_X)
 		return (put_ppmerr_ret_res("invalid PX format"));
 	p->px = px;
@@ -45,7 +45,7 @@ static t_parse_res	get_image_size(const char *line, \
 		return (PASS);
 	result = parse_int(line, idx, &size);
 	if (result != PASS)
-		return (ERROR_INVALID_PPM_FORMAT);
+		return (put_ppmerr_ret_res("invalid value"));
 	if (size <= 0)
 		return (put_ppmerr_ret_res("invalid image size"));
 	*ret_size = (size_t)size;
@@ -63,7 +63,7 @@ static t_parse_res	get_color_range(const char *line, \
 		return (PASS);
 	result = parse_int(line, idx, &color_range);
 	if (result != PASS)
-		return (ERROR_INVALID_PPM_FORMAT);
+		return (put_ppmerr_ret_res("invalid value"));
 	if (color_range < COLOR_MIN || COLOR_MAX < color_range)
 		return (put_ppmerr_ret_res("invalid range of color"));
 	p->color_range = color_range;
