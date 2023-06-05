@@ -52,7 +52,6 @@ t_parse_res	get_config_of_each_obj(const char *line, t_obj *obj);
 t_parse_res	get_bonus_config_of_obj(const char *line, t_obj *obj, size_t *idx);
 t_parse_res	get_image_texture(const char *line, \
 								t_img *obj_color, size_t *idx, bool *empty);
-t_parse_res	get_img_data(t_img *img, int fd);
 
 // validate_is
 bool		is_normal_vec_in_range(t_vec vec);
@@ -90,5 +89,13 @@ t_parse_res	get_config(const char *id_str, \
 										const char *line, t_all_info *all);
 
 t_parse_res	ret_res_and_free(t_parse_res ret, void **ptr);
+
+// parsing ppm
+t_parse_res	get_img_data(t_img *img, int fd);
+t_parse_res	parse_ppm_data(t_img *img, int fd, t_ppm_param *p);
+t_parse_res	put_ppmerr_ret_res(char *err);
+t_parse_res	parse_ppm_data_line_by_line(const char *line, \
+										t_ppm_param *p, t_img *img);
+t_parse_res	init_data_array(t_img *img, t_ppm_param *p);
 
 #endif //CONSTRUCTOR_H

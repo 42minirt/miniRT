@@ -19,15 +19,11 @@ t_parse_res	parse_int(const char *line, size_t *idx, int *int_num)
 	long	long_num;
 	char	*endptr;
 
-//	printf("    1 %s line[%s]\n", __func__, &line[*idx]);
 	long_num = ft_strtol(&line[*idx], &is_of, &endptr);
-//	printf("    2 %s line[%s], end[%s], long:%ld\n", __func__, &line[*idx], endptr, long_num);
 	*idx += endptr - &line[*idx];
 	*int_num = (int)long_num;
 	if (is_of || long_num < INT_MIN || INT_MAX < long_num)
 		return (ERROR_INVALID_ARG);
-//	if (*endptr && !ft_isspace(*endptr))
-//		return (ERROR_INVALID_ARG);
 	return (PASS);
 }
 

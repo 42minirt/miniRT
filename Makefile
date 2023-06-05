@@ -45,8 +45,10 @@ CONSTRUCTOR_SRC	= constructor.c \
 				  get_bonus_config_of_obj.c \
 				  parsing_config.c \
 				  parsing_digits.c \
-				  parsing_id_cnt.c \
 				  parsing_helper.c \
+				  parsing_id_cnt.c \
+				  parsing_ppm.c \
+				  parsing_ppm_each_line.c \
 				  update_camera_config.c \
 				  update_scene_config.c \
 				  update_scene_config_each_obj.c \
