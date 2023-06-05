@@ -33,6 +33,7 @@ SRCS			= $(addprefix $(SRC_DIR)/, $(SRC))
 CONSTRUCTOR_DIR	= srcs/constructor
 CONSTRUCTOR_SRC	= constructor.c \
 				  ft_strtod.c \
+				  ft_strtol.c \
 				  get_config.c \
 				  get_config_of_ambient.c \
 				  get_config_of_camera.c \
