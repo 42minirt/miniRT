@@ -38,7 +38,7 @@ t_parse_res	parse_int(const char *line, size_t *idx, int *int_num)
 //
 //	skip_isspece(line, idx);
 //	len = 0;
-//	while (line[*idx + len] \
+//	while (line[*idx + len]
 //	&& !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
 //		len++;
 //	*double_num = ft_strtod(&line[*idx], &is_success, &endptr);
