@@ -89,11 +89,12 @@ t_matrix	get_transform_matrix_world2local_zup(t_vec y_dir)
 	{
 		local.eu = world.ex;
 		local.ew = inverse(world.ey);
+
 	}
 	else if (is_ev_equals_inv_ez(world, local))
 	{
-		local.eu = world.ex;
-		local.ew = world.ey;
+		local.eu = inverse(world.ex);
+		local.ew = inverse(world.ey);
 	}
 	transform_mat_w2l = set_vec_to_matrix(local);
 	return (transform_mat_w2l);
