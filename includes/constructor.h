@@ -40,7 +40,7 @@ double		ft_strtod(const char *str, bool *is_success, char **err);
 long		ft_strtol(const char *str, bool *is_of, char **endptr);
 
 // parsing digits
-t_parse_res	parse_int(const char *line, int *int_num, size_t *idx);
+t_parse_res	parse_int(const char *line, size_t *idx, int *int_num);
 t_parse_res	parse_double(const char *line, double *double_num, size_t *idx);
 t_parse_res	parse_vec(const char *line, t_vec *vec, size_t *idx);
 t_parse_res	parse_color(const char *line, t_color *color, size_t *idx);

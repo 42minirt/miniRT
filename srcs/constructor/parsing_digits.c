@@ -12,13 +12,53 @@
 
 #include "../../includes/minirt.h"
 
+// invalid: not in range INT, after num is not `isspace`
+t_parse_res	parse_int(const char *line, size_t *idx, int *int_num)
+{
+	bool	is_of;
+	long	long_num;
+	char	*endptr;
+
+//	printf("    1 %s line[%s]\n", __func__, &line[*idx]);
+	long_num = ft_strtol(&line[*idx], &is_of, &endptr);
+//	printf("    2 %s line[%s], end[%s], long:%ld\n", __func__, &line[*idx], endptr, long_num);
+	*idx += endptr - &line[*idx];
+	*int_num = (int)long_num;
+	if (is_of || long_num < INT_MIN || INT_MAX < long_num)
+		return (ERROR_INVALID_ARG);
+//	if (*endptr && !ft_isspace(*endptr))
+//		return (ERROR_INVALID_ARG);
+	return (PASS);
+}
+
+//t_parse_res	parse_double(const char *line, double *double_num, size_t *idx)
+//{
+//	size_t	len;
+//	char	*num_str;
+//	bool	is_success;
+//	char	*endptr;
+//
+//	skip_isspece(line, idx);
+//	len = 0;
+//	while (line[*idx + len] \
+//	&& !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
+//		len++;
+//	*double_num = ft_strtod(&line[*idx], &is_success, &endptr);
+//	*idx += endptr - &line[*idx];
+//	if (!is_success)
+//		return (ERROR_INVALID_ARG);
+//	if (*endptr && !ft_isspace(*endptr))
+//		return (ERROR_INVALID_ARG);
+//	return (PASS);
+//}
+
 t_parse_res	parse_double(const char *line, double *double_num, size_t *idx)
 {
 	size_t	len;
 	char	*num_str;
 	bool	is_success;
 
-	skip_spece(line, idx);
+	skip_isspece(line, idx);
 	len = 0;
 	while (line[*idx + len] \
 	&& !ft_isspace(line[*idx + len]) && line[*idx + len] != ',')
@@ -42,7 +82,7 @@ t_parse_res	parse_vec(const char *line, t_vec *vec, size_t *idx)
 	size_t		comma_cnt;
 	t_parse_res	res;
 
-	skip_spece(line, idx);
+	skip_isspece(line, idx);
 	res = parse_double(line, &vec->x, idx);
 	if (res != PASS)
 		return (res);
@@ -58,7 +98,7 @@ t_parse_res	parse_vec(const char *line, t_vec *vec, size_t *idx)
 	res = parse_double(line, &vec->z, idx);
 	if (res != PASS)
 		return (res);
-	skip_spece(line, idx);
+	skip_isspece(line, idx);
 	return (PASS);
 }
 
@@ -67,7 +107,7 @@ t_parse_res	parse_color(const char *line, t_color *color, size_t *idx)
 	size_t		comma_cnt;
 	t_parse_res	res;
 
-	skip_spece(line, idx);
+	skip_isspece(line, idx);
 	res = parse_double(line, &color->r, idx);
 	if (res != PASS)
 		return (res);
@@ -83,6 +123,6 @@ t_parse_res	parse_color(const char *line, t_color *color, size_t *idx)
 	res = parse_double(line, &color->b, idx);
 	if (res != PASS)
 		return (res);
-	skip_spece(line, idx);
+	skip_isspece(line, idx);
 	return (PASS);
 }

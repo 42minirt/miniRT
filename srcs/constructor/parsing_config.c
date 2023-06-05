@@ -41,14 +41,14 @@ static t_parse_res	parse_line(t_all_info *all, const char *line, t_id_cnt *cnt)
 	t_parse_res	result;
 
 	idx = 0;
-	skip_spece(line, &idx);
+	skip_isspece(line, &idx);
 	if (!line[idx] || is_comment_line(line[idx]))
 		return (PASS);
 	id_str = get_identifier_str(line, idx);
 	if (!id_str)
 		return (ERROR_FATAL);
 	increment_idx_to_next_format(line, &idx, id_str);
-	skip_spece(line, &idx);
+	skip_isspece(line, &idx);
 	if (validate_id(id_str) != PASS)
 		return (ret_res_and_free(ERROR_INVALID_TYPE, (void **)&id_str));
 	if (!line[idx])

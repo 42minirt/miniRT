@@ -244,7 +244,7 @@ leaks			:
 	make re WITH_LEAKS=1
 
 sani			:
-	make re WITH_SANITIZE=1
+	make all WITH_SANITIZE=1
 
 norm			:
 	@norminette --version

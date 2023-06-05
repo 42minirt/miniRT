@@ -15,7 +15,10 @@
 void	skip_isspece(const char *line, size_t *idx)
 {
 	while (line[*idx] && ft_isspace(line[*idx]))
+	{
+//		printf("isspace line[%s], idx:%zu\n", &line[*idx], *idx);
 		*idx += 1;
+	}
 }
 
 void	skip_delimiter(const char *line, size_t *idx)

@@ -23,7 +23,7 @@ static t_parse_res	get_checker_info(const char *line, \
 	res = parse_color(line, &obj_color->checker_color, idx);
 	if (res != PASS)
 		return (res);
-	skip_spece(line, idx);
+	skip_isspece(line, idx);
 	return (PASS);
 }
 
@@ -32,7 +32,7 @@ static t_parse_res	get_perfect_ref_info(const char *line, \
 {
 	obj_color->is_perfect_ref = true;
 	obj_color->kf = init_color(1.0, 1.0, 1.0);
-	skip_spece(line, idx);
+	skip_isspece(line, idx);
 	return (PASS);
 }
 
@@ -56,7 +56,7 @@ static t_parse_res	get_image_texture_info(const char *line, \
 	res = get_image_texture(line, &obj_color->bump_data, idx, &is_empty);
 	if (res != PASS)
 		return (res);
-	skip_spece(line, idx);
+	skip_isspece(line, idx);
 	if (obj_color->texture_data.data)
 		obj_color->is_texture = true;
 	if (obj_color->bump_data.data)

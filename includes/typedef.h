@@ -49,7 +49,7 @@ typedef struct s_basis_vec_local		t_basis_local;
 typedef struct s_texture_map			t_tangetnt_map;
 typedef struct s_map_idx				t_map_idx;
 typedef struct s_id_cnt					t_id_cnt;
-
+typedef struct s_ppm_param				t_ppm_param;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -67,6 +67,7 @@ enum	e_parse_result
 	ERROR_MISSING_ID = 18,
 	ERROR_INVALID_PPM_FORMAT = 19,
 	ERROR_INVALID_DELIMITER = 20,
+	ERROR_INVALID_PATH = 21,
 };
 
 //////////////////////////////////////////////////
@@ -289,14 +290,6 @@ struct s_ints_param_of_corn
 	double	norm_cross_origin2pe_x_n;
 };
 
-// <<<<<<< HEAD
-// 	t_vec	pe_po;
-// 	t_vec	cross_de_n;
-// 	t_vec	cross_pepo_n;
-// 	t_vec	two_x_cross_de_n;
-// 	t_vec	inv_axis;
-// =======　不明
-
 struct s_corn_ints
 {
 	t_vec	vec_pos;
@@ -305,15 +298,6 @@ struct s_corn_ints
 	t_vec	vec_normal;
 	double	h;
 };
-
-// <<<<<<< HEAD
-// 	t_vec	ti_d;
-// 	t_vec	pos;
-// 	t_vec	pos_po;
-// 	t_vec	norm_pos_po;
-// 	t_vec	normal;
-// 	double	h;
-// =======　不明
 
 struct s_calc_diffuse_ref_param
 {
@@ -350,6 +334,15 @@ struct s_id_cnt
 	int	plane_cnt;
 	int	cylinder_cnt;
 	int	corn_cnt;
+};
+
+struct s_ppm_param
+{
+	int		px;
+	int		color_range;
+	size_t	img_pixel;
+	size_t	file_col;
+	size_t	data_idx;
 };
 
 #endif //TYPEDEF_H

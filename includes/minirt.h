@@ -75,6 +75,12 @@
 # define PARSING_YET	(-1.0)
 # define BUMP_TO_NORMAL	(0.5)
 
+/********** ppm **********/
+# define PPM_X			3
+# define COLOR_MIN		0
+# define COLOR_MAX		255
+# define COMMENT_FLAG	'#'
+
 /********** string **********/
 # define OP_CHECKER_TEXTURE	"checker"
 # define OP_PERFECT_REF		"perfect_ref"
@@ -82,6 +88,8 @@
 
 /********** value **********/
 # define MAX_RECURSION		8
+# define COLOR_DATA_KIND	3
+# define PARSE_INIT			0
 
 /********** epsiron **********/
 # define EPSIRON 			(0.0000002)

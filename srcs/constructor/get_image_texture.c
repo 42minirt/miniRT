@@ -57,7 +57,7 @@ t_parse_res	get_image_texture(const char *line, \
 	path = get_path(line, idx);
 	if (!path)
 		return (ERROR_FATAL);
-	res = ERROR_INVALID_ARG;
+	res = ERROR_INVALID_PATH;
 	if (is_filename_empty(path))
 		res = validate_continuous_empty_path(empty);
 	else if (validate_filename(path, IMG_EXTENSION) == SUCCESS)
