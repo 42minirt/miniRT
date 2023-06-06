@@ -65,7 +65,7 @@ t_color	color_add(const t_color c1, t_color c2)
 
 void	colort_init_pointer(t_color *color)
 {
-	color->r = 0;
-	color->g = 0;
-	color->b = 0;
+	color->r = 0.0;
+	color->g = 0.0;
+	color->b = 0.0;
 }

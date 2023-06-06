@@ -55,8 +55,8 @@
 # define KA_COLOR				(255.0)
 # define KS_COLOR				(255.0)
 # define KF_COLOR				(255.0)
-# define INTENSITY_OF_AMBIENT	(0.1) // TODO: 0.1の根拠
-# define INTENSITY_OF_DIFFUSE	(1.0)
+# define INTENSITY_OF_AMBIENT	(0.1) // Ia TODO: 0.1の根拠
+# define INTENSITY_OF_DIFFUSE	(1.0) // Id
 
 /********** value **********/
 # define FOV_DEG_MIN	(0.0)

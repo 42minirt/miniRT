@@ -18,9 +18,13 @@ bool	SPOT_check(t_vec *dir_pos2lgt_n, t_light *lgt_inf)
 	t_vec	pos2lgt;
 	double	alpha;
 
-	inverse_vec(&pos2lgt, dir_pos2lgt_n);
-	alpha = acos(dot_vec(&pos2lgt, &lgt_inf->direction));
-	if (alpha > lgt_inf->sl_angle / 2.0f * M_PI / 180.0)
+	if (is_equal_strings(lgt_inf->id_type, ID_LIGHT))
+		return (true);
+	return (false);
+//	inverse_vec(&pos2lgt, dir_pos2lgt_n);
+	pos2lgt = *dir_pos2lgt_n;
+	alpha = acos(dot_vec(&pos2lgt, &lgt_inf->direction) * (180.0 / (2.0 * M_PI)));
+	if (alpha > lgt_inf->sl_angle / 2.0)
 		return (false);
 	return (true);
 }
