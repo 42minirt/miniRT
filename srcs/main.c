@@ -107,9 +107,10 @@ int main(int argc, char **argv)
 		destruct_info(&info);
 		return (EXIT_FAILURE);
 	}
+	ft_dprintf(STDERR_FILENO, "Drawing...\n");
 	draw(info);
-
 	mlx_put_image_to_window(info.mlx_info->mlx, info.mlx_info->win, info.mlx_info->img, 0, 0);
+	ft_dprintf(STDERR_FILENO, "Draw complete\n");
 	mlx_hooks(info.mlx_info);
 	mlx_loop(info.mlx_info->mlx);
 
