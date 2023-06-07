@@ -32,6 +32,9 @@ static t_parse_res	validate_plane(t_plane *plane)
 
 static t_parse_res	validate_cylinder(t_cylinder *cylinder)
 {
+	double	radius;
+	t_vec	top;
+
 	if (!is_vec_in_range(cylinder->bottom_center))
 		return (ERROR_OUT_OF_RANGE);
 	if (!is_normal_vec_in_range(cylinder->axis))
@@ -40,14 +43,20 @@ static t_parse_res	validate_cylinder(t_cylinder *cylinder)
 		return (ERROR_OUT_OF_RANGE);
 	if (!is_num_in_valid_range(cylinder->height))
 		return (ERROR_OUT_OF_RANGE);
-	if (cylinder->diameter / 2.0 / cylinder->height <= 1.0 / EPSILON_DIVISOR)
+	radius = cylinder->diameter / 2.0;
+	if (radius / cylinder->height <= (1.0 / EPSILON_DIVISOR))
+		return (ERROR_OUT_OF_RANGE);
+	top = add(cylinder->bottom_center, k_vec(cylinder->height, cylinder->axis));
+	if (!is_vec_in_range(top))
 		return (ERROR_OUT_OF_RANGE);
 	return (PASS);
 }
 
-//todo: check is_vec_in_range(corn->origin)
 static t_parse_res	validate_corn(t_corn *corn)
 {
+	double	radius;
+	t_vec	origin;
+
 	if (!is_vec_in_range(corn->bottom_center))
 		return (ERROR_OUT_OF_RANGE);
 	if (!is_normal_vec_in_range(corn->axis))
@@ -56,7 +65,11 @@ static t_parse_res	validate_corn(t_corn *corn)
 		return (ERROR_OUT_OF_RANGE);
 	if (!is_num_in_valid_range(corn->height))
 		return (ERROR_OUT_OF_RANGE);
-	if (corn->diameter / 2.0 / corn->height <= 1.0 / EPSILON_DIVISOR)
+	radius = corn->diameter / 2.0;
+	if (radius / corn->height <= 1.0 / EPSILON_DIVISOR)
+		return (ERROR_OUT_OF_RANGE);
+	origin = add(corn->bottom_center, k_vec(corn->height, corn->axis));
+	if (!is_vec_in_range(origin))
 		return (ERROR_OUT_OF_RANGE);
 	return (PASS);
 }

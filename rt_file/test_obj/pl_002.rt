@@ -1,0 +1,36 @@
+A   0.1                                              255, 255, 255
+
+C   0,0,0           0, 1, 1      120
+
+L   0,0, 0                         1                 255,255,255
+
+pl   0, -5, 0      0, 1, 0                           100,0,0      image "img/cat.ppm"  ""
+pl   0,  5, 0      0, 1, 0                           100,0,0      image "img/cat.ppm"  ""
+
+pl   -5, 0, 0      1, 0, 0                           0,100,0      image "img/cat.ppm"  ""
+pl    5, 0, 0      1, 0, 0                           0,100,0      image "img/cat.ppm"  ""
+
+pl   0, 0, -5      0, 0, 1                           0,0,100      image "img/cat.ppm"  ""
+pl   0, 0,  5      0, 0, 1                           0,0,100      image "img/cat.ppm"  ""
+
+####################################################################################
+
+pl   0, 0, 8      1, 0, 1                           100,0,0      image "img/cat.ppm"  ""
+pl   0, 0, 8      1, 0, -1                           100,0,0      image "img/cat.ppm"  ""
+
+pl   0, 0, -8      1, 0, 1                           100,0,0      image "img/cat.ppm"  ""
+pl   0, 0, -8      1, 0, -1                           100,0,0      image "img/cat.ppm"  ""
+
+
+pl   0, -8, 0      1, 1, 0                           100,0,0      image "img/cat.ppm"  ""
+pl   0, -8, 0      1, -1,0                           100,0,0      image "img/cat.ppm"  ""
+
+pl   0, -8, 0      0, 1, 1                           100,0,0      image "img/cat.ppm"  ""
+pl   0, -8, 0      0, -1,1                           100,0,0      image "img/cat.ppm"  ""
+
+
+pl   0, 8, 0      1, 1, 0                           100,0,0      image "img/cat.ppm"  ""
+pl   0, 8, 0      1, -1,0                           100,0,0      image "img/cat.ppm"  ""
+
+pl   0, 8, 0      0, 1, 1                           100,0,0      image "img/cat.ppm"  ""
+pl   0, 8, 0      0, -1,1                           100,0,0      image "img/cat.ppm"  ""
