@@ -31,20 +31,11 @@ bool	is_vec_in_range(t_vec vec)
 	const double	z = vec.z;
 
 	if (isinf(x) || isnan(x))
-	{
-		printf("x(%f) out of range\n", x);
 		return (false);
-	}
 	if (isinf(y) || isnan(y))
-	{
-		printf("y(%f) out of range\n", y);
 		return (false);
-	}
 	if (isinf(z) || isnan(z))
-	{
-		printf("z(%f) out of range\n", z);
 		return (false);
-	}
 	return (true);
 }
 
@@ -59,24 +50,14 @@ bool	is_color_in_range(t_color color)
 	&& (0.0 <= b && b <= 255.0));
 }
 
-// todo: del print
 bool	is_num_in_valid_range(double num)
 {
 	if (num <= 0)
-	{
-		printf("%f <= 0\n", num);
 		return (false);
-	}
 	if (isinf(num))
-	{
-		printf("%f is inf\n", num);
 		return (false);
-	}
 	if (isnan(num))
-	{
-		printf("%f is nan\n", num);
 		return (false);
-	}
 	return (true);
 }
 

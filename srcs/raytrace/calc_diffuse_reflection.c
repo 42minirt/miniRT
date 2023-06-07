@@ -63,6 +63,14 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 	return (ret_color);
 }
 
+bool	is_its_pos_eq_light_pos(t_vec pos, t_vec light_pos)
+{
+	const t_vec	pos2light = sub(pos, light_pos);
+	if (norm(pos2light) < 1.0 / EPSILON_DIVISOR)
+		return (true);
+	return (false);
+}
+
 t_color	calc_diffuse_reflection(t_scene_info *scene, \
 							t_intersection_point its_p, t_ray eye2screen)
 {
@@ -77,6 +85,8 @@ t_color	calc_diffuse_reflection(t_scene_info *scene, \
 	while (node)
 	{
 		light = node->content;
+		if (is_its_pos_eq_light_pos(its_p.position, light->point))
+			printf("light == pos\n");
 		ret_color = color_add(ret_color, \
 		calc_diffuse_ref_by_light(scene, its_p, eye2screen, light));
 		node = node->next;

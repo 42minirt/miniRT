@@ -48,7 +48,7 @@ t_corn_ints	calc_ints(t_corn *corn, t_ray ray, t_corn_param p, double t)
 
 	ints.vec_pos = add(ray.pos, k_vec(t, ray.unit_dir));
 	ints.vec_origin2pos = sub(ints.vec_pos, corn->origin);
-	ints.vec_norm_origin2pos = norm_vec(ints.vec_origin2pos);
+	ints.vec_norm_origin2pos = norm_vec(ints.vec_origin2pos); // div by zero
 	ints.vec_normal = vec_k1v1_k2v2(\
 					norm(p.vec_n) * cos(p.half_of_vertex_angle), \
 					ints.vec_norm_origin2pos, \
