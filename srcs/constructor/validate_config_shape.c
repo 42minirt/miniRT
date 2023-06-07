@@ -40,6 +40,8 @@ static t_parse_res	validate_cylinder(t_cylinder *cylinder)
 		return (ERROR_OUT_OF_RANGE);
 	if (!is_num_in_valid_range(cylinder->height))
 		return (ERROR_OUT_OF_RANGE);
+	if (cylinder->diameter / 2.0 / cylinder->height <= 1.0 / EPSILON_DIVISOR)
+		return (ERROR_OUT_OF_RANGE);
 	return (PASS);
 }
 
@@ -53,6 +55,8 @@ static t_parse_res	validate_corn(t_corn *corn)
 	if (!is_num_in_valid_range(corn->diameter))
 		return (ERROR_OUT_OF_RANGE);
 	if (!is_num_in_valid_range(corn->height))
+		return (ERROR_OUT_OF_RANGE);
+	if (corn->diameter / 2.0 / corn->height <= 1.0 / EPSILON_DIVISOR)
 		return (ERROR_OUT_OF_RANGE);
 	return (PASS);
 }
