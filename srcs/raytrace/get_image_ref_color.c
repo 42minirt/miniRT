@@ -45,14 +45,14 @@ static t_color	get_its_pos_img_color(t_intersection_point *its_p, t_img img)
 	return (ret_color);
 }
 
-t_color	get_itspos_image_texture_color(t_diffuse_param p)
+t_color	get_itspos_image_texture_color(t_intersection_point its_p)
 {
 	t_color	img_color;
 
-	if (!is_obj_image_texture(p.its_p.obj->obj_color))
+	if (!is_obj_image_texture(its_p.obj->obj_color))
 		return (init_color(0.0, 0.0, 0.0));
 	img_color \
-	= get_its_pos_img_color(&p.its_p, p.its_p.obj->obj_color.texture_data);
+	= get_its_pos_img_color(&its_p, its_p.obj->obj_color.texture_data);
 	return (img_color);
 }
 

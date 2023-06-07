@@ -12,13 +12,13 @@
 
 #include "../../includes/minirt.h"
 
+//	if (!is_color_in_range(obj->obj_color.ka))
+//		return (ERROR_OUT_OF_RANGE);
+//	if (!is_color_in_range(obj->obj_color.ks))
+//		return (ERROR_OUT_OF_RANGE);
 t_parse_res	validate_obj_color(t_obj *obj)
 {
-	if (!is_color_in_range(obj->obj_color.ka))
-		return (ERROR_OUT_OF_RANGE);
 	if (!is_color_in_range(obj->obj_color.kd))
-		return (ERROR_OUT_OF_RANGE);
-	if (!is_color_in_range(obj->obj_color.ks))
 		return (ERROR_OUT_OF_RANGE);
 	if (obj->obj_color.is_perfect_ref && !is_color_in_range(obj->obj_color.kf))
 		return (ERROR_OUT_OF_RANGE);

@@ -15,8 +15,16 @@
 t_color	calc_ambient_reflection(t_scene_info *scene, t_intersection_point its_p)
 {
 	t_color	ret;
+	t_color	ka;
+
+	if (is_obj_checker(its_p.obj->obj_color))
+		ka = get_itspos_checker_color(its_p);
+	else if (is_obj_image_texture(its_p.obj->obj_color))
+		ka = get_itspos_image_texture_color(its_p);
+	else
+		ka = its_p.obj->obj_color.ka;
 
 	ret = color_k1c1k2c2(scene->brightness, scene->ambient_color, \
-							its_p.obj->obj_color.ia, its_p.obj->obj_color.ka);
+							its_p.obj->obj_color.ia, ka);
 	return (ret);
 }

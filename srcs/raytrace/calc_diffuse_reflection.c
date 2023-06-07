@@ -56,9 +56,9 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 		return (ret_color);
 	kd = p.its_p.obj->obj_color.kd;
 	if (is_obj_checker(its_p.obj->obj_color))
-		kd = get_itspos_checker_color(p);
+		kd = get_itspos_checker_color(p.its_p);
 	else if (is_obj_image_texture(its_p.obj->obj_color))
-		kd = get_itspos_image_texture_color(p);
+		kd = get_itspos_image_texture_color(p.its_p);
 	ret_color = get_diffuse_ref_color(p, kd);
 	return (ret_color);
 }
