@@ -56,7 +56,7 @@ t_color			calc_perfect_reflection(t_all_info *info, \
 t_vec			get_bump_normal(t_intersection_point *its_p);
 t_vec			get_normal(t_intersection_point *its_p);
 
-t_vec			get_pl_drawable_normal(t_intersection_point itsp, t_vec ray_dir);
+t_vec			get_pl_sp_drawable_normal(t_intersection_point itsp, t_vec ray_dir);
 double			calc_dot_n_l(t_intersection_point itsp, t_ray ray, t_vec unit_pos2light);
 
 

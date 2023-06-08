@@ -23,9 +23,10 @@ double	calc_dot_n_l(t_intersection_point itsp, t_ray ray, t_vec unit_pos2light)
 	return (dot_normal_pos2light);
 }
 
-t_vec	get_pl_drawable_normal(t_intersection_point itsp, t_vec ray_dir)
+t_vec	get_pl_sp_drawable_normal(t_intersection_point itsp, t_vec ray_dir)
 {
-	if (!is_equal_strings(itsp.obj->id_str, ID_PLANE))
+	if (!is_equal_strings(itsp.obj->id_str, ID_PLANE)
+	&& !is_equal_strings(itsp.obj->id_str, ID_SPHERE))
 		return (itsp.normal);
 	if (dot(itsp.normal, inverse(ray_dir)) >= 0)
 		return (itsp.normal);
