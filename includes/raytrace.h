@@ -39,34 +39,43 @@ double			get_valid_distance(double t1, double t2);
 double			calc_discriminant(double a, double b, double c);
 t_corn_param	calc_ints_param_of_corn(t_corn *c, t_ray ray);
 t_d_param		calc_d_param_of_corn(t_corn_param p);
-t_corn_ints		calc_ints(t_corn *corn, t_ray ray, t_corn_param p, double t);
+t_corn_ints		calc_ints(t_corn *corn, \
+							t_ray ray, \
+							t_corn_param p, \
+							double t);
 
 /* raytracing */
 t_color			raytrace(t_all_info *info, t_ray eye2screen);
-t_color			recursive_raytrace(t_all_info *info, t_ray eye2screen, size_t counter);
+t_color			recursive_raytrace(t_all_info *info, \
+									t_ray eye2screen, \
+									size_t counter);
 t_color			calc_ambient_reflection(t_scene_info *scene, \
 										t_intersection_point its_p);
 t_color			calc_diffuse_reflection(t_scene_info *scene, \
 									t_intersection_point its_p, \
 									t_ray eye2screen);
 t_color			calc_specular_reflection(t_all_info *info, \
-							t_intersection_point *its_p, t_ray eye2screen);
+							t_intersection_point *its_p, \
+							t_ray eye2screen);
 t_color			calc_perfect_reflection(t_all_info *info, \
-							t_intersection_point *its_p, t_ray eye2screen, size_t counter);
+							t_intersection_point *its_p, \
+							t_ray eye2screen, \
+							size_t counter);
 t_vec			get_bump_normal(t_intersection_point *its_p);
 t_vec			get_normal(t_intersection_point *its_p);
 
-t_vec			get_pl_sp_drawable_normal(t_intersection_point itsp, t_vec ray_dir);
-double			calc_dot_n_l(t_intersection_point itsp, t_ray ray, t_vec unit_pos2light);
-
+t_vec			get_pl_sp_drawable_normal(t_intersection_point itsp, \
+											t_vec ray_dir);
+double			calc_dot_n_l(t_intersection_point itsp, \
+								t_ray ray, \
+								t_vec unit_pos2light);
 
 /* calc_diffuse_color */
-t_color	get_itspos_image_texture_color(t_intersection_point its_p);
-//t_color			get_itspos_image_texture_color(t_diffuse_param p);
-//t_color			get_itspos_checker_color(t_diffuse_param p);
+t_color			get_itspos_image_texture_color(t_intersection_point its_p);
 t_color			get_itspos_checker_color(t_intersection_point its_p);
 t_diffuse_param	calc_diffuse_param(t_intersection_point *its_p, \
-									t_ray *ray, t_light *light);
+									t_ray *ray, \
+									t_light *light);
 
 /* is_condition */
 bool			is_obj_bump_texture(t_obj_color obj_color);

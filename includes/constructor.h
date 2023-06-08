@@ -30,7 +30,8 @@ t_parse_res	get_congfig_of_camera(const char *line, t_camera_info *camera);
 // parsing helper
 void		skip_isspece(const char *line, size_t *idx);
 void		skip_delimiter(const char *line, size_t *idx);
-void		skip_delimiter_and_cnt_comma(const char *line, size_t *idx, size_t *cnt);
+void		skip_delimiter_and_cnt_comma(const char *line, \
+										size_t *idx, size_t *cnt);
 
 void		increment_idx_to_next_format(const char *line, \
 											size_t *idx, char *prev_str);

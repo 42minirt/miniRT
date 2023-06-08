@@ -92,15 +92,13 @@ struct s_color
 struct s_light
 {
 	const char		*id_type;
-
-//	t_light_type	type;
 	t_vec			point;
 	t_vec			direction;
-	double			brightness; // do not use ??
-	t_color			light_color;// bonus
-	double			sl_angle;// bonus
-	double			sl_angle_half;// bonus
-	t_vec			sl_dir;// bonus
+	double			brightness;
+	t_color			light_color;
+	double			sl_angle;
+	double			sl_angle_half;
+	t_vec			sl_dir;
 };
 
 //---------------------------------------------
@@ -188,14 +186,12 @@ struct s_obj_color
 // kf kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
 // is_checker;		// init:false
 
-
 struct s_obj
 {
 	const char		*id_str;
 	t_shape_data	shape_data;
 	t_obj_color		obj_color;
 };
-//	t_shape_type	type; //shere or ... 不要？
 
 //---------------------------------------------
 
@@ -227,9 +223,6 @@ struct s_scene_info
 	t_list	*objs;
 };
 
-// t_list	*lights; //content: light;
-// t_list	*objs; //content : obj;
-
 struct s_camera_info
 {
 	t_vec	position;
@@ -237,11 +230,6 @@ struct s_camera_info
 	double	fov_deg;
 	t_ray	camera;
 };
-
-// t_vec	position;
-// t_vec	direction;
-// double	fov_deg;	//init:-1
-// t_ray	camera;	//vec or matrix
 
 struct s_all_info
 {
@@ -301,7 +289,7 @@ struct s_corn_ints
 struct s_calc_diffuse_ref_param
 {
 	t_vec					vec_pos2light;
-    t_vec					unit_pos2light;
+	t_vec					unit_pos2light;
 	t_vec					unit_light2pos;
 	double					dot_n_unit_pos2light;
 	t_ray					ray;

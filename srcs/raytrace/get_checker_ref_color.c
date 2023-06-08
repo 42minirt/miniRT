@@ -34,27 +34,8 @@ t_color	get_itspos_checker_color(t_intersection_point its_p)
 		return (init_color(0.0, 0.0, 0.0));
 	map = get_tangent_coordinate_map(&its_p);
 	get_checker_freq(its_p.obj, &freq_u, &freq_v);
-	pattern_a = (int)(floor(map.u * freq_u) \
-				+ floor(map.v * freq_v)) % 2;
+	pattern_a = (int)(floor(map.u * freq_u) + floor(map.v * freq_v)) % 2;
 	if (pattern_a)
 		return (its_p.obj->obj_color.checker_color);
 	return (its_p.obj->obj_color.kd);
 }
-
-//t_color	get_itspos_checker_color(t_diffuse_param p)
-//{
-//	t_tangetnt_map	map;
-//	int				pattern_a;
-//	int				freq_u;
-//	int				freq_v;
-//
-//	if (!is_obj_checker(p.its_p.obj->obj_color))
-//		return (init_color(0.0, 0.0, 0.0));
-//	map = get_tangent_coordinate_map(&p.its_p);
-//	get_checker_freq(p.its_p.obj, &freq_u, &freq_v);
-//	pattern_a = (int)(floor(map.u * freq_u)
-//				+ floor(map.v * freq_v)) % 2;
-//	if (pattern_a)
-//		return (p.its_p.obj->obj_color.checker_color);
-//	return (p.its_p.obj->obj_color.kd);
-//}

@@ -27,5 +27,6 @@ t_color	init_color(double r, double g, double b);
 void	color_set(t_color *tgt, double R, double G, double B);
 void	color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
 void	colort_init_pointer(t_color *color);
+void	color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
 
 #endif //COLOR_H

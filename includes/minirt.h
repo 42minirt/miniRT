@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <sys/errno.h>
 # include <math.h>
-#include <float.h>
+# include <float.h>
 
 # include "../minilibx-linux/mlx.h"
 # include "../libs/include/libft.h"
@@ -30,7 +30,6 @@
 # include "../libs/include/ft_string.h"
 
 # include "typedef.h"
-
 # include "color.h"
 # include "constructor.h"
 # include "debug.h"
@@ -72,7 +71,6 @@
 # define PPM_RGB_UNIT	3
 # define CHECKER_U_FREQ	10
 # define CHECKER_V_FREQ	10
-# define PARSING_YET	(-1.0)
 # define BUMP_TO_NORMAL	(0.5)
 
 /********** ppm **********/
@@ -94,7 +92,6 @@
 /********** epsiron **********/
 # define EPSIRON 			(0.0000002)
 # define EPSILON_DIVISOR	(51200.0)
-# define MT_PERFECT_REFLECTION 666
 
 /********** key hook **********/
 # define EVENT_DESTROY		33
@@ -120,24 +117,7 @@
 # define RT_EXTENSION		".rt"
 # define IMG_EXTENSION		".ppm"
 
-//単位ベクトル以外の情報に下記のように記載するのかどうか
-//1 unit_vec
-//2 size
-//3 vec
-/* nanika */
-
-t_color			backgroundcolor_init(void);
-void			colort_init_pointer(t_color *color);
-t_color			calc_color(t_scene_info *scene_info, t_ray eye2screen);
-void			color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
-// t_color			raytrace(t_all_info *info, t_ray eye2screen_xy);
-
 /* intersection */
-
-// double			calc_planeratio(t_obj *obj,
-// t_all_info *info, t_ray *ray, t_intersection_point *itsp);
-// double			calc_cylinderratio(t_obj
-// *obj, t_all_info *info, t_ray *eye2scr, t_intersection_point *tmp_itsp);
 double			set_itsp(t_plane *plane, \
 double t, t_ray *ray, t_intersection_point *itsp);
 
@@ -152,24 +132,13 @@ t_corn_param	calc_inpt_param_of_corn(t_corn *c, t_ray ray);
 t_d_param		calc_d_param_of_corn(t_corn_param p);
 
 /* destructor */
-void		destruct_info(t_all_info *info);
-void		free_objs(void *content);
-void		free_lights(void *content);
+void			destruct_info(t_all_info *info);
+void			free_objs(void *content);
+void			free_lights(void *content);
 
 /* mlx helper */
-
 void			put_pixel(t_mlx_info \
 *mlx_info, size_t x, size_t y, t_color color);
 void			mlx_hooks(t_mlx_info *mlx_info);
-
-//一旦ここに置いとく
-double	ch_degrrralation(t_intersection_point *itsp, t_vec *pos2lgt, t_vec *eye);
-
-// t_color			calc_diffuse_reflection(t_all_info info,
-// t_intersection_point its_p, t_ray eye2screen);
-// t_color			calc_specular_reflection(t_all_info info,
-// t_intersection_point its_p, t_ray eye2screen);
-// t_color			calc_perfect_reflection(t_all_info info,
-// t_intersection_point its_p, t_ray eye2screen);
 
 #endif
