@@ -52,7 +52,7 @@ t_color	get_itspos_checker_color(t_intersection_point its_p)
 //		return (init_color(0.0, 0.0, 0.0));
 //	map = get_tangent_coordinate_map(&p.its_p);
 //	get_checker_freq(p.its_p.obj, &freq_u, &freq_v);
-//	pattern_a = (int)(floor(map.u * freq_u) \
+//	pattern_a = (int)(floor(map.u * freq_u)
 //				+ floor(map.v * freq_v)) % 2;
 //	if (pattern_a)
 //		return (p.its_p.obj->obj_color.checker_color);

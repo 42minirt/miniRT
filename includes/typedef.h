@@ -300,7 +300,6 @@ struct s_corn_ints
 
 struct s_calc_diffuse_ref_param
 {
-	t_vec					vec_normal;
 	t_vec					vec_pos2light;
     t_vec					unit_pos2light;
 	t_vec					unit_light2pos;

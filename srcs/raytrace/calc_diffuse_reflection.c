@@ -18,8 +18,6 @@ static bool	is_in_range_spotlight(t_diffuse_param p)
 
 	angle_pos2light \
 	= acos(dot(p.unit_light2pos, p.light->sl_dir)) * (180.0 / (2.0 * M_PI));
-//	if (angle_pos2light < 0)
-//		angle_pos2light *= -1.0; //todo: check
 	return (angle_pos2light <= p.light->sl_angle_half);
 }
 
@@ -28,12 +26,7 @@ static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
 	t_color	ret_color;
 
 	if (p.dot_n_unit_pos2light <= 0.0)
-	{
 		return (init_color(0.0, 0.0, 0.0));
-		p.dot_n_unit_pos2light = ch_degrrralation(&p.its_p, &p.unit_pos2light, &p.ray.pos);
-		if (p.dot_n_unit_pos2light - 0.0 < EPSIRON)
-			return (init_color(0.0, 0.0, 0.0));
-	}
 	if (is_equal_strings(p.light->id_type, ID_SPOTLIGHT) \
 	&& !is_in_range_spotlight(p))
 		return (init_color(0.0, 0.0, 0.0));
@@ -63,13 +56,14 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 	return (ret_color);
 }
 
-bool	is_its_pos_eq_light_pos(t_vec pos, t_vec light_pos)
-{
-	const t_vec	pos2light = sub(pos, light_pos);
-	if (norm(pos2light) < 1.0 / EPSILON_DIVISOR)
-		return (true);
-	return (false);
-}
+//bool	is_its_pos_eq_light_pos(t_vec pos, t_vec light_pos)
+//{
+//	const t_vec	pos2light = sub(pos, light_pos);
+//
+//	if (norm(pos2light) < (1.0 / EPSILON_DIVISOR))
+//		return (true);
+//	return (false);
+//}
 
 t_color	calc_diffuse_reflection(t_scene_info *scene, \
 							t_intersection_point its_p, t_ray eye2screen)
@@ -85,8 +79,6 @@ t_color	calc_diffuse_reflection(t_scene_info *scene, \
 	while (node)
 	{
 		light = node->content;
-		if (is_its_pos_eq_light_pos(its_p.position, light->point))
-			printf("light == pos\n");
 		ret_color = color_add(ret_color, \
 		calc_diffuse_ref_by_light(scene, its_p, eye2screen, light));
 		node = node->next;

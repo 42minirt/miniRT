@@ -75,21 +75,20 @@ t_matrix	get_transform_matrix_world2local_yup(t_vec v_dir)
 }
 //	transform_mat_w2l = transpose_matrix(transform_mat_w2l);
 
-t_matrix	get_transform_matrix_world2local_zup(t_vec y_dir)
+t_matrix	get_trans_mat_world2local_zup(t_vec w_dir)
 {
 	t_basis_world	world;
 	t_basis_local	local;
 	t_matrix		transform_mat_w2l;
 
 	set_world_basis_vec(&world);
-	local.ev = norm_vec(y_dir);
+	local.ev = norm_vec(w_dir);
 	local.eu = cross(local.ev, world.ez);
 	local.ew = cross(local.eu, local.ev);
 	if (is_ev_equals_ez(world, local))
 	{
 		local.eu = world.ex;
 		local.ew = inverse(world.ey);
-
 	}
 	else if (is_ev_equals_inv_ez(world, local))
 	{

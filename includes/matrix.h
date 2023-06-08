@@ -43,7 +43,7 @@ struct s_basis_vec_local
 };
 
 t_matrix	get_transform_matrix_world2local_yup(t_vec v_dir);
-t_matrix	get_transform_matrix_world2local_zup(t_vec w_dir);
+t_matrix	get_trans_mat_world2local_zup(t_vec w_dir);
 
 t_vec		mul_matrix_vec(t_matrix Matrix, t_vec vec);
 t_matrix	transpose_matrix(t_matrix mat);
