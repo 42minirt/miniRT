@@ -49,7 +49,7 @@ t_parse_res	validate_scene(t_scene_info *scene)
 
 t_parse_res	validate_camera(t_camera_info *camera)
 {
-	if (!is_normal_vec_in_range(camera->direction))
+	if (!is_vec_in_normal_range(camera->direction))
 		return (ERROR_OUT_OF_RANGE);
 	if (!is_fov_in_range(camera->fov_deg))
 		return (ERROR_OUT_OF_RANGE);

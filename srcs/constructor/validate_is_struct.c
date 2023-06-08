@@ -12,41 +12,29 @@
 
 #include "../../includes/minirt.h"
 
-bool	is_normal_vec_in_range(t_vec vec)
+bool	is_vec_in_normal_range(t_vec vec)
 {
-	const double	x = vec.x;
-	const double	y = vec.y;
-	const double	z = vec.z;
-
 	if (norm(vec) < (1.0 / EPSILON_DIVISOR))
 		return (false);
-	return ((NORMAL_MIN <= x && x <= NORMAL_MAX) \
-	&& (NORMAL_MIN <= y && y <= NORMAL_MAX) \
-	&& (NORMAL_MIN <= z && z <= NORMAL_MAX));
+	return ((NORMAL_MIN <= vec.x && vec.x <= NORMAL_MAX) \
+	&& (NORMAL_MIN <= vec.y && vec.y <= NORMAL_MAX) \
+	&& (NORMAL_MIN <= vec.z && vec.z <= NORMAL_MAX));
 }
 
-bool	is_vec_in_range(t_vec vec)
+bool	is_vec_in_double_range(t_vec vec)
 {
-	const double	x = vec.x;
-	const double	y = vec.y;
-	const double	z = vec.z;
-
-	if (isinf(x) || isnan(x))
+	if (isinf(vec.x) || isnan(vec.x))
 		return (false);
-	if (isinf(y) || isnan(y))
+	if (isinf(vec.y) || isnan(vec.y))
 		return (false);
-	if (isinf(z) || isnan(z))
+	if (isinf(vec.z) || isnan(vec.z))
 		return (false);
 	return (true);
 }
 
 bool	is_color_in_range(t_color color)
 {
-	const double	r = color.r;
-	const double	g = color.g;
-	const double	b = color.b;
-
-	return ((0.0 <= r && r <= 255.0) \
-	&& (0.0 <= g && g <= 255.0) \
-	&& (0.0 <= b && b <= 255.0));
+	return ((0.0 <= color.r && color.r <= 255.0) \
+	&& (0.0 <= color.g && color.g <= 255.0) \
+	&& (0.0 <= color.b && color.b <= 255.0));
 }

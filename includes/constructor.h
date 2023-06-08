@@ -54,8 +54,8 @@ t_parse_res	get_image_texture(const char *line, \
 								t_img *obj_color, size_t *idx, bool *empty);
 
 // validate_is
-bool		is_normal_vec_in_range(t_vec vec);
-bool		is_vec_in_range(t_vec vec);
+bool		is_vec_in_normal_range(t_vec vec);
+bool		is_vec_in_double_range(t_vec vec);
 bool		is_color_in_range(t_color color);
 bool		is_ratio_in_range(double ratio);
 bool		is_angle_in_range(double angle_degree);
