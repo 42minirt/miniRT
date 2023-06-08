@@ -23,7 +23,6 @@ t_color	calc_ambient_reflection(t_scene_info *scene, t_intersection_point its_p)
 		ka = get_itspos_image_texture_color(its_p);
 	else
 		ka = its_p.obj->obj_color.ka;
-
 	ret = color_k1c1k2c2(scene->brightness, scene->ambient_color, \
 							its_p.obj->obj_color.ia, ka);
 	return (ret);
