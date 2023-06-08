@@ -79,17 +79,15 @@ void	draw(t_all_info info)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			//if ((x >= 470 && y >= 300) && (x <= 500 && y <= 500))
-			//{
-				//color = get_gradation_background_color(height_ratio);
-				color_set(&color, 0.0, 0.0, 0.0);
-				//eye2screen_xy = get_screen_vector(info, x, y);
-				eye2screen_xy = red_rayvec(info.camera_info, (double)x, (double)y);
-				color = color_add(color, raytrace(&info, eye2screen_xy));
-				put_pixel(info.mlx_info, x, y, color);
-			//}
+			color_set(&color, 0.0, 0.0, 0.0);
+			//eye2screen_xy = get_screen_vector(info, x, y);
+			eye2screen_xy = red_rayvec(info.camera_info, (double)x, (double)y);
+			color = color_add(color, raytrace(&info, eye2screen_xy));
+			put_pixel(info.mlx_info, x, y, color);
 			x++;
         }
+		if (y % (int)(WINDOW_HEIGHT / 10.0) == 0)
+			ft_dprintf(STDERR_FILENO, ".");
         y++;
 		//height_ratio = 1.0 - (double)y / WINDOW_HEIGHT;
 	}
@@ -107,8 +105,9 @@ int main(int argc, char **argv)
 		destruct_info(&info);
 		return (EXIT_FAILURE);
 	}
-	ft_dprintf(STDERR_FILENO, "Drawing...\n");
+	ft_dprintf(STDERR_FILENO, "Drawing ");
 	draw(info);
+	ft_dprintf(STDERR_FILENO, ".\n");
 	mlx_put_image_to_window(info.mlx_info->mlx, info.mlx_info->win, info.mlx_info->img, 0, 0);
 	ft_dprintf(STDERR_FILENO, "Draw complete\n");
 	mlx_hooks(info.mlx_info);
