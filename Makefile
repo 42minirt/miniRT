@@ -58,7 +58,8 @@ CONSTRUCTOR_SRC	= constructor.c \
 				  validate_config_shape.c \
 				  validate_config_light.c \
 				  validate_filename.c \
-				  validate_is.c
+				  validate_is.c \
+				  validate_is_num.c
 
 SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 

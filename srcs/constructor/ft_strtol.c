@@ -93,9 +93,7 @@ long	ft_strtol(const char *str, bool *is_of, char **endptr)
 	get_sign(str, &idx, &sign);
 	if (!ft_isdigit(str[idx]))
 		return (ret_num);
-//	printf(" 1 %s str:%s, ret_num:%ld\n", __func__, str, ret_num);
 	ret_num = get_long_num(str, &idx, sign, is_of);
-//	printf(" 1 %s ret_num:%ld\n", __func__, ret_num);
 	if (endptr)
 		*endptr = (char *)&str[idx];
 	return (ret_num);
@@ -123,4 +121,3 @@ long	ft_strtol(const char *str, bool *is_of, char **endptr)
 //		return (false);
 //	return (true);
 //}
-

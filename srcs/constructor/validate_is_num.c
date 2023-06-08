@@ -12,42 +12,19 @@
 
 #include "../../includes/minirt.h"
 
-bool	is_normal_vec_in_range(t_vec vec)
+bool	is_ratio_in_range(double ratio)
 {
-	const double	x = vec.x;
-	const double	y = vec.y;
-	const double	z = vec.z;
-
-	return ((NORMAL_MIN <= x && x <= NORMAL_MAX) \
-	&& (NORMAL_MIN <= y && y <= NORMAL_MAX) \
-	&& (NORMAL_MIN <= z && z <= NORMAL_MAX));
+	return (RATIO_MIN <= ratio && ratio <= RATIO_MAX);
 }
 
-// todo: del print
-bool	is_vec_in_range(t_vec vec)
+bool	is_fov_in_range(double fov_degree)
 {
-	const double	x = vec.x;
-	const double	y = vec.y;
-	const double	z = vec.z;
-
-	if (isinf(x) || isnan(x))
-		return (false);
-	if (isinf(y) || isnan(y))
-		return (false);
-	if (isinf(z) || isnan(z))
-		return (false);
-	return (true);
+	return (FOV_DEG_MIN < fov_degree && fov_degree < FOV_DEG_MAX);
 }
 
-bool	is_color_in_range(t_color color)
+bool	is_angle_in_range(double angle_degree)
 {
-	const double	r = color.r;
-	const double	g = color.g;
-	const double	b = color.b;
-
-	return ((0.0 <= r && r <= 255.0) \
-	&& (0.0 <= g && g <= 255.0) \
-	&& (0.0 <= b && b <= 255.0));
+	return (ANGLE_DEG_MIN <= angle_degree && angle_degree <= ANGLE_DEG_MAX);
 }
 
 bool	is_num_in_valid_range(double num)
@@ -59,22 +36,6 @@ bool	is_num_in_valid_range(double num)
 	if (isnan(num))
 		return (false);
 	return (true);
-}
-
-bool	is_ratio_in_range(double ratio)
-{
-	return (RATIO_MIN <= ratio && ratio <= RATIO_MAX);
-}
-
-bool	is_fov_in_range(double fov_degree)
-{
-	return (FOV_DEG_MIN < fov_degree && fov_degree < FOV_DEG_MAX);
-//	return (FOV_DEG_MIN <= fov_degree && fov_degree <= FOV_DEG_MAX);
-}
-
-bool	is_angle_in_range(double angle_degree)
-{
-	return (ANGLE_DEG_MIN <= angle_degree && angle_degree <= ANGLE_DEG_MAX);
 }
 
 bool	is_comment_line(char c)
