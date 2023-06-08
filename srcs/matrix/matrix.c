@@ -50,7 +50,7 @@ static t_matrix	set_vec_to_matrix(t_basis_local local)
 // set v_dir = -d by caller
 
 // sphere, camera
-t_matrix	get_transform_matrix_world2local_yup(t_vec v_dir)
+t_matrix	get_trans_mat_world2local_yup(t_vec v_dir)
 {
 	t_basis_world	world;
 	t_basis_local	local;
@@ -87,13 +87,13 @@ t_matrix	get_trans_mat_world2local_zup(t_vec w_dir)
 	local.ew = cross(local.eu, local.ev);
 	if (is_ev_equals_ez(world, local))
 	{
-		local.eu = world.ex;
-		local.ew = inverse(world.ey);
+		local.eu = inverse(world.ex);
+		local.ew = world.ey;
 	}
 	else if (is_ev_equals_inv_ez(world, local))
 	{
-		local.eu = inverse(world.ex);
-		local.ew = inverse(world.ey);
+		local.eu = world.ex;
+		local.ew = world.ey;
 	}
 	transform_mat_w2l = set_vec_to_matrix(local);
 	return (transform_mat_w2l);
