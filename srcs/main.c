@@ -91,7 +91,7 @@ void	draw(t_all_info info)
 			x++;
         }
 		if (y % (int)(WINDOW_HEIGHT / 10.0) == 0)
-			ft_dprintf(STDERR_FILENO, ".");
+			ft_dprintf(STDERR_FILENO, "#");
         y++;
 		//height_ratio = 1.0 - (double)y / WINDOW_HEIGHT;
 	}
@@ -109,11 +109,12 @@ int main(int argc, char **argv)
 		destruct_info(&info);
 		return (EXIT_FAILURE);
 	}
+	ft_dprintf(STDERR_FILENO, "        +----+----+ 100%%\n");
 	ft_dprintf(STDERR_FILENO, "Drawing ");
 	draw(info);
-	ft_dprintf(STDERR_FILENO, ".\n");
+	ft_dprintf(STDERR_FILENO, "#\n");
 	mlx_put_image_to_window(info.mlx_info->mlx, info.mlx_info->win, info.mlx_info->img, 0, 0);
-	ft_dprintf(STDERR_FILENO, "Draw complete\n");
+	ft_dprintf(STDERR_FILENO, "Draw SUCCESS !\n");
 	mlx_hooks(info.mlx_info);
 	mlx_loop(info.mlx_info->mlx);
 
