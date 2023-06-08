@@ -76,7 +76,7 @@ t_vec	get_bump_normal(t_intersection_point *its_p)
 	bump_normal_local.x = (img_color.r - BUMP_TO_NORMAL) / BUMP_TO_NORMAL;
 	bump_normal_local.y = (img_color.b - BUMP_TO_NORMAL) / BUMP_TO_NORMAL;
 	bump_normal_local.z = (img_color.g - BUMP_TO_NORMAL) / BUMP_TO_NORMAL;
-	trans_mat_world2local = get_transform_matrix_world2local_yup(its_p->normal);
+	trans_mat_world2local = get_trans_mat_world2local_yup(its_p->normal);
 	trans_mat_local2world = transpose_matrix(trans_mat_world2local);
 	bump_normal_world \
 	= mul_matrix_vec(trans_mat_local2world, bump_normal_local);
