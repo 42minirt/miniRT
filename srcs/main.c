@@ -105,7 +105,6 @@ int main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (construct_info(&info, argv[1]) == FAILURE)
 	{
-		// todo: error msg
 		destruct_info(&info);
 		return (EXIT_FAILURE);
 	}

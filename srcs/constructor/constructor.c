@@ -79,7 +79,7 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 	if (alloc_info_ptr(all_info) == FAILURE)
 		return (put_err_ret_failure("Failure in init memory allocate"));
 	if (init_mlx(all_info->mlx_info) == FAILURE)
-		return (put_err_ret_failure("Failure in init mlx"));
+		return (put_err_ret_failure("Failure in init minilibx"));
 	result = init_scene_and_camera(all_info, rt_path);
 	if (result != PASS)
 	{
