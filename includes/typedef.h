@@ -294,7 +294,6 @@ struct s_corn_ints
 {
 	t_vec	vec_pos;
 	t_vec	vec_origin2pos;
-	t_vec	vec_norm_origin2pos;
 	t_vec	vec_normal;
 	double	h;
 };

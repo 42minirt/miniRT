@@ -42,21 +42,32 @@ t_d_param	calc_d_param_of_corn(t_corn_param p)
 	return (d_param);
 }
 
+static t_vec	get_corn_its_normal(t_vec origin2pos, t_corn_param p, t_corn corn)
+{
+	t_vec	vec_norm_origin2pos;
+	t_vec	vec_normal;
+
+	if (norm(origin2pos) < 1.0 / EPSILON_DIVISOR)
+		vec_normal = corn.axis;
+	else
+	{
+		vec_norm_origin2pos = norm_vec(origin2pos);
+		vec_normal = vec_k1v1_k2v2(\
+						norm(p.vec_n) * cos(p.half_of_vertex_angle), \
+						vec_norm_origin2pos, \
+						1.0, corn.axis);
+	}
+	vec_normal = norm_vec(vec_normal);
+	return (vec_normal);
+}
+
 t_corn_ints	calc_ints(t_corn *corn, t_ray ray, t_corn_param p, double t)
 {
 	t_corn_ints	ints;
 
 	ints.vec_pos = add(ray.pos, k_vec(t, ray.unit_dir));
 	ints.vec_origin2pos = sub(ints.vec_pos, corn->origin);
-	if (norm(ints.vec_origin2pos) < 1.0 / EPSILON_DIVISOR)
-		ints.vec_norm_origin2pos = ints.vec_origin2pos;
-	else
-		ints.vec_norm_origin2pos = norm_vec(ints.vec_origin2pos);
-	ints.vec_normal = vec_k1v1_k2v2(\
-					norm(p.vec_n) * cos(p.half_of_vertex_angle), \
-					ints.vec_norm_origin2pos, \
-					1.0, corn->axis);
-	ints.vec_normal = norm_vec(ints.vec_normal);
 	ints.h = dot(ints.vec_origin2pos, p.vec_n);
+	ints.vec_normal = get_corn_its_normal(ints.vec_origin2pos, p, *corn);
 	return (ints);
 }
