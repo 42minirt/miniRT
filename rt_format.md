@@ -43,8 +43,7 @@ sl  -40,50,00       0, 0, 1      0.6    60.0    10, 0, 255
 <br>
 <hr>
 
-# figure
-## coordinate
+# coordinate
 Left hand
 ```
   +y
@@ -57,34 +56,27 @@ Left hand
 
 
 # Description Rule
-* 記載順はformatに準拠
-* formatを満たさなければNG
-* 先頭が`#`の行はコメント行と判定
+* 各idのパラメータはformatに準拠した順番で記載すること
+* 先頭が`#`の行はコメント行と判定する
+* 有効でないformatのrt fileを読み込んだ場合、プログラムは終了する
 
 ## string, id
 * id (`A`, `C`, `L`, `sp`, `pl`, `cy`, `sl`) , bonus指定子 (`perfect_ref`, `checker`, `image`) は完全一致を判定
-* `A`は2以上あればNG    // todo
-* `C`は1個でなければNG  // todo
+* `A`, `C`の個数ははそれぞれ 1 とする
 
 ## numeric value
-* 各数値がout of rangeであればNG
-* `normalized_vec`は`xyz[-1,1]`を許容し、内部で正規化している
+* `normalized_vec`は`xyz[-1,1]`を許容するが、norm(xyz) >= 1 とすること
+* 各数値がout of rangeであればプログラムは終了する
 
 ## delimiter
-* `,` が適切なデリミタとして使用されていなければNG `R,G,B,` `R,,G,B` など
-* `atoi`, `atof`失敗はNG : `++1`,  `0..001`など
-* パラメータ間は任意数の`space`, `horizontal tab`が使用可能
+* パラメータ間は任意数の`space`, `horizontal tab`が使用可能である
+* `,` が適切なデリミタとして使用されていなければ、プログラムは終了する
+  - ex) `R,G,B,` `R,,G,B` など
+* `++1`,  `0..001`など、有効でない数値が記載されている場合、プログラムは終了する
 
-// todo: add comma "path", "path"
 ## bonus(image)
-* `image_path`が`""`であれば画像の使用なしと判定
-* `texture_path`のみ, `bumpmap`を読み込まないときは、 `image "texture_path" ""` とする
-* `texture_path` & `bumpmap_path`いずれも`""`はNG   `image "" ""`
-* 指定された`path`が有効な`ppm file`でなければNG
-* image fileは`P3`の`PPM`形式とし、先頭のヘッダーは以下のものを前提とする
-  ```
-  P3
-  # 8-bit ppm - RGB
-  witdh height
-  255
-  ```
+* image fileは`P3`の`PPM`形式とする
+* `image_path`が`""`であれば画像の使用なしと判定する
+  - 例えば、`texture_path`のみ, `bumpmap`を読み込まないときは、 `image "texture_path" ""`
+  - texture or bumpmapのいずれかに有効なpathを指定すること
+* 指定された`path`が有効な`ppm file`でなければプログラムは終了する

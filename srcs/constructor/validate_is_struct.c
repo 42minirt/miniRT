@@ -18,6 +18,8 @@ bool	is_normal_vec_in_range(t_vec vec)
 	const double	y = vec.y;
 	const double	z = vec.z;
 
+	if (norm(vec) < (1.0 / EPSILON_DIVISOR))
+		return (false);
 	return ((NORMAL_MIN <= x && x <= NORMAL_MAX) \
 	&& (NORMAL_MIN <= y && y <= NORMAL_MAX) \
 	&& (NORMAL_MIN <= z && z <= NORMAL_MAX));
