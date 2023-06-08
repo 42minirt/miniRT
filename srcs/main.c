@@ -90,7 +90,7 @@ void	draw(t_all_info info)
 			//}
 			x++;
         }
-		if (y % (int)(WINDOW_HEIGHT / 10.0) == 0)
+		if (y % (int)(WINDOW_HEIGHT / 20.0) == 0)
 			ft_dprintf(STDERR_FILENO, "#");
         y++;
 		//height_ratio = 1.0 - (double)y / WINDOW_HEIGHT;
@@ -108,7 +108,7 @@ int main(int argc, char **argv)
 		destruct_info(&info);
 		return (EXIT_FAILURE);
 	}
-	ft_dprintf(STDERR_FILENO, "        +----+----+ 100%%\n");
+	ft_dprintf(STDERR_FILENO, "        +---------+---------+ 100%%\n");
 	ft_dprintf(STDERR_FILENO, "Drawing ");
 	draw(info);
 	ft_dprintf(STDERR_FILENO, "#\n");

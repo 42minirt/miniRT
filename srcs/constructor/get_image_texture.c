@@ -12,7 +12,7 @@
 
 #include "../../includes/minirt.h"
 
-static char	*get_path(const char *line, size_t *idx)
+static char	*get_path(const char *line, size_t *idx, t_parse_res *res)
 {
 	char	*path;
 	size_t	len;
@@ -29,8 +29,12 @@ static char	*get_path(const char *line, size_t *idx)
 		return (NULL);
 	path = ft_substr(line, *idx, len);
 	if (!path)
+	{
+		*res = ERROR_FATAL;
 		return (NULL);
+	}
 	*idx += len + 1;
+	*res = PASS;
 	return (path);
 }
 
@@ -54,10 +58,10 @@ t_parse_res	get_image_texture(const char *line, \
 	char		*path;
 	int			fd;
 
-	path = get_path(line, idx);
-	if (!path)
-		return (ERROR_FATAL);
 	res = ERROR_INVALID_PATH;
+	path = get_path(line, idx, &res);
+	if (!path)
+		return (res);
 	if (is_filename_empty(path))
 		res = validate_continuous_empty_path(empty);
 	else if (validate_filename(path, IMG_EXTENSION) == SUCCESS)

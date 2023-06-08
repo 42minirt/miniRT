@@ -33,6 +33,13 @@ static t_obj	*init_obj_ptr(const char *id_str)
 	return (obj);
 }
 
+static void	free_fatal_obj(t_obj *obj)
+{
+	free(obj->obj_color.texture_data.data);
+	free(obj->obj_color.bump_data.data);
+	free(obj);
+}
+
 // #Sphere     center_point(xyz)                     d       RGB[0,255]  <bonus>
 // #Plane      point(xyz)           norm_vec[-1,1]           RGB[0,255]  <bonus>
 // #Cylinder   bottom_center(xyz)   norm_vec[-1,1]   d   h   RGB[0,255]  <bonus>
@@ -57,13 +64,13 @@ t_parse_res	get_config_of_objects(const char *line, \
 	parse_result = get_config_of_each_obj(line, obj);
 	if (parse_result != PASS)
 	{
-		x_free_1d_alloc((void **)&obj);
+		free_fatal_obj(obj);
 		return (parse_result);
 	}
 	new_list = ft_lstnew(obj);
 	if (!new_list)
 	{
-		x_free_1d_alloc((void **)&obj);
+		free_fatal_obj(obj);
 		return (ERROR_FATAL);
 	}
 	ft_lstadd_back(&scene->objs, new_list);
