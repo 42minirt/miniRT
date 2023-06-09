@@ -24,6 +24,7 @@ t_color	color_k1c1(double k1, t_color c1);
 void	color_k1c1_pointer(t_color *col, double k1, t_color c1);
 t_color	color_add(t_color c1, t_color c2);
 t_color	init_color(double r, double g, double b);
+t_color	init_color_hex(int hex);
 void	color_set(t_color *tgt, double R, double G, double B);
 void	color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
 void	colort_init_pointer(t_color *color);

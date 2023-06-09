@@ -15,15 +15,14 @@
 
 bool	SPOT_check(t_vec *dir_pos2lgt_n, t_light *lgt_inf)
 {
-	t_vec	pos2lgt;
+	t_vec	lgt2pos;
 	double	alpha;
 
 	if (is_equal_strings(lgt_inf->id_type, ID_LIGHT))
 		return (true);
-	return (false);
-//	inverse_vec(&pos2lgt, dir_pos2lgt_n);
-	pos2lgt = *dir_pos2lgt_n;
-	alpha = acos(dot_vec(&pos2lgt, &lgt_inf->direction) * (180.0 / (2.0 * M_PI)));
+	inverse_vec(&lgt2pos, dir_pos2lgt_n);
+	lgt2pos = *dir_pos2lgt_n;
+	alpha = acos(dot_vec(&lgt2pos, &lgt_inf->direction) * (180.0 / (2.0 * M_PI)));
 	if (alpha > lgt_inf->sl_angle / 2.0)
 		return (false);
 	return (true);
@@ -48,11 +47,12 @@ double	calc_v_r(double n_l, t_intersection_point *its_p, t_vec dir_pos2lgt, t_ra
 void	calc_spec_color(t_color *color, double v_r, t_light *light_info, t_obj_color obj_color)
 {
 	double	v_r_alpha;
-	t_color	added_color;
+	t_color	specular_color;
 
 	v_r_alpha = pow(v_r, obj_color.shininess);
-	color_k1c1_pointer(&added_color, v_r_alpha, light_info->light_color);//ここおかしいっす
-	color_add_pointer(color, color, &added_color);
+//	color_k1c1_pointer(&specular_color, v_r_alpha, light_info->light_color);//ここおかしいっす
+	specular_color = color_k1c1k2c2(v_r_alpha, light_info->light_color, 1.0, obj_color.ks);
+	color_add_pointer(color, color, &specular_color);
 }
 
 double	ch_degrrralation(t_intersection_point *itsp, t_vec *pos2lgt, t_vec *eye)

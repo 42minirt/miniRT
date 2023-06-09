@@ -30,16 +30,6 @@ static void	update_scene_each_obj(t_obj *obj)
 		update_scene_corn_info(&obj->shape_data.corn);
 }
 
-static t_color	copy_kd(t_color kd)
-{
-	t_color	color;
-
-	color.r = kd.r;
-	color.g = kd.g;
-	color.b = kd.b;
-	return (color);
-}
-
 static void	update_config_objs(t_scene_info *scene)
 {
 	t_list	*node;
@@ -49,9 +39,9 @@ static void	update_config_objs(t_scene_info *scene)
 	while (node)
 	{
 		obj = node->content;
+		obj->obj_color.ka = color_k1c1(1.0 / 255.0, obj->obj_color.ka);
 		obj->obj_color.kd = color_k1c1(1.0 / 255.0, obj->obj_color.kd);
-		obj->obj_color.ka = copy_kd(obj->obj_color.kd);
-		obj->obj_color.ks = copy_kd(obj->obj_color.kd);
+		obj->obj_color.ks = color_k1c1(1.0 / 255.0, obj->obj_color.ks);
 		obj->obj_color.kf = color_k1c1(1.0 / 255.0, obj->obj_color.kf);
 		if (obj->obj_color.is_checker)
 			obj->obj_color.checker_color = \

@@ -27,7 +27,9 @@ static t_obj	*init_obj_ptr(const char *id_str)
 	obj->obj_color.texture_data.data = NULL;
 	obj->obj_color.bump_data.data = NULL;
 	obj->obj_color.shininess = SPECULAR_SHININESS;
-	obj->obj_color.kf = init_color(KF_COLOR, KF_COLOR, KF_COLOR);
+	obj->obj_color.ka = init_color_hex(KA_COLOR);
+	obj->obj_color.ks = init_color_hex(KS_COLOR);
+	obj->obj_color.kf = init_color_hex(KF_COLOR);
 	obj->obj_color.ia = INTENSITY_OF_AMBIENT;
 	obj->obj_color.id = INTENSITY_OF_DIFFUSE;
 	return (obj);

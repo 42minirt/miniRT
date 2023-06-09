@@ -50,12 +50,15 @@
 
 /********** Ray Trace Setting Const **********/
 // get_config_of_objects.c
-# define SPECULAR_SHININESS		(100.0) // tmp
-# define KA_COLOR				(255.0)
-# define KS_COLOR				(255.0)
-# define KF_COLOR				(255.0)
+# define SPECULAR_SHININESS		(10.0) // tmp
+# define KA_COLOR				(0xFFFFFF)
+# define KS_COLOR				(0xFFFFFF)
+# define KF_COLOR				(0xFFFFFF)
+# define RED_MASK				(0xFF0000)
+# define GREEN_MASK				(0x00FF00)
+# define BLUE_MASK				(0x0000FF)
 # define INTENSITY_OF_AMBIENT	(0.1) // Ia TODO: 0.1の根拠
-# define INTENSITY_OF_DIFFUSE	(1.0) // Id
+# define INTENSITY_OF_DIFFUSE	(0.8) // Id
 
 /********** value **********/
 # define FOV_DEG_MIN	(0.0)
