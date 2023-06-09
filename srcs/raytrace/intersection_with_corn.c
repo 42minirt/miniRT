@@ -20,15 +20,18 @@ static bool	is_in_range_corn_height(double t, double intp_h, double corn_h)
 }
 
 static void	assign_intp_info(t_intersection_point *ret_intp, \
-								t_corn_ints ints, double t)
+								t_corn_ints ints, \
+								double t)
 {
 	ret_intp->distance = t;
 	ret_intp->position = ints.vec_pos;
 	ret_intp->normal = ints.vec_normal;
 }
 
-static t_intersection_point	calc_intp_info_of_corn(t_corn *corn, t_ray ray, \
-													t_corn_param p, t_d_param d)
+static t_intersection_point	calc_intp_info_of_corn(t_corn *corn, \
+													t_ray ray, \
+													t_corn_param p, \
+													t_d_param d)
 {
 	t_intersection_point	ret_intp;
 	const t_corn_ints		ints_t1 = calc_ints(corn, ray, p, d.t1);
@@ -46,7 +49,8 @@ static t_intersection_point	calc_intp_info_of_corn(t_corn *corn, t_ray ray, \
 	return (ret_intp);
 }
 
-double	calc_intersect_with_corn(t_obj *obj, t_ray ray, \
+double	calc_intersect_with_corn(t_obj *obj, \
+									t_ray ray, \
 									t_intersection_point *its_p)
 {
 	t_corn					*corn;

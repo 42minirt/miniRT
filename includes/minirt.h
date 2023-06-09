@@ -50,7 +50,7 @@
 
 /********** Ray Trace Setting Const **********/
 // get_config_of_objects.c
-# define SPECULAR_SHININESS		(20.0) // tmp
+# define SPECULAR_SHININESS		(10.0) // tmp
 # define KA_COLOR				(0xFFFFFF)
 # define KS_COLOR				(0x666666)
 # define KF_COLOR				(0xFFFFFF)

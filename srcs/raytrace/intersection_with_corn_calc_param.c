@@ -43,7 +43,8 @@ t_d_param	calc_d_param_of_corn(t_corn_param p)
 }
 
 static t_vec	get_corn_its_normal(t_vec origin2pos, \
-									t_corn_param p, t_corn corn)
+									t_corn_param p, \
+									t_corn corn)
 {
 	t_vec	vec_norm_origin2pos;
 	t_vec	vec_normal;

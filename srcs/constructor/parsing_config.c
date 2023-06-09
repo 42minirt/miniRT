@@ -63,7 +63,8 @@ static t_parse_res	parse_line(t_all_info *all, const char *line, t_id_cnt *cnt)
 
 // errorがあればparseせずgnlを空にする
 static t_parse_res	parse_config_line_by_line(t_all_info *all, \
-												int fd, t_id_cnt *cnt)
+												int fd, \
+												t_id_cnt *cnt)
 {
 	char		*line;
 	t_parse_res	parse_result;

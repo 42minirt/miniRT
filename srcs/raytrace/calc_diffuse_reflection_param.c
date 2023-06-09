@@ -22,7 +22,8 @@ t_vec	get_normal(t_intersection_point *its_p)
 // bump normal used calculate dot(normal, pos2light)
 // Drawable: dot(n, l) when n is bump or normal > 0 && normal is drawable
 t_diffuse_param	calc_diffuse_param(t_intersection_point *its_p, \
-									t_ray *ray, t_light *light)
+									t_ray *ray, \
+									t_light *light)
 {
 	t_diffuse_param	p;
 

@@ -13,7 +13,8 @@
 #include "../../includes/minirt.h"
 
 bool	is_obj_exists_between_itspos_and_light(t_scene_info *scene, \
-												t_vec pos, t_vec pos2light)
+												t_vec pos, \
+												t_vec pos2light)
 {
 	t_ray					shadow_ray;
 	t_intersection_point	tmp_its_p;

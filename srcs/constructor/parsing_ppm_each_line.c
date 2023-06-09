@@ -34,7 +34,8 @@ static t_parse_res	get_p3_format(const char *line, t_ppm_param *p, size_t *idx)
 
 // width, height must in INT range
 static t_parse_res	get_image_size(const char *line, \
-									size_t *ret_size, size_t *idx)
+									size_t *ret_size, \
+									size_t *idx)
 {
 	t_parse_res	result;
 	int			size;
@@ -53,7 +54,8 @@ static t_parse_res	get_image_size(const char *line, \
 }
 
 static t_parse_res	get_color_range(const char *line, \
-									t_ppm_param *p, size_t *idx)
+									t_ppm_param *p, \
+									size_t *idx)
 {
 	t_parse_res	result;
 	int			color_range;
@@ -71,7 +73,9 @@ static t_parse_res	get_color_range(const char *line, \
 }
 
 static t_parse_res	get_color_data(const char *line, \
-							t_ppm_param *p, t_img *img, size_t *idx)
+									t_ppm_param *p, \
+									t_img *img, \
+									size_t *idx)
 {
 	t_parse_res	result;
 	int			color_value;
@@ -96,7 +100,8 @@ static t_parse_res	get_color_data(const char *line, \
 }
 
 t_parse_res	parse_ppm_data_line_by_line(const char *line, \
-										t_ppm_param *p, t_img *img)
+										t_ppm_param *p, \
+										t_img *img)
 {
 	t_parse_res	result;
 	size_t		idx;

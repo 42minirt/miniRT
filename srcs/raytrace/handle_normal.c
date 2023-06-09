@@ -28,7 +28,7 @@ double	calc_dot_n_l(t_intersection_point itsp, t_ray ray, t_vec unit_pos2light)
 	double		dot_normal_pos2light;
 
 	normal_to_calc = get_normal(&itsp);
-	dot_normal_pos2light = dot(normal_to_calc, unit_pos2light);
+	dot_normal_pos2light = dot(normal_to_calc, norm_vec(unit_pos2light));
 	if (dot_normal_pos2light <= 0 \
 	|| !is_same_dir_pos2eye_and_pos2light(original_normal, ray, unit_pos2light))
 		return (-1.0);

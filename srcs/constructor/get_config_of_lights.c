@@ -83,7 +83,8 @@ static t_light	*init_light_ptr(const char *id_str)
 }
 
 t_parse_res	get_config_of_lights(const char *line, \
-								t_scene_info *scene, const char *id_str)
+								t_scene_info *scene, \
+								const char *id_str)
 {
 	t_list			*new_list;
 	t_light			*light;

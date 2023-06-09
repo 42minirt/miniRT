@@ -52,7 +52,9 @@ static t_parse_res	validate_continuous_empty_path(bool *empty)
 }
 
 t_parse_res	get_image_texture(const char *line, \
-								t_img *img, size_t *idx, bool *empty)
+								t_img *img, \
+								size_t *idx, \
+								bool *empty)
 {
 	t_parse_res	res;
 	char		*path;

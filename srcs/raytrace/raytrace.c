@@ -72,7 +72,7 @@ t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	its_p.normal = get_pl_sp_drawable_normal(its_p, eye2screen.unit_dir);//ADD: handle plane normal, n or inv(n)
 	ret_color = calc_ambient_reflection(info->scene_info, its_p);
 	ret_color = color_add(ret_color, calc_diffuse_reflection(info->scene_info, its_p, eye2screen));
-	ret_color = color_add(ret_color, calc_specular_reflection(info, &its_p, eye2screen));
+//	ret_color = color_add(ret_color, calc_specular_reflection(info, &its_p, eye2screen));
 	if (its_p.obj->obj_color.is_perfect_ref == true)
 		ret_color = color_add(ret_color, calc_perfect_reflection(info, &its_p, eye2screen, counter));
 	return (ret_color);

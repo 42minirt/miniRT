@@ -22,7 +22,7 @@ bool	check_calc_specular(t_vec *dir_pos2lgt_n, t_light *lgt)
 		return (true);
 	inverse_vec(&unit_lgt2pos, dir_pos2lgt_n);
 	unit_lgt2pos = norm_vec(unit_lgt2pos);
-	ret = is_in_range_spotlight(unit_lgt2pos, lgt->sl_direction, lgt->sl_angle_half);
+	ret = is_in_range_spotlight(unit_lgt2pos, lgt);
 	return (ret);
 }
 

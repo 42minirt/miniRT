@@ -13,7 +13,9 @@
 #include "../../includes/minirt.h"
 
 static void	handle_before_num(const char *str, \
-								double *sign, size_t *idx, size_t *i)
+								double *sign, \
+								size_t *idx, \
+								size_t *i)
 {
 	while (ft_isspace(str[*idx]))
 		*idx += 1;
@@ -25,7 +27,9 @@ static void	handle_before_num(const char *str, \
 }
 
 static int	get_num_part(const char *str, \
-						double *num, double *sign, size_t *idx)
+							double *num, \
+							double *sign, \
+							size_t *idx)
 {
 	double	scale;
 	size_t	i;

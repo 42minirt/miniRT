@@ -54,7 +54,8 @@ static void	free_fatal_obj(t_obj *obj)
 //    image           "image_texture_path",   "bumpmap_path"
 
 t_parse_res	get_config_of_objects(const char *line, \
-								t_scene_info *scene, const char *id_str)
+									t_scene_info *scene, \
+									const char *id_str)
 {
 	t_parse_res	parse_result;
 	t_obj		*obj;

@@ -13,7 +13,8 @@
 #include "../../includes/minirt.h"
 
 static t_parse_res	get_checker_info(const char *line, \
-									t_obj_color *obj_color, size_t *idx)
+									t_obj_color *obj_color, \
+									size_t *idx)
 {
 	t_parse_res	res;
 
@@ -28,7 +29,8 @@ static t_parse_res	get_checker_info(const char *line, \
 }
 
 static t_parse_res	get_perfect_ref_info(const char *line, \
-										t_obj_color *obj_color, size_t *idx)
+										t_obj_color *obj_color, \
+										size_t *idx)
 {
 	obj_color->is_perfect_ref = true;
 	obj_color->kf = init_color(1.0, 1.0, 1.0);
@@ -38,7 +40,8 @@ static t_parse_res	get_perfect_ref_info(const char *line, \
 
 //todo: cnt != 1 ?
 static t_parse_res	get_image_texture_info(const char *line, \
-										t_obj_color *obj_color, size_t *idx)
+											t_obj_color *obj_color, \
+											size_t *idx)
 {
 	t_parse_res	res;
 	bool		is_empty;
