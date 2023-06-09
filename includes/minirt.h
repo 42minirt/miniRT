@@ -120,6 +120,9 @@
 # define RT_EXTENSION		".rt"
 # define IMG_EXTENSION		".ppm"
 
+/* main */
+int				draw(t_all_info info);
+
 /* intersection */
 double			set_itsp(t_plane *plane, \
 double t, t_ray *ray, t_intersection_point *itsp);
@@ -142,6 +145,6 @@ void			free_lights(void *content);
 /* mlx helper */
 void			put_pixel(t_mlx_info \
 *mlx_info, size_t x, size_t y, t_color color);
-void			mlx_hooks(t_mlx_info *mlx_info);
+void			mlx_hooks(t_all_info *info);
 
 #endif

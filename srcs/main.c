@@ -65,7 +65,7 @@ t_ray get_screen_vector(t_all_info info, size_t x, size_t y)
 	return (eye2screen);
 }
 
-void	draw(t_all_info info)
+int	draw(t_all_info info)
 {
 	t_ray	eye2screen_xy;
 	t_color	color;
@@ -73,6 +73,8 @@ void	draw(t_all_info info)
     size_t	x;
 	//double	height_ratio = 1.0f;
 
+	ft_dprintf(STDERR_FILENO, "        +---------+---------+ 100%%\n");
+	ft_dprintf(STDERR_FILENO, "Drawing ");
 	y = 0;
 	while (y < WINDOW_HEIGHT)
     {
@@ -95,6 +97,10 @@ void	draw(t_all_info info)
         y++;
 		//height_ratio = 1.0 - (double)y / WINDOW_HEIGHT;
 	}
+	ft_dprintf(STDERR_FILENO, "#\n");
+	mlx_put_image_to_window(info.mlx_info->mlx, info.mlx_info->win, info.mlx_info->img, 0, 0);
+	ft_dprintf(STDERR_FILENO, "Draw SUCCESS !\n");
+	return (EXIT_SUCCESS);
 }
 
 int main(int argc, char **argv)
@@ -108,15 +114,9 @@ int main(int argc, char **argv)
 		destruct_info(&info);
 		return (EXIT_FAILURE);
 	}
-	ft_dprintf(STDERR_FILENO, "        +---------+---------+ 100%%\n");
-	ft_dprintf(STDERR_FILENO, "Drawing ");
-	draw(info);
-	ft_dprintf(STDERR_FILENO, "#\n");
-	mlx_put_image_to_window(info.mlx_info->mlx, info.mlx_info->win, info.mlx_info->img, 0, 0);
-	ft_dprintf(STDERR_FILENO, "Draw SUCCESS !\n");
-	mlx_hooks(info.mlx_info);
+//	draw(info);
+	mlx_hooks(&info);
 	mlx_loop(info.mlx_info->mlx);
-
 	destruct_info(&info);
     return (0);
 }
