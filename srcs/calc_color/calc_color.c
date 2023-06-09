@@ -25,6 +25,7 @@
 // 	return (color);
 // }
 
+// return k1 * c1 * k2 * c2
 t_color	color_k1c1k2c2(double k1, t_color c1, \
 						double k2, t_color c2)
 {
@@ -36,6 +37,7 @@ t_color	color_k1c1k2c2(double k1, t_color c1, \
 	return (color);
 }
 
+// return k1 * c1
 t_color	color_k1c1(double k1, t_color c1)
 {
 	t_color	color;
@@ -46,6 +48,7 @@ t_color	color_k1c1(double k1, t_color c1)
 	return (color);
 }
 
+// return k1 * c1
 void	color_k1c1_pointer(t_color *col, double k1, t_color c1)
 {
 	col->r = k1 * c1.r;
@@ -53,6 +56,7 @@ void	color_k1c1_pointer(t_color *col, double k1, t_color c1)
 	col->b = k1 * c1.b;
 }
 
+// return c1 + c2
 t_color	color_add(const t_color c1, t_color c2)
 {
 	t_color	color;
