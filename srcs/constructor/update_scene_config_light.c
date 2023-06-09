@@ -20,7 +20,7 @@ static void	update_config_pointlight(t_light *light)
 
 static void	update_config_spotlight(t_light *light)
 {
-	light->sl_dir = norm_vec(light->sl_dir);
+	light->sl_direction = norm_vec(light->sl_direction);
 	light->sl_angle_half = light->sl_angle / 2.0;
 	light->light_color = \
 		color_k1c1(light->brightness / 255.0, light->light_color);

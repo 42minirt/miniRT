@@ -93,12 +93,11 @@ struct s_light
 {
 	const char		*id_type;
 	t_vec			point;
-	t_vec			direction;
 	double			brightness;
 	t_color			light_color;
+	t_vec			sl_direction;
 	double			sl_angle;
 	double			sl_angle_half;
-	t_vec			sl_dir;
 };
 
 //---------------------------------------------

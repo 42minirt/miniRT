@@ -43,7 +43,7 @@ static t_parse_res	get_spotlight_detail(const char *line, t_light *light)
 	res = parse_vec(line, &light->point, &idx);
 	if (res != PASS)
 		return (res);
-	res = parse_vec(line, &light->sl_dir, &idx);
+	res = parse_vec(line, &light->sl_direction, &idx);
 	if (res != PASS)
 		return (res);
 	res = parse_double(line, &light->brightness, &idx);

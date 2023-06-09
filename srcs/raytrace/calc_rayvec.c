@@ -27,9 +27,9 @@ void	ready_scr2world_ex(t_vec *scr2world_ex, t_camera_info *camera_info)
 	dirx2_dirz2 = pow(camera_info->direction.x, 2) + pow(camera_info->direction.z, 2);
 	if (dirx2_dirz2 == 0)
 		setvec(scr2world_ex, 1.0, 0.0, 0);
-//	if (camera_info->direction.y == 1.0)
+//	if (camera_info->sl_direction.y == 1.0)
 //		setvec(scr2world_ex, 1.0, 0.0, 0);
-//	else if (camera_info->direction.y == -1.0)
+//	else if (camera_info->sl_direction.y == -1.0)
 //		setvec(scr2world_ex, -1.0, 0.0, 0);
 	else
 	{

@@ -76,14 +76,15 @@ t_color			get_itspos_checker_color(t_intersection_point its_p);
 t_diffuse_param	calc_diffuse_param(t_intersection_point *its_p, \
 									t_ray *ray, \
 									t_light *light);
-
+bool	is_in_range_spotlight(t_vec unit_light2pos, t_vec sl_direction, \
+									double sl_angle_half);
 /* is_condition */
 bool			is_obj_bump_texture(t_obj_color obj_color);
 bool			is_obj_image_texture(t_obj_color obj_color);
 bool			is_obj_perfect_ref(t_obj_color obj_color);
 bool			is_obj_checker(t_obj_color obj_color);
 bool			is_obj_exists_between_itspos_and_light(t_scene_info *scene, \
-														t_diffuse_param p);
+												t_vec pos, t_vec pos2light);
 
 /* get_its_pos_img_color */
 t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p);

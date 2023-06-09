@@ -13,19 +13,17 @@
 #include "../../includes/minirt.h"
 #include <stdbool.h>
 
-bool	SPOT_check(t_vec *dir_pos2lgt_n, t_light *lgt_inf)
+bool	check_calc_specular(t_vec *dir_pos2lgt_n, t_light *lgt)
 {
-	t_vec	lgt2pos;
-	double	alpha;
+	t_vec	unit_lgt2pos;
+	bool	ret;
 
-	if (is_equal_strings(lgt_inf->id_type, ID_LIGHT))
+	if (is_equal_strings(lgt->id_type, ID_LIGHT))
 		return (true);
-	inverse_vec(&lgt2pos, dir_pos2lgt_n);
-	lgt2pos = *dir_pos2lgt_n;
-	alpha = acos(dot_vec(&lgt2pos, &lgt_inf->direction) * (180.0 / (2.0 * M_PI)));
-	if (alpha > lgt_inf->sl_angle / 2.0)
-		return (false);
-	return (true);
+	inverse_vec(&unit_lgt2pos, dir_pos2lgt_n);
+	unit_lgt2pos = norm_vec(unit_lgt2pos);
+	ret = is_in_range_spotlight(unit_lgt2pos, lgt->sl_direction, lgt->sl_angle_half);
+	return (ret);
 }
 
 double	calc_v_r(double n_l, t_intersection_point *its_p, t_vec dir_pos2lgt, t_ray *eye2screen)
@@ -55,23 +53,6 @@ void	calc_spec_color(t_color *color, double v_r, t_light *light_info, t_obj_colo
 	color_add_pointer(color, color, &specular_color);
 }
 
-double	ch_degrrralation(t_intersection_point *itsp, t_vec *pos2lgt, t_vec *eye)
-{
-	t_vec	plane2eye;
-	t_vec	normal_for_calc_ref;
-
-	normal_for_calc_ref = get_normal(itsp);
-	if (!is_equal_strings(itsp->obj->id_str, ID_PLANE))
-		return (dot(normal_for_calc_ref, *pos2lgt));
-	neg_vec(&plane2eye, eye, &itsp->position);
-	if (dot(itsp->normal, *pos2lgt) * dot(itsp->normal, plane2eye) <= 0)
-		return (-1.0);
-	if (dot(normal_for_calc_ref, *pos2lgt) >= 0)
-		return (dot(normal_for_calc_ref, *pos2lgt));
-	inverse_vec(&normal_for_calc_ref, &normal_for_calc_ref);
-	return (dot(normal_for_calc_ref, *pos2lgt));
-}
-
 t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2screen, t_color color)
 {
 	t_list	*light;
@@ -83,19 +64,15 @@ t_color	calc_specref(t_all_info *info, t_intersection_point	*its_p, t_ray eye2sc
 	light = info->scene_info->lights;
 	while (light != NULL)
 	{
-		//light_info = info->scene_info->lights->content;
 		light_info = light->content;
 		neg_vec(&dir_pos2lgt, &light_info->point, &its_p->position);
-		if (is_obj_exists_between_itspos_and_light(info->scene_info, calc_diffuse_param(its_p, &eye2screen, light_info)) == false)
+		if (is_obj_exists_between_itspos_and_light(info->scene_info, its_p->position, dir_pos2lgt) == false)
 		{
 			dir_pos2lgt_n = norm_vec(dir_pos2lgt);
-			if ((SPOT_check(&dir_pos2lgt_n, light_info) == true && is_equal_strings(light_info->id_type, ID_SPOTLIGHT)) || is_equal_strings(light_info->id_type, ID_LIGHT))
+			if (check_calc_specular(&dir_pos2lgt_n, light_info) == true)
 			{
 				v_r = calc_v_r(calc_dot_n_l(*its_p, eye2screen, dir_pos2lgt_n), its_p, dir_pos2lgt_n, &eye2screen);
-//				v_r = calc_v_r(dot(get_normal(its_p), dir_pos2lgt_n), its_p, dir_pos2lgt_n, &eye2screen);
-//				v_r = calc_v_r(dot(its_p->normal, dir_pos2lgt_n), its_p, dir_pos2lgt_n, &eye2screen);
-//				v_r = calc_v_r(ch_degrrralation(its_p, &dir_pos2lgt_n, &eye2screen.unit_dir), its_p, dir_pos2lgt_n, &eye2screen);
-				if (v_r - 0.0 > EPSIRON)
+				if (v_r > 0.0)
 					calc_spec_color(&color, v_r, light_info, its_p->obj->obj_color);
 			}
 		}

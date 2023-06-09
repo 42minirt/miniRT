@@ -32,7 +32,7 @@ static t_parse_res	validate_pointlight(t_light *light)
 
 static t_parse_res	validate_spotlight(t_light *light)
 {
-	if (!is_vec_in_normal_range(light->sl_dir))
+	if (!is_vec_in_normal_range(light->sl_direction))
 		return (ERROR_OUT_OF_RANGE);
 	if (!is_ratio_in_range(light->brightness))
 		return (ERROR_OUT_OF_RANGE);
