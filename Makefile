@@ -153,7 +153,7 @@ SRC				+= $(addprefix $(SYS_DIR)/, $(SYS_SRC))
 OBJ_DIR			= objs
 OBJ				= $(SRC:%.c=%.o)
 OBJS			= $(addprefix $(OBJ_DIR)/, $(OBJ))
-DEPS			= $(SRCS:%.c=%:d)
+DEPS			= $(OBJS:.o=d)
 
 
 
@@ -222,10 +222,10 @@ all				: $(NAME)
 $(NAME)			: $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBS) $(LFLAGS)
+	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $(OBJS) $(LIBS) $(LFLAGS)
 
 
-$(OBJ_DIR)/%.o : %.c
+$(OBJ_DIR)/%.o : %.c includes
 	@mkdir -p $$(dirname $@)
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
