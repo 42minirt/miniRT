@@ -94,7 +94,7 @@
 
 /********** epsiron **********/
 # define EPSIRON 			(0.0000002)
-# define EPSILON_DIVISOR	(51200.0)
+# define EPSILON_DIVISOR	(65536.0)
 
 /********** key hook **********/
 # define EVENT_DESTROY		33
