@@ -53,6 +53,7 @@
 # define SPECULAR_SHININESS		(8.0) // tmp
 # define KA_COLOR				(0xBBBBBB)
 # define KS_COLOR				(0x555555)
+# define KS_COLOR_PLANE			(0x222222)
 # define KF_COLOR				(0xFFFFFF)
 # define RED_MASK				(0xFF0000)
 # define GREEN_MASK				(0x00FF00)

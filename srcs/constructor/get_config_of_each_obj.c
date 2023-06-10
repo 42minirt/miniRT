@@ -43,6 +43,7 @@ static t_parse_res	get_plane_config(const char *line, t_obj *obj, size_t *idx)
 	res = parse_color(line, &obj->obj_color.kd, idx);
 	if (res != PASS)
 		return (res);
+	obj->obj_color.ks = init_color_hex(KS_COLOR_PLANE);
 	return (PASS);
 }
 
