@@ -30,8 +30,10 @@ static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
 	if (is_equal_strings(p.light->id_type, ID_SPOTLIGHT) \
 	&& !is_in_range_spotlight(p.unit_light2pos, p.light))
 		return (init_color(0.0, 0.0, 0.0));
-	ret_color = color_k1c1k2c2(p.its_p.obj->obj_color.id, kd, \
-							p.dot_n_unit_pos2light, p.light->light_color);
+	ret_color = color_k1c1k2c2(p.its_p.obj->obj_color.id, \
+								kd, \
+								p.dot_n_unit_pos2light, \
+								p.light->light_color);
 	return (ret_color);
 }
 

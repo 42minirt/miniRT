@@ -15,8 +15,12 @@
 static bool	is_same_dir_pos2eye_and_pos2light(\
 t_vec original_normal, t_ray ray, t_vec unit_pos2light)
 {
-	if (dot(original_normal, inverse(ray.unit_dir)) \
-	* dot(original_normal, unit_pos2light) <= 0)
+	double	dot_normal_invdir;
+	double	dot_normal_pos2light;
+
+	dot_normal_invdir = dot(original_normal, inverse(ray.unit_dir));
+	dot_normal_pos2light = dot(original_normal, unit_pos2light);
+	if (dot_normal_invdir * dot_normal_pos2light <= 0)
 		return (false);
 	return (true);
 }
@@ -29,8 +33,9 @@ double	calc_dot_n_l(t_intersection_point itsp, t_ray ray, t_vec unit_pos2light)
 
 	normal_to_calc = get_normal(&itsp);
 	dot_normal_pos2light = dot(normal_to_calc, norm_vec(unit_pos2light));
-	if (dot_normal_pos2light <= 0 \
-	|| !is_same_dir_pos2eye_and_pos2light(original_normal, ray, unit_pos2light))
+	if (dot_normal_pos2light <= 0)
+		return (-1.0);
+	if (!is_same_dir_pos2eye_and_pos2light(original_normal, ray, unit_pos2light))
 		return (-1.0);
 	return (dot_normal_pos2light);
 }

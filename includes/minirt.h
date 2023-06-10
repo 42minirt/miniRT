@@ -144,8 +144,11 @@ void			free_objs(void *content);
 void			free_lights(void *content);
 
 /* mlx helper */
-void			put_pixel(t_mlx_info \
-*mlx_info, size_t x, size_t y, t_color color);
+void			put_pixel(t_mlx_info *mlx_info, \
+							size_t x, \
+							size_t y, \
+							t_color color);
 void			mlx_hooks(t_all_info *info);
+double			clamp(double num, double min, double max);
 
 #endif

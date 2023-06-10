@@ -40,7 +40,7 @@ bool	check_intersection(t_scene_info *scene, t_ray eye2screen, t_intersection_po
 	while (obj_node != NULL)
 	{
 		tmp_t = calc_intersection(obj_node->content, eye2screen, &tmp_itsp);
-		if (tmp_t - 0.0 > EPSIRON && tmp_t < ret_t)
+		if (tmp_t > 0.0 && tmp_t < ret_t)
 		{
 			ret_t = tmp_t;
 			nearest_itsp = tmp_itsp;
