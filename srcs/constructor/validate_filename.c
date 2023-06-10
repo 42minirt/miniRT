@@ -47,6 +47,7 @@ static bool	validate_extension(const char *input, const char *correct)
 	return (input[idx] == correct[idx]);
 }
 
+// TODO: malloc error
 static bool	is_dir(const char *path)
 {
 	const size_t	path_len = ft_strlen_ns(path);
@@ -58,6 +59,8 @@ static bool	is_dir(const char *path)
 	if (path[path_len - 1] == '/')
 		return (true);
 	test_path = (char *)ft_calloc(path_len + 2, sizeof(char));
+	if (!test_path)
+		return (false);
 	ft_strlcat(test_path, path, path_len + 1);
 	test_path[path_len] = '/';
 	try_open_res = try_open(test_path);
