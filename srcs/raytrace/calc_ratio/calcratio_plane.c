@@ -53,7 +53,7 @@ double	calc_planeratio(t_obj *obj, t_ray *ray, t_intersection_point *itsp)
 	if (dis_n  == 0.0)
 		return (-1.0);
 	t = (p_n - e_n) / dis_n;
-	if (t  - 0.0 < EPSIRON)
+	if (t <= 0.0)
 		return (-1.0);
 	else
 	{

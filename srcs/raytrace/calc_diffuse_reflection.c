@@ -26,10 +26,10 @@ static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
 	t_color	ret_color;
 
 	if (p.dot_n_unit_pos2light <= 0.0)
-		return (init_color(0.0, 0.0, 0.0));
+		return (init_color_hex(0x000000));
 	if (is_equal_strings(p.light->id_type, ID_SPOTLIGHT) \
 	&& !is_in_range_spotlight(p.unit_light2pos, p.light))
-		return (init_color(0.0, 0.0, 0.0));
+		return (init_color_hex(0x000000));
 	ret_color = color_k1c1k2c2(p.its_p.obj->obj_color.id, \
 								kd, \
 								p.dot_n_unit_pos2light, \
@@ -47,7 +47,7 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 	t_diffuse_param	p;
 
 	p = calc_diffuse_param(&its_p, &eye2screen, light);
-	ret_color = init_color(0.0, 0.0, 0.0);
+	ret_color = init_color_hex(0x000000);
 	if (is_obj_exists_between_itspos_and_light(scene, \
 												p.its_p.position, \
 												p.vec_pos2light))
@@ -69,7 +69,7 @@ t_color	calc_diffuse_reflection(t_scene_info *scene, \
 	t_list	*node;
 	t_light	*light;
 
-	ret_color = init_color(0.0, 0.0, 0.0);
+	ret_color = init_color_hex(0x000000);
 	if (is_obj_perfect_ref(its_p.obj->obj_color))
 		return (ret_color);
 	node = scene->lights;
