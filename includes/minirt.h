@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/31 21:29:12 by user             ###   ########.fr       */
+/*   Updated: 2023/06/12 18:19:38 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <sys/errno.h>
 # include <math.h>
-#include <float.h>
+# include <float.h>
 
 # include "../minilibx-linux/mlx.h"
 # include "../libs/include/libft.h"
@@ -144,9 +144,9 @@ t_corn_param	calc_inpt_param_of_corn(t_corn *c, t_ray ray);
 t_d_param		calc_d_param_of_corn(t_corn_param p);
 
 /* destructor */
-void		destruct_info(t_all_info *info);
-void		free_objs(void *content);
-void		free_lights(void *content);
+void			destruct_info(t_all_info *info);
+void			free_objs(void *content);
+void			free_lights(void *content);
 
 /* mlx helper */
 
@@ -155,7 +155,8 @@ void			put_pixel(t_mlx_info \
 void			mlx_hooks(t_mlx_info *mlx_info);
 
 //一旦ここに置いとく
-double	ch_degrrralation(t_intersection_point *itsp, t_vec *pos2lgt, t_vec *eye);
+double			ch_degrrralation(t_intersection_point *itsp, \
+t_vec *pos2lgt, t_vec *eye);
 
 // t_color			calc_diffuse_reflection(t_all_info info,
 // t_intersection_point its_p, t_ray eye2screen);

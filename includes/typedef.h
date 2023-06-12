@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:53:29 by user             ###   ########.fr       */
+/*   Updated: 2023/06/12 18:25:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_texture_map			t_tangetnt_map;
 typedef struct s_map_idx				t_map_idx;
 typedef struct s_id_cnt					t_id_cnt;
 
-
 ///////////////////////////////////////////////////////////////////////////////
 
 /********** enum **********/
@@ -91,15 +90,13 @@ struct s_color
 struct s_light
 {
 	const char		*id_type;
-
-//	t_light_type	type;
 	t_vec			point;
 	t_vec			direction;
-	double			brightness; // do not use ??
-	t_color			light_color;// bonus
-	double			sl_angle;// bonus
-	double			sl_angle_half;// bonus
-	t_vec			sl_dir;// bonus
+	double			brightness;
+	t_color			light_color;
+	double			sl_angle;
+	double			sl_angle_half;
+	t_vec			sl_dir;
 };
 
 //---------------------------------------------
@@ -186,7 +183,6 @@ struct s_obj_color
 //is_perfect_ref;	// init:false
 // kf kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
 // is_checker;		// init:false
-
 
 struct s_obj
 {
@@ -319,7 +315,7 @@ struct s_calc_diffuse_ref_param
 {
 	t_vec					vec_normal;
 	t_vec					vec_pos2light;
-    t_vec					unit_pos2light;
+	t_vec					unit_pos2light;
 	t_vec					unit_light2pos;
 	double					dot_n_unit_pos2light;
 	t_ray					ray;

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:26:06 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/06/11 17:54:08 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ double	get_valid_distance(double t1, double t2)
 
 double	calc_discriminant(double a, double b, double c)
 {
-	return (pow(b, 2) - 4.0 * a * c);
+	return (pow(b, 2.0) - 4.0 * a * c);
 }

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:25:56 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/06/11 17:54:37 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_d_param	calc_d_param_of_sphere(t_sphere *sphere, t_ray ray)
 	pe_pc = sub(ray.pos, sphere->center);
 	d_param.a = dot(ray.unit_dir, ray.unit_dir);
 	d_param.b = 2.0 * dot(ray.unit_dir, pe_pc);
-	d_param.c = dot(pe_pc, pe_pc) - pow(sphere->radius, 2);
+	d_param.c = dot(pe_pc, pe_pc) - pow(sphere->radius, 2.0);
 	return (d_param);
 }
 

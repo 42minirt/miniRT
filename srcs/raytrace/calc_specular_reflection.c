@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:31:43 by user              #+#    #+#             */
-/*   Updated: 2023/06/01 10:31:46 by user             ###   ########.fr       */
+/*   Updated: 2023/06/11 18:34:16 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ double	ch_degrrralation(t_intersection_point *itsp, t_vec *pos2lgt, t_vec *eye)
 	if (!is_equal_strings(itsp->obj->id_str, ID_PLANE))
 		return (dot(normal_for_calc_ref, *pos2lgt));
 	neg_vec(&plane2eye, eye, &itsp->position);
-	if (dot(itsp->normal, *pos2lgt) * dot(itsp->normal, plane2eye) <= 0)
+	if (dot(itsp->normal, *pos2lgt) * dot(itsp->normal, plane2eye) <= 0.0)
 		return (-1.0);
-	if (dot(normal_for_calc_ref, *pos2lgt) >= 0)
+	if (dot(normal_for_calc_ref, *pos2lgt) >= 0.0)
 		return (dot(normal_for_calc_ref, *pos2lgt));
 	inverse_vec(&normal_for_calc_ref, &normal_for_calc_ref);
 	return (dot(normal_for_calc_ref, *pos2lgt));

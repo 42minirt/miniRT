@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 00:42:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/28 20:12:47 by user             ###   ########.fr       */
+/*   Updated: 2023/06/11 17:53:09 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ready_scr2world_ex(t_vec *scr2world_ex, t_camera_info *camera_info)
 
 	dirx2_dirz2 = pow(camera_info->direction.x, 2) + pow(camera_info->direction.z, 2);
 	if (dirx2_dirz2 == 0)
-		setvec(scr2world_ex, 1.0, 0.0, 0);
+		setvec(scr2world_ex, 1.0, 0.0, 0.0);
 //	if (camera_info->direction.y == 1.0)
 //		setvec(scr2world_ex, 1.0, 0.0, 0);
 //	else if (camera_info->direction.y == -1.0)

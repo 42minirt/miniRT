@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:39:36 by takira            #+#    #+#             */
-/*   Updated: 2023/05/26 12:27:36 by user             ###   ########.fr       */
+/*   Updated: 2023/06/12 18:05:03 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ t_corn_ints		calc_ints(t_corn *corn, t_ray ray, t_corn_param p, double t);
 
 /* raytracing */
 t_color			raytrace(t_all_info *info, t_ray eye2screen);
-t_color			recursive_raytrace(t_all_info *info, t_ray eye2screen, size_t counter);
+t_color			recursive_raytrace(t_all_info *info, \
+t_ray eye2screen, size_t counter);
 t_color			calc_ambient_reflection(t_scene_info *scene, \
 										t_intersection_point its_p);
 t_color			calc_diffuse_reflection(t_scene_info *scene, \
@@ -52,13 +53,13 @@ t_color			calc_diffuse_reflection(t_scene_info *scene, \
 t_color			calc_specular_reflection(t_all_info *info, \
 							t_intersection_point *its_p, t_ray eye2screen);
 t_color			calc_perfect_reflection(t_all_info *info, \
-							t_intersection_point *its_p, t_ray eye2screen, size_t counter);
+t_intersection_point *its_p, t_ray eye2screen, size_t counter);
 t_vec			get_bump_normal(t_intersection_point *its_p);
 t_vec			get_normal(t_intersection_point *its_p);
-
-t_vec			get_pl_drawable_normal(t_intersection_point itsp, t_vec ray_dir);
-double			calc_dot_n_l(t_intersection_point itsp, t_ray ray, t_vec unit_pos2light);
-
+t_vec			get_pl_drawable_normal(t_intersection_point itsp, \
+t_vec ray_dir);
+double			calc_dot_n_l(t_intersection_point itsp, \
+t_ray ray, t_vec unit_pos2light);
 
 /* calc_diffuse_color */
 t_color			get_itspos_image_texture_color(t_diffuse_param p);
