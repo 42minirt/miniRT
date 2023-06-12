@@ -28,8 +28,8 @@ static int	key_hook(int keycode, void *mlx)
 
 void	mlx_hooks(t_all_info *info)
 {
-	const int	mask_key_press = 1L << 0;
-	const int	mask_button_press = 1L << 17;
+	static const int	mask_key_press = 1L << 0;
+	static const int	mask_button_press = 1L << 17;
 
 	mlx_hook(info->mlx_info->win, EVENT_KEY_PRESS, \
 			mask_key_press, key_hook, info->mlx_info->mlx);
