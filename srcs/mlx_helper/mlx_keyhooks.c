@@ -12,10 +12,9 @@
 
 #include "../../includes/minirt.h"
 
-// todo: tmp
 static int	close_window(void *mlx)
 {
-	printf("close window\n");
+	printf("Bye...\n");
 	mlx_loop_end(mlx);
 	return (0);
 }
@@ -23,26 +22,7 @@ static int	close_window(void *mlx)
 static int	key_hook(int keycode, void *mlx)
 {
 	if (keycode == KEY_ESC)
-	{
-		printf("ESC pressed\n");
 		return (close_window(mlx));
-	}
-	if (keycode == 'w')
-	{
-		printf("up\n");
-	}
-	if (keycode == 'a')
-	{
-		printf("left\n");
-	}
-	if (keycode == 's')
-	{
-		printf("down\n");
-	}
-	if (keycode == 'd')
-	{
-		printf("right\n");
-	}
 	return (0);
 }
 
