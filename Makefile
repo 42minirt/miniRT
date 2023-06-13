@@ -112,7 +112,8 @@ VECTOR_DIR		= srcs/calc_vector
 VECTOR_SRC		= arithmetic.c \
 				  arithmetic_ret_vec.c \
 				  calc_vec.c \
-				  organize_vec.c
+				  organize_vec.c \
+				  organize_vec_2.c
 
 SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
 

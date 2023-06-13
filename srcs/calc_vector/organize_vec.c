@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 23:16:19 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/06/13 23:27:48 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,4 @@ void	times_vec(t_vec *tgt_vec, double t, t_vec *sub)
 		t * sub->x,
 		t * sub->y,
 		t * sub->z);
-}
-
-t_vec	inverse(t_vec vec)
-{
-	t_vec	ret;
-
-	inverse_vec(&ret, &vec);
-	return (ret);
-}
-
-t_vec	inv_norm(t_vec vec)
-{
-	t_vec	ret;
-
-	inverse_vec(&ret, &vec);
-	ret = norm_vec(ret);
-	return (ret);
-}
-
-t_vec	set(double x, double y, double z)
-{
-	t_vec	ret;
-
-	setvec(&ret, x, y, z);
-	return (ret);
 }
