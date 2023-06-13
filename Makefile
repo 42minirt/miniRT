@@ -80,6 +80,7 @@ RAYTRACE_DIR	= srcs/raytrace
 RAYTRACE_SRC	= calc_ambient_reflection.c \
 				  calc_rayvec.c \
 				  calc_specular_reflection.c \
+				  calc_specular_reflection_helper.c \
 				  calc_perfect_reflection.c \
 				  calc_diffuse_reflection.c \
 				  calc_diffuse_reflection_param.c \

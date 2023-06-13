@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/06/14 01:12:30 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 01:44:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,17 @@ t_cylinder *cyl, t_ray *ray);
 void	set_intersection_t2(t_intersection_point *itp, \
 double t, t_cylinder *cyl, t_ray *ray);
 double	calc_discreminant(double A, double B, double C);
+t_color	calc_specref(t_all_info *info, \
+t_intersection_point	*its_p, t_ray eye2screen, t_color color);
+t_color	calc_specular_reflection(t_all_info *info, \
+t_intersection_point	*its_p, t_ray eye2screen);
+void	calc_specrefhelper(t_color *color, double v_r, \
+t_light *light_info, t_obj_color obj_color);
+double	ch_degrrralation(t_intersection_point *itsp, t_vec *pos2lgt, t_vec *eye);
+void	calc_spec_color(t_color *color, double v_r, \
+t_light *light_info, t_obj_color obj_color);
+double	calc_v_r(double n_l, t_intersection_point *its_p, \
+t_vec dir_pos2lgt, t_ray *eye2screen);
 
 // t_color			calc_diffuse_reflection(t_all_info info,
 // t_intersection_point its_p, t_ray eye2screen);
