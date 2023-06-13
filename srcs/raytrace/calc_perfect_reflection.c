@@ -6,13 +6,14 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:32:12 by user              #+#    #+#             */
-/*   Updated: 2023/05/31 22:41:25 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 01:18:21 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static	bool	calc_refrectvec(t_intersection_point itsp, t_ray ray, t_vec *rev_vec)
+static	bool	calc_refrectvec(t_intersection_point itsp, \
+t_ray ray, t_vec *rev_vec)
 {
 	t_vec	its_n;
 	t_vec	inv_ray;
@@ -29,13 +30,15 @@ static	bool	calc_refrectvec(t_intersection_point itsp, t_ray ray, t_vec *rev_vec
 	return (true);
 }
 
-static	void	set_rayset(t_ray *ref_ray, t_intersection_point its_p, t_vec rev_vec)
+static	void	set_rayset(t_ray *ref_ray, \
+t_intersection_point its_p, t_vec rev_vec)
 {
 	t_mix_vec_all(&ref_ray->pos, 1.0, &its_p.position, EPSIRON, &rev_vec);
 	ref_ray->unit_dir = rev_vec;
 }
 
-t_color	calc_perfect_reflection(t_all_info *info, t_intersection_point *its_p, t_ray eye2screen, size_t counter)
+t_color	calc_perfect_reflection(t_all_info *info, \
+t_intersection_point *its_p, t_ray eye2screen, size_t counter)
 {
 	t_color	color;
 	t_vec	reverse_vec;
