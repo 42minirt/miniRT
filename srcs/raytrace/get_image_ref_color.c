@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:08:09 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 01:53:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,6 @@ t_vec	get_bump_normal(t_intersection_point *its_p)
 	if (!its_p->obj->obj_color.bump_data.data)
 		return (its_p->normal);
 	img_color = get_its_pos_img_color(its_p, its_p->obj->obj_color.bump_data);
-//	bump_normal_local.x = img_color.r;
-//	bump_normal_local.y = img_color.b;
-//	bump_normal_local.z = img_color.g;
 	bump_normal_local.x = (img_color.r - BUMP_TO_NORMAL) / BUMP_TO_NORMAL;
 	bump_normal_local.y = (img_color.b - BUMP_TO_NORMAL) / BUMP_TO_NORMAL;
 	bump_normal_local.z = (img_color.g - BUMP_TO_NORMAL) / BUMP_TO_NORMAL;
