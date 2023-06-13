@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:02:34 by user              #+#    #+#             */
-/*   Updated: 2023/06/14 02:01:32 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 02:04:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	validate_argv(int argc, char **argv)
 	return (SUCCESS);
 }
 
-t_ray get_screen_vector(t_all_info info, size_t x, size_t y)
+t_ray	get_screen_vector(t_all_info info, size_t x, size_t y)
 {
 	t_vec	camera_pos_for_test;
 	t_vec	screen_pos;
@@ -53,12 +53,12 @@ void	draw(t_all_info info)
 {
 	t_ray	eye2screen_xy;
 	t_color	color;
-    size_t	y;
-    size_t	x;
+	size_t	y;
+	size_t	x;
 
 	y = 0;
 	while (y < WINDOW_HEIGHT)
-    {
+	{
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
@@ -67,12 +67,12 @@ void	draw(t_all_info info)
 			color = color_add(color, raytrace(&info, eye2screen_xy));
 			put_pixel(info.mlx_info, x, y, color);
 			x++;
-        }
-        y++;
+		}
+		y++;
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_all_info	info;
 
@@ -80,18 +80,16 @@ int main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (construct_info(&info, argv[1]) == FAILURE)
 	{
-		// todo: error msg
 		destruct_info(&info);
 		return (EXIT_FAILURE);
 	}
 	draw(info);
-
-	mlx_put_image_to_window(info.mlx_info->mlx, info.mlx_info->win, info.mlx_info->img, 0, 0);
+	mlx_put_image_to_window(info.mlx_info->mlx, \
+	info.mlx_info->win, info.mlx_info->img, 0, 0);
 	mlx_hooks(info.mlx_info);
 	mlx_loop(info.mlx_info->mlx);
-
 	destruct_info(&info);
-    return (0);
+	return (0);
 }
 
 #ifdef LEAKS
