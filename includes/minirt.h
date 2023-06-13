@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/06/12 18:19:38 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 01:12:30 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,19 @@ void			mlx_hooks(t_mlx_info *mlx_info);
 //一旦ここに置いとく
 double			ch_degrrralation(t_intersection_point *itsp, \
 t_vec *pos2lgt, t_vec *eye);
+void	outerproduct_ready(t_vec *d_n_oupro, t_vec *ac_n_oupro, \
+t_ray *eye2scr, t_cylinder *cylinder);
+double	calc_cylinderratio(t_obj *obj, t_ray *eye2scr, \
+t_intersection_point *itsp);
+double	check_intersection_t1(t_vec *d_n, t_vec *ac_n, \
+t_cylinder *cyl, t_ray *ray);
+void	set_intersection_t1(t_intersection_point *itp, \
+double t, t_cylinder *cyl, t_ray *ray);
+double	check_intersection_t2(t_vec *d_n, t_vec *ac_n, \
+t_cylinder *cyl, t_ray *ray);
+void	set_intersection_t2(t_intersection_point *itp, \
+double t, t_cylinder *cyl, t_ray *ray);
+double	calc_discreminant(double A, double B, double C);
 
 // t_color			calc_diffuse_reflection(t_all_info info,
 // t_intersection_point its_p, t_ray eye2screen);
