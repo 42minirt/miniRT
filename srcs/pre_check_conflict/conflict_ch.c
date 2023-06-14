@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 08:56:45 by user              #+#    #+#             */
-/*   Updated: 2023/06/07 20:43:12 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 21:35:39 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ bool	conflict_ch(t_all_info *info)
 	{
 		while (obj_list)
 		{
-			if (conflict_ch_sameobj(obj_list->content, lgt_list->content) == true)
+			if (conflict_ch_sameobj(obj_list->content, \
+			lgt_list->content) == true)
 				return (true);
 			obj_list = obj_list->next;
 		}
