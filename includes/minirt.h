@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/06/14 01:44:22 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 21:28:47 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@
 # define IMG_EXTENSION		".ppm"
 
 /* main */
-int				draw(t_all_info info);
+int				draw(t_all_info *info);
 
 /* destructor */
 void			destruct_info(t_all_info *info);

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:34:24 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 21:29:45 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void	mlx_hooks(t_all_info *info)
 			mask_key_press, key_hook, info->mlx_info->mlx);
 	mlx_hook(info->mlx_info->win, EVENT_DESTROY, \
 			mask_button_press, close_window, info->mlx_info->mlx);
-	mlx_expose_hook(info->mlx_info->win, draw, info);
+	mlx_expose_hook(info->mlx_info->win, draw, (void*)info);
 }
