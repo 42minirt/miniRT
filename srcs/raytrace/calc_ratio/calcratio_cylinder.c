@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 20:23:55 by user              #+#    #+#             */
-/*   Updated: 2023/06/14 01:08:34 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 19:31:12 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ double t, t_cylinder *cyl, t_ray *ray)
 	t_vec	normal_timessize;
 
 	itp->distance = t;
-	t_mix_vec_all(&itp->position, 1, &ray->pos, t, &ray->unit_dir);
+	itp->position = vec_k1v1_k2v2(1, ray->pos, t, ray->unit_dir);
 	neg_vec(&center2its, &itp->position, &cyl->bottom_center);
 	times_vec(&axis_size_vec, dot_vec(&center2its, &cyl->axis), &cyl->axis);
 	neg_vec(&normal_timessize, &axis_size_vec, &center2its);
@@ -56,7 +56,7 @@ t_cylinder *cyl, t_ray *ray)
 		return (-1.0);
 	t = (-1.0 * 2.0 * dot_vec(d_n, ac_n) + sqrt(d_di)) \
 	/ (2.0 * pow(obtain_vecsize(d_n), 2));
-	t_mix_vec_all(&eye2its, 1, &ray->pos, t, &ray->unit_dir);
+	eye2its = vec_k1v1_k2v2(1, ray->pos, t, ray->unit_dir);
 	neg_vec(&bottom2its, &eye2its, &cyl->bottom_center);
 	if (0 <= dot_vec(&bottom2its, &cyl->axis) && \
 	dot_vec(&bottom2its, &cyl->axis) <= cyl->height && t >= 0.0)
@@ -72,7 +72,7 @@ double t, t_cylinder *cyl, t_ray *ray)
 	t_vec	normal_timessize;
 
 	itp->distance = t;
-	t_mix_vec_all(&itp->position, 1, &ray->pos, t, &ray->unit_dir);
+	itp->position = vec_k1v1_k2v2(1, ray->pos, t, ray->unit_dir);
 	neg_vec(&center2its, &itp->position, &cyl->bottom_center);
 	times_vec(&axis_size_vec, dot_vec(&center2its, &cyl->axis), &cyl->axis);
 	neg_vec(&normal_timessize, &center2its, &axis_size_vec);
@@ -98,7 +98,7 @@ t_cylinder *cyl, t_ray *ray)
 		return (-1.0);
 	t = (-1.0 * 2.0 * dot_vec(d_n, ac_n) - sqrt(d_di)) \
 	/ (2.0 * pow(obtain_vecsize(d_n), 2));
-	t_mix_vec_all(&eye2its, 1, &ray->pos, t, &ray->unit_dir);
+	eye2its = vec_k1v1_k2v2(1, ray->pos, t, ray->unit_dir);
 	neg_vec(&bottom2its, &eye2its, &cyl->bottom_center);
 	if (0 <= dot_vec(&bottom2its, &cyl->axis) && \
 	dot_vec(&bottom2its, &cyl->axis) <= cyl->height && t >= 0)

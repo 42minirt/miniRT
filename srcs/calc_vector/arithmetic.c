@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 23:11:11 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 19:32:42 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	calc_outerproduct(t_vec *tgt_vec, t_vec *v1, t_vec *v2)
 	);
 }
 
-void	t_mix_vec_all(t_vec *tgt_vec, double t1, \
-t_vec *v1, double t2, t_vec *v2)
-{
-	setvec(tgt_vec, \
-	t1 * v1->x + t2 * v2->x, \
-	t1 * v1->y + t2 * v2->y, \
-	t1 * v1->z + t2 * v2->z);
-}
+// void	t_mix_vec_all(t_vec *tgt_vec, double t1,
+// t_vec *v1, double t2, t_vec *v2)
+// {
+// 	setvec(tgt_vec,
+// 	t1 * v1->x + t2 * v2->x,
+// 	t1 * v1->y + t2 * v2->y,
+// 	t1 * v1->z + t2 * v2->z);
+// }

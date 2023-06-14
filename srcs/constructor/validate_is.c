@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 19:33:24 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ bool	is_ratio_in_range(double ratio)
 bool	is_fov_in_range(double fov_degree)
 {
 	return (FOV_DEG_MIN < fov_degree && fov_degree < FOV_DEG_MAX);
-//	return (FOV_DEG_MIN <= fov_degree && fov_degree <= FOV_DEG_MAX);
 }
 
 bool	is_angle_in_range(double angle_degree)

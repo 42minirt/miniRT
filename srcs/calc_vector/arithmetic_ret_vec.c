@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:34:45 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 19:31:54 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ t_vec	vec_k1v1_k2v2(double k1, t_vec v1, double k2, t_vec v2)
 {
 	t_vec	ret;
 
-	t_mix_vec_all(&ret, k1, &v1, k2, &v2);
+	setvec(&ret, \
+	k1 * v1.x + k2 * v2.x, \
+	k1 * v1.y + k2 * v2.y, \
+	k1 * v1.z + k2 * v2.z);
 	return (ret);
 }
