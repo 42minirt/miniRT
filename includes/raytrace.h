@@ -92,4 +92,27 @@ bool			is_obj_btw_pos_light(t_scene_info *scene, \
 /* get_its_pos_img_color */
 t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p);
 
+
+//一旦ここに置いとく
+void			outerproduct_ready(t_vec *d_n_oupro, \
+									t_vec *ac_n_oupro, \
+									t_ray *eye2scr, \
+									t_cylinder *cylinder);
+
+double			check_intersection_t1(t_vec *d_n, \
+										t_vec *ac_n, \
+										t_cylinder *cyl, t_ray *ray);
+void			set_intersection_t1(t_intersection_point *itp, \
+										double t, \
+										t_cylinder *cyl, \
+										t_ray *ray);
+double			check_intersection_t2(t_vec *d_n, \
+										t_vec *ac_n, \
+										t_cylinder *cyl, \
+										t_ray *ray);
+void	set_intersection_t2(t_intersection_point *itp, \
+double t, t_cylinder *cyl, t_ray *ray);
+double	calc_discreminant(double A, double B, double C);
+
+
 #endif //RAYTRACE_H

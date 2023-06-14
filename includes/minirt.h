@@ -124,23 +124,6 @@
 /* main */
 int				draw(t_all_info info);
 
-/* intersection */
-double			set_itsp(t_plane *plane, \
-							double t, \
-							t_ray *ray, \
-							t_intersection_point *itsp);
-double			calc_intersect_with_sphere(t_obj *obj, \
-											t_ray ray, \
-											t_intersection_point *intp);
-double			calc_intersect_with_corn(t_obj *obj, \
-											t_ray ray, \
-											t_intersection_point *intp);
-void			solve_quadratic_equation(t_d_param *d_param);
-double			get_valid_distance(double t1, double t2);
-double			calc_discriminant(double a, double b, double c);
-t_corn_param	calc_inpt_param_of_corn(t_corn *c, t_ray ray);
-t_d_param		calc_d_param_of_corn(t_corn_param p);
-
 /* destructor */
 void			destruct_info(t_all_info *info);
 void			free_objs(void *content);
@@ -154,33 +137,5 @@ void			put_pixel(t_mlx_info *mlx_info, \
 void			mlx_put_image(t_all_info info);
 void			mlx_hooks(t_all_info *info);
 double			clamp(double num, double min, double max);
-
-//一旦ここに置いとく
-double			ch_degrrralation(t_intersection_point *itsp, \
-									t_vec *pos2lgt, \
-									t_vec *eye);
-void			outerproduct_ready(t_vec *d_n_oupro, \
-									t_vec *ac_n_oupro, \
-									t_ray *eye2scr, \
-									t_cylinder *cylinder);
-double			calc_cylinderratio(t_obj *obj, \
-									t_ray *eye2scr, \
-									t_intersection_point *itsp);
-double			check_intersection_t1(t_vec *d_n, \
-										t_vec *ac_n, \
-										t_cylinder *cyl, t_ray *ray);
-void			set_intersection_t1(t_intersection_point *itp, \
-										double t, \
-										t_cylinder *cyl, \
-										t_ray *ray);
-double			check_intersection_t2(t_vec *d_n, \
-										t_vec *ac_n, \
-										t_cylinder *cyl, \
-										t_ray *ray);
-void	set_intersection_t2(t_intersection_point *itp, \
-double t, t_cylinder *cyl, t_ray *ray);
-double	calc_discreminant(double A, double B, double C);
-t_color	calc_specular_reflection(t_all_info *info, \
-t_intersection_point	*its_p, t_ray eye2screen);
 
 #endif

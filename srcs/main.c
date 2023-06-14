@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 static int	validate_argv(int argc, char **argv)
 {

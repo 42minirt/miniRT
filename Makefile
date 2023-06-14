@@ -126,7 +126,7 @@ SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 # RAYTRACE
 RAYTRACE_DIR	= srcs/raytrace
 RAYTRACE_SRC	= calc_intersection/calcratio_cylinder.c \
-				  calc_intersection/calcratio_cylindeor_helper.c \
+				  calc_intersection/calcratio_cylinder_helper.c \
 				  calc_intersection/calcratio_plane.c \
 				  calc_intersection/intersection_helper.c \
 				  calc_intersection/intersection_with_corn.c \
@@ -232,7 +232,7 @@ all				: $(NAME)
 $(NAME)			: $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $(OBJS) $(LIBS) $(LFLAGS)
+	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $^ $(LIBS) $(LFLAGS)
 
 
 $(OBJ_DIR)/%.o : %.c includes
