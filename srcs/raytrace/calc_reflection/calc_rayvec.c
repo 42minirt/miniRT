@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "minirt.h"
 
 static double	calc_eye2scrcen_distance(t_camera_info *camera_info)
 {

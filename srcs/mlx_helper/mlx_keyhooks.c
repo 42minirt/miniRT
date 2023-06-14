@@ -14,7 +14,7 @@
 
 static int	close_window(void *mlx)
 {
-	printf("Bye...\n");
+	printf("Good bye\n");
 	mlx_loop_end(mlx);
 	return (0);
 }
