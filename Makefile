@@ -116,11 +116,19 @@ SRC				+= $(addprefix $(MATRIX_DIR)/, $(MATRIX_SRC))
 #----------------------------------------------------
 # MLX_HELPER
 MLX_HELPER		= srcs/mlx_helper
-MLX_HELPER_SRS	= mlx_pixcel_put.c \
+MLX_HELPER_SRC	= mlx_pixcel_put.c \
 				  mlx_keyhooks.c \
 				  mlx_put_image.c
 
-SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
+SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRC))
+
+#----------------------------------------------------
+# MLX_HELPER
+PRE_CHECK		= srcs/pre_check_conflict
+PRE_CHECK_SRC	= conflict_ch.c \
+				  conflict_ch_obj.c
+
+SRC				+= $(addprefix $(PRE_CHECK)/, $(PRE_CHECK_SRC))
 
 #----------------------------------------------------
 # RAYTRACE

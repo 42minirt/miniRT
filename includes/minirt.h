@@ -129,6 +129,13 @@ void			destruct_info(t_all_info *info);
 void			free_objs(void *content);
 void			free_lights(void *content);
 
+/* conflict_ch */
+bool			conflict_ch(t_all_info *info);
+bool			ch_conflict_spere(t_sphere obj, t_light	*light_info);
+bool			ch_conflict_plane(t_plane obj, t_light *light_info);
+bool			ch_conflict_cylinder(t_cylinder obj, t_light *light_info);
+bool			ch_conflict_corn(t_corn obj, t_light *light_info);
+
 /* mlx helper */
 void			put_pixel(t_mlx_info *mlx_info, \
 							size_t x, \

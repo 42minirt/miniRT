@@ -41,6 +41,12 @@ int	main(int argc, char **argv)
 		destruct_info(&info);
 		return (EXIT_FAILURE);
 	}
+	if (conflict_ch(&info))
+	{
+		destruct_info(&info);
+		ft_dprintf(STDERR_FILENO, "[Error] Light and Obj overlap !\n");
+		return (1);
+	}
 	mlx_hooks(&info);
 	mlx_loop(info.mlx_info->mlx);
 	destruct_info(&info);
