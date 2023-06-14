@@ -58,13 +58,11 @@ static t_parse_res	init_scene_and_camera(t_all_info *all_info, \
 	result = validate_camera(all_info->camera_info);
 	if (result != PASS)
 		return (result);
-	debug_print_config(all_info);
 	update_scene_config(all_info->scene_info);
 	update_camera_config(all_info->camera_info);
-	printf("\n  [DEBUG] vvvvv update vvvvv \n");
-	debug_print_config(all_info);
 	return (result);
 }
+//debug_print_config(all_info);
 
 static int	put_err_ret_failure(char *err)
 {

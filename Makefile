@@ -32,34 +32,34 @@ SRCS			= $(addprefix $(SRC_DIR)/, $(SRC))
 # CONSTRUCTOR
 CONSTRUCTOR_DIR	= srcs/constructor
 CONSTRUCTOR_SRC	= constructor.c \
-				  ft_strtod.c \
-				  ft_strtol.c \
-				  get_config.c \
-				  get_config_of_ambient.c \
-				  get_config_of_camera.c \
-				  get_config_of_each_obj.c \
-				  get_config_of_lights.c \
-				  get_config_of_objects.c \
-				  get_image_data_from_ppm.c \
-				  get_image_texture.c \
-				  get_bonus_config_of_obj.c \
-				  parsing_config.c \
-				  parsing_digits.c \
-				  parsing_helper.c \
-				  parsing_id_cnt.c \
-				  parsing_ppm.c \
-				  parsing_ppm_each_line.c \
-				  update_camera_config.c \
-				  update_scene_config.c \
-				  update_scene_config_each_obj.c \
-				  update_scene_config_light.c \
-				  validate_config.c \
-				  validate_config_color.c \
-				  validate_config_shape.c \
-				  validate_config_light.c \
-				  validate_filename.c \
-				  validate_is_struct.c \
-				  validate_is_num.c
+				  parse/ft_strtod.c \
+				  parse/ft_strtol.c \
+				  parse/get_bonus_config_of_obj.c \
+				  parse/get_config.c \
+				  parse/get_config_of_ambient.c \
+				  parse/get_config_of_camera.c \
+				  parse/get_config_of_each_obj.c \
+				  parse/get_config_of_lights.c \
+				  parse/get_config_of_objects.c \
+				  parse/get_image_data_from_ppm.c \
+				  parse/get_image_texture.c \
+				  parse/parsing_config.c \
+				  parse/parsing_digits.c \
+				  parse/parsing_helper.c \
+				  parse/parsing_id_cnt.c \
+				  parse/parsing_ppm.c \
+				  parse/parsing_ppm_each_line.c \
+				  update/update_camera_config.c \
+				  update/update_scene_config.c \
+				  update/update_scene_config_each_obj.c \
+				  update/update_scene_config_light.c \
+				  validate/validate_config.c \
+				  validate/validate_config_color.c \
+				  validate/validate_config_light.c \
+				  validate/validate_config_shape.c \
+				  validate/validate_filename.c \
+				  validate/validate_is_num.c \
+				  validate/validate_is_struct.c
 
 SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
@@ -89,25 +89,25 @@ SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 #----------------------------------------------------
 # RAYTRACE
 RAYTRACE_DIR	= srcs/raytrace
-RAYTRACE_SRC	= calc_ambient_reflection.c \
-				  calc_rayvec.c \
-				  calc_specular_reflection.c \
-				  calc_perfect_reflection.c \
-				  calc_diffuse_reflection.c \
-				  calc_diffuse_reflection_param.c \
-				  get_checker_ref_color.c \
-				  get_image_ref_color.c \
-				  get_tangent_coordinate_map.c \
-				  intersection_helper.c \
-				  intersection_with_corn.c \
-				  intersection_with_corn_calc_param.c \
-				  intersection_with_sphere.c \
-				  is_condition.c \
-				  raytrace.c \
-				  handle_normal.c \
-				  calc_ratio/calcratio_cylinder.c \
-				  calc_ratio/calcratio_cylinder_helper.c \
-				  calc_ratio/calcratio_plane.c
+RAYTRACE_SRC	= calc_intersection/calcratio_cylinder.c \
+				  calc_intersection/calcratio_cylindeor_helper.c \
+				  calc_intersection/calcratio_plane.c \
+				  calc_intersection/intersection_helper.c \
+				  calc_intersection/intersection_with_corn.c \
+				  calc_intersection/intersection_with_corn_calc_param.c \
+				  calc_intersection/intersection_with_sphere.c \
+				  calc_reflection/calc_ambient_reflection.c \
+				  calc_reflection/calc_diffuse_reflection.c \
+				  calc_reflection/calc_diffuse_reflection_param.c \
+				  calc_reflection/calc_perfect_reflection.c \
+				  calc_reflection/calc_rayvec.c \
+				  calc_reflection/calc_specular_reflection.c \
+				  calc_reflection/get_checker_ref_color.c \
+				  calc_reflection/get_image_ref_color.c \
+				  calc_reflection/get_tangent_coordinate_map.c \
+				  calc_reflection/handle_normal.c \
+				  calc_reflection/is_condition.c \
+				  raytrace.c
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
 
