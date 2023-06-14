@@ -1,0 +1,11 @@
+# spot light
+# SL: Spotlight  Light_point(xyz)       normalized_orientation_vec[-1,1]   light_brightness_ratio[0,1]   angle[0-90]   RGB[0,255]
+
+A   0.1                                            255, 255, 255
+C   0,0,-10        0, 0, 1   40
+
+#L   10,10,-10                        1.0           255,255,255
+SL   0, 5, 0       0, -1, 1          0.6   30.0    000,255,000
+
+pl   0, -1, 0      0, 1, 0                         150,150,150
+sp   0,  0, 5                       1              200,200,200

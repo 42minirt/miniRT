@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "raytrace.h"
+#include "minirt.h"
 
 static double	calc_intersection(t_obj *obj, \
-t_ray eye2screen, t_intersection_point *tmp_itsp)
+									t_ray eye2screen, \
+									t_intersection_point *tmp_itsp)
 {
 	if (is_equal_strings(obj->id_str, ID_SPHERE))
 		return (calc_intersect_with_sphere(obj, eye2screen, tmp_itsp));
@@ -27,7 +29,8 @@ t_ray eye2screen, t_intersection_point *tmp_itsp)
 }
 
 bool	check_intersection(t_scene_info *scene, \
-t_ray eye2screen, t_intersection_point *its_p)
+							t_ray eye2screen, \
+							t_intersection_point *its_p)
 {
 	double					ret_t;
 	double					tmp_t;
@@ -39,9 +42,8 @@ t_ray eye2screen, t_intersection_point *its_p)
 	obj_node = scene->objs;
 	while (obj_node != NULL)
 	{
-		tmp_t = calc_intersection(obj_node->content, \
-		eye2screen, &tmp_itsp);
-		if (tmp_t - 0.0 > EPSIRON && tmp_t < ret_t)
+		tmp_t = calc_intersection(obj_node->content, eye2screen, &tmp_itsp);
+		if (tmp_t > 0.0 && tmp_t < ret_t)
 		{
 			ret_t = tmp_t;
 			nearest_itsp = tmp_itsp;
@@ -68,7 +70,7 @@ t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	is_intersect = check_intersection(info->scene_info, eye2screen, &its_p);
 	if (is_intersect == false)
 		return (ret_color);
-	its_p.normal = get_pl_drawable_normal(its_p, eye2screen.unit_dir);
+	its_p.normal = get_pl_sp_drawable_normal(its_p, eye2screen.unit_dir);
 	ret_color = calc_ambient_reflection(info->scene_info, its_p);
 	ret_color = color_add(ret_color, \
 	calc_diffuse_reflection(info->scene_info, its_p, eye2screen));

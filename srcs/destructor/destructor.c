@@ -40,8 +40,12 @@ void	free_lights(void *content)
 
 static void	free_scene(t_scene_info *scene)
 {
-	ft_lstclear(&scene->lights, free_lights);
-	ft_lstclear(&scene->objs, free_objs);
+	if (!scene)
+		return ;
+	if (scene->lights)
+		ft_lstclear(&scene->lights, free_lights);
+	if (scene->objs)
+		ft_lstclear(&scene->objs, free_objs);
 	x_free_1d_alloc((void **)&scene);
 }
 
@@ -49,9 +53,12 @@ static void	free_mlx(t_mlx_info *mlx)
 {
 	if (!mlx)
 		return ;
-	mlx_destroy_image(mlx->mlx, mlx->img);
-	mlx_destroy_window(mlx->mlx, mlx->win);
-	mlx_destroy_display(mlx->mlx);
+	if (mlx->mlx && mlx->img)
+		mlx_destroy_image(mlx->mlx, mlx->img);
+	if (mlx->mlx && mlx->win)
+		mlx_destroy_window(mlx->mlx, mlx->win);
+	if (mlx->mlx)
+		mlx_destroy_display(mlx->mlx);
 	x_free_1d_alloc((void **)&mlx->mlx);
 	x_free_1d_alloc((void **)&mlx);
 }

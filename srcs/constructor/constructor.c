@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 23:48:37 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 20:55:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,17 @@ static t_parse_res	init_scene_and_camera(t_all_info *all_info, \
 	result = validate_camera(all_info->camera_info);
 	if (result != PASS)
 		return (result);
-	debug_print_config(all_info);
 	update_scene_config(all_info->scene_info);
 	update_camera_config(all_info->camera_info);
-	printf("\n  [DEBUG] vvvvv update vvvvv \n");
-	debug_print_config(all_info);
+	//debug_print_config(all_info);
 	return (result);
+}
+// debug_print_config(all_info);
+
+static int	put_err_ret_failure(char *err)
+{
+	ft_dprintf(STDERR_FILENO, "Error\n : %s\n", err);
+	return (FAILURE);
 }
 
 int	construct_info(t_all_info *all_info, const char *rt_path)
@@ -71,15 +76,9 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 	t_parse_res	result;
 
 	if (alloc_info_ptr(all_info) == FAILURE)
-	{
-		ft_dprintf(STDERR_FILENO, "Error\n : Failure in init memory allocate\n");
-		return (FAILURE);
-	}
+		return (put_err_ret_failure("Failure in init memory allocate"));
 	if (init_mlx(all_info->mlx_info) == FAILURE)
-	{
-		ft_dprintf(STDERR_FILENO, "Error\n : Failure in init mlx\n");
-		return (FAILURE);
-	}
+		return (put_err_ret_failure("Failure in init minilibx"));
 	result = init_scene_and_camera(all_info, rt_path);
 	if (result != PASS)
 	{
@@ -88,6 +87,6 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 		get_parse_result_char(result));
 		return (FAILURE);
 	}
-	printf("[Parsing config] : %s\n", get_parse_result_char(result));
+	printf("[Load %s] : %s\n", rt_path, get_parse_result_char(result));
 	return (SUCCESS);
 }

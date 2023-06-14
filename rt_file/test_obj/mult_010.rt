@@ -1,0 +1,8 @@
+A   0.1                                                   255, 255, 255
+C   0,1,-5         0, -0.1, 1       100
+
+L   5, 2, -5                     1.0                     255,255,255
+
+sp   0, 1, 0                           2.0              255,0,0        image "img/1k_earth.ppm"       "img/1k_earth_normal.ppm"
+
+pl   0, 0 , 0             0, 1, 0                        255,150,150     image ""                       "img/normalmap_example.ppm"

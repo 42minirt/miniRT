@@ -1,0 +1,22 @@
+A   0.1                                                 255, 255, 255
+
+C   0,2,-10        0, -0.2, 1   50
+# C   0,-5,-5        0, 1, 1   120
+
+L    0, 10,-5                               1.0            255,255,255
+# L   10,-10,-5                               1.0            255,0,255
+# L   0, 0,0                               1.0               0,255,0
+
+pl     0, -1, 0        0, 1, 0                             150,150,150     image ""             "img/normalmap_example.ppm"
+
+pl     -5, -1, 0        1, 1, -1                           150,150,150     image "img/cat.ppm"  ""
+
+pl     0,  0, 5        0, 0, 1                            150,150,150     perfect_ref
+
+
+sp    0, 0 , 0                                1            255,  0,  0     image ""             "img/normalmap_example.ppm"
+
+sp    0, -0.5 , -3                            1            255,  0,  0     image "img/1k_earth.ppm"  "img/1k_earth_normal.ppm"
+
+cy    2, 0, -2        0,   1, 0.5         1.0   2          250,200,200     image ""              "img/normalmap_example.ppm"
+co    -2, 0, -2        0.2, 1, 0           2.0   2         250,200,200     image ""              "img/normalmap_example.ppm"

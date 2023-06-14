@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:02:34 by user              #+#    #+#             */
-/*   Updated: 2023/06/14 02:04:25 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 20:56:14 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 static int	validate_argv(int argc, char **argv)
 {
@@ -30,48 +30,6 @@ static int	validate_argv(int argc, char **argv)
 	return (SUCCESS);
 }
 
-t_ray	get_screen_vector(t_all_info info, size_t x, size_t y)
-{
-	t_vec	camera_pos_for_test;
-	t_vec	screen_pos;
-	t_ray	eye2screen;
-
-	(void)info;
-	camera_pos_for_test.x = 0.0;
-	camera_pos_for_test.y = 0.0;
-	camera_pos_for_test.z = -5.0;
-	screen_pos.x = 4.0 * (double)x / (WINDOW_WIDTH - 1.0) - 2.0;
-	screen_pos.y = -2.0 * (double)y / (WINDOW_HEIGHT - 1.0) + 1.0;
-	screen_pos.z = 0.0;
-	eye2screen.pos = camera_pos_for_test;
-	eye2screen.unit_dir = sub(screen_pos, camera_pos_for_test);
-	eye2screen.unit_dir = norm_vec(eye2screen.unit_dir);
-	return (eye2screen);
-}
-
-void	draw(t_all_info info)
-{
-	t_ray	eye2screen_xy;
-	t_color	color;
-	size_t	y;
-	size_t	x;
-
-	y = 0;
-	while (y < WINDOW_HEIGHT)
-	{
-		x = 0;
-		while (x < WINDOW_WIDTH)
-		{
-			color_set(&color, 0.0, 0.0, 0.0);
-			eye2screen_xy = red_rayvec(info.camera_info, (double)x, (double)y);
-			color = color_add(color, raytrace(&info, eye2screen_xy));
-			put_pixel(info.mlx_info, x, y, color);
-			x++;
-		}
-		y++;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_all_info	info;
@@ -83,10 +41,13 @@ int	main(int argc, char **argv)
 		destruct_info(&info);
 		return (EXIT_FAILURE);
 	}
-	draw(info);
-	mlx_put_image_to_window(info.mlx_info->mlx, \
-	info.mlx_info->win, info.mlx_info->img, 0, 0);
-	mlx_hooks(info.mlx_info);
+	if (conflict_ch(&info))
+	{
+		destruct_info(&info);
+		ft_dprintf(STDERR_FILENO, "[Error] Light and Obj overlap !\n");
+		return (1);
+	}
+	mlx_hooks(&info);
 	mlx_loop(info.mlx_info->mlx);
 	destruct_info(&info);
 	return (0);

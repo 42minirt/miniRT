@@ -38,3 +38,13 @@ t_color	init_color(double r, double g, double b)
 	color.b = b;
 	return (color);
 }
+
+t_color	init_color_hex(int hex)
+{
+	t_color	color;
+
+	color.r = (hex & RED_MASK) >> 16;
+	color.g = (hex & GREEN_MASK) >> 8;
+	color.b = hex & BLUE_MASK;
+	return (color);
+}

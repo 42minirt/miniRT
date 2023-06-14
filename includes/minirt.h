@@ -30,7 +30,6 @@
 # include "../libs/include/ft_string.h"
 
 # include "typedef.h"
-
 # include "color.h"
 # include "constructor.h"
 # include "debug.h"
@@ -51,12 +50,16 @@
 
 /********** Ray Trace Setting Const **********/
 // get_config_of_objects.c
-# define SPECULAR_SHININESS		(10.0) // tmp
-# define KA_COLOR				(255.0)
-# define KS_COLOR				(255.0)
-# define KF_COLOR				(255.0)
-# define INTENSITY_OF_AMBIENT	(0.1) // TODO: 0.1の根拠
-# define INTENSITY_OF_DIFFUSE	(1.0)
+# define SPECULAR_SHININESS		(8.0) // tmp
+# define KA_COLOR				(0xBBBBBB)
+# define KS_COLOR				(0x555555)
+# define KS_COLOR_PLANE			(0x222222)
+# define KF_COLOR				(0xFFFFFF)
+# define RED_MASK				(0xFF0000)
+# define GREEN_MASK				(0x00FF00)
+# define BLUE_MASK				(0x0000FF)
+# define INTENSITY_OF_AMBIENT	(0.1) // Ia TODO: 0.1の根拠
+# define INTENSITY_OF_DIFFUSE	(0.7) // Id
 
 /********** value **********/
 # define FOV_DEG_MIN	(0.0)
@@ -72,8 +75,13 @@
 # define PPM_RGB_UNIT	3
 # define CHECKER_U_FREQ	10
 # define CHECKER_V_FREQ	10
-# define PARSING_YET	(-1.0)
 # define BUMP_TO_NORMAL	(0.5)
+
+/********** ppm **********/
+# define PPM_X			3
+# define COLOR_MIN		0
+# define COLOR_MAX		255
+# define COMMENT_FLAG	'#'
 
 /********** string **********/
 # define OP_CHECKER_TEXTURE	"checker"
@@ -82,11 +90,12 @@
 
 /********** value **********/
 # define MAX_RECURSION		8
+# define COLOR_DATA_KIND	3
+# define PARSE_INIT			0
 
 /********** epsiron **********/
 # define EPSIRON 			(0.0000002)
-# define EPSILON_DIVISOR	(51200.0)
-# define MT_PERFECT_REFLECTION 666
+# define EPSILON_DIVISOR	(65536.0)
 
 /********** key hook **********/
 # define EVENT_DESTROY		33
@@ -97,7 +106,7 @@
 # define ID_AMBIENT		"A"
 # define ID_CAMERA		"C"
 # define ID_LIGHT		"L"
-# define ID_SPOTLIGHT	"sl"
+# define ID_SPOTLIGHT	"SL"
 # define ID_SPHERE		"sp"
 # define ID_PLANE		"pl"
 # define ID_CYLINDER	"cy"
@@ -112,81 +121,28 @@
 # define RT_EXTENSION		".rt"
 # define IMG_EXTENSION		".ppm"
 
-//単位ベクトル以外の情報に下記のように記載するのかどうか
-//1 unit_vec
-//2 size
-//3 vec
-/* nanika */
-
-t_color			backgroundcolor_init(void);
-void			colort_init_pointer(t_color *color);
-t_color			calc_color(t_scene_info *scene_info, t_ray eye2screen);
-void			color_add_pointer(t_color *tgt, t_color *t1, t_color *t2);
-// t_color			raytrace(t_all_info *info, t_ray eye2screen_xy);
-
-/* intersection */
-
-// double			calc_planeratio(t_obj *obj,
-// t_all_info *info, t_ray *ray, t_intersection_point *itsp);
-// double			calc_cylinderratio(t_obj
-// *obj, t_all_info *info, t_ray *eye2scr, t_intersection_point *tmp_itsp);
-double			set_itsp(t_plane *plane, \
-double t, t_ray *ray, t_intersection_point *itsp);
-
-double			calc_intersect_with_sphere(t_obj *obj, t_ray ray, \
-								t_intersection_point *intp);
-double			calc_intersect_with_corn(t_obj *obj, t_ray ray, \
-								t_intersection_point *intp);
-void			solve_quadratic_equation(t_d_param *d_param);
-double			get_valid_distance(double t1, double t2);
-double			calc_discriminant(double a, double b, double c);
-t_corn_param	calc_inpt_param_of_corn(t_corn *c, t_ray ray);
-t_d_param		calc_d_param_of_corn(t_corn_param p);
+/* main */
+int				draw(t_all_info info);
 
 /* destructor */
 void			destruct_info(t_all_info *info);
 void			free_objs(void *content);
 void			free_lights(void *content);
 
+/* conflict_ch */
+bool			conflict_ch(t_all_info *info);
+bool			ch_conflict_spere(t_sphere obj, t_light	*light_info);
+bool			ch_conflict_plane(t_plane obj, t_light *light_info);
+bool			ch_conflict_cylinder(t_cylinder obj, t_light *light_info);
+bool			ch_conflict_corn(t_corn obj, t_light *light_info);
+
 /* mlx helper */
-
-void			put_pixel(t_mlx_info \
-*mlx_info, size_t x, size_t y, t_color color);
-void			mlx_hooks(t_mlx_info *mlx_info);
-
-//一旦ここに置いとく
-double			ch_degrrralation(t_intersection_point *itsp, \
-t_vec *pos2lgt, t_vec *eye);
-void	outerproduct_ready(t_vec *d_n_oupro, t_vec *ac_n_oupro, \
-t_ray *eye2scr, t_cylinder *cylinder);
-double	calc_cylinderratio(t_obj *obj, t_ray *eye2scr, \
-t_intersection_point *itsp);
-double	check_intersection_t1(t_vec *d_n, t_vec *ac_n, \
-t_cylinder *cyl, t_ray *ray);
-void	set_intersection_t1(t_intersection_point *itp, \
-double t, t_cylinder *cyl, t_ray *ray);
-double	check_intersection_t2(t_vec *d_n, t_vec *ac_n, \
-t_cylinder *cyl, t_ray *ray);
-void	set_intersection_t2(t_intersection_point *itp, \
-double t, t_cylinder *cyl, t_ray *ray);
-double	calc_discreminant(double A, double B, double C);
-t_color	calc_specref(t_all_info *info, \
-t_intersection_point	*its_p, t_ray eye2screen, t_color color);
-t_color	calc_specular_reflection(t_all_info *info, \
-t_intersection_point	*its_p, t_ray eye2screen);
-void	calc_specrefhelper(t_color *color, double v_r, \
-t_light *light_info, t_obj_color obj_color);
-double	ch_degrrralation(t_intersection_point *itsp, t_vec *pos2lgt, t_vec *eye);
-void	calc_spec_color(t_color *color, double v_r, \
-t_light *light_info, t_obj_color obj_color);
-double	calc_v_r(double n_l, t_intersection_point *its_p, \
-t_vec dir_pos2lgt, t_ray *eye2screen);
-
-// t_color			calc_diffuse_reflection(t_all_info info,
-// t_intersection_point its_p, t_ray eye2screen);
-// t_color			calc_specular_reflection(t_all_info info,
-// t_intersection_point its_p, t_ray eye2screen);
-// t_color			calc_perfect_reflection(t_all_info info,
-// t_intersection_point its_p, t_ray eye2screen);
+void			put_pixel(t_mlx_info *mlx_info, \
+							size_t x, \
+							size_t y, \
+							t_color color);
+void			mlx_put_image(t_all_info info);
+void			mlx_hooks(t_all_info *info);
+double			clamp(double num, double min, double max);
 
 #endif

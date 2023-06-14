@@ -49,6 +49,7 @@ typedef struct s_basis_vec_local		t_basis_local;
 typedef struct s_texture_map			t_tangetnt_map;
 typedef struct s_map_idx				t_map_idx;
 typedef struct s_id_cnt					t_id_cnt;
+typedef struct s_ppm_param				t_ppm_param;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -66,6 +67,7 @@ enum	e_parse_result
 	ERROR_MISSING_ID = 18,
 	ERROR_INVALID_PPM_FORMAT = 19,
 	ERROR_INVALID_DELIMITER = 20,
+	ERROR_INVALID_PATH = 21,
 };
 
 //////////////////////////////////////////////////
@@ -91,12 +93,11 @@ struct s_light
 {
 	const char		*id_type;
 	t_vec			point;
-	t_vec			direction;
 	double			brightness;
 	t_color			light_color;
+	t_vec			sl_direction;
 	double			sl_angle;
 	double			sl_angle_half;
-	t_vec			sl_dir;
 };
 
 //---------------------------------------------
@@ -133,7 +134,7 @@ struct s_corn_shape
 	double	height;
 };
 
-union u_shape_data // sphere or plane
+union u_shape_data
 {
 	t_plane		plane;
 	t_sphere	sphere;
@@ -151,7 +152,6 @@ struct	s_img
 	int		*data;
 };
 
-// init: init_obj() in get_config_of_objects.c
 struct s_obj_color
 {
 	t_color	ka;
@@ -160,7 +160,6 @@ struct s_obj_color
 	double	shininess;
 	double	ia;
 	double	id;
-	double	is;
 	bool	is_perfect_ref;
 	t_color	kf;
 	bool	is_checker;
@@ -171,26 +170,12 @@ struct s_obj_color
 	t_img	bump_data;
 };
 
-// ambient ref	// fix(0.1, 0.1, 0.1)
-// diffuse ref	// rf_file
-// specular ref	// fix (1.0, 1.0, 1.0)
-// alpha, fix
-// alpha, fix
-// ia
-// id
-// is
-// todo: ia, id, is は light依存？
-//is_perfect_ref;	// init:false
-// kf kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
-// is_checker;		// init:false
-
 struct s_obj
 {
 	const char		*id_str;
 	t_shape_data	shape_data;
 	t_obj_color		obj_color;
 };
-//	t_shape_type	type; //shere or ... 不要？
 
 //---------------------------------------------
 
@@ -222,9 +207,6 @@ struct s_scene_info
 	t_list	*objs;
 };
 
-// t_list	*lights; //content: light;
-// t_list	*objs; //content : obj;
-
 struct s_camera_info
 {
 	t_vec	position;
@@ -232,11 +214,6 @@ struct s_camera_info
 	double	fov_deg;
 	t_ray	camera;
 };
-
-// t_vec	position;
-// t_vec	direction;
-// double	fov_deg;	//init:-1
-// t_ray	camera;	//vec or matrix
 
 struct s_all_info
 {
@@ -255,11 +232,6 @@ struct s_intersection_point
 	t_obj	*obj;
 };
 
-// double	distance;	// 交点から目までの距離　tの値　元となるベクトルが単位ベクトルがtはサイズと重なる
-// 	t_vec	position;	// 交点の位置ベクトル
-// 	t_vec	normal;		// 交点における物体表面の法線ベクトル
-// 	t_obj	*obj;
-
 struct s_discriminant_param
 {
 	double	a;
@@ -275,7 +247,6 @@ struct s_ints_param_of_corn
 	t_vec	vec_origin2pe;
 	t_vec	vec_cross_de_n;
 	t_vec	vec_cross_origin2pe_n;
-	t_vec	vec_two_x_cross_de_n;
 	t_vec	vec_n;
 	double	ratio_r_h;
 	double	half_of_vertex_angle;
@@ -285,35 +256,16 @@ struct s_ints_param_of_corn
 	double	norm_cross_origin2pe_x_n;
 };
 
-// <<<<<<< HEAD
-// 	t_vec	pe_po;
-// 	t_vec	cross_de_n;
-// 	t_vec	cross_pepo_n;
-// 	t_vec	two_x_cross_de_n;
-// 	t_vec	inv_axis;
-// =======　不明
-
 struct s_corn_ints
 {
 	t_vec	vec_pos;
 	t_vec	vec_origin2pos;
-	t_vec	vec_norm_origin2pos;
 	t_vec	vec_normal;
 	double	h;
 };
 
-// <<<<<<< HEAD
-// 	t_vec	ti_d;
-// 	t_vec	pos;
-// 	t_vec	pos_po;
-// 	t_vec	norm_pos_po;
-// 	t_vec	normal;
-// 	double	h;
-// =======　不明
-
 struct s_calc_diffuse_ref_param
 {
-	t_vec					vec_normal;
 	t_vec					vec_pos2light;
 	t_vec					unit_pos2light;
 	t_vec					unit_light2pos;
@@ -346,6 +298,15 @@ struct s_id_cnt
 	int	plane_cnt;
 	int	cylinder_cnt;
 	int	corn_cnt;
+};
+
+struct s_ppm_param
+{
+	int		px;
+	int		color_range;
+	size_t	img_pixel;
+	size_t	file_col;
+	size_t	data_idx;
 };
 
 #endif //TYPEDEF_H
