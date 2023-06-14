@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:39:36 by takira            #+#    #+#             */
-/*   Updated: 2023/05/26 12:27:36 by user             ###   ########.fr       */
+/*   Updated: 2023/06/12 18:05:03 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ bool			is_obj_bump_texture(t_obj_color obj_color);
 bool			is_obj_image_texture(t_obj_color obj_color);
 bool			is_obj_perfect_ref(t_obj_color obj_color);
 bool			is_obj_checker(t_obj_color obj_color);
-bool			is_obj_exists_between_itspos_and_light(t_scene_info *scene, \
+bool			is_obj_btw_pos_light(t_scene_info *scene, \
 														t_vec pos, \
 														t_vec pos2light);
 

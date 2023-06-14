@@ -6,15 +6,15 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:55:01 by user              #+#    #+#             */
-/*   Updated: 2023/05/28 21:55:09 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 01:55:39 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-//intersectionが存在するかとともに、存在していればintersectionの情報を格納する
-
-static double	calc_intersection(t_obj *obj, t_ray eye2screen, t_intersection_point *tmp_itsp)
+static double	calc_intersection(t_obj *obj, \
+									t_ray eye2screen, \
+									t_intersection_point *tmp_itsp)
 {
 	if (is_equal_strings(obj->id_str, ID_SPHERE))
 		return (calc_intersect_with_sphere(obj, eye2screen, tmp_itsp));
@@ -27,7 +27,9 @@ static double	calc_intersection(t_obj *obj, t_ray eye2screen, t_intersection_poi
 	return (-1.0);
 }
 
-bool	check_intersection(t_scene_info *scene, t_ray eye2screen, t_intersection_point *its_p)
+bool	check_intersection(t_scene_info *scene, \
+							t_ray eye2screen, \
+							t_intersection_point *its_p)
 {
 	double					ret_t;
 	double					tmp_t;
@@ -60,21 +62,22 @@ t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	t_color					ret_color;
 	t_intersection_point	its_p;
 
-	counter++;	// tmp
+	counter++;
 	color_set(&ret_color, 0.0, 0.0, 0.0);
 	if (counter > MAX_RECURSION)
 		return (ret_color);
-
-	// 交点判定
 	is_intersect = check_intersection(info->scene_info, eye2screen, &its_p);
-    if (is_intersect == false)
+	if (is_intersect == false)
 		return (ret_color);
-	its_p.normal = get_pl_sp_drawable_normal(its_p, eye2screen.unit_dir);//ADD: handle plane normal, n or inv(n)
+	its_p.normal = get_pl_sp_drawable_normal(its_p, eye2screen.unit_dir);
 	ret_color = calc_ambient_reflection(info->scene_info, its_p);
-	ret_color = color_add(ret_color, calc_diffuse_reflection(info->scene_info, its_p, eye2screen));
-	ret_color = color_add(ret_color, calc_specular_reflection(info, &its_p, eye2screen));
+	ret_color = color_add(ret_color, \
+	calc_diffuse_reflection(info->scene_info, its_p, eye2screen));
+	ret_color = color_add(ret_color, \
+	calc_specular_reflection(info, &its_p, eye2screen));
 	if (its_p.obj->obj_color.is_perfect_ref == true)
-		ret_color = color_add(ret_color, calc_perfect_reflection(info, &its_p, eye2screen, counter));
+		ret_color = color_add(ret_color, \
+		calc_perfect_reflection(info, &its_p, eye2screen, counter));
 	return (ret_color);
 }
 

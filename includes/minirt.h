@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:19:09 by user              #+#    #+#             */
-/*   Updated: 2023/05/31 21:29:12 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 01:44:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,12 +126,15 @@ int				draw(t_all_info info);
 
 /* intersection */
 double			set_itsp(t_plane *plane, \
-double t, t_ray *ray, t_intersection_point *itsp);
-
-double			calc_intersect_with_sphere(t_obj *obj, t_ray ray, \
-								t_intersection_point *intp);
-double			calc_intersect_with_corn(t_obj *obj, t_ray ray, \
-								t_intersection_point *intp);
+							double t, \
+							t_ray *ray, \
+							t_intersection_point *itsp);
+double			calc_intersect_with_sphere(t_obj *obj, \
+											t_ray ray, \
+											t_intersection_point *intp);
+double			calc_intersect_with_corn(t_obj *obj, \
+											t_ray ray, \
+											t_intersection_point *intp);
 void			solve_quadratic_equation(t_d_param *d_param);
 double			get_valid_distance(double t1, double t2);
 double			calc_discriminant(double a, double b, double c);
@@ -148,7 +151,36 @@ void			put_pixel(t_mlx_info *mlx_info, \
 							size_t x, \
 							size_t y, \
 							t_color color);
+void			mlx_put_image(t_all_info info);
 void			mlx_hooks(t_all_info *info);
 double			clamp(double num, double min, double max);
+
+//一旦ここに置いとく
+double			ch_degrrralation(t_intersection_point *itsp, \
+									t_vec *pos2lgt, \
+									t_vec *eye);
+void			outerproduct_ready(t_vec *d_n_oupro, \
+									t_vec *ac_n_oupro, \
+									t_ray *eye2scr, \
+									t_cylinder *cylinder);
+double			calc_cylinderratio(t_obj *obj, \
+									t_ray *eye2scr, \
+									t_intersection_point *itsp);
+double			check_intersection_t1(t_vec *d_n, \
+										t_vec *ac_n, \
+										t_cylinder *cyl, t_ray *ray);
+void			set_intersection_t1(t_intersection_point *itp, \
+										double t, \
+										t_cylinder *cyl, \
+										t_ray *ray);
+double			check_intersection_t2(t_vec *d_n, \
+										t_vec *ac_n, \
+										t_cylinder *cyl, \
+										t_ray *ray);
+void	set_intersection_t2(t_intersection_point *itp, \
+double t, t_cylinder *cyl, t_ray *ray);
+double	calc_discreminant(double A, double B, double C);
+t_color	calc_specular_reflection(t_all_info *info, \
+t_intersection_point	*its_p, t_ray eye2screen);
 
 #endif

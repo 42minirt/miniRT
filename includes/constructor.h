@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:32:51 by user              #+#    #+#             */
-/*   Updated: 2023/05/21 18:32:48 by user             ###   ########.fr       */
+/*   Updated: 2023/06/12 18:03:48 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void		skip_isspece(const char *line, size_t *idx);
 void		skip_delimiter(const char *line, size_t *idx);
 void		skip_delimiter_and_cnt_comma(const char *line, \
 										size_t *idx, size_t *cnt);
-
 void		increment_idx_to_next_format(const char *line, \
 											size_t *idx, char *prev_str);
 char		*get_identifier_str(const char *line, size_t idx);

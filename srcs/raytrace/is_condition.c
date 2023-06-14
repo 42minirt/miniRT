@@ -6,13 +6,13 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 17:34:45 by takira            #+#    #+#             */
-/*   Updated: 2023/05/28 21:53:50 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 01:48:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-bool	is_obj_exists_between_itspos_and_light(t_scene_info *scene, \
+bool	is_obj_btw_pos_light(t_scene_info *scene, \
 												t_vec pos, \
 												t_vec pos2light)
 {

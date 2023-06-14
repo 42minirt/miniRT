@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getscreen_vec.c                                    :+:      :+:    :+:   */
+/*   mlx_pixcel_put.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 22:46:04 by user              #+#    #+#             */
-/*   Updated: 2023/05/22 10:27:40 by user             ###   ########.fr       */
+/*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
+/*   Updated: 2023/05/21 20:14:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-//todo:  後回し
-t_ray get_screen_vector(t_all_info info)
+void	mlx_put_image(t_all_info info)
 {
-	t_ray	ret;
-
-	(void)info;
-	return (ret);
+	mlx_put_image_to_window(info.mlx_info->mlx, \
+							info.mlx_info->win, \
+							info.mlx_info->img, \
+							0, \
+							0);
 }

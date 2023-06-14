@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:39:36 by takira            #+#    #+#             */
-/*   Updated: 2023/06/01 00:06:56 by user             ###   ########.fr       */
+/*   Updated: 2023/06/14 01:16:23 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ static t_color	calc_diffuse_ref_by_light(t_scene_info *scene, \
 
 	p = calc_diffuse_param(&its_p, &eye2screen, light);
 	ret_color = init_color_hex(0x000000);
-	if (is_obj_exists_between_itspos_and_light(scene, \
-												p.its_p.position, \
-												p.vec_pos2light))
+	if (is_obj_btw_pos_light(scene, p.its_p.position, p.vec_pos2light))
 		return (ret_color);
 	kd = p.its_p.obj->obj_color.kd;
 	if (is_obj_checker(its_p.obj->obj_color))

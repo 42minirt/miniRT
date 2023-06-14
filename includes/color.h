@@ -15,11 +15,10 @@
 
 # include "minirt.h"
 
-// color
-// t_color	color_mul_k1c1k2c2(t_color *c, double k1,
-// t_color *c1, double k2, t_color *c2);//引数が5つなので必要なければ消したい
-t_color	color_k1c1k2c2(double k1, t_color c1, \
-double k2, t_color c2);
+t_color	color_k1c1k2c2(double k1, \
+						t_color c1, \
+						double k2, \
+						t_color c2);
 t_color	color_k1c1(double k1, t_color c1);
 void	color_k1c1_pointer(t_color *col, double k1, t_color c1);
 t_color	color_add(t_color c1, t_color c2);

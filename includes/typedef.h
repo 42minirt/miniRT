@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:19:51 by takira            #+#    #+#             */
-/*   Updated: 2023/05/21 20:53:29 by user             ###   ########.fr       */
+/*   Updated: 2023/06/12 18:25:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ struct s_corn_shape
 	double	height;
 };
 
-union u_shape_data // sphere or plane
+union u_shape_data
 {
 	t_plane		plane;
 	t_sphere	sphere;
@@ -152,7 +152,6 @@ struct	s_img
 	int		*data;
 };
 
-// init: init_obj() in get_config_of_objects.c
 struct s_obj_color
 {
 	t_color	ka;
@@ -161,7 +160,6 @@ struct s_obj_color
 	double	shininess;
 	double	ia;
 	double	id;
-	double	is;
 	bool	is_perfect_ref;
 	t_color	kf;
 	bool	is_checker;
@@ -171,19 +169,6 @@ struct s_obj_color
 	bool	is_bump;
 	t_img	bump_data;
 };
-
-// ambient ref	// fix(0.1, 0.1, 0.1)
-// diffuse ref	// rf_file
-// specular ref	// fix (1.0, 1.0, 1.0)
-// alpha, fix
-// alpha, fix
-// ia
-// id
-// is
-// todo: ia, id, is は light依存？
-//is_perfect_ref;	// init:false
-// kf kf 完全鏡面反射光/屈折光係数RGB(1,1,1)で初期化
-// is_checker;		// init:false
 
 struct s_obj
 {
@@ -247,11 +232,6 @@ struct s_intersection_point
 	t_obj	*obj;
 };
 
-// double	distance;	// 交点から目までの距離　tの値　元となるベクトルが単位ベクトルがtはサイズと重なる
-// 	t_vec	position;	// 交点の位置ベクトル
-// 	t_vec	normal;		// 交点における物体表面の法線ベクトル
-// 	t_obj	*obj;
-
 struct s_discriminant_param
 {
 	double	a;
@@ -267,7 +247,6 @@ struct s_ints_param_of_corn
 	t_vec	vec_origin2pe;
 	t_vec	vec_cross_de_n;
 	t_vec	vec_cross_origin2pe_n;
-	t_vec	vec_two_x_cross_de_n;
 	t_vec	vec_n;
 	double	ratio_r_h;
 	double	half_of_vertex_angle;

@@ -71,10 +71,18 @@ DESTRUCTOR_SRC	= destructor.c
 SRC				+= $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_SRC))
 
 #----------------------------------------------------
+# DRAW
+DRAW_DIR		= srcs/draw
+DRAW_SRC		= draw.c
+
+SRC				+= $(addprefix $(DRAW_DIR)/, $(DRAW_SRC))
+
+#----------------------------------------------------
 # MLX_HELPER
 MLX_HELPER		= srcs/mlx_helper
 MLX_HELPER_SRS	= mlx_pixcel_put.c \
-				  mlx_keyhooks.c
+				  mlx_keyhooks.c \
+				  mlx_put_image.c
 
 SRC				+= $(addprefix $(MLX_HELPER)/, $(MLX_HELPER_SRS))
 
@@ -98,6 +106,7 @@ RAYTRACE_SRC	= calc_ambient_reflection.c \
 				  raytrace.c \
 				  handle_normal.c \
 				  calc_ratio/calcratio_cylinder.c \
+				  calc_ratio/calcratio_cylinder_helper.c \
 				  calc_ratio/calcratio_plane.c
 
 SRC				+= $(addprefix $(RAYTRACE_DIR)/, $(RAYTRACE_SRC))
@@ -116,7 +125,8 @@ VECTOR_DIR		= srcs/calc_vector
 VECTOR_SRC		= arithmetic.c \
 				  arithmetic_ret_vec.c \
 				  calc_vec.c \
-				  organize_vec.c
+				  organize_vec.c \
+				  organize_vec_2.c
 
 SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
 
