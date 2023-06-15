@@ -15,7 +15,7 @@
 static bool	conflict_ch_sameobj(t_obj *obj, t_vec check_pos)
 {
 	if (is_equal_strings(obj->id_str, ID_SPHERE))
-		return (ch_conflict_spere(obj->shape_data.sphere, check_pos));
+		return (ch_conflict_sphere(obj->shape_data.sphere, check_pos));
 	else if (is_equal_strings(obj->id_str, ID_PLANE))
 		return (ch_conflict_plane(obj->shape_data.plane, check_pos));
 	else if (is_equal_strings(obj->id_str, ID_CYLINDER))

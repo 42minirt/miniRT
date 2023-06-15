@@ -15,17 +15,17 @@
 
 #define TMPEPSIRON (0.00000000000512)
 
-bool	ch_conflict_spere(t_sphere obj, t_vec pos)
+bool	ch_conflict_sphere(t_sphere obj, t_vec pos)
 {
-	double	differ_size;
-	t_vec	tmp;
+	double	size_pos2center;
+	t_vec	pos2center;
 
-	neg_vec(&tmp, &pos, &obj.center);
-	differ_size = obtain_vecsize(&tmp);
+	neg_vec(&pos2center, &pos, &obj.center);
+	size_pos2center = obtain_vecsize(&pos2center);
 //	printf("obj(%f, %f, %f) vs pos(%f, %f, %f)\n",
 //		   obj.center.x,obj.center.y,obj.center.z,
 //		   pos.x, pos.y, pos.z);
-	if (differ_size - obj.radius - TMPEPSIRON < 0)
+	if (fabs(size_pos2center - obj.radius) <= (1.0 / EPSILON_DIVISOR))
 		return (true);
 	return (false);
 }
