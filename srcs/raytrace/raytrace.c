@@ -45,7 +45,7 @@ bool	check_intersection(t_scene_info *scene, \
 	while (obj_node != NULL)
 	{
 		tmp_t = calc_intersection(obj_node->content, eye2screen, &tmp_itsp);
-		if (tmp_t > 0.0 && tmp_t < ret_t)
+		if (0.0 < tmp_t && tmp_t < ret_t)
 		{
 			ret_t = tmp_t;
 			nearest_itsp = tmp_itsp;
