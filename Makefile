@@ -3,7 +3,6 @@
 #####################################################
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror -MMD -MP
-CPPFLAGS		= $(addprefix -I, $(INCLUDE_DIRS))
 
 ifdef WITH_LEAKS
 	CFLAGS 		+= -D LEAKS
@@ -207,14 +206,13 @@ X11_INCLUDE		= /usr/X11/include
 
 # ---------------------------------------------------
 # LIBS, LIBS_DIR ####################################
-LIBS_DIR 		= $(LIBFT_DIR) $(MLX_DIR) $(X11_DIR) $(X11_LIB)
+LIB_DIRS 		= $(LIBFT_DIR) $(MLX_DIR) $(X11_DIR) $(X11_LIB)
 
 ifeq ($(UNAME), Darwin)
-	LIBS_DIR 	+= /usr/X11R6/lib
+	LIB_DIRS 	+= /usr/X11R6/lib
 endif
 
-LFLAGS			= $(addprefix -L, $(LIBS_DIR))
-
+LFLAGS			= $(addprefix -L, $(LIB_DIRS))
 
 ifeq ($(UNAME), Darwin)
 	LIBS 		= -lft -lmlx_Darwin -lXext -lX11 -lm -framework OpenGL -framework AppKit
@@ -228,7 +226,7 @@ endif
 # INCLUDES ##########################################
 MINIRT_INCLUDE	= includes
 INCLUDE_DIRS	= $(MINIRT_INCLUDE) $(LIBFT_INCLUDE) $(MLX_DIR) $(X11_INCLUDE)
-
+INCLUDES		= $(addprefix -I, $(INCLUDE_DIRS))
 
 
 #####################################################
@@ -241,12 +239,12 @@ all				: $(NAME)
 $(NAME)			: $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $^ $(LIBS) $(LFLAGS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LIBS) $(LFLAGS)
 
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $$(dirname $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 .PHONY			: clean
 clean			:
