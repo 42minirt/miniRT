@@ -18,8 +18,7 @@
 /* intersection */
 bool			check_intersection(t_scene_info *scene, \
 									t_ray eye2screen, \
-									t_intersection_point *its_p, \
-									bool immediate_exit);
+									t_intersection_point *its_p);
 
 t_ray			red_rayvec(t_camera_info *camera_info, double x, double y);
 

@@ -27,7 +27,7 @@ bool	is_obj_btw_pos_light(t_scene_info *scene, \
 									1.0 / EPSILON_DIVISOR, norm_vec(pos2light));
 	shadow_ray.unit_dir = norm_vec(pos2light);
 	search_distance = norm(pos2light) - (1.0 / EPSILON_DIVISOR);
-	is_obj_exists = check_intersection(scene, shadow_ray, &tmp_its_p, false);
+	is_obj_exists = check_intersection(scene, shadow_ray, &tmp_its_p);
 	if (is_obj_exists && tmp_its_p.distance <= search_distance)
 		return (true);
 	return (false);

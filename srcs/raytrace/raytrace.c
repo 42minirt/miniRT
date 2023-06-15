@@ -31,8 +31,7 @@ static double	calc_intersection(t_obj *obj, \
 
 bool	check_intersection(t_scene_info *scene, \
 							t_ray eye2screen, \
-							t_intersection_point *its_p, \
-							bool immediate_exit)
+							t_intersection_point *its_p)
 {
 	double					ret_t;
 	double					tmp_t;
@@ -49,8 +48,6 @@ bool	check_intersection(t_scene_info *scene, \
 		{
 			ret_t = tmp_t;
 			nearest_itsp = tmp_itsp;
-			if (immediate_exit)
-				break ;
 		}
 		obj_node = obj_node->next;
 	}
@@ -72,7 +69,7 @@ t_color	recursive_raytrace(t_all_info *info, \
 	if (counter > MAX_RECURSION)
 		return (init_color_hex(0x000000));
 	is_intersect \
-		= check_intersection(info->scene_info, eye2screen, &its_pos, false);
+		= check_intersection(info->scene_info, eye2screen, &its_pos);
 	if (!is_intersect)
 		return (init_color_hex(0x000000));
 	its_pos.normal = get_pl_sp_drawable_normal(its_pos, eye2screen.unit_dir);
