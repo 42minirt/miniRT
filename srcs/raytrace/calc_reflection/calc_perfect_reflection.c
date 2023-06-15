@@ -51,7 +51,7 @@ t_color	calc_perfect_reflection(t_all_info *info, \
 	t_ray	refrect_ray;
 
 	color_set(&color, 0.0, 0.0, 0.0);
-	if (its_p->obj->obj_color.is_perfect_ref)
+	if (!its_p->obj->obj_color.is_perfect_ref)
 		return (color);
 	if (!calc_refrectvec(*its_p, eye2screen, &reverse_vec))
 		return (color);
