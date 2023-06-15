@@ -24,12 +24,12 @@ t_parse_res	get_config(const char *id_str, const char *line, t_all_info *all)
 	else if (streq(id_str, ID_AMBIENT))
 		result = get_config_of_ambient(line, all->scene_info);
 	else if (streq(id_str, ID_LIGHT) \
- || streq(id_str, ID_SPOTLIGHT))
+	|| streq(id_str, ID_SPOTLIGHT))
 		result = get_config_of_lights(line, all->scene_info, id_str);
 	else if (streq(id_str, ID_PLANE) \
- || streq(id_str, ID_SPHERE) \
- || streq(id_str, ID_CYLINDER) \
- || streq(id_str, ID_CORN))
+	|| streq(id_str, ID_SPHERE) \
+	|| streq(id_str, ID_CYLINDER) \
+	|| streq(id_str, ID_CORN))
 		result = get_config_of_objects(line, all->scene_info, id_str);
 	return (result);
 }

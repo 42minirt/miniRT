@@ -71,6 +71,7 @@ static t_color	calc_specref(t_scene_info *scene_info, \
 	t_list	*light;
 	t_light	*lgt_info;
 	t_vec	dir_pos2lgt;
+	t_vec	dir_pos2lgt_n;
 	double	v_r;
 
 	light = scene_info->lights;
@@ -78,12 +79,12 @@ static t_color	calc_specref(t_scene_info *scene_info, \
 	{
 		lgt_info = light->content;
 		neg_vec(&dir_pos2lgt, &lgt_info->point, &its_p->position);
-		dir_pos2lgt = norm_vec(dir_pos2lgt);
 		if (!is_obj_btw_pos_light(scene_info, its_p->position, dir_pos2lgt))
 		{
-			if (is_calc_specular(&dir_pos2lgt, lgt_info) == true)
+			dir_pos2lgt_n = norm_vec(dir_pos2lgt);
+			if (is_calc_specular(&dir_pos2lgt_n, lgt_info) == true)
 			{
-				v_r = calc_v_r(its_p, dir_pos2lgt, &eye2screen);
+				v_r = calc_v_r(its_p, dir_pos2lgt_n, &eye2screen);
 				if (v_r > 0.0)
 					calc_spec_col(&color, v_r, lgt_info, its_p->obj->obj_color);
 			}

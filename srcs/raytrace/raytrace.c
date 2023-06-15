@@ -61,16 +61,13 @@ t_color	recursive_raytrace(t_all_info *info, \
 							t_ray eye2screen, \
 							size_t counter)
 {
-	bool					is_intersect;
 	t_color					color;
 	t_intersection_point	its_pos;
 
 	counter++;
 	if (counter > MAX_RECURSION)
 		return (init_color_hex(0x000000));
-	is_intersect \
-		= check_intersection(info->scene_info, eye2screen, &its_pos);
-	if (!is_intersect)
+	if (!check_intersection(info->scene_info, eye2screen, &its_pos))
 		return (init_color_hex(0x000000));
 	its_pos.normal = get_pl_sp_drawable_normal(its_pos, eye2screen.unit_dir);
 	color = calc_ambient_reflection(info->scene_info, its_pos);
