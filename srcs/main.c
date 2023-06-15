@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 		destruct_info(&info);
 		return (EXIT_FAILURE);
 	}
-	if (conflict_ch(&info))
+	if (is_camera_and_light_overlap_with_obj(&info))
 	{
 		destruct_info(&info);
 		ft_dprintf(STDERR_FILENO, "%s\n : %s\n", MSG_ERROR, MSG_OVERLAP);
