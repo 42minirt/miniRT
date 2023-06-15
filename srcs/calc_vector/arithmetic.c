@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "minirt.h"
 
 void	add_vec(t_vec *sub, t_vec *v1, t_vec *v2)
 {
