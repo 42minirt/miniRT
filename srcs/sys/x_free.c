@@ -19,19 +19,3 @@ void	x_free_1d_alloc(void **alloc)
 	free(*alloc);
 	*alloc = NULL;
 }
-
-void	x_free_2d_alloc(void ***alloc)
-{
-	size_t	i;
-
-	if (!alloc)
-		return ;
-	i = 0;
-	while (*alloc && (*alloc)[i])
-	{
-		free((*alloc)[i]);
-		i++;
-	}
-	free(*alloc);
-	*alloc = NULL;
-}

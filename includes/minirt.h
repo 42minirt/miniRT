@@ -130,9 +130,9 @@
 # define MSG_ERR_CONFIG			"Failure in parsing config file"
 # define MSG_ERR_DIV_BY_ZERO	"division by zero in normalize."
 
-typedef struct s_all_info				t_all_info;
-typedef struct s_mlx_info				t_mlx_info;
-typedef struct s_color					t_color;
+typedef struct s_all_info	t_all_info;
+typedef struct s_mlx_info	t_mlx_info;
+typedef struct s_color		t_color;
 
 /* main */
 int				draw(t_all_info *info);

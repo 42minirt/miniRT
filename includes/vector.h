@@ -30,8 +30,6 @@ t_vec	norm_vec(t_vec vec);
 t_vec	vec_k1v1_k2v2(double k1, t_vec v1, double k2, t_vec v2);
 
 // calc
-// void	t_mix_vec_all(t_vec *tgt_vec, double t1,
-// 						t_vec *v1, double t2, t_vec *v2);
 void	normalize(t_vec *normal_vec, t_vec *normarized_vec);
 void	vector_scalar_product(t_vec *tgt_vec, double k, t_vec *v);
 t_vec	k_vec(double k, t_vec v); // k*vec
