@@ -78,7 +78,7 @@ static t_parse_res	init_scene_and_camera(t_all_info *all_info, \
 
 static int	put_err_ret_failure(char *err)
 {
-	ft_dprintf(STDERR_FILENO, "%s\n : %s\n", MSG_ERROR, err);
+	ft_dprintf(STDERR_FILENO, "%s : %s\n", MSG_ERROR, err);
 	return (FAILURE);
 }
 
@@ -94,10 +94,11 @@ int	construct_info(t_all_info *all_info, const char *rt_path)
 	if (result != PASS)
 	{
 		ft_dprintf(STDERR_FILENO, \
-		"%s\n : %s [%s]\n", \
+		"%s : %s [%s]\n", \
 		MSG_ERROR, MSG_ERR_CONFIG, get_parse_result_char(result));
 		return (FAILURE);
 	}
-	printf("[Load %s] : %s\n", rt_path, get_parse_result_char(result));
+	ft_dprintf(STDERR_FILENO, \
+	"[Load %s] : %s\n", rt_path, get_parse_result_char(result));
 	return (SUCCESS);
 }

@@ -65,26 +65,25 @@ t_color	recursive_raytrace(t_all_info *info, \
 							size_t counter)
 {
 	bool					is_intersect;
-	t_color					ret_color;
-	t_intersection_point	its_p;
+	t_color					color;
+	t_intersection_point	its_pos;
 
 	counter++;
-	color_set(&ret_color, 0.0, 0.0, 0.0);
 	if (counter > MAX_RECURSION)
-		return (ret_color);
-	is_intersect = check_intersection(info->scene_info, eye2screen, &its_p, false);
+		return (init_color_hex(0x000000));
+	is_intersect \
+		= check_intersection(info->scene_info, eye2screen, &its_pos, false);
 	if (!is_intersect)
-		return (ret_color);
-	its_p.normal = get_pl_sp_drawable_normal(its_p, eye2screen.unit_dir);
-	ret_color = calc_ambient_reflection(info->scene_info, its_p);
-	ret_color = color_add(ret_color, \
-	calc_diffuse_reflection(info->scene_info, its_p, eye2screen));
-	ret_color = color_add(ret_color, \
-	calc_specular_reflection(info, &its_p, eye2screen));
-	if (its_p.obj->obj_color.is_perfect_ref == true)
-		ret_color = color_add(ret_color, \
-		calc_perfect_reflection(info, &its_p, eye2screen, counter));
-	return (ret_color);
+		return (init_color_hex(0x000000));
+	its_pos.normal = get_pl_sp_drawable_normal(its_pos, eye2screen.unit_dir);
+	color = calc_ambient_reflection(info->scene_info, its_pos);
+	color = color_add(color, \
+		calc_diffuse_reflection(info->scene_info, its_pos, eye2screen));
+	color = color_add(color, \
+		calc_specular_reflection(info, &its_pos, eye2screen));
+	color = color_add(color, \
+		calc_perfect_reflection(info, &its_pos, eye2screen, counter));
+	return (color);
 }
 
 t_color	raytrace(t_all_info *info, t_ray eye2screen)

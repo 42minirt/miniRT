@@ -51,7 +51,9 @@ t_color	calc_perfect_reflection(t_all_info *info, \
 	t_ray	refrect_ray;
 
 	color_set(&color, 0.0, 0.0, 0.0);
-	if (false == calc_refrectvec(*its_p, eye2screen, &reverse_vec))
+	if (its_p->obj->obj_color.is_perfect_ref)
+		return (color);
+	if (!calc_refrectvec(*its_p, eye2screen, &reverse_vec))
 		return (color);
 	set_rayset(&refrect_ray, *its_p, reverse_vec);
 	return (recursive_raytrace(info, refrect_ray, counter));

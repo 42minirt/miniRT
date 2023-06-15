@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../libs/include/ft_printf.h"
 #include "vector.h"
 
 void	normalize(t_vec *normal_vec, t_vec *normarized_vec)
@@ -22,7 +23,7 @@ void	normalize(t_vec *normal_vec, t_vec *normarized_vec)
 		+ pow(normarized_vec->z, 2));
 	if (vec_size == 0.0)
 	{
-		printf("[Error] division by zero in normalize.\n");
+		ft_dprintf(STDERR_FILENO, "%s : %s\n", MSG_ERROR, MSG_ERR_DIV_BY_ZERO);
 		exit(1);
 	}
 	setvec(normal_vec, \

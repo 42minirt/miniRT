@@ -23,7 +23,7 @@ static int	validate_argv(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_dprintf(STDERR_FILENO, "%s\n : %s\n", MSG_ERROR, MSG_MISSING_ARG);
+		ft_dprintf(STDERR_FILENO, "%s : %s\n", MSG_ERROR, MSG_MISSING_ARG);
 		return (FAILURE);
 	}
 	rt_path = argv[1];

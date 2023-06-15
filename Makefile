@@ -272,6 +272,9 @@ sani			:
 norm			:
 	@norminette --version
 	norminette $(SRC_DIR) $(MINIRT_INCLUDE) $(LIBFT_DIR)
+	@ if [ $$? -eq 0 ]; then \
+		echo "\033[32mNORMINETTE OK\033[0m"; \
+	fi
 
 .PHONY			: all clean fclean re test norm bonus
 
