@@ -20,9 +20,9 @@
 // listに格納されているlight, objは list_clearでfreeされる
 static bool	is_free_needed(char *id_str, t_parse_res result)
 {
-	if (is_equal_strings(id_str, ID_CAMERA))
+	if (streq(id_str, ID_CAMERA))
 		return (true);
-	if (is_equal_strings(id_str, ID_AMBIENT))
+	if (streq(id_str, ID_AMBIENT))
 		return (true);
 	if (result != PASS)
 		return (true);

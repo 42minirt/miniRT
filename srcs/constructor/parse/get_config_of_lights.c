@@ -67,7 +67,7 @@ static t_parse_res	get_light_detail(const char *line, t_light *light)
 {
 	t_parse_res	parse_result;
 
-	if (is_equal_strings(light->id_type, ID_LIGHT))
+	if (streq(light->id_type, ID_LIGHT))
 		parse_result = get_pointlight_detail(line, light);
 	else
 		parse_result = get_spotlight_detail(line, light);

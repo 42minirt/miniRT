@@ -22,13 +22,13 @@ static void	update_config_ambient_color(t_scene_info *scene)
 
 static void	update_scene_each_obj(t_obj *obj)
 {
-	if (is_equal_strings(obj->id_str, ID_SPHERE))
+	if (streq(obj->id_str, ID_SPHERE))
 		update_scene_sphere_info(&obj->shape_data.sphere);
-	else if (is_equal_strings(obj->id_str, ID_PLANE))
+	else if (streq(obj->id_str, ID_PLANE))
 		update_scene_plane_info(&obj->shape_data.plane);
-	else if (is_equal_strings(obj->id_str, ID_CYLINDER))
+	else if (streq(obj->id_str, ID_CYLINDER))
 		update_scene_cylinder_info(&obj->shape_data.cylinder);
-	else if (is_equal_strings(obj->id_str, ID_CORN))
+	else if (streq(obj->id_str, ID_CORN))
 		update_scene_corn_info(&obj->shape_data.corn);
 }
 

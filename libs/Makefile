@@ -52,7 +52,7 @@ LIBFT_SRC	= string/str/ft_strlen.c \
 			  string/str/ft_striteri.c\
 			  string/str/ft_ispunct.c \
 			  string/str/is_in_str.c \
-			  string/str/is_equal_strings.c \
+			  string/str/streq.c \
 			  string/str/get_array_size.c \
 			  string/mem/ft_bzero.c \
 			  string/mem/ft_memset.c \

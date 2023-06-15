@@ -18,7 +18,7 @@ static void	get_checker_freq(t_obj *obj, int *freq_u, int *freq_v)
 {
 	*freq_u = CHECKER_U_FREQ;
 	*freq_v = CHECKER_V_FREQ;
-	if (is_equal_strings(obj->id_str, ID_PLANE))
+	if (streq(obj->id_str, ID_PLANE))
 	{
 		*freq_u /= 5;
 		*freq_v /= 5;

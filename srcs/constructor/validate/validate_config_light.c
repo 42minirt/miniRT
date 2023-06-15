@@ -48,7 +48,7 @@ static t_parse_res	validate_lights(t_light *light)
 {
 	t_parse_res	res;
 
-	if (is_equal_strings(light->id_type, ID_LIGHT))
+	if (streq(light->id_type, ID_LIGHT))
 		res = validate_pointlight(light);
 	else
 		res = validate_spotlight(light);

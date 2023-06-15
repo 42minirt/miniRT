@@ -38,7 +38,7 @@ void	update_config_lights(t_scene_info *scene)
 	while (node)
 	{
 		light = node->content;
-		if (is_equal_strings(light->id_type, ID_LIGHT))
+		if (streq(light->id_type, ID_LIGHT))
 			update_config_pointlight(light);
 		else
 			update_config_spotlight(light);

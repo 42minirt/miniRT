@@ -46,8 +46,8 @@ double	calc_dot_n_l(t_intersection_point itsp, t_ray ray, t_vec unit_pos2light)
 //ADD: handle plane and sphere normal, n or inv(n)
 t_vec	get_pl_sp_drawable_normal(t_intersection_point itsp, t_vec ray_dir)
 {
-	if (!is_equal_strings(itsp.obj->id_str, ID_PLANE) \
-	&& !is_equal_strings(itsp.obj->id_str, ID_SPHERE))
+	if (!streq(itsp.obj->id_str, ID_PLANE) \
+ && !streq(itsp.obj->id_str, ID_SPHERE))
 		return (itsp.normal);
 	if (dot(itsp.normal, inverse(ray_dir)) >= 0.0)
 		return (itsp.normal);

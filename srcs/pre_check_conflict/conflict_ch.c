@@ -14,11 +14,11 @@
 
 static bool	conflict_ch_sameobj(t_obj *obj, t_vec check_pos)
 {
-	if (is_equal_strings(obj->id_str, ID_SPHERE))
+	if (streq(obj->id_str, ID_SPHERE))
 		return (ch_conflict_sphere(obj->shape_data.sphere, check_pos));
-	else if (is_equal_strings(obj->id_str, ID_PLANE))
+	else if (streq(obj->id_str, ID_PLANE))
 		return (ch_conflict_plane(obj->shape_data.plane, check_pos));
-	else if (is_equal_strings(obj->id_str, ID_CYLINDER))
+	else if (streq(obj->id_str, ID_CYLINDER))
 		return (ch_conflict_cylinder(obj->shape_data.cylinder, check_pos));
 	return (ch_conflict_corn(obj->shape_data.corn, check_pos));
 }

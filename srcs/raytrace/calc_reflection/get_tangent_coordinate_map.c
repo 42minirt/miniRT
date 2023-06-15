@@ -92,11 +92,11 @@ t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p)
 {
 	t_tangetnt_map		map;
 
-	if (is_equal_strings(its_p->obj->id_str, ID_PLANE))
+	if (streq(its_p->obj->id_str, ID_PLANE))
 		map = get_planer_map(its_p);
-	else if (is_equal_strings(its_p->obj->id_str, ID_SPHERE))
+	else if (streq(its_p->obj->id_str, ID_SPHERE))
 		map = get_spherical_map(its_p);
-	else if (is_equal_strings(its_p->obj->id_str, ID_CYLINDER))
+	else if (streq(its_p->obj->id_str, ID_CYLINDER))
 		map = get_cylindrical_map(its_p);
 	else
 		map = get_conical_map(its_p);

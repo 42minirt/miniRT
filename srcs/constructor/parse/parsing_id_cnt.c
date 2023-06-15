@@ -45,41 +45,41 @@ t_parse_res	validate_id_cnt(t_id_cnt cnt)
 
 void	increment_id_cnt(const char *id_str, t_id_cnt *cnt)
 {
-	if (is_equal_strings(id_str, ID_AMBIENT))
+	if (streq(id_str, ID_AMBIENT))
 		cnt->ambient_cnt++;
-	else if (is_equal_strings(id_str, ID_CAMERA))
+	else if (streq(id_str, ID_CAMERA))
 		cnt->camera_cnt++;
-	else if (is_equal_strings(id_str, ID_LIGHT))
+	else if (streq(id_str, ID_LIGHT))
 		cnt->spot_light_cnt++;
-	else if (is_equal_strings(id_str, ID_SPOTLIGHT))
+	else if (streq(id_str, ID_SPOTLIGHT))
 		cnt->point_light_cnt++;
-	else if (is_equal_strings(id_str, ID_SPHERE))
+	else if (streq(id_str, ID_SPHERE))
 		cnt->sphere_cnt++;
-	else if (is_equal_strings(id_str, ID_PLANE))
+	else if (streq(id_str, ID_PLANE))
 		cnt->plane_cnt++;
-	else if (is_equal_strings(id_str, ID_CYLINDER))
+	else if (streq(id_str, ID_CYLINDER))
 		cnt->cylinder_cnt++;
-	else if (is_equal_strings(id_str, ID_CORN))
+	else if (streq(id_str, ID_CORN))
 		cnt->corn_cnt++;
 }
 
 t_parse_res	validate_id(const char *id_str)
 {
-	if (is_equal_strings(id_str, ID_AMBIENT))
+	if (streq(id_str, ID_AMBIENT))
 		return (PASS);
-	if (is_equal_strings(id_str, ID_CAMERA))
+	if (streq(id_str, ID_CAMERA))
 		return (PASS);
-	if (is_equal_strings(id_str, ID_LIGHT))
+	if (streq(id_str, ID_LIGHT))
 		return (PASS);
-	if (is_equal_strings(id_str, ID_SPOTLIGHT))
+	if (streq(id_str, ID_SPOTLIGHT))
 		return (PASS);
-	if (is_equal_strings(id_str, ID_SPHERE))
+	if (streq(id_str, ID_SPHERE))
 		return (PASS);
-	if (is_equal_strings(id_str, ID_PLANE))
+	if (streq(id_str, ID_PLANE))
 		return (PASS);
-	if (is_equal_strings(id_str, ID_CYLINDER))
+	if (streq(id_str, ID_CYLINDER))
 		return (PASS);
-	if (is_equal_strings(id_str, ID_CORN))
+	if (streq(id_str, ID_CORN))
 		return (PASS);
 	return (ERROR_INVALID_TYPE);
 }

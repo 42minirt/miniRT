@@ -35,8 +35,8 @@ static t_color	get_diffuse_ref_color(t_diffuse_param p, t_color kd)
 
 	if (p.dot_n_unit_pos2light <= 0.0)
 		return (init_color_hex(0x000000));
-	if (is_equal_strings(p.light->id_type, ID_SPOTLIGHT) \
-	&& !is_in_range_spotlight(p.unit_light2pos, p.light))
+	if (streq(p.light->id_type, ID_SPOTLIGHT) \
+ && !is_in_range_spotlight(p.unit_light2pos, p.light))
 		return (init_color_hex(0x000000));
 	ret_color = color_k1c1k2c2(p.its_p.obj->obj_color.id, \
 								kd, \

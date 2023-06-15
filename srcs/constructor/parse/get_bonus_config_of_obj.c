@@ -79,11 +79,11 @@ t_parse_res	get_bonus_config_of_obj(const char *line, t_obj *obj, size_t *idx)
 	if (!option_id)
 		return (ERROR_FATAL);
 	increment_idx_to_next_format(line, idx, option_id);
-	if (is_equal_strings(option_id, OP_CHECKER_TEXTURE))
+	if (streq(option_id, OP_CHECKER_TEXTURE))
 		res = get_checker_info(line, &obj->obj_color, idx);
-	else if (is_equal_strings(option_id, OP_PERFECT_REF))
+	else if (streq(option_id, OP_PERFECT_REF))
 		res = get_perfect_ref_info(line, &obj->obj_color, idx);
-	else if (is_equal_strings(option_id, OP_IMAGE_TEXTURE))
+	else if (streq(option_id, OP_IMAGE_TEXTURE))
 		res = get_image_texture_info(line, &obj->obj_color, idx);
 	else
 	{

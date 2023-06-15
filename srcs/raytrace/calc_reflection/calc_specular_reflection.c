@@ -14,23 +14,23 @@
 #include "raytrace.h"
 #include "vector.h"
 
-static double	calc_v_r(double n_l, \
-							t_intersection_point *its_p, \
+static double	calc_v_r(t_intersection_point *its_p, \
 							t_vec dir_pos2lgt, \
 							t_ray *eye2screen)
 {
 	t_vec	ref_dir;
 	t_vec	ref_dir_n;
-	t_vec	reverse_eyedir_vec;
 	t_vec	reverse_eyedir_vec_n;
+	t_vec	normal;
+	double	n_l;
 
+	n_l = calc_dot_n_l(*its_p, *eye2screen, dir_pos2lgt);
 	if (n_l <= 0.0)
 		return (-1.0);
-	ref_dir = vec_k1v1_k2v2(2.0 * n_l, \
-	get_bump_normal(its_p), -1.0, dir_pos2lgt);
+	normal = get_bump_normal(its_p);
+	ref_dir = vec_k1v1_k2v2(2.0 * n_l, normal, -1.0, dir_pos2lgt);
 	normalize(&ref_dir_n, &ref_dir);
-	inverse_vec(&reverse_eyedir_vec, &eye2screen->unit_dir);
-	normalize(&reverse_eyedir_vec_n, &reverse_eyedir_vec);
+	reverse_eyedir_vec_n = inv_norm(eye2screen->unit_dir);
 	return (dot_vec(&reverse_eyedir_vec_n, &ref_dir_n));
 }
 
@@ -55,7 +55,7 @@ static bool	is_calc_specular(t_vec *dir_pos2lgt_n, t_light *lgt)
 	t_vec	unit_lgt2pos;
 	bool	ret;
 
-	if (is_equal_strings(lgt->id_type, ID_LIGHT))
+	if (streq(lgt->id_type, ID_LIGHT))
 		return (true);
 	inverse_vec(&unit_lgt2pos, dir_pos2lgt_n);
 	unit_lgt2pos = norm_vec(unit_lgt2pos);
@@ -71,7 +71,6 @@ static t_color	calc_specref(t_scene_info *scene_info, \
 	t_list	*light;
 	t_light	*lgt_info;
 	t_vec	dir_pos2lgt;
-	t_vec	dir_pos2lgt_n;
 	double	v_r;
 
 	light = scene_info->lights;
@@ -79,13 +78,12 @@ static t_color	calc_specref(t_scene_info *scene_info, \
 	{
 		lgt_info = light->content;
 		neg_vec(&dir_pos2lgt, &lgt_info->point, &its_p->position);
+		dir_pos2lgt = norm_vec(dir_pos2lgt);
 		if (!is_obj_btw_pos_light(scene_info, its_p->position, dir_pos2lgt))
 		{
-			dir_pos2lgt_n = norm_vec(dir_pos2lgt);
-			if (is_calc_specular(&dir_pos2lgt_n, lgt_info) == true)
+			if (is_calc_specular(&dir_pos2lgt, lgt_info) == true)
 			{
-				v_r = calc_v_r(calc_dot_n_l(*its_p, eye2screen, dir_pos2lgt_n), \
-				its_p, dir_pos2lgt_n, &eye2screen);
+				v_r = calc_v_r(its_p, dir_pos2lgt, &eye2screen);
 				if (v_r > 0.0)
 					calc_spec_col(&color, v_r, lgt_info, its_p->obj->obj_color);
 			}

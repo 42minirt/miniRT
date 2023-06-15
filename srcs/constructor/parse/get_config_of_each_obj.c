@@ -104,13 +104,13 @@ t_parse_res	get_config_of_each_obj(const char *line, t_obj *obj)
 
 	idx = 0;
 	res = ERROR_FATAL;
-	if (is_equal_strings(obj->id_str, ID_SPHERE))
+	if (streq(obj->id_str, ID_SPHERE))
 		res = get_sphere_config(line, obj, &idx);
-	else if (is_equal_strings(obj->id_str, ID_PLANE))
+	else if (streq(obj->id_str, ID_PLANE))
 		res = get_plane_config(line, obj, &idx);
-	else if (is_equal_strings(obj->id_str, ID_CYLINDER))
+	else if (streq(obj->id_str, ID_CYLINDER))
 		res = get_cylinder_config(line, obj, &idx);
-	else if (is_equal_strings(obj->id_str, ID_CORN))
+	else if (streq(obj->id_str, ID_CORN))
 		res = get_corn_config(line, obj, &idx);
 	if (res != PASS)
 		return (res);

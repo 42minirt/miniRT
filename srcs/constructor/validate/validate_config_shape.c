@@ -78,13 +78,13 @@ static t_parse_res	validate_corn_shape(t_corn *corn)
 
 t_parse_res	validate_obj_shape(t_obj *obj)
 {
-	if (is_equal_strings(obj->id_str, ID_SPHERE))
+	if (streq(obj->id_str, ID_SPHERE))
 		return (validate_sphere_shape(&obj->shape_data.sphere));
-	if (is_equal_strings(obj->id_str, ID_PLANE))
+	if (streq(obj->id_str, ID_PLANE))
 		return (validate_plane_shape(&obj->shape_data.plane));
-	if (is_equal_strings(obj->id_str, ID_CYLINDER))
+	if (streq(obj->id_str, ID_CYLINDER))
 		return (validate_cylinder_shape(&obj->shape_data.cylinder));
-	if (is_equal_strings(obj->id_str, ID_CORN))
+	if (streq(obj->id_str, ID_CORN))
 		return (validate_corn_shape(&obj->shape_data.corn));
 	return (ERROR_INVALID_TYPE);
 }
