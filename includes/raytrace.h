@@ -88,7 +88,6 @@ bool			is_obj_btw_pos_light(t_scene_info *scene, \
 /* get_its_pos_img_color */
 t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p);
 
-
 //一旦ここに置いとく
 double			check_intersection_t1(t_vec *d_n, \
 										t_vec *ac_n, \
@@ -101,10 +100,9 @@ double			check_intersection_t2(t_vec *d_n, \
 										t_vec *ac_n, \
 										t_cylinder *cyl, \
 										t_ray *ray);
-void	set_intersection_t2(t_intersection_point *itp, \
-							double t, \
-							t_cylinder *cyl, \
-							t_ray *ray);
-
+void			set_intersection_t2(t_intersection_point *itp, \
+									double t, \
+									t_cylinder *cyl, \
+									t_ray *ray);
 
 #endif //RAYTRACE_H

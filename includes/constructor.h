@@ -22,9 +22,11 @@ t_parse_res	validate_scene(t_scene_info *scene_info);
 t_parse_res	validate_camera(t_camera_info *camera_info);
 t_parse_res	get_config_of_ambient(const char *line, t_scene_info *scene);
 t_parse_res	get_config_of_lights(const char *line, \
-								t_scene_info *scene, const char *id_str);
+								t_scene_info *scene, \
+								const char *id_str);
 t_parse_res	get_config_of_objects(const char *line, \
-								t_scene_info *scene, const char *id_str);
+									t_scene_info *scene, \
+									const char *id_str);
 t_parse_res	get_congfig_of_camera(const char *line, t_camera_info *camera);
 
 // parsing helper
@@ -35,7 +37,6 @@ void		skip_delimiter_and_cnt_comma(const char *line, \
 void		increment_idx_to_next_format(const char *line, \
 											size_t *idx, char *prev_str);
 char		*get_identifier_str(const char *line, size_t idx);
-//t_id		get_identifier_no(const char *id_str);
 double		ft_strtod(const char *str, bool *is_success, char **err);
 long		ft_strtol(const char *str, bool *is_of, char **endptr);
 
@@ -51,7 +52,9 @@ void		update_camera_config(t_camera_info *camera);
 t_parse_res	get_config_of_each_obj(const char *line, t_obj *obj);
 t_parse_res	get_bonus_config_of_obj(const char *line, t_obj *obj, size_t *idx);
 t_parse_res	get_image_texture(const char *line, \
-								t_img *obj_color, size_t *idx, bool *empty);
+								t_img *obj_color, \
+								size_t *idx, \
+								bool *empty);
 
 // validate_is
 bool		is_vec_in_normal_range(t_vec vec);
@@ -86,7 +89,8 @@ int			validate_filename(const char *path, const char *extension);
 
 // get_config
 t_parse_res	get_config(const char *id_str, \
-										const char *line, t_all_info *all);
+						const char *line, \
+						t_all_info *all);
 
 t_parse_res	ret_res_and_free(t_parse_res ret, void **ptr);
 
@@ -95,7 +99,8 @@ t_parse_res	get_img_data(t_img *img, int fd);
 t_parse_res	parse_ppm_data(t_img *img, int fd, t_ppm_param *p);
 t_parse_res	put_ppmerr_ret_res(char *err);
 t_parse_res	parse_ppm_data_line_by_line(const char *line, \
-										t_ppm_param *p, t_img *img);
+										t_ppm_param *p, \
+										t_img *img);
 t_parse_res	init_data_array(t_img *img, t_ppm_param *p);
 
 #endif //CONSTRUCTOR_H

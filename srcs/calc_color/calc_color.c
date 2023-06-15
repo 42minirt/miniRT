@@ -12,19 +12,6 @@
 
 #include "../../includes/minirt.h"
 
-// c + k1c1 * k2c2
-
-// t_color	color_mul_k1c1k2c2(t_color *c,
-// double k1, t_color c1, double k2, t_color c2)
-// {
-// 	t_color	color;
-
-// 	color.r = k1 * c1.r * k2 * c2.r;
-// 	color.g = k1 * c1.g * k2 * c2.g;
-// 	color.b = k1 * c1.b * k2 * c2.b;
-// 	return (color);
-// }
-
 // return k1 * c1 * k2 * c2
 t_color	color_k1c1k2c2(double k1, t_color c1, \
 						double k2, t_color c2)

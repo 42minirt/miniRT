@@ -270,7 +270,7 @@ sani			:
 
 norm			:
 	@norminette --version
-	norminette $(SRC_DIR) $(INCLUDE_DIR) $(LIBFT_DIR)
+	norminette $(SRC_DIR) $(MINIRT_INCLUDE) $(LIBFT_DIR)
 
 .PHONY			: all clean fclean re test norm bonus
 
