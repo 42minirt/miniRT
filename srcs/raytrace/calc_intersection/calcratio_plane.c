@@ -12,8 +12,10 @@
 
 #include "minirt.h"
 
-double	set_itsp(t_plane *plane, double t, \
-t_ray *ray, t_intersection_point *itsp)
+static double	set_itsp(t_plane *plane, \
+							double t, \
+							t_ray *ray, \
+							t_intersection_point *itsp)
 {
 	t_vec	eye2its;
 
@@ -27,7 +29,8 @@ t_ray *ray, t_intersection_point *itsp)
 }
 
 double	calc_planeratio(t_obj *obj, \
-t_ray *ray, t_intersection_point *itsp)
+						t_ray *ray, \
+						t_intersection_point *itsp)
 {
 	t_plane	plane;
 	double	p_n;

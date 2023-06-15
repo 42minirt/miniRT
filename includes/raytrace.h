@@ -28,10 +28,6 @@ double			calc_planeratio(t_obj *obj, \
 double			calc_cylinderratio(t_obj *obj, \
 									t_ray *eye2scr, \
 									t_intersection_point *tmp_itsp);
-double			set_itsp(t_plane *plane, \
-							double t, \
-							t_ray *ray, \
-							t_intersection_point *itsp);
 double			calc_intersect_with_sphere(t_obj *obj, t_ray ray, \
 											t_intersection_point *intp);
 double			calc_intersect_with_corn(t_obj *obj, \
@@ -94,11 +90,6 @@ t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p);
 
 
 //一旦ここに置いとく
-void			outerproduct_ready(t_vec *d_n_oupro, \
-									t_vec *ac_n_oupro, \
-									t_ray *eye2scr, \
-									t_cylinder *cylinder);
-
 double			check_intersection_t1(t_vec *d_n, \
 										t_vec *ac_n, \
 										t_cylinder *cyl, t_ray *ray);
@@ -111,8 +102,9 @@ double			check_intersection_t2(t_vec *d_n, \
 										t_cylinder *cyl, \
 										t_ray *ray);
 void	set_intersection_t2(t_intersection_point *itp, \
-double t, t_cylinder *cyl, t_ray *ray);
-double	calc_discreminant(double A, double B, double C);
+							double t, \
+							t_cylinder *cyl, \
+							t_ray *ray);
 
 
 #endif //RAYTRACE_H

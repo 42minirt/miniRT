@@ -56,8 +56,9 @@ bool	check_intersection(t_scene_info *scene, \
 	return (true);
 }
 
-t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
-									size_t counter)
+t_color	recursive_raytrace(t_all_info *info, \
+							t_ray eye2screen, \
+							size_t counter)
 {
 	bool					is_intersect;
 	t_color					ret_color;
@@ -68,7 +69,7 @@ t_color	recursive_raytrace(t_all_info *info, t_ray eye2screen, \
 	if (counter > MAX_RECURSION)
 		return (ret_color);
 	is_intersect = check_intersection(info->scene_info, eye2screen, &its_p);
-	if (is_intersect == false)
+	if (!is_intersect)
 		return (ret_color);
 	its_p.normal = get_pl_sp_drawable_normal(its_p, eye2screen.unit_dir);
 	ret_color = calc_ambient_reflection(info->scene_info, its_p);

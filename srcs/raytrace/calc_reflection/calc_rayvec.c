@@ -19,7 +19,7 @@ static double	calc_eye2scrcen_distance(t_camera_info *camera_info)
 	/ 2 * M_PI / 180.0)));
 }
 
-void	ready_scr2world_ex(t_vec *scr2world_ex, t_camera_info *camera_info)
+static void	ready_scr2world_ex(t_vec *scr2world_ex, t_camera_info *camera_info)
 {
 	double	sx;
 	double	sz;

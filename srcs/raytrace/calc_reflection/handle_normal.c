@@ -12,8 +12,9 @@
 
 #include "minirt.h"
 
-static bool	is_same_dir_pos2eye_pos2light(\
-t_vec original_normal, t_ray ray, t_vec unit_pos2light)
+static bool	is_same_dir_pos2eye_pos2light(t_vec original_normal, \
+											t_ray ray, \
+											t_vec unit_pos2light)
 {
 	double	dot_normal_invdir;
 	double	dot_normal_pos2light;

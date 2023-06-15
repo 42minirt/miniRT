@@ -13,8 +13,8 @@
 #include "minirt.h"
 
 bool	is_obj_btw_pos_light(t_scene_info *scene, \
-												t_vec pos, \
-												t_vec pos2light)
+								t_vec pos, \
+								t_vec pos2light)
 {
 	t_ray					shadow_ray;
 	t_intersection_point	tmp_its_p;
