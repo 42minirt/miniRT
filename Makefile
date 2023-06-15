@@ -218,7 +218,7 @@ LFLAGS			= $(addprefix -L, $(LIBS_DIR))
 
 ifeq ($(UNAME), Darwin)
 	LIBS 		= -lft -lmlx_Darwin -lXext -lX11 -lm -framework OpenGL -framework AppKit
-	CFLAGS 		+= -D LEAKS
+#	CFLAGS 		+= -D LEAKS
 else
 	LIBS		= -lft -lmlx -lXext -lX11 -lm
 endif
@@ -228,13 +228,13 @@ endif
 # INCLUDES ##########################################
 MINIRT_INCLUDE	= includes
 INCLUDE_DIRS	= $(MINIRT_INCLUDE) $(LIBFT_INCLUDE) $(MLX_DIR) $(X11_INCLUDE)
-#IFLAGS			= $(addprefix -I, $(INCLUDE_DIRS))
 
 
 
 #####################################################
 # RULES #############################################
 #####################################################
+.PHONY			: all
 all				: $(NAME)
 
 
@@ -244,38 +244,42 @@ $(NAME)			: $(OBJS)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $^ $(LIBS) $(LFLAGS)
 
 
-#$(OBJ_DIR)/%.o : %.c includes
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $$(dirname $@)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
+.PHONY			: clean
 clean			:
 	rm -rf $(OBJ_DIR)
 	@make clean -C $(LIBFT_DIR)
 	@make clean -C $(MLX_DIR)
 
+.PHONY			: fclean
 fclean			: clean
 	rm -f $(NAME)
 	@make fclean -C $(LIBFT_DIR)
 	@#make fclean -C $(MLX_DIR)
 
+.PHONY			: re
 re				: fclean all
 
+.PHONY			: bonus
 bonus			: all
 
+.PHONY			: leaks
 leaks			:
 	make re WITH_LEAKS=1
 
+.PHONY			: sani
 sani			:
 	make all WITH_SANITIZE=1
 
+.PHONY			: norm
 norm			:
 	@norminette --version
 	norminette $(SRC_DIR) $(MINIRT_INCLUDE) $(LIBFT_DIR)
 	@ if [ $$? -eq 0 ]; then \
 		echo "\033[32mNORMINETTE OK\033[0m"; \
 	fi
-
-.PHONY			: all clean fclean re test norm bonus
 
 -include	$(DEPS)
