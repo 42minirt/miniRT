@@ -55,7 +55,7 @@ static int	init_mlx(t_mlx_info *mlx_info)
 	return (SUCCESS);
 }
 
-// parse scene & camera -> update config
+// parse scene & overlap_obj_camera -> update config
 static t_parse_res	init_scene_and_camera(t_all_info *all_info, \
 											const char *rt_path)
 {

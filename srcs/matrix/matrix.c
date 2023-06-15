@@ -50,7 +50,7 @@ static t_matrix	set_vec_to_matrix(t_basis_local local)
 // convert basis vector of point (x,y,z)->(u,v,w)
 // set v_dir = -d by caller
 
-// sphere, camera
+// sphere, overlap_obj_camera
 t_matrix	get_trans_mat_world2local_yup(t_vec v_dir)
 {
 	t_basis_world	world;

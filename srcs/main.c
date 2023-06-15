@@ -49,7 +49,6 @@ int	main(int argc, char **argv)
 	if (is_camera_and_light_overlap_with_obj(&info))
 	{
 		destruct_info(&info);
-		ft_dprintf(STDERR_FILENO, "%s\n : %s\n", MSG_ERROR, MSG_OVERLAP);
 		return (EXIT_FAILURE);
 	}
 	mlx_hooks(&info);

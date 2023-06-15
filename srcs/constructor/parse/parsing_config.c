@@ -15,7 +15,7 @@
 #include "typedef.h"
 #include "sys.h"
 
-// camera, ambient は free
+// overlap_obj_camera, ambient は free
 // listに追加できなかったlight, objもこの段階でfree
 // listに格納されているlight, objは list_clearでfreeされる
 static bool	is_free_needed(char *id_str, t_parse_res result)
