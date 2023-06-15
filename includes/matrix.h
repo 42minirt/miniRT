@@ -13,7 +13,7 @@
 #ifndef MATRIX_H
 # define MATRIX_H
 
-# include "minirt.h"
+# include "typedef.h"
 
 struct s_matrix
 {

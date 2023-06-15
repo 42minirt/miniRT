@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "typedef.h"
+#include "vector.h"
 
 bool	is_vec_in_normal_range(t_vec vec)
 {

@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "color.h"
+#include "raytrace.h"
+#include "vector.h"
 
 t_vec	get_normal(t_intersection_point *its_p)
 {

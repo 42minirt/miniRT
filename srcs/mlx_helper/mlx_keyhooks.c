@@ -10,11 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../minilibx-linux/mlx.h"
+#include "../../libs/include/ft_printf.h"
+#include "typedef.h"
 #include "minirt.h"
 
 static int	close_window(void *mlx)
 {
-	printf("Good bye\n");
+	ft_dprintf(STDERR_FILENO,"Good bye\n");
 	mlx_loop_end(mlx);
 	return (0);
 }

@@ -10,7 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "constructor.h"
+#include "color.h"
+#include "typedef.h"
 #include "minirt.h"
+#include "sys.h"
 
 static t_parse_res	get_checker_info(const char *line, \
 									t_obj_color *obj_color, \

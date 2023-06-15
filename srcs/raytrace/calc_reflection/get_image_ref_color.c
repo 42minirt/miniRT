@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "color.h"
+#include "raytrace.h"
+#include "vector.h"
+#include "matrix.h"
 
 static t_map_idx	get_map_idx(t_tangetnt_map map, t_img img)
 {

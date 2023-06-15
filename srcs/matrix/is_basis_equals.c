@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "matrix.h"
 
 bool	is_ev_equals_ey(t_basis_world world, t_basis_local local)
 {

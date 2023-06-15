@@ -13,7 +13,7 @@
 #ifndef RAYTRACE_H
 # define RAYTRACE_H
 
-# include "minirt.h"
+# include "typedef.h"
 
 /* intersection */
 bool			check_intersection(t_scene_info *scene, \
@@ -104,5 +104,12 @@ void			set_intersection_t2(t_intersection_point *itp, \
 									double t, \
 									t_cylinder *cyl, \
 									t_ray *ray);
+
+/* conflict_ch */
+bool			conflict_ch(t_all_info *info);
+bool			ch_conflict_spere(t_sphere obj, t_light	*light_info);
+bool			ch_conflict_plane(t_plane obj, t_light *light_info);
+bool			ch_conflict_cylinder(t_cylinder obj, t_light *light_info);
+bool			ch_conflict_corn(t_corn obj, t_light *light_info);
 
 #endif //RAYTRACE_H

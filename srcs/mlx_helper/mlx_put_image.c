@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../minilibx-linux/mlx.h"
+#include "typedef.h"
 #include "minirt.h"
 
 void	mlx_put_image(t_all_info info)

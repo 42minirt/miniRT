@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "color.h"
+#include "raytrace.h"
+#include "vector.h"
+#include "matrix.h"
 
 // 0 <= u <= 1
 // 0 <= v <= 1

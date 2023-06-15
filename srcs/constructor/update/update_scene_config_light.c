@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "color.h"
+#include "typedef.h"
+#include "vector.h"
 
 static void	update_config_pointlight(t_light *light)
 {

@@ -13,14 +13,13 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include <unistd.h>
+# include <float.h>
+# include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <sys/errno.h>
-# include <math.h>
-# include <float.h>
+# include <unistd.h>
 
-# include "../minilibx-linux/mlx.h"
 # include "../libs/include/libft.h"
 # include "../libs/include/ft_gnl.h"
 # include "../libs/include/ft_math.h"
@@ -30,13 +29,12 @@
 # include "../libs/include/ft_string.h"
 
 # include "typedef.h"
-# include "color.h"
-# include "constructor.h"
-# include "debug.h"
-# include "matrix.h"
-# include "raytrace.h"
-# include "vector.h"
-# include "sys.h"
+//# include "constructor.h"
+//# include "debug.h"
+//# include "matrix.h"
+//# include "raytrace.h"
+//# include "vector.h"
+//# include "sys.h"
 
 /********** return value **********/
 # define OPEN_ERROR		(-1)
@@ -130,6 +128,10 @@
 # define MSG_ERR_MLX			"Failure in init minilibx"
 # define MSG_ERR_CONFIG			"Failure in parsing config file"
 
+typedef struct s_all_info				t_all_info;
+typedef struct s_mlx_info				t_mlx_info;
+typedef struct s_color					t_color;
+
 /* main */
 int				draw(t_all_info *info);
 
@@ -137,13 +139,6 @@ int				draw(t_all_info *info);
 void			destruct_info(t_all_info *info);
 void			free_objs(void *content);
 void			free_lights(void *content);
-
-/* conflict_ch */
-bool			conflict_ch(t_all_info *info);
-bool			ch_conflict_spere(t_sphere obj, t_light	*light_info);
-bool			ch_conflict_plane(t_plane obj, t_light *light_info);
-bool			ch_conflict_cylinder(t_cylinder obj, t_light *light_info);
-bool			ch_conflict_corn(t_corn obj, t_light *light_info);
 
 /* mlx helper */
 void			put_pixel(t_mlx_info *mlx_info, \

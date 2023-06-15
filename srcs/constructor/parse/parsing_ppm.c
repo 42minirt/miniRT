@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "typedef.h"
 
 t_parse_res	put_ppmerr_ret_res(char *err)
 {

@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "color.h"
 #include "minirt.h"
+#include "raytrace.h"
 
 static void	start_progress(void)
 {

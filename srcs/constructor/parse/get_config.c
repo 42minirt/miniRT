@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "constructor.h"
+#include "typedef.h"
 #include "minirt.h"
 
 t_parse_res	get_config(const char *id_str, const char *line, t_all_info *all)

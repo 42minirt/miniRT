@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "color.h"
+#include "raytrace.h"
+#include "vector.h"
 
 bool	is_obj_btw_pos_light(t_scene_info *scene, \
 								t_vec pos, \

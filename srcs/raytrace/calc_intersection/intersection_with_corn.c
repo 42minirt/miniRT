@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "raytrace.h"
+#include "vector.h"
 
 static bool	is_in_range_corn_height(double t, double intp_h, double corn_h)
 {

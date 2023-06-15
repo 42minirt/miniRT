@@ -13,7 +13,28 @@
 #ifndef CONSTRUCTOR_H
 # define CONSTRUCTOR_H
 
-# include "minirt.h"
+# include <stdbool.h>
+# include <stdio.h>
+
+/********** typedef enum **********/
+typedef enum e_parse_result		t_parse_res;
+
+/********** typedef struct **********/
+typedef struct s_all_info		t_all_info;
+typedef struct s_scene_info		t_scene_info;
+typedef struct s_camera_info	t_camera_info;
+typedef struct s_color			t_color;
+typedef struct s_vec			t_vec;
+typedef struct s_obj			t_obj;
+typedef struct s_img			t_img;
+typedef struct s_plane_shape	t_plane;
+typedef struct s_sphere_shape	t_sphere;
+typedef struct s_cylinder_shape	t_cylinder;
+typedef struct s_corn_shape		t_corn;
+typedef struct s_id_cnt			t_id_cnt;
+typedef struct s_ppm_param		t_ppm_param;
+
+///////////////////////////////////////////////////////////////////////////////
 
 // constructor, destructor
 int			construct_info(t_all_info *all_info, const char *rt_path);

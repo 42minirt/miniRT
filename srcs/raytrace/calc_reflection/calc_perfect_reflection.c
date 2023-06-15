@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "color.h"
+#include "raytrace.h"
+#include "vector.h"
 
 static	bool	calc_refrectvec(t_intersection_point itsp, \
 								t_ray ray, \

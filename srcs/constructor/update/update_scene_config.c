@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "color.h"
+#include "typedef.h"
 
 static void	update_config_ambient_color(t_scene_info *scene)
 {

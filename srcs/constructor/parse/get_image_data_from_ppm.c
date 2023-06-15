@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "typedef.h"
 
 static t_parse_res	validate_acquired_size(t_ppm_param p)
 {

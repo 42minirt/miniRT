@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "typedef.h"
 
 t_id_cnt	init_id_cnt(void)
 {
@@ -27,7 +28,6 @@ t_id_cnt	init_id_cnt(void)
 	return (cnt);
 }
 
-//todo :ambient
 t_parse_res	validate_id_cnt(t_id_cnt cnt)
 {
 	if (cnt.camera_cnt == 1 && cnt.ambient_cnt == 1)

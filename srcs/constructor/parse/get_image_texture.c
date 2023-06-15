@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "typedef.h"
+#include "sys.h"
 
 static char	*get_path(const char *line, size_t *idx, t_parse_res *res)
 {

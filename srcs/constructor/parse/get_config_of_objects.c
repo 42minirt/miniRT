@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "constructor.h"
+#include "color.h"
+#include "typedef.h"
 #include "minirt.h"
 
 static t_obj	*init_obj_ptr(const char *id_str)

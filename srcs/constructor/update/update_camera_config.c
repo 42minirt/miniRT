@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "typedef.h"
+#include "vector.h"
 
 void	update_camera_config(t_camera_info *camera)
 {

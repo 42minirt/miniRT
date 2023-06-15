@@ -13,7 +13,7 @@
 #ifndef VECTOR_H
 # define VECTOR_H
 
-# include "minirt.h"
+# include "typedef.h"
 
 // arithmetic
 void	add_vec(t_vec *sub, t_vec *v1, t_vec *v2);

@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "raytrace.h"
+#include "vector.h"
 
 t_corn_param	calc_ints_param_of_corn(t_corn *c, t_ray ray)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "vector.h"
 
 void	normalize(t_vec *normal_vec, t_vec *normarized_vec)
 {

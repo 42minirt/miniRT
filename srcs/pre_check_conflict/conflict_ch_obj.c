@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "raytrace.h"
+#include "vector.h"
 
-#define TMPEPSIRON 0.00000000000512
+#define TMPEPSIRON (0.00000000000512)
 
 bool	ch_conflict_spere(t_sphere obj, t_light	*light_info)
 {
@@ -26,7 +27,10 @@ bool	ch_conflict_spere(t_sphere obj, t_light	*light_info)
 	return (false);
 }
 
-double	calc_differ_plane_helper2(double a, double b, double c, double d)
+static double	calc_differ_plane_helper2(double a, \
+											double b, \
+											double c, \
+											double d)
 {
 	double	tmp;
 

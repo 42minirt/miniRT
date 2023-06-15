@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "color.h"
+#include "raytrace.h"
+#include "vector.h"
 
 static void	get_checker_freq(t_obj *obj, int *freq_u, int *freq_v)
 {

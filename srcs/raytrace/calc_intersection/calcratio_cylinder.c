@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "raytrace.h"
+#include "vector.h"
 
 static void	outerproduct_ready(t_vec *d_n_oupro, \
 								t_vec *ac_n_oupro, \

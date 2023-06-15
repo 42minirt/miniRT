@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "constructor.h"
+#include "color.h"
+#include "typedef.h"
 #include "minirt.h"
 
 // sp   XYZ                    diameter            RGB[0,255]   <OPTION>

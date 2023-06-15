@@ -13,7 +13,7 @@
 #ifndef COLOR_H
 # define COLOR_H
 
-# include "minirt.h"
+# include "typedef.h"
 
 t_color	color_k1c1k2c2(double k1, \
 						t_color c1, \

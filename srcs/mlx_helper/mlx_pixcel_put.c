@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "typedef.h"
 #include "minirt.h"
 
 double	clamp(double num, double min, double max)

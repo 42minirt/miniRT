@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "typedef.h"
 
 static t_parse_res	validate_objects_info(t_scene_info *scene)
 {

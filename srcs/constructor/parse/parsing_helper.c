@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "../libs/include/ft_string.h"
 
 void	skip_isspece(const char *line, size_t *idx)
 {

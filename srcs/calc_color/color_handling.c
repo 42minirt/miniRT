@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "color.h"
 
 void	color_set(t_color *tgt, double R, double G, double B)
 {

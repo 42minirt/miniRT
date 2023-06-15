@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "constructor.h"
+#include "typedef.h"
 #include "minirt.h"
+#include "sys.h"
 
 // #Light      point(xyz)         ratio[0,1]                  RGB[0,255]
 // #Spotlight  Light_point(xyz)   ratio[0,1]   angle[0-180]   RGB[0,255]

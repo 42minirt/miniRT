@@ -10,7 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include "../minilibx-linux/mlx.h"
+#include "constructor.h"
+#include "typedef.h"
 #include "minirt.h"
+#include "raytrace.h"
 
 static int	validate_argv(int argc, char **argv)
 {

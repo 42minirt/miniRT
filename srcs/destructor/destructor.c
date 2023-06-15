@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../minilibx-linux/mlx.h"
+#include "typedef.h"
 #include "minirt.h"
+#include "sys.h"
 
 void	free_objs(void *content)
 {

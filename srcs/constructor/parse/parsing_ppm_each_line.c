@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "typedef.h"
 
 static t_parse_res	get_p3_format(const char *line, t_ppm_param *p, size_t *idx)
 {

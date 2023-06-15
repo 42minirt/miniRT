@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "raytrace.h"
+#include "vector.h"
 
 static double	calc_discreminant(double a, double b, double c)
 {

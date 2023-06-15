@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "typedef.h"
+#include "vector.h"
 
 static t_parse_res	validate_sphere_shape(t_sphere *sphere)
 {

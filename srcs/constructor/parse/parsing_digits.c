@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "constructor.h"
+#include "typedef.h"
+#include "sys.h"
 
 // invalid: not in range INT, after num is not `isspace`
 t_parse_res	parse_int(const char *line, size_t *idx, int *int_num)

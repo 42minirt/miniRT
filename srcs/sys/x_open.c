@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "sys.h"
 
 int	x_open(const char *path, int oflag)
 {

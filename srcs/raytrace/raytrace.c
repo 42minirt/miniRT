@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytrace.h"
+#include "color.h"
 #include "minirt.h"
+#include "raytrace.h"
 
 static double	calc_intersection(t_obj *obj, \
 									t_ray eye2screen, \

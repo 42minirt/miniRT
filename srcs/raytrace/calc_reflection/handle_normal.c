@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "color.h"
+#include "raytrace.h"
+#include "vector.h"
 
 static bool	is_same_dir_pos2eye_pos2light(t_vec original_normal, \
 											t_ray ray, \

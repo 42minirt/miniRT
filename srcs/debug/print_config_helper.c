@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "debug.h"
 
 static void	print_bonus(t_obj_color o)
 {

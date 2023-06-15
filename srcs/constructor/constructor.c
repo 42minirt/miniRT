@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../minilibx-linux/mlx.h"
+#include "constructor.h"
+#include "debug.h"
+#include "typedef.h"
 #include "minirt.h"
 
 static int	alloc_info_ptr(t_all_info *all_info)

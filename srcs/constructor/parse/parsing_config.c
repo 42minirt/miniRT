@@ -11,7 +11,9 @@
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include "minirt.h"
+#include "constructor.h"
+#include "typedef.h"
+#include "sys.h"
 
 // camera, ambient は free
 // listに追加できなかったlight, objもこの段階でfree

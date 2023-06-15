@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "raytrace.h"
 
 static bool	conflict_ch_sameobj(t_obj *obj, t_light	*light_info)
 {

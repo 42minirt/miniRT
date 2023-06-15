@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "typedef.h"
+#include "vector.h"
 
 void	update_scene_sphere_info(t_sphere *sphere)
 {
