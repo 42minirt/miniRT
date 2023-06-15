@@ -22,9 +22,6 @@ bool	ch_conflict_sphere(t_sphere obj, t_vec pos)
 
 	neg_vec(&pos2center, &pos, &obj.center);
 	size_pos2center = obtain_vecsize(&pos2center);
-//	printf("obj(%f, %f, %f) vs pos(%f, %f, %f)\n",
-//		   obj.center.x,obj.center.y,obj.center.z,
-//		   pos.x, pos.y, pos.z);
 	if (fabs(size_pos2center - obj.radius) <= (1.0 / EPSILON_DIVISOR))
 		return (true);
 	return (false);
@@ -56,7 +53,7 @@ bool	ch_conflict_plane(t_plane obj, t_vec pos)
 	obj.normal.x * (-1.0) * obj.center.x \
 	+ obj.normal.y * (-1.0) * obj.center.y \
 	+ obj.normal.z * (-1.0) * obj.center.z);
-	if (differ_size - TMPEPSIRON < 0.0)
+	if (fabs(differ_size - 0.0) <= (1.0 / EPSILON_DIVISOR))
 		return (true);
 	return (false);
 }
@@ -74,7 +71,7 @@ bool	ch_conflict_cylinder(t_cylinder obj, t_vec pos)
 	tmp_rad = sqrt(pow(differsize, 2.0) - pow(height, 2.0));
 	if (height < 0.0 || height > obj.height)
 		return (false);
-	if (tmp_rad - obj.radius - TMPEPSIRON < 0.0)
+	if (fabs(tmp_rad - obj.radius) <= (1.0 / EPSILON_DIVISOR))
 		return (true);
 	return (false);
 }
