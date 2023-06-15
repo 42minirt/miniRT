@@ -35,7 +35,6 @@ typedef struct s_obj_color				t_obj_color;
 typedef struct s_ray					t_ray;
 typedef struct s_intersection_point		t_intersection_point;
 typedef struct s_plane_shape			t_plane;
-typedef struct s_ball_shape				t_ball;
 typedef struct s_sphere_shape			t_sphere;
 typedef struct s_cylinder_shape			t_cylinder;
 typedef struct s_corn_shape				t_corn;

@@ -17,7 +17,7 @@
 
 static int	close_window(void *mlx)
 {
-	ft_dprintf(STDERR_FILENO,"Good bye\n");
+	ft_dprintf(STDERR_FILENO, "Good bye\n");
 	mlx_loop_end(mlx);
 	return (0);
 }
