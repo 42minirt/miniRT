@@ -22,6 +22,9 @@ bool	ch_conflict_spere(t_sphere obj, t_vec pos)
 
 	neg_vec(&tmp, &pos, &obj.center);
 	differ_size = obtain_vecsize(&tmp);
+//	printf("obj(%f, %f, %f) vs pos(%f, %f, %f)\n",
+//		   obj.center.x,obj.center.y,obj.center.z,
+//		   pos.x, pos.y, pos.z);
 	if (differ_size - obj.radius - TMPEPSIRON < 0)
 		return (true);
 	return (false);

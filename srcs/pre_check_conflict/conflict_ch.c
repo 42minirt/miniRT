@@ -53,18 +53,22 @@ static bool	is_camera_overlap(t_obj *obj, t_camera_info *camera)
 bool	is_camera_and_light_overlap_with_obj(t_all_info *info)
 {
 	t_list	*obj_node;
+	t_obj	*obj;
 
 	obj_node = info->scene_info->objs;
 	while (obj_node)
 	{
-		if (is_camera_overlap(obj_node->content, info->camera_info))
+		obj = obj_node->content;
+		if (is_camera_overlap(obj, info->camera_info))
 		{
-			ft_dprintf(STDERR_FILENO, "%s\n : %s\n", MSG_ERROR, MSG_CAMERA_OVERLAP);
+			ft_dprintf(STDERR_FILENO, "%s\n : %s %s\n", \
+			MSG_ERROR, MSG_CAMERA_OVERLAP, obj->id_str);
 			return (true);
 		}
-		if (is_light_overlap(obj_node->content, info->scene_info->lights))
+		if (is_light_overlap(obj, info->scene_info->lights))
 		{
-			ft_dprintf(STDERR_FILENO, "%s\n : %s\n", MSG_ERROR, MSG_LIGHT_OVERLAP);
+			ft_dprintf(STDERR_FILENO, "%s\n : %s %s\n", \
+			MSG_ERROR, MSG_LIGHT_OVERLAP, obj->id_str);
 			return (true);
 		}
 		obj_node = obj_node->next;
