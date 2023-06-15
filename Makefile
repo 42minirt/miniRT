@@ -3,6 +3,7 @@
 #####################################################
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror -MMD -MP
+CPPFLAGS		= $(addprefix -I, $(INCLUDE_DIRS))
 
 ifdef WITH_LEAKS
 	CFLAGS 		+= -D LEAKS
@@ -22,7 +23,7 @@ NAME			= miniRT
 #####################################################
 # SRC FILE ##########################################
 #####################################################
-VPATH			= $(SRC_DIR) $(INCLUDE_DIR)
+VPATH			= $(SRC_DIR) $(MINIRT_INCLUDE)
 
 SRC_DIR			= srcs
 SRC				= main.c
@@ -78,8 +79,7 @@ CONSTRUCTOR_SRC	= parse/ft_strtod.c \
 				  validate/validate_filename.c \
 				  validate/validate_is_num.c \
 				  validate/validate_is_struct.c \
-				  constructor.c \
-                  init_ptr.c
+				  constructor.c
 
 SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 
@@ -172,7 +172,7 @@ SRC				+= $(addprefix $(SYS_DIR)/, $(SYS_SRC))
 OBJ_DIR			= objs
 OBJ				= $(SRC:%.c=%.o)
 OBJS			= $(addprefix $(OBJ_DIR)/, $(OBJ))
-DEPS			= $(OBJS:.o=d)
+DEPS			= $(OBJS:%.o=%.d)
 
 
 
@@ -228,7 +228,7 @@ endif
 # INCLUDES ##########################################
 MINIRT_INCLUDE	= includes
 INCLUDE_DIRS	= $(MINIRT_INCLUDE) $(LIBFT_INCLUDE) $(MLX_DIR) $(X11_INCLUDE)
-IFLAGS			= $(addprefix -I, $(INCLUDE_DIRS))
+#IFLAGS			= $(addprefix -I, $(INCLUDE_DIRS))
 
 
 
@@ -241,12 +241,13 @@ all				: $(NAME)
 $(NAME)			: $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $^ $(LIBS) $(LFLAGS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $^ $(LIBS) $(LFLAGS)
 
 
-$(OBJ_DIR)/%.o : %.c includes
+#$(OBJ_DIR)/%.o : %.c includes
+$(OBJ_DIR)/%.o : %.c
 	@mkdir -p $$(dirname $@)
-	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean			:
 	rm -rf $(OBJ_DIR)
