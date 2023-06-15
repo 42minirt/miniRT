@@ -50,8 +50,7 @@ SRC				+= $(addprefix $(VECTOR_DIR)/, $(VECTOR_SRC))
 #----------------------------------------------------
 # CONSTRUCTOR
 CONSTRUCTOR_DIR	= srcs/constructor
-CONSTRUCTOR_SRC	= constructor.c \
-				  parse/ft_strtod.c \
+CONSTRUCTOR_SRC	= parse/ft_strtod.c \
 				  parse/ft_strtol.c \
 				  parse/get_bonus_config_of_obj.c \
 				  parse/get_config.c \
@@ -78,7 +77,9 @@ CONSTRUCTOR_SRC	= constructor.c \
 				  validate/validate_config_shape.c \
 				  validate/validate_filename.c \
 				  validate/validate_is_num.c \
-				  validate/validate_is_struct.c
+				  validate/validate_is_struct.c \
+				  constructor.c \
+                  init_ptr.c
 
 SRC				+= $(addprefix $(CONSTRUCTOR_DIR)/, $(CONSTRUCTOR_SRC))
 

@@ -12,11 +12,14 @@
 
 #include "minirt.h"
 
+static double	to_radians(double deg)
+{
+	return (deg / 2.0 * M_PI / 180.0);
+}
+
 static double	calc_eye2scrcen_distance(t_camera_info *camera_info)
 {
-	return (WINDOW_WIDTH / (2.0 * \
-	tan(camera_info->fov_deg \
-	/ 2 * M_PI / 180.0)));
+	return (WINDOW_WIDTH / (2.0 * tan(to_radians(camera_info->fov_deg))));
 }
 
 static void	ready_scr2world_ex(t_vec *scr2world_ex, t_camera_info *camera_info)

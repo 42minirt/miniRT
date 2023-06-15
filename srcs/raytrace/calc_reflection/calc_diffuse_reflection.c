@@ -12,12 +12,18 @@
 
 #include "minirt.h"
 
+static double	to_degrees(double rad)
+{
+	return (rad * 180.0 / (2.0 * M_PI));
+}
+
 bool	is_in_range_spotlight(t_vec unit_light2pos, t_light *light)
 {
+	double	rad_pos2light;
 	double	angle_pos2light;
 
-	angle_pos2light \
-	= acos(dot(unit_light2pos, light->sl_direction)) * (180.0 / (2.0 * M_PI));
+	rad_pos2light = acos(dot(unit_light2pos, light->sl_direction));
+	angle_pos2light = to_degrees(rad_pos2light);
 	return (angle_pos2light <= light->sl_angle_half);
 }
 

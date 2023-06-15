@@ -13,7 +13,8 @@
 #include "minirt.h"
 
 static	bool	calc_refrectvec(t_intersection_point itsp, \
-t_ray ray, t_vec *rev_vec)
+								t_ray ray, \
+								t_vec *rev_vec)
 {
 	t_vec	its_n;
 	t_vec	inv_ray;
@@ -31,14 +32,17 @@ t_ray ray, t_vec *rev_vec)
 }
 
 static	void	set_rayset(t_ray *ref_ray, \
-t_intersection_point its_p, t_vec rev_vec)
+							t_intersection_point its_p, \
+							t_vec rev_vec)
 {
 	(*ref_ray).pos = vec_k1v1_k2v2(1.0, its_p.position, EPSIRON, rev_vec);
 	ref_ray->unit_dir = rev_vec;
 }
 
 t_color	calc_perfect_reflection(t_all_info *info, \
-t_intersection_point *its_p, t_ray eye2screen, size_t counter)
+								t_intersection_point *its_p, \
+								t_ray eye2screen, \
+								size_t counter)
 {
 	t_color	color;
 	t_vec	reverse_vec;

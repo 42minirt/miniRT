@@ -18,13 +18,13 @@ static int	validate_argv(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_dprintf(STDERR_FILENO, "Error\n : rt_file required :(\n");
+		ft_dprintf(STDERR_FILENO, "%s\n : %s\n", MSG_ERROR, MSG_MISSING_ARG);
 		return (FAILURE);
 	}
 	rt_path = argv[1];
 	if (validate_filename(rt_path, RT_EXTENSION) != SUCCESS)
 	{
-		ft_dprintf(STDERR_FILENO, "Error\n : rt file invalid xo\n");
+		ft_dprintf(STDERR_FILENO, "%s\n : %s\n", MSG_ERROR, MSG_INVALID_RT);
 		return (FAILURE);
 	}
 	return (SUCCESS);
@@ -44,13 +44,13 @@ int	main(int argc, char **argv)
 	if (conflict_ch(&info))
 	{
 		destruct_info(&info);
-		ft_dprintf(STDERR_FILENO, "[Error] Light and Obj overlap !\n");
-		return (1);
+		ft_dprintf(STDERR_FILENO, "%s\n : %s\n", MSG_ERROR, MSG_OVERLAP);
+		return (EXIT_FAILURE);
 	}
 	mlx_hooks(&info);
 	mlx_loop(info.mlx_info->mlx);
 	destruct_info(&info);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 #ifdef LEAKS

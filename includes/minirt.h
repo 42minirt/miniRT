@@ -121,6 +121,15 @@
 # define RT_EXTENSION		".rt"
 # define IMG_EXTENSION		".ppm"
 
+/********** message **********/
+# define MSG_ERROR				"Error"
+# define MSG_MISSING_ARG		"rt_file required"
+# define MSG_INVALID_RT			"rt_file invalid"
+# define MSG_OVERLAP			"Light and Camera or Obj overlap"
+# define MSG_ERR_NOMEM			"Failure in memory allocate"
+# define MSG_ERR_MLX			"Failure in init minilibx"
+# define MSG_ERR_CONFIG			"Failure in parsing config file"
+
 /* main */
 int				draw(t_all_info *info);
 
