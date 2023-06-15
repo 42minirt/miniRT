@@ -51,7 +51,7 @@ bool	check_intersection(t_scene_info *scene, \
 		}
 		obj_node = obj_node->next;
 	}
-	if (ret_t == INFINITY)
+	if (isinf(ret_t))
 		return (false);
 	*its_p = nearest_itsp;
 	return (true);

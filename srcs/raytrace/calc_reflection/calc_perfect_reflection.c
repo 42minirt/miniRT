@@ -16,7 +16,7 @@
 
 static	bool	calc_refrectvec(t_intersection_point itsp, \
 								t_ray ray, \
-								t_vec *rev_vec)
+								t_vec *ret_rev_vec)
 {
 	t_vec	its_n;
 	t_vec	inv_ray;
@@ -29,7 +29,7 @@ static	bool	calc_refrectvec(t_intersection_point itsp, \
 	if (v_n <= 0.0)
 		return (false);
 	ref_vec = vec_k1v1_k2v2(2.0 * v_n, its_n, -1.0, inv_ray);
-	normalize(rev_vec, &ref_vec);
+	normalize(ret_rev_vec, &ref_vec);
 	return (true);
 }
 
@@ -56,5 +56,6 @@ t_color	calc_perfect_reflection(t_all_info *info, \
 	if (!calc_refrectvec(*its_p, eye2screen, &reverse_vec))
 		return (color);
 	set_rayset(&refrect_ray, *its_p, reverse_vec);
-	return (recursive_raytrace(info, refrect_ray, counter));
+	color = recursive_raytrace(info, refrect_ray, counter);
+	return (color);
 }
