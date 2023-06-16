@@ -71,16 +71,6 @@ t_matrix	get_trans_mat_world2local_yup(t_vec v_dir)
 		local.eu = world.ex;
 		local.ew = inverse(world.ez);
 	}
-//	if (is_ev_equals_ey(world, local))
-//	{
-//		local.eu = world.ez;
-//		local.ew = inverse(world.ex);
-//	}
-//	else if (is_ev_equals_inv_ey(world, local))
-//	{
-//		local.eu = world.ex;
-//		local.ew = inverse(world.ez);
-//	}
 	transform_mat_w2l = set_vec_to_matrix(local);
 	return (transform_mat_w2l);
 }
@@ -96,26 +86,6 @@ t_matrix	get_trans_mat_world2local_zup(t_vec w_dir)
 	local.ev = norm_vec(w_dir);
 	local.eu = cross(local.ev, world.ez);
 	local.ew = cross(local.eu, local.ev);
-//	if (is_ev_equals_ez(world, local))
-//	{
-//		local.eu = inverse(world.ey);
-//		local.ew = inverse(world.ex);
-//	}
-//	else if (is_ev_equals_inv_ez(world, local))
-//	{
-//		local.eu = inverse(world.ey);
-//		local.ew = world.ex;
-//	}
-//	if (is_ev_equals_ez(world, local))
-//	{
-//		local.eu = inverse(world.ex);
-//		local.ew = world.ey;
-//	}
-//	else if (is_ev_equals_inv_ez(world, local))
-//	{
-//		local.eu = world.ex;
-//		local.ew = world.ey;
-//	}
 	if (is_ev_equals_ez(world, local))
 	{
 		local.eu = world.ex;
