@@ -78,24 +78,23 @@ bool	ch_conflict_cylinder(t_cylinder obj, t_vec pos)
 
 bool	ch_conflict_corn(t_corn obj, t_vec pos)
 {
-	t_vec	tmp;
-	double	height;
-	double	differsize;
-	double	tmp_rad;
-	double	tmp_num;
+	t_vec				pos2bottom;
+	double				pos_height;
+	double				pos_radius;
+	double				pos2bottom_size;
+	static const double	epsilon = 1.0 / EPSILON_DIVISOR;
 
-	neg_vec(&tmp, &pos, &obj.bottom_center);
-	height = dot(tmp, obj.axis);
-	differsize = obtain_vecsize(&tmp);
-	tmp_rad = sqrt(pow(differsize, 2.0) - pow(height, 2.0));
-	if (height < 0.0 || obj.height < height)
+	neg_vec(&pos2bottom, &pos, &obj.bottom_center);
+	pos_height = dot(pos2bottom, obj.axis);
+	if (pos_height < 0.0 || obj.height < pos_height)
 		return (false);
-	if ((0 < tmp_rad && tmp_rad < TMPEPSIRON) \
-	|| (tmp_rad < 0 && -1.0 * tmp_rad < TMPEPSIRON))
+	pos2bottom_size = obtain_vecsize(&pos2bottom);
+	pos_radius = sqrt(pow(pos2bottom_size, 2.0) - pow(pos_height, 2.0));
+	if (pos_height <= epsilon && fabs(pos_radius - obj.radius) <= epsilon)
 		return (true);
-	tmp_num = obj.radius - (obj.height * tmp_rad / height);
-	if ((tmp_num > 0 && tmp_num < TMPEPSIRON) \
-	|| (tmp_num < 0 && -1.0 * tmp_num < TMPEPSIRON))
+	if (pos_radius <= epsilon && fabs(pos_height - obj.height) <= epsilon)
+		return (true);
+	if (fabs((obj.radius / obj.height * pos_height) - pos_radius) <= epsilon)
 		return (true);
 	return (false);
 }
