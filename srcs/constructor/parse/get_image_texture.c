@@ -14,7 +14,7 @@
 #include "typedef.h"
 #include "sys.h"
 
-static char	*get_path(const char *line, size_t *idx, t_parse_res *res)
+static char	*get_path(const char *line, size_t *idx)
 {
 	char	*path;
 	size_t	len;
@@ -31,12 +31,8 @@ static char	*get_path(const char *line, size_t *idx, t_parse_res *res)
 		return (NULL);
 	path = ft_substr(line, *idx, len);
 	if (!path)
-	{
-		*res = ERROR_FATAL;
 		return (NULL);
-	}
 	*idx += len + 1;
-	*res = PASS;
 	return (path);
 }
 
@@ -62,14 +58,15 @@ t_parse_res	get_image_texture(const char *line, \
 	char		*path;
 	int			fd;
 
-	res = ERROR_INVALID_PATH;
-	path = get_path(line, idx, &res);
+	path = get_path(line, idx);
 	if (!path)
-		return (res);
+		return (ERROR_FATAL);
+	res = ERROR_INVALID_PATH;
 	if (is_filename_empty(path))
 		res = validate_continuous_empty_path(empty);
 	else if (validate_filename(path, IMG_EXTENSION) == SUCCESS)
 	{
+		printf("\n");
 		fd = x_open(path, O_RDONLY);
 		if (fd != OPEN_ERROR)
 		{
