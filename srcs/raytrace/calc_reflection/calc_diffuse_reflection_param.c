@@ -33,6 +33,12 @@ t_diffuse_param	calc_diffuse_param(t_intersection_point *its_p, \
 	p.its_p = *its_p;
 	p.light = light;
 	p.vec_pos2light = sub(light->point, its_p->position);
+	if (norm(p.vec_pos2light) < 1.0 / EPSILON_DIVISOR)
+	{
+		ft_dprintf(STDERR_FILENO, "\n%s : %s %s\n", \
+		MSG_ERROR, MSG_LIGHT_OVERLAP, its_p->obj->id_str);
+		exit (EXIT_FAILURE);
+	}
 	p.unit_pos2light = norm_vec(p.vec_pos2light);
 	p.unit_light2pos = inverse(p.unit_pos2light);
 	p.dot_n_unit_pos2light = calc_dot_n_l(*its_p, *ray, p.unit_pos2light);
