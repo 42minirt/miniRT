@@ -27,9 +27,9 @@ static int	validate_argv(int argc, char **argv)
 		return (FAILURE);
 	}
 	rt_path = argv[1];
-	if (validate_filename(rt_path, RT_EXTENSION) != SUCCESS)
+	if (validate_filename(rt_path, RT_EXTENSION) == FAILURE)
 	{
-		ft_dprintf(STDERR_FILENO, "%s\n : %s\n", MSG_ERROR, MSG_INVALID_RT);
+		ft_dprintf(STDERR_FILENO, "%s : %s\n", MSG_ERROR, MSG_INVALID_RT);
 		return (FAILURE);
 	}
 	return (SUCCESS);

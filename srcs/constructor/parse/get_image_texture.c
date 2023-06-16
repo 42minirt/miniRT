@@ -66,7 +66,6 @@ t_parse_res	get_image_texture(const char *line, \
 		res = validate_continuous_empty_path(empty);
 	else if (validate_filename(path, IMG_EXTENSION) == SUCCESS)
 	{
-		printf("\n");
 		fd = x_open(path, O_RDONLY);
 		if (fd != OPEN_ERROR)
 		{

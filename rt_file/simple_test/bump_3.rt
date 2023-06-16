@@ -1,20 +1,11 @@
 A   0.1                                                   255, 255, 255
-C   0,2,-2.5         0, 0, 1       40
+C   0,2,-10         0, 0, 1       60
 
-# L   0, 2,0                      1.0                     255,255,255
-# L   -2,5, -2                     1.0                     255,255,255
-L   -1.1, 2, -1                     1.0                     255,255,255
-# sl  -3,1,-2       1, -0.2, 1        1.0    30.0            0, 0, 255
-sl  -3,1,-2       1, -0.2, 1        1.0    30.0            255, 255, 255
-
+L   0, 10, -10                     1.0                     255,255,255
 
 sp   0, 1, 0                           2.0               255,0,0        image "img/1k_earth.ppm"       "img/1k_earth_normal.ppm"
-# sp   0, 1, 0                           2.0               255,155, 155        image ""       "img/1k_earth_normal.ppm"
-# sp   0, 1, 0                           2.0               255,155,155
 
 pl   0, 0 , 0             0, 1, 0                        150,150,150     image ""                       "img/normalmap_example.ppm"
-# pl   0, 0 , 0             0, 1, 0                        150,150,150
 
-
-# co   0, 1, 0           0, 1, 0       2    1.5       255, 0  , 255        image "img/1k_earth.ppm"       "img/1k_earth_normal.ppm"
-# cy   0, 1, 0           1, 0, 0       2    1.5       255, 0  , 255        image "img/1k_earth.ppm"       "img/1k_earth_normal.ppm"
+co   3, 1,  0           0, 1, -0.2       2    1.5       255, 0  , 255        image "img/1k_earth.ppm"       "img/1k_earth_normal.ppm"
+cy   -3, 1, 0           1, 1, 0         1.5    1.5       255, 0  , 255        image "img/1k_earth.ppm"       "img/1k_earth_normal.ppm"

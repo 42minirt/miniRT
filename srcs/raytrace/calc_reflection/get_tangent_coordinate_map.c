@@ -68,6 +68,7 @@ static t_tangetnt_map	get_cylindrical_map(t_intersection_point *its_p)
 	map.v = -1.0 * pos_uv.y / its_p->obj->shape_data.cylinder.height;
 	return (map);
 }
+//map.u = (azimuth_angle_phi + M_PI * 3.0 / 2.0) / (2.0 * M_PI);
 
 static t_tangetnt_map	get_conical_map(t_intersection_point *its_p)
 {
@@ -83,10 +84,11 @@ static t_tangetnt_map	get_conical_map(t_intersection_point *its_p)
 	= get_trans_mat_world2local_zup(its_p->obj->shape_data.corn.axis);
 	pos_uv = mul_matrix_vec(tarns_mat_world2tangent, pos_local);
 	azimuth_angle_phi = atan2(pos_uv.z, pos_uv.x);
-	map.u = (azimuth_angle_phi + M_PI * 3.0 / 2.0) / (2.0 * M_PI);
+	map.u = (azimuth_angle_phi) / (2.0 * M_PI);
 	map.v = -1.0 * pos_uv.y / its_p->obj->shape_data.corn.height;
 	return (map);
 }
+//map.u = (azimuth_angle_phi + M_PI * 3.0 / 2.0) / (2.0 * M_PI);
 
 t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p)
 {
