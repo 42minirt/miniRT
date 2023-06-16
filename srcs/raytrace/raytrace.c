@@ -20,11 +20,11 @@ static double	calc_intersection(t_obj *obj, \
 {
 	if (streq(obj->id_str, ID_SPHERE))
 		return (calc_intersect_with_sphere(obj, eye2screen, tmp_itsp));
-	else if (streq(obj->id_str, ID_PLANE))
+	if (streq(obj->id_str, ID_PLANE))
 		return (calc_planeratio(obj, &eye2screen, tmp_itsp));
-	else if (streq(obj->id_str, ID_CYLINDER))
+	if (streq(obj->id_str, ID_CYLINDER))
 		return (calc_cylinderratio(obj, &eye2screen, tmp_itsp));
-	else if (streq(obj->id_str, ID_CORN))
+	if (streq(obj->id_str, ID_CORN))
 		return (calc_intersect_with_corn(obj, eye2screen, tmp_itsp));
 	return (-1.0);
 }

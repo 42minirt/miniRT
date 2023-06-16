@@ -16,9 +16,9 @@ static bool	conflict_ch_sameobj(t_obj *obj, t_vec check_pos)
 {
 	if (streq(obj->id_str, ID_SPHERE))
 		return (ch_conflict_sphere(obj->shape_data.sphere, check_pos));
-	else if (streq(obj->id_str, ID_PLANE))
+	if (streq(obj->id_str, ID_PLANE))
 		return (ch_conflict_plane(obj->shape_data.plane, check_pos));
-	else if (streq(obj->id_str, ID_CYLINDER))
+	if (streq(obj->id_str, ID_CYLINDER))
 		return (ch_conflict_cylinder(obj->shape_data.cylinder, check_pos));
 	return (ch_conflict_corn(obj->shape_data.corn, check_pos));
 }
@@ -29,7 +29,7 @@ static bool	conflict_ch_sameobj(t_obj *obj, t_vec check_pos)
 //光源の数
 //	objの数
 
-static bool	is_light_overlap(t_obj *obj, t_list *light_node)
+static bool	is_light_overlapped(t_obj *obj, t_list *light_node)
 {
 	t_list	*node;
 	t_light	*light;
@@ -45,7 +45,7 @@ static bool	is_light_overlap(t_obj *obj, t_list *light_node)
 	return (false);
 }
 
-static bool	is_camera_overlap(t_obj *obj, t_camera_info *camera)
+static bool	is_camera_overlapped(t_obj *obj, t_camera_info *camera)
 {
 	return (conflict_ch_sameobj(obj, camera->position));
 }
@@ -59,13 +59,13 @@ bool	is_camera_and_light_overlap_with_obj(t_all_info *info)
 	while (obj_node)
 	{
 		obj = obj_node->content;
-		if (is_camera_overlap(obj, info->camera_info))
+		if (is_camera_overlapped(obj, info->camera_info))
 		{
 			ft_dprintf(STDERR_FILENO, "%s : %s %s\n", \
 			MSG_ERROR, MSG_CAMERA_OVERLAP, obj->id_str);
 			return (true);
 		}
-		if (is_light_overlap(obj, info->scene_info->lights))
+		if (is_light_overlapped(obj, info->scene_info->lights))
 		{
 			ft_dprintf(STDERR_FILENO, "%s : %s %s\n", \
 			MSG_ERROR, MSG_LIGHT_OVERLAP, obj->id_str);
