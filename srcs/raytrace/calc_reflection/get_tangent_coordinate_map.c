@@ -50,45 +50,49 @@ static t_tangetnt_map	get_spherical_map(t_intersection_point *its_p)
 	return (map);
 }
 
+static t_tangetnt_map	get_polar_coordinate_map(t_vec pos_local, \
+													t_vec axis, \
+													double size)
+{
+	t_tangetnt_map	map;
+	t_vec			pos_uv;
+	t_matrix		tarns_mat_world2tangent;
+	double			azimuth_angle_phi;
+
+	tarns_mat_world2tangent \
+	= get_trans_mat_world2local_w_basis(axis);
+	pos_uv = mul_matrix_vec(tarns_mat_world2tangent, pos_local);
+	azimuth_angle_phi = atan2(pos_uv.z, pos_uv.x);
+	map.u = azimuth_angle_phi / (2.0 * M_PI);
+	map.v = -1.0 * pos_uv.y / size;
+	return (map);
+}
+
 static t_tangetnt_map	get_cylindrical_map(t_intersection_point *its_p)
 {
 	t_tangetnt_map	map;
 	t_vec			pos_local;
-	t_vec			pos_uv;
-	t_matrix		tarns_mat_world2tangent;
-	double			azimuth_angle_phi;
+	t_vec			bottom_center;
+	t_vec			axis;
+	double			height;
 
-	pos_local \
-		= sub(its_p->position, its_p->obj->shape_data.cylinder.bottom_center);
-	tarns_mat_world2tangent \
-	= get_trans_mat_world2local_zup(its_p->obj->shape_data.cylinder.axis);
-	pos_uv = mul_matrix_vec(tarns_mat_world2tangent, pos_local);
-	azimuth_angle_phi = atan2(pos_uv.z, pos_uv.x);
-	map.u = (azimuth_angle_phi + M_PI * 3.0 / 2.0) / (2.0 * M_PI);
-	map.v = -1.0 * pos_uv.y / its_p->obj->shape_data.cylinder.height;
+	if (streq(its_p->obj->id_str, ID_CYLINDER))
+	{
+		bottom_center = its_p->obj->shape_data.cylinder.bottom_center;
+		pos_local = sub(its_p->position, bottom_center);
+		axis = its_p->obj->shape_data.cylinder.axis;
+		height = its_p->obj->shape_data.cylinder.height;
+	}
+	else
+	{
+		bottom_center = its_p->obj->shape_data.corn.bottom_center;
+		pos_local = sub(its_p->position, bottom_center);
+		axis = its_p->obj->shape_data.corn.axis;
+		height = its_p->obj->shape_data.corn.height;
+	}
+	map = get_polar_coordinate_map(pos_local, axis, height);
 	return (map);
 }
-//map.u = (azimuth_angle_phi + M_PI * 3.0 / 2.0) / (2.0 * M_PI);
-
-static t_tangetnt_map	get_conical_map(t_intersection_point *its_p)
-{
-	t_tangetnt_map	map;
-	t_vec			pos_local;
-	t_vec			pos_uv;
-	t_matrix		tarns_mat_world2tangent;
-	double			azimuth_angle_phi;
-
-	pos_local \
-		= sub(its_p->position, its_p->obj->shape_data.corn.bottom_center);
-	tarns_mat_world2tangent \
-	= get_trans_mat_world2local_zup(its_p->obj->shape_data.corn.axis);
-	pos_uv = mul_matrix_vec(tarns_mat_world2tangent, pos_local);
-	azimuth_angle_phi = atan2(pos_uv.z, pos_uv.x);
-	map.u = (azimuth_angle_phi + M_PI * 3.0 / 2.0) / (2.0 * M_PI);
-	map.v = -1.0 * pos_uv.y / its_p->obj->shape_data.corn.height;
-	return (map);
-}
-//map.u = (azimuth_angle_phi + M_PI * 3.0 / 2.0) / (2.0 * M_PI);
 
 t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p)
 {
@@ -98,9 +102,7 @@ t_tangetnt_map	get_tangent_coordinate_map(t_intersection_point *its_p)
 		map = get_planer_map(its_p);
 	else if (streq(its_p->obj->id_str, ID_SPHERE))
 		map = get_spherical_map(its_p);
-	else if (streq(its_p->obj->id_str, ID_CYLINDER))
-		map = get_cylindrical_map(its_p);
 	else
-		map = get_conical_map(its_p);
+		map = get_cylindrical_map(its_p);
 	return (map);
 }

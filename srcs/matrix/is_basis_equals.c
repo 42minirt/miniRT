@@ -26,16 +26,16 @@ bool	is_ev_equals_inv_ey(t_basis_world world, t_basis_local local)
 	&& local.ev.z == world.ey.z);
 }
 
-bool	is_ev_equals_ez(t_basis_world world, t_basis_local local)
+bool	is_ev_equals_ex(t_basis_world world, t_basis_local local)
 {
-	return (local.ev.x == world.ez.x \
-	&& local.ev.y == world.ez.y \
-	&& local.ev.z == world.ez.z);
+	return (local.ev.x == world.ex.x \
+	&& local.ev.y == world.ex.y \
+	&& local.ev.z == world.ex.z);
 }
 
-bool	is_ev_equals_inv_ez(t_basis_world world, t_basis_local local)
+bool	is_ev_equals_inv_ex(t_basis_world world, t_basis_local local)
 {
-	return (local.ev.x == world.ez.x \
-	&& local.ev.y == world.ez.y \
-	&& local.ev.z == -1.0 * world.ez.z);
+	return (local.ev.x == -1.0 * world.ex.x \
+	&& local.ev.y == world.ex.y \
+	&& local.ev.z == world.ex.z);
 }
