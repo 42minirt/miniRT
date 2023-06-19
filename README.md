@@ -145,7 +145,7 @@ This program uses a Left-hand coordinate system
 <br>
 
 # 6. References
-* [The Textbool of RayTracing @TDU](https://knzw.tech/raytracing/?page_id=1145)
+* [The Textbook of RayTracing @TDU](https://knzw.tech/raytracing/?page_id=1145)
 * [C言語でレイトレーシングプログラムを作った](https://jun-networks.hatenablog.com/entry/2021/04/02/043216)
 * [床井研究室 バンプマッピング](https://marina.sys.wakayama-u.ac.jp/~tokoi/?date=20050826)
 * [Unity Documentation 法線マップ](https://docs.unity3d.com/ja/2021.3/Manual/StandardShaderMaterialParameterNormalMap.html)
